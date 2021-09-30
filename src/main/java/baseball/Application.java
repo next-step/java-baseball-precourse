@@ -27,10 +27,6 @@ Scanner sc=new Scanner(System.in);
 					
 			while(strike_count<3){
 				
-				//이건 나중에 지워야 함
-				System.out.println("컴퓨터숫자: "+key_num);
-				
-				
 				System.out.println("세자리 숫자를 입력해 주세요 >>");
 				inst_num=sc.nextInt();		
 				System.out.println("입력숫자: "+inst_num);
