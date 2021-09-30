@@ -1,6 +1,11 @@
 plugins {
     id 'java'
+    id 'org.ec4j.editorconfig' version '0.0.3'
 }
+editorconfig {
+    excludes = ['build']
+}
+check.dependsOn editorconfigCheck
 
 group 'camp.nextstep.edu'
 version '1.0.0'
@@ -10,6 +15,9 @@ targetCompatibility = 1.8
 repositories {
     mavenCentral()
 }
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
 
 dependencies {
     testImplementation 'org.assertj:assertj-core:3.19.0'
