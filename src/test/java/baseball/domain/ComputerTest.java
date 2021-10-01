@@ -14,12 +14,13 @@ class ComputerTest {
 	void 게임시작_직후_3개의수생성() {
 		Computer computer = new Computer();
 
-		List input = computer.getInput();
+		List randomValue = computer.getRandomValue();
 
-		assertThat(input.size()).isEqualTo(3);
-		assertThat(input.get(0)).isNotEqualTo(input.get(1));
-		assertThat(input.get(1)).isNotEqualTo(input.get(2));
-		assertThat(input.get(2)).isNotEqualTo(input.get(0));
+		assertThat(randomValue.size()).isEqualTo(3);
+		assertThat(randomValue.get(0)).isNotEqualTo(randomValue.get(1));
+		assertThat(randomValue.get(1)).isNotEqualTo(randomValue.get(2));
+		assertThat(randomValue.get(2)).isNotEqualTo(randomValue.get(0));
+
 	}
 
 }

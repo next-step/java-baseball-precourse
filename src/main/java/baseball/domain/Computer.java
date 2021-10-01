@@ -9,20 +9,33 @@ import nextstep.utils.Randoms;
 
 public class Computer {
 	private Set randomSet = new HashSet<Integer>();
-	private List input = new ArrayList();
+	private List randomValue = new ArrayList();
 
-	public Computer() {
+	public List getRandomValue() {
+		clear();
+		init();
+		return randomValue;
+	}
+
+	private void init() {
 		while (randomSet.size() != 3) {
 			int random = Randoms.pickNumberInRange(1, 9);
 			randomSet.add(random);
 		}
 
-		for (Object o : randomSet) {
-			input.add(o);
+		for (Object randomNumber : randomSet) {
+			randomValue.add(randomNumber);
 		}
 	}
 
-	public List getInput() {
-		return input;
+	private void clear() {
+		if (!randomSet.isEmpty()) {
+			randomSet.clear();
+		}
+
+		if (!randomValue.isEmpty()) {
+			randomValue.clear();
+		}
 	}
+
 }
