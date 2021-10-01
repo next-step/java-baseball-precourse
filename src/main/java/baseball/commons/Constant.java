@@ -19,4 +19,6 @@ public final class Constant {
     public static Integer GAME_PITCHING_COUNT = 3;
     public static Integer GAME_BALL_START = 1;
     public static Integer GAME_BALL_END = 9;
+    public static String ONLY_NUMBER_VALIDATE_REGEX = "^[0-9]{%d}$";
+
 }
