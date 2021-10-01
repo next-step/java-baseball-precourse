@@ -34,4 +34,20 @@ public class PickNumberTest {
 		assertThat(PickNumber.validatePickNumber(1234)).isFalse();
 		assertThat(PickNumber.validatePickNumber(34)).isFalse();
 	}
+
+	@Test
+	void 스트라이크개수() {
+		assertThat(PickNumber.getStrikeCount(123, 123)).isEqualTo(3);
+		assertThat(PickNumber.getStrikeCount(123, 122)).isEqualTo(2);
+		assertThat(PickNumber.getStrikeCount(123, 132)).isEqualTo(1);
+		assertThat(PickNumber.getStrikeCount(123, 312)).isEqualTo(0);
+	}
+
+	@Test
+	void 볼개수() {
+		assertThat(PickNumber.getBallCount(123, 123)).isEqualTo(0);
+		assertThat(PickNumber.getBallCount(123, 254)).isEqualTo(1);
+		assertThat(PickNumber.getBallCount(123, 132)).isEqualTo(2);
+		assertThat(PickNumber.getBallCount(123, 312)).isEqualTo(3);
+	}
 }
