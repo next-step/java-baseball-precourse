@@ -25,4 +25,13 @@ public class PickNumberTest {
 		assertThat(PickNumber.validateDigitNumberDistinct(423, 3, 2)).isTrue();
 		assertThat(PickNumber.validateDigitNumberDistinct(422, 2, 1)).isFalse();
 	}
+
+	@Test
+	void 서로다른3자리숫자() {
+		assertThat(PickNumber.validatePickNumber(123)).isTrue();
+		assertThat(PickNumber.validatePickNumber(223)).isFalse();
+		assertThat(PickNumber.validatePickNumber(333)).isFalse();
+		assertThat(PickNumber.validatePickNumber(1234)).isFalse();
+		assertThat(PickNumber.validatePickNumber(34)).isFalse();
+	}
 }
