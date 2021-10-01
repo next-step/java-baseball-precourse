@@ -1,33 +1,48 @@
 package baseball;
 
-public class GameUI {
-    public static void printNumberInputRequest() {
 
+import nextstep.utils.Console;
+
+class GameUI {
+
+    static void printNumberInputRequest() {
+        System.out.print("숫자를 입력해주세요 : ");
     }
 
-    public static String userInput() {
-        return null;
+    static String userInput() {
+        return Console.readLine();
     }
 
-    public static void printInvalidInputErrorMessage() {
-
+    static void printInvalidInputErrorMessage() {
+        System.out.println("[ERROR] 잘못된 사용자 입력 입니다.");
     }
 
-    public static void printNothing() {
+    static void printNothing() {
+        System.out.println("낫싱");
     }
 
-    public static void printAllMatchMessage() {
-
+    static void printAllMatchMessage() {
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
     }
 
-    public static void printAskRetryMessage() {
+    static void printAskRetryMessage() {
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요. 1");
     }
 
-    public static boolean isRetryNeeded(String retryInput) {
-        return false;
+    static boolean isRetryNeeded(String retryInput) {
+        return "1".equals(retryInput);
     }
 
-    public static void printGrade(int strikeCount, int ballCount) {
+    static void printGrade(int strikeCount, int ballCount) {
+        if (strikeCount > 0 && ballCount > 0) {
+            System.out.println(strikeCount + "스트라이크 " + ballCount + "볼");
+            return;
+        }
+        if (strikeCount > 0) {
+            System.out.println(strikeCount + "스트라이크");
+            return;
+        }
 
+        System.out.println(ballCount + "볼");
     }
 }

@@ -36,9 +36,7 @@ public class Console {
     }
 
     private static void makeNewScannerIfScannerIsClosed() {
-        if (Objects.isNull(scanner) || scannerIsClosed()) {
-            scanner = getScanner();
-        }
+        if (Objects.isNull(scanner) || scannerIsClosed()) scanner = getScanner();
     }
 
     private static boolean scannerIsClosed() {
