@@ -5,11 +5,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import baseball.config.ConfigBaseball;
 import nextstep.utils.Randoms;
 
 public class Computer {
 	private Set randomSet = new HashSet<Integer>();
 	private List randomValue = new ArrayList();
+	private final int INPUT_SIZE = ConfigBaseball.INPUT_SIZE;
+	private final int PICK_NUMBER_MIN = ConfigBaseball.PICK_NUMBER_MIN;
+	private final int PICK_NUMBER_MAX = ConfigBaseball.PICK_NUMBER_MAX;
 
 	public List getRandomValue() {
 		clear();
@@ -18,8 +22,8 @@ public class Computer {
 	}
 
 	private void init() {
-		while (randomSet.size() != 3) {
-			int random = Randoms.pickNumberInRange(1, 9);
+		while (randomSet.size() != INPUT_SIZE) {
+			int random = Randoms.pickNumberInRange(PICK_NUMBER_MIN, PICK_NUMBER_MAX);
 			randomSet.add(random);
 		}
 
