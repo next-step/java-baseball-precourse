@@ -9,7 +9,7 @@ public class Application {
     	boolean play = true;
     	while(play) {
 	    	String computerNum = selectThreeNums();
-	    	System.out.println(computerNum);
+	    	//System.out.println(computerNum);
 	    	
 	    	playBaseball(computerNum);
 	    	
@@ -54,20 +54,12 @@ public class Application {
     		//computerNum에 player 숫자가 있는지 확인 
     		int idx = computerNum.indexOf(playerNum.charAt(i));
     		//System.out.println("idx : " + idx);
-    		if(idx != -1 && idx == i){
-    			strike++;
-    		}
-    		if(idx != -1 && idx != i) {
-    			ball++;
-    		}
+    		if(idx != -1 && idx == i) strike++;
+    		if(idx != -1 && idx != i) ball++;
     		//System.out.println("strike : "+strike + ", ball : " + ball) ;
     	}
-    	if(strike == 0 && ball == 0) {
-    		System.out.println("낫씽");
-    	}
-    	if(strike > 0 || ball > 0) {
-    		System.out.println((strike == 0 ? "" : strike + "스트라이크 ") + (ball == 0 ? "" : ball + "볼"));
-    	}
+    	if(strike == 0 && ball == 0) System.out.println("낫싱");
+    	if(strike > 0 || ball > 0) System.out.println((strike == 0 ? "" : strike + "스트라이크 ") + (ball == 0 ? "" : ball + "볼"));
     	
     	return strike;
     }
