@@ -1,6 +1,11 @@
 package baseball.utils;
 
 public class PickNumber {
+	public static final String SPACE = " ";
+	public static final String STRIKE = "스트라이크";
+	public static final String BALL = "볼";
+	public static final String NOTING = "낫싱";
+
 	/**
 	 * 해당하는 자리의 숫자 조회
 	 * @param pickNumber
@@ -60,5 +65,68 @@ public class PickNumber {
 		}
 
 		return true;
+	}
+
+	public static int getStrikeCount(int pickNumber, int playerNumber) {
+		int count = 0;
+
+		// 각 자리수의 숫자가 같은지 확인
+		for (int index = 1; index < 4; index++) {
+			if (PickNumber.getDigitNumber(pickNumber, index) == PickNumber.getDigitNumber(playerNumber, index)) {
+				count++;
+			}
+		}
+
+		return count;
+	}
+
+	public static Boolean checkBall(int pickNumber, int playerNumber, int pickDigit) {
+		int pickDigitNumber = PickNumber.getDigitNumber(pickNumber, pickDigit);
+
+		for (int index = 0; index < 3; index++) {
+			int tempPlayerDigit = (index % 3) + 1;
+
+			if (pickDigit == tempPlayerDigit) {
+				continue;
+			}
+
+			if (pickDigitNumber == PickNumber.getDigitNumber(playerNumber, tempPlayerDigit)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public static int getBallCount(int pickNumber, int playerNumber) {
+		int count = 0;
+
+		for (int index = 1; index < 4; index++) {
+			if (checkBall(pickNumber, playerNumber, index)) {
+				count++;
+			}
+		}
+
+		return count;
+	}
+
+	public static String comparingNumbers(int pickNumber, int playerNumber) {
+		String resultValue = "";
+		int strikeCount = getStrikeCount(pickNumber, playerNumber);
+		int ballCount = getBallCount(pickNumber, playerNumber);
+
+		if (strikeCount != 0) {
+			resultValue += strikeCount + STRIKE + SPACE;
+		}
+
+		if (ballCount != 0) {
+			resultValue += ballCount + BALL;
+		}
+
+		if (resultValue.equals("")) {
+			resultValue = NOTING;
+		}
+
+		return resultValue;
 	}
 }
