@@ -5,3 +5,21 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능 목록 
+- 스트라이크, 볼, 낫싱 판단
+  - 스트라이크 
+  - 볼 
+  - 낫싱 
+- 입력 - 플레이어 (Console.java 에 구현됨) 
+  - 정상 입력 
+  - 입력 오류 
+    - 입력 값이 없을 때 
+    - 스캐너가 닫혔을 때 
+- 출력 - 컴퓨터 (System.out.println() 으로 콘솔에 출력)
+- 임의의 수 선택(Randoms.java 에 구현됨)
+- 게임 시작
+  - 반복해서 입력 받기 
+- 게임 종료 
+  - Application#main 메소드 정상 호출 시 정상 종료 
+  - 예외 발생 시 비정상 종료 
