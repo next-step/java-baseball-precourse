@@ -3,6 +3,7 @@ package baseball;
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 import nextstep.utils.Console;
 import nextstep.utils.Randoms;
@@ -11,6 +12,20 @@ public class NumberBaseballGame {
 	private List<String> answers;
 
 	NumberBaseballGame() {
+	}
+
+	/**
+	 * @author : yh.kim
+	 * @Date : 2021/10/03 1:47 오전
+	 * @Description : 게임 시작
+	 *
+	 **/
+	void start() {
+		System.out.print("숫자를 입력해주세요 : ");
+
+		String readLine = getInput();
+
+		checkInput(readLine);
 	}
 
 	/**
@@ -28,6 +43,69 @@ public class NumberBaseballGame {
 				, String.valueOf(Randoms.pickNumberInRange(1, 9))
 			}
 		);
+	}
+
+	/**
+	 * @author : yh.kim
+	 * @Date : 2021/10/03 1:50 오전
+	 * @Description : 스트라이크, 볼, 낫싱 판단
+	 *
+	 **/
+	private void checkInput(String readLine) {
+		List<String> inputs = Arrays.asList(readLine.split(""));
+
+		int strike = 0;
+		int ball = 0;
+
+		for (int i = 0; i < inputs.size(); i++) {
+			// TODO 정답 입력과 정답 후 새로 시작 or 종료 입력 여부 분리
+			if (inputs.size() != 3) {
+				break;
+			}
+
+			if (Objects.equals(inputs.get(i), answers.get(i))) {
+				strike++;
+				continue;
+			}
+
+			if (answers.contains(inputs.get(i))) {
+				ball++;
+				continue;
+			}
+		}
+
+		StringBuilder resultBuilder = new StringBuilder();
+
+		if (strike > 0) {
+			resultBuilder.append(String.format("%s스트라이크", strike));
+		}
+
+		if (ball > 0) {
+			resultBuilder.append(String.format(" %s볼", strike));
+		}
+
+		if (strike == 0 && ball == 0) {
+			resultBuilder.append("낫싱");
+		}
+
+		System.out.println(resultBuilder.toString());
+
+		if (strike == 3) {
+			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
+			System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+
+			String input = getInput();
+
+			if (Objects.equals(input, "1")) {
+				initAnswers();
+
+				start();
+			}
+		}
+
+		if (strike != 3) {
+			start();
+		}
 	}
 
 	/**
