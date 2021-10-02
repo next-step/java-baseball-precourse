@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import baseball.config.ConfigBaseball;
+import nextstep.utils.Console;
 import nextstep.utils.Randoms;
 
 /**
@@ -23,6 +24,9 @@ public class Computer {
 	private final String HINT_STRIKE_MESSAGE = ConfigBaseball.HINT_STRIKE_MESSAGE;
 	private final String HINT_BALL_MESSAGE = ConfigBaseball.HINT_BALL_MESSAGE;
 	private final String HINT_NOTHING_MESSAGE = ConfigBaseball.HINT_NOTHING_MESSAGE;
+	private final String GAME_CLEAR_FIRST_MESSAGE = ConfigBaseball.GAME_CLEAR_FIRST_MESSAGE;
+	private final String GAME_CLEAR_SECOND_MESSAGE = ConfigBaseball.GAME_CLEAR_SECOND_MESSAGE;
+	private final List newGameSelector = Arrays.asList('1', '2');
 	private String hint = "";
 	private int strike = 0;
 	private int ball = 0;
@@ -37,7 +41,25 @@ public class Computer {
 		boolean isSuccess = getStrike() == INPUT_SIZE;
 		clearStrikeBall();
 
+		if (isSuccess && isNewGame()) {
+			getClearRandomValue();
+			isSuccess = false;
+		}
+
 		return isSuccess;
+	}
+
+	private boolean isNewGame() {
+		System.out.println(GAME_CLEAR_FIRST_MESSAGE);
+		System.out.println(GAME_CLEAR_SECOND_MESSAGE);
+		String readLine = Console.readLine();
+
+		while (readLine.length() != 1 || !newGameSelector.contains(readLine.charAt(0))) {
+			System.out.println(GAME_CLEAR_SECOND_MESSAGE);
+			readLine = Console.readLine();
+		}
+
+		return "1".equals(String.valueOf(readLine.charAt(0)));
 	}
 
 	public boolean checkNothing() {

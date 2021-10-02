@@ -10,6 +10,8 @@ public class ConfigBaseball {
 	public static final String HINT_STRIKE_MESSAGE = "스트라이크";
 	public static final String HINT_BALL_MESSAGE = "볼";
 	public static final String HINT_NOTHING_MESSAGE = "낫싱";
+	public static final String GAME_CLEAR_FIRST_MESSAGE = INPUT_SIZE + "개의 숫자를 모두 맞히셨습니다! 게임 끝";
+	public static final String GAME_CLEAR_SECOND_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
 
 	private ConfigBaseball() {
 	}
