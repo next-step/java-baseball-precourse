@@ -1,4 +1,6 @@
-package baseball.service;
+package baseball.controller;
+
+import baseball.service.NumberBaseBallGame;
 
 public class GameMachine {
 

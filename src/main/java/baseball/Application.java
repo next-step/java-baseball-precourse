@@ -1,6 +1,6 @@
 package baseball;
 
-import baseball.service.GameMachine;
+import baseball.controller.GameMachine;
 
 public class Application {
     public static void main(String[] args) {
