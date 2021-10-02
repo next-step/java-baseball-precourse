@@ -44,35 +44,45 @@ public class User {
 	 * 입력한 값의 크기, 타입 체크
 	 */
 	private boolean validateReadLine(String readLine) {
-		if (validateLength(readLine)) {
+		if (!validateLength(readLine)) {
 			return false;
 		}
 
-		int validateTypeCount = 0;
-		boolean validateTypeResult = true;
-		while (isValidatedType(validateTypeResult, validateTypeCount)) {
-			validateTypeResult = !validateType(readLine, validateTypeCount);
-			validateTypeCount++;
+		if (!validateType(readLine)) {
+			return false;
 		}
 
-		return validateTypeResult;
+		return true;
 	}
 
-	private boolean isValidatedType(boolean validateTypeResult, int validateTypeCount) {
-		return validateTypeResult && validateTypeCount != INPUT_SIZE;
+	private boolean validateType(String readLine) {
+		int validateCount = 0;
+		boolean validateResult = true;
+		while (isValidatedType(validateResult, validateCount)) {
+			validateResult = validateTypeInt(readLine, validateCount);
+			validateCount++;
+		}
+		return validateResult;
+	}
+
+	/**
+	 * 입력한 값이 입력크기 동안 타입검증을 통과하는지 확인
+	 */
+	private boolean isValidatedType(boolean validateResult, int validateCount) {
+		return validateResult && validateCount != INPUT_SIZE;
 	}
 
 	/**
 	 * 입력한 값이 숫자가 아닐 경우 [ERROR]메시지 출력
 	 */
-	private boolean validateType(String readLine, int index) {
+	private boolean validateTypeInt(String readLine, int index) {
 		String value = String.valueOf(readLine.charAt(index));
 
 		if (!numberList.contains(value)) {
 			printErrorMessage();
-			return true;
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	/**
@@ -81,9 +91,9 @@ public class User {
 	private boolean validateLength(String readLine) {
 		if (readLine.length() != INPUT_SIZE) {
 			printErrorMessage();
-			return true;
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	private void printErrorMessage() {
