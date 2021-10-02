@@ -13,14 +13,14 @@ public class BaseballService {
 
   public void execute() {
     for(String input = "1"; input.equals("1");) {
-      baseball(randomNumber());
+      playBaseball(getRandomNumber());
 
       System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요. ");
-      input = input();
+      input = getInput();
     }
   }
 
-  private List<Character> randomNumber() {
+  private List<Character> getRandomNumber() {
     List<Character> chars = new ArrayList<>();
     Consumer<Character> numConsumer = num -> {
       if(!chars.contains(num)) chars.add(num);
@@ -34,7 +34,7 @@ public class BaseballService {
     return chars;
   }
 
-  private void baseball(List<Character> chars) {
+  private void playBaseball(List<Character> chars) {
     BaseBall baseBall = new BaseBall(chars);
     for(boolean isContinue = true; isContinue;) {
       System.out.print("숫자를 입력해주세요 : ");
@@ -48,7 +48,7 @@ public class BaseballService {
     System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
   }
 
-  private String input() {
+  private String getInput() {
     String input = Console.readLine();
     if (!"1".equals(input) && !"2".equals(input)) {
       System.out.println(getDesc(Errors.INPUT_ERROR_AND_EXIT));

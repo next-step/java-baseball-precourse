@@ -28,7 +28,7 @@ public class ResultStatus {
     return strikeCnt + "스트라이크 " + ballCnt + "볼";
   }
 
-  public boolean threeStrike() {
+  public boolean is3Strike() {
     return this.strikeCnt == 3;
   }
 }

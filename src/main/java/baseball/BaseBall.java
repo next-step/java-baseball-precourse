@@ -27,7 +27,7 @@ public class BaseBall {
       checkStatus(answers.get(i), inputChars[i], status);
     }
 
-    this.isAnswer = status.threeStrike();
+    this.isAnswer = status.is3Strike();
     return status.now();
   }
 
