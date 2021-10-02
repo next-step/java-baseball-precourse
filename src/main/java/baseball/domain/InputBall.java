@@ -33,12 +33,18 @@ public class InputBall {
         validateNumberDuplicate(inputNumber);
     }
 
+    /**
+     * 미 입력 검증
+     * */
     private void validateNull(String inputNumber) {
         if (StringUtils.isEmpty(inputNumber)) {
             throw new NullPointerException("숫자 입력은 필수입니다.");
         }
     }
 
+    /**
+     * 입력 받은 값의 길이 검증
+     * */
     private void validateInputLength(String inputNumber) {
         if(inputNumber.length() > BALL_SIZE){
             throw new IllegalArgumentException( "입력한 값이 " + BALL_SIZE + " 길이를 초과하였습니다.");
@@ -48,6 +54,9 @@ public class InputBall {
         }
     }
 
+    /**
+     * 중복된 숫자가 있는지 검증
+     * */
     private void validateNumberDuplicate(String inputNumber) {
         Set<Integer> set = new HashSet<>();
         for (int i = 0; i < inputNumber.length(); i++) {
@@ -58,6 +67,9 @@ public class InputBall {
         }
     }
 
+    /**
+     * 1 ~ 9 숫자외 값이 있는지 검증
+     * */
     private void validateNumberOtherThen(String inputNumber) {
         boolean matches = NUMBER_PATTERN.matcher(inputNumber).matches();
         if (!matches) {
