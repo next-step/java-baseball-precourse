@@ -41,7 +41,7 @@ public class Computer {
 	}
 
 	public int checkStrike(List randomValue, List userInput) {
-		if (Arrays.equals(randomValue.toArray(), userInput.toArray())) {
+		if (isThreeStrike(randomValue, userInput)) {
 			setStrike(INPUT_SIZE);
 			return getStrike();
 		}
@@ -53,13 +53,17 @@ public class Computer {
 	}
 
 	public String makeHint() {
-		StringBuilder builder = new StringBuilder();
+		StringBuilder hintBuilder = new StringBuilder();
 
-		appendHint(builder);
+		appendHint(hintBuilder);
 
-		setHint(builder.toString());
+		setHint(hintBuilder.toString());
 
 		return getHint();
+	}
+
+	private boolean isThreeStrike(List randomValue, List userInput) {
+		return Arrays.equals(randomValue.toArray(), userInput.toArray());
 	}
 
 	private void countBall(List randomValue, List userInput, int i) {
@@ -74,21 +78,21 @@ public class Computer {
 		}
 	}
 
-	private void appendHint(StringBuilder builder) {
+	private void appendHint(StringBuilder hintBuilder) {
 		if (getStrike() != 0) {
-			builder.append(getStrike()).append(HINT_STRIKE_MESSAGE);
+			hintBuilder.append(getStrike()).append(HINT_STRIKE_MESSAGE);
 		}
 
-		appendHintDelimiter(builder);
+		appendHintDelimiter(hintBuilder);
 
 		if (getBall() != 0) {
-			builder.append(getBall()).append(HINT_BALL_MESSAGE);
+			hintBuilder.append(getBall()).append(HINT_BALL_MESSAGE);
 		}
 	}
 
-	private void appendHintDelimiter(StringBuilder builder) {
+	private void appendHintDelimiter(StringBuilder hintBuilder) {
 		if (getStrike() != 0 && getBall() != 0) {
-			builder.append(" ");
+			hintBuilder.append(" ");
 		}
 	}
 
