@@ -1,15 +1,17 @@
 package junit5.assertion;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 import junit5.domain.Book;
 import junit5.service.BookService;
 
+@Disabled
 public class AssertNullTests {
 	private BookService bookService;
 	List<Book> books;
@@ -42,4 +44,3 @@ public class AssertNullTests {
 		assertNull(actualBook, () -> "Book is not null");
 	}
 }
-

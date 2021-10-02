@@ -1,12 +1,15 @@
 package junit5.parameterized;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.EnumSource.Mode;
 
 import junit5.domain.Animal;
 
+@Disabled
 public class EnumSourceTests {
 
 	@ParameterizedTest
@@ -16,13 +19,13 @@ public class EnumSourceTests {
 	}
 
 	@ParameterizedTest
-	@EnumSource(value = Animal.class, names = { "DOG", "CAT" })
+	@EnumSource(value = Animal.class, names = {"DOG", "CAT"})
 	public void enumSourceWithNames(Animal animal) {
 		assertNotNull(animal);
 	}
 
 	@ParameterizedTest
-	@EnumSource(value = Animal.class, mode = Mode.EXCLUDE, names = { "DOG", "CAT" })
+	@EnumSource(value = Animal.class, mode = Mode.EXCLUDE, names = {"DOG", "CAT"})
 	public void enumSourceWithExcludeMode(Animal animal) {
 		assertNotNull(animal);
 	}

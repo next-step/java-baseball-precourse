@@ -5,12 +5,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import junit5.BookNotFoundException;
 import junit5.domain.Book;
 import junit5.service.BookService;
 
+@Disabled
 public class AssertThrowsTests {
 
 	private BookService bookService;

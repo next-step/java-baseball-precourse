@@ -1,17 +1,17 @@
 package junit5.assertion;
 
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 import junit5.domain.Book;
 import junit5.service.BookService;
 
+@Disabled
 public class AssertEqualsTests {
 
 	private BookService bookService;

@@ -1,17 +1,20 @@
 package junit5.assertion;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 import junit5.domain.Book;
 import junit5.service.BookService;
 
+@Disabled
 public class AssertTimeoutTests {
 
 	private BookService bookService;
@@ -29,16 +32,17 @@ public class AssertTimeoutTests {
 
 	@Test
 	public void assertTimeoutWithMessage() {
-		
-		IntStream.rangeClosed(0, 9998).forEach(i -> bookService.addBook(new Book(String.valueOf(i), "Head First", "Wrox")));
-		
+
+		IntStream.rangeClosed(0, 9998)
+			.forEach(i -> bookService.addBook(new Book(String.valueOf(i), "Head First", "Wrox")));
+
 		List<String> actualList = new ArrayList<>();
-		
-		assertTimeout(Duration.ofMillis(1), ()->{
+
+		assertTimeout(Duration.ofMillis(1), () -> {
 			actualList.addAll(bookService.getBookTitleByPublisher("Wrox"));
 		}, "Performance issues with getBookTitleByPublisher() method");
-		
+
 		assertEquals(10000, actualList.size());
-		
+
 	}
 }

@@ -1,10 +1,12 @@
 package junit5.repeat;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 
+@Disabled
 public class RepeatedTests {
 
 	@RepeatedTest(name = "{displayName} - {currentRepetition} / {totalRepetitions}", value = 2)

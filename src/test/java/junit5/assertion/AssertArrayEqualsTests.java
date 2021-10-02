@@ -1,16 +1,17 @@
 package junit5.assertion;
 
-import java.util.Arrays;
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 import junit5.domain.Book;
 import junit5.service.BookService;
 
+@Disabled
 public class AssertArrayEqualsTests {
 
 	private BookService bookService;
@@ -34,18 +35,18 @@ public class AssertArrayEqualsTests {
 	@Test
 	public void assertArrayEqualsWithNoMessage() {
 		String[] books = bookService.getBookIdsByPublisher("Wrox");
-		assertArrayEquals(new String[] { "3", "1" }, books);
+		assertArrayEquals(new String[] {"3", "1"}, books);
 	}
 
 	@Test
 	public void assertArrayEqualsWithMessage() {
 		String[] books = bookService.getBookIdsByPublisher("Wrox");
-		assertArrayEquals(new String[] { "3", "1" }, books, "books didn't match");
+		assertArrayEquals(new String[] {"3", "1"}, books, "books didn't match");
 	}
 
 	@Test
 	public void assertArrayEqualsWithMessageSupplier() {
 		String[] books = bookService.getBookIdsByPublisher("Wrox");
-		assertArrayEquals(new String[] { "3", "1" }, books, () -> "books didn't match");
+		assertArrayEquals(new String[] {"3", "1"}, books, () -> "books didn't match");
 	}
 }

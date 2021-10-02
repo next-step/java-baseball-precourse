@@ -6,11 +6,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import junit5.domain.Book;
 import junit5.service.BookService;
 
+@Disabled
 public class AssertIterableEqualsTests {
 
 	private BookService bookService;
@@ -46,7 +48,8 @@ public class AssertIterableEqualsTests {
 	@Test
 	public void assertIterableEqualsWithMessageSupplier() {
 		List<String> books = bookService.getBookTitleByPublisher("Wrox");
-		assertIterableEquals(Arrays.asList("Head First JavaScript", "Head First Java"), books, () -> "Books didn't match");
+		assertIterableEquals(Arrays.asList("Head First JavaScript", "Head First Java"), books,
+			() -> "Books didn't match");
 	}
 
 }

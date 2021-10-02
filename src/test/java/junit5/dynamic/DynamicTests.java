@@ -7,11 +7,13 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 
 import junit5.service.StringHelper;
 
+@Disabled
 public class DynamicTests {
 
 	private static StringHelper stringHelper = new StringHelper();
@@ -43,7 +45,7 @@ public class DynamicTests {
 			DynamicTest dynamicTest = DynamicTest.dynamicTest("Dynamic Test for reverse() : input - " + input, () -> {
 				assertEquals(output, stringHelper.reverse(input));
 			});
-			
+
 			dynamicTests.add(dynamicTest);
 		}
 

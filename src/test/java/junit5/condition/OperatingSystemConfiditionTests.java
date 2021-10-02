@@ -1,10 +1,12 @@
 package junit5.condition;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.junit.jupiter.api.condition.OS;
 
+@Disabled
 public class OperatingSystemConfiditionTests {
 
 	@Test
@@ -20,7 +22,7 @@ public class OperatingSystemConfiditionTests {
 	}
 
 	@Test
-	@EnabledOnOs(value = { OS.MAC, OS.WINDOWS })
+	@EnabledOnOs(value = {OS.MAC, OS.WINDOWS})
 	public void enableOnWindowAndMac() {
 		System.out.println("Only execute on Window And Mac!!");
 	}

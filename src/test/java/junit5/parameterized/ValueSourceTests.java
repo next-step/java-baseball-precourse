@@ -1,9 +1,8 @@
 package junit5.parameterized;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.EmptySource;
@@ -14,13 +13,14 @@ import org.junit.jupiter.params.provider.ValueSource;
 import junit5.service.Calculator;
 import junit5.service.StringHelper;
 
+@Disabled
 public class ValueSourceTests {
 
 	private Calculator calculator = new Calculator();
 	private StringHelper stringHelper = new StringHelper();
 
 	@ParameterizedTest
-	@ValueSource(ints = { 2, 4, 6, 8, 10 })
+	@ValueSource(ints = {2, 4, 6, 8, 10})
 	public void test(int number) {
 		assertTrue(calculator.isEvenNumber(number));
 	}
@@ -44,7 +44,7 @@ public class ValueSourceTests {
 	}
 
 	@ParameterizedTest
-	@CsvSource({ "car, rac", "sunday, yadnus", "test, tset", })
+	@CsvSource({"car, rac", "sunday, yadnus", "test, tset",})
 	public void testReverseWithCsvSource(String input, String expect) {
 		assertEquals(expect, stringHelper.reverse(input));
 	}
