@@ -8,7 +8,7 @@ public class BaseballNumber {
 
     private static final int BALL_MIN_NUMBER = 1;
     private static final int BALL_MAX_NUMBER = 9;
-    private static final int BASEBALL_SIZE = 3;
+    public static final int BASEBALL_SIZE = 3;
 
     private final List<Integer> ballNumbers;
 
@@ -56,8 +56,33 @@ public class BaseballNumber {
         return numbers;
     }
 
-    public HashSet<Integer> toHashSet() {
-        return new HashSet<>(ballNumbers);
+    public List<Integer> getBallNumbers() {
+        return new ArrayList<>(ballNumbers);
+    }
+
+    public CompareResult compare(BaseballNumber targetNumber) {
+        int strike = 0;
+        int ball = 0;
+        for (int ballIndex = 0; ballIndex < BASEBALL_SIZE; ballIndex++) {
+            strike += findStrikeCount(ballIndex, targetNumber.getBallNumbers());
+            ball += findBallCount(ballIndex, targetNumber.getBallNumbers());
+        }
+        return new CompareResult(strike, ball);
+    }
+
+    private int findStrikeCount(int ballIndex, List<Integer> targetNumbers) {
+        if (ballNumbers.get(ballIndex) == targetNumbers.get(ballIndex)) {
+            return 1;
+        }
+        return 0;
+    }
+
+    private int findBallCount(int ballIndex, List<Integer> targetNumbers) {
+        int ballNumber = ballNumbers.get(ballIndex);
+        if (ballNumber != targetNumbers.get(ballIndex) && targetNumbers.contains(ballNumber)) {
+            return 1;
+        }
+        return 0;
     }
 
     @Override

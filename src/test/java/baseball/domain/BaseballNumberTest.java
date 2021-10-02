@@ -9,13 +9,13 @@ public class BaseballNumberTest {
     @Test
     void 세자리의_다른숫자로_자동생성하는_기능() {
         BaseballNumber baseballNumber = BaseballNumber.generate();
-        assertThat(baseballNumber.toHashSet().size() == 3);
+        assertThat(baseballNumber.getBallNumbers().size() == 3);
     }
 
     @Test
     void 규칙에_일치하는_문자열_입력시_잘_생성되는지() {
         BaseballNumber baseballNumber = new BaseballNumber("123");
-        assertThat(baseballNumber.toHashSet().size() == 3);
+        assertThat(baseballNumber.getBallNumbers().size() == 3);
         assertThat(baseballNumber.toString()).contains("1", "2", "3");
     }
 
@@ -38,5 +38,29 @@ public class BaseballNumberTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new BaseballNumber("1a2"))
                 .withMessageContaining("[ERROR]", "숫자만");
+    }
+
+    @Test
+    void 정답을_맞췄을_때_비교결과값의_석세스가_참인지() {
+        BaseballNumber answer = new BaseballNumber("123");
+        BaseballNumber input = new BaseballNumber("123");
+        CompareResult compareResult = answer.compare(input);
+        assertThat(compareResult.isSuccess() == true);
+    }
+
+    @Test
+    void 정답과_완전_다른입력일_때_비교결과값의_낫싱이_참인지() {
+        BaseballNumber answer = new BaseballNumber("123");
+        BaseballNumber input = new BaseballNumber("456");
+        CompareResult compareResult = answer.compare(input);
+        assertThat(compareResult.isNothing() == true);
+    }
+
+    @Test
+    void 정답과_비교하여_스트라이크와_볼이_있을_경우_비교결과값_확인() {
+        BaseballNumber answer = new BaseballNumber("123");
+        BaseballNumber input = new BaseballNumber("132");
+        CompareResult compareResult = answer.compare(input);
+        assertThat(compareResult.getStrike() == 1 && compareResult.getBall() == 2);
     }
 }
