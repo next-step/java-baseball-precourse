@@ -1,45 +1,33 @@
 package baseball;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Objects;
 
 import nextstep.utils.Console;
+import nextstep.utils.Randoms;
 
 public class NumberBaseballGame {
+	private List<String> answers;
+
 	NumberBaseballGame() {
 	}
 
-	void start() {
-		while (true) {
-			System.out.print("숫자를 입력해주세요 : ");
-
-			String readLine = getInput();
-
-			// ApplicationTest#낫싱
-			if (Objects.equals(readLine, "246")) {
-				System.out.println("낫싱");
+	/**
+	 * @author : yh22953905
+	 * @Date : 2021/10/03 1:20 오전
+	 * @Description : 임의의 수 선택
+	 * @History :
+	 *
+	 **/
+	void initAnswers() {
+		answers = Arrays.asList(
+			new String[] {
+				String.valueOf(Randoms.pickNumberInRange(1, 9))
+				, String.valueOf(Randoms.pickNumberInRange(1, 9))
+				, String.valueOf(Randoms.pickNumberInRange(1, 9))
 			}
-
-			// ApplicationTest#게임종료_후_재시작
-			if (Objects.equals(readLine, "713")) {
-				System.out.println("3스트라이크");
-				System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
-				System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-			}
-
-			if (Objects.equals(readLine, "1")) {
-				System.out.println(readLine);
-				continue;
-			}
-
-			if (Objects.equals(readLine, "2")) {
-				break;
-			}
-
-			if (Objects.equals(readLine, "597")) {
-				System.out.println("1스트라이크 1볼");
-			}
-		}
+		);
 	}
 
 	/**
