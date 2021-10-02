@@ -1,39 +1,47 @@
 package baseball;
 
+import static enums.Errors.getDesc;
+
+import enums.Errors;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+import java.util.function.Consumer;
 import nextstep.utils.Console;
 import nextstep.utils.Randoms;
 
 public class BaseballService {
 
-  private final BaseBall baseBall;
-
-  public BaseballService() {
-    Set<Character> chars = new HashSet<>();
-    while (chars.size() < 3) {
-      int randomNum = Randoms.pickNumberInRange(1, 9);
-      chars.add(Character.forDigit(randomNum, 10));
-    }
-
-    this.baseBall = new BaseBall(new ArrayList<>(chars));
-  }
-
   public void execute() {
     for(String input = "1"; input.equals("1");) {
-      baseball();
+      baseball(randomNumber());
 
       System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요. ");
       input = input();
     }
   }
 
-  private void baseball() {
+  private List<Character> randomNumber() {
+    List<Character> chars = new ArrayList<>();
+    Consumer<Character> numConsumer = num -> {
+      if(!chars.contains(num)) chars.add(num);
+    };
+
+    while (chars.size() < 3) {
+      char randomNum = Character.forDigit(Randoms.pickNumberInRange(1, 9), 10);
+      numConsumer.accept(randomNum);
+    }
+
+    return chars;
+  }
+
+  private void baseball(List<Character> chars) {
+    BaseBall baseBall = new BaseBall(chars);
     for(boolean isContinue = true; isContinue;) {
       System.out.print("숫자를 입력해주세요 : ");
 
       String input = Console.readLine();
+      System.out.println(baseBall.getState(input));
+
       isContinue = !baseBall.isAnswer();
     }
 
@@ -43,7 +51,7 @@ public class BaseballService {
   private String input() {
     String input = Console.readLine();
     if (!"1".equals(input) && !"2".equals(input)) {
-      System.out.println("[ERROR] 잘못된 입력입니다. 게임을 종료합니다.");
+      System.out.println(getDesc(Errors.INPUT_ERROR_AND_EXIT));
       return "2";
     }
 
