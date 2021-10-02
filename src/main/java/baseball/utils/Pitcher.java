@@ -2,7 +2,7 @@
  * Pitcher.java
  * java-baseball-precourse
  *
- * Version 0.1
+ * Version 0.2
  *
  * Created by 강래민 on 01/10/2021.
  *
@@ -28,7 +28,7 @@ public class Pitcher {
     public static String pitching() {
         String result = "";
         while (result.length() < Constant.GAME_PITCHING_COUNT) {
-            Integer num = Randoms.pickNumberInRange(Constant.GAME_BALL_START, Constant.GAME_BALL_END);
+            Integer num = Randoms.pickNumberInRange(Constant.GAME_BALL_MIN, Constant.GAME_BALL_MAX);
             if (!result.contains(num.toString())) {
                 result += num.toString();
             }

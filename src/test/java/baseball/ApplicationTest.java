@@ -4,6 +4,7 @@ import nextstep.test.NSTest;
 import nextstep.utils.Randoms;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
@@ -35,6 +36,17 @@ public class ApplicationTest extends NSTest {
                     .thenReturn(5, 8, 9);
             run("713", "1", "597", "589", "2");
             verify("3스트라이크", "게임 끝", "1스트라이크 1볼");
+        }
+    }
+
+    @Test
+    @DisplayName("중복 수 입력, 길이 제한 초과, 범위를 초과하는 입력 테스트")
+    void 비정상입력() {
+        try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
+            mockRandoms.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
+                    .thenReturn(5, 8, 9);
+            run("444", "qwe", "", "12356", "589", "9", "2");
+            verify("[ERROR]", "3스트라이크", "게임 끝");
         }
     }
 

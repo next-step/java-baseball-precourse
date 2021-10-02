@@ -2,7 +2,7 @@
  * Application.java
  * java-baseball-precourse
  *
- * Version 0.2
+ * Version 0.3
  *
  * Created by 강래민 on 01/10/2021.
  *
@@ -20,7 +20,6 @@ public class Application {
         // TODO 숫자 야구 게임 구현
         do {
             String pitching = Pitcher.pitching();
-            System.out.println("Pitching : " + pitching);
             running(pitching);
         } while (Common.isContinueGame());
     }
@@ -36,6 +35,6 @@ public class Application {
         do {
             Common.initGameSetting();
             input = Common.inputNumbers();
-        } while (!(Common.isValidString(input, Constant.GAME_PITCHING_COUNT) && Common.isThreeStrikeGameOver(pitching, input)));
+        } while (!(Common.isValidString(input, Constant.GAME_BALL_MAX, Constant.GAME_PITCHING_COUNT) && Common.isThreeStrikeGameOver(pitching, input)));
     }
 }
