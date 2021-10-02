@@ -118,4 +118,17 @@ class ComputerTest {
 
 	}
 
+	@Test
+	@DisplayName("3스트라이크이면 게임완료(true)이고 그렇지 않으면 계속진행(false)")
+	void 게임완료_확인() {
+		assertThat(computer.isGameClear()).isFalse();
+
+		ArrayList randomValue = (ArrayList)computer.getClearRandomValue();
+		ArrayList userInput = (ArrayList)randomValue.clone();
+
+		computer.checkStrike(randomValue, userInput);
+
+		assertThat(computer.isGameClear()).isTrue();
+	}
+
 }

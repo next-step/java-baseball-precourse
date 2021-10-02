@@ -33,6 +33,13 @@ public class Computer {
 		return getRandomValue();
 	}
 
+	public boolean isGameClear() {
+		boolean isSuccess = getStrike() == INPUT_SIZE;
+		clearStrikeBall();
+
+		return isSuccess;
+	}
+
 	public boolean checkNothing() {
 		if (getStrike() == 0 && getBall() == 0) {
 			return true;
@@ -136,6 +143,10 @@ public class Computer {
 			randomValue.clear();
 		}
 		setHint("");
+		clearStrikeBall();
+	}
+
+	private void clearStrikeBall() {
 		setStrike(0);
 		setBall(0);
 	}
