@@ -1,13 +1,23 @@
 package baseball;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import nextstep.utils.Console;
+import nextstep.utils.Randoms;
 
 public class BaseballService {
 
   private final BaseBall baseBall;
 
   public BaseballService() {
-    this.baseBall = new BaseBall();
+    Set<Character> chars = new HashSet<>();
+    while (chars.size() < 3) {
+      int randomNum = Randoms.pickNumberInRange(1, 9);
+      chars.add(Character.forDigit(randomNum, 10));
+    }
+
+    this.baseBall = new BaseBall(new ArrayList<>(chars));
   }
 
   public void execute() {
