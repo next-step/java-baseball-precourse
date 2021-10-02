@@ -13,13 +13,13 @@ import nextstep.utils.Console;
 public class User {
 
 	private List input = new ArrayList<Integer>();
-	private List numberList = Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9");
+	private List numberList = Arrays.asList('1', '2', '3', '4', '5', '6', '7', '8', '9');
 	private boolean isInputted = false;
 	private final String READLINE_MESSAGE = ConfigBaseball.READLINE_MESSAGE;
 	private final String ERROR_MESSAGE = ConfigBaseball.ERROR_MESSAGE;
 	private final int INPUT_SIZE = ConfigBaseball.INPUT_SIZE;
 
-	public List clearInputReadLine() {
+	public List getClearInputReadLine() {
 		clear();
 		while (!isInputted) {
 			isInputted = inputNumber();
@@ -48,7 +48,7 @@ public class User {
 	}
 
 	/**
-	 * 입력한 값의 크기, 타입 체크
+	 * 입력한 값의 길이, 타입 체크
 	 */
 	private boolean validateReadLine(String readLine) {
 		if (!validateLength(readLine)) {
@@ -73,7 +73,7 @@ public class User {
 	}
 
 	/**
-	 * 입력한 값이 입력크기 동안 타입검증을 통과하는지 확인
+	 * 입력한 값이 입력길이 동안 타입검증을 통과하는지 확인
 	 */
 	private boolean isValidatedType(boolean validateResult, int validateCount) {
 		return validateResult && validateCount != INPUT_SIZE;
@@ -83,9 +83,7 @@ public class User {
 	 * 입력한 값이 숫자가 아닐 경우 [ERROR]메시지 출력
 	 */
 	private boolean validateTypeInt(String readLine, int index) {
-		String value = String.valueOf(readLine.charAt(index));
-
-		if (!numberList.contains(value)) {
+		if (!numberList.contains(readLine.charAt(index))) {
 			printErrorMessage();
 			return false;
 		}
@@ -93,7 +91,7 @@ public class User {
 	}
 
 	/**
-	 * 입력한 값의 크기가 INPUT_SIZE 가 아닐 경우 [ERROR]메시지 출력
+	 * 입력한 값의 길이가 INPUT_SIZE 가 아닐 경우 [ERROR]메시지 출력
 	 */
 	private boolean validateLength(String readLine) {
 		if (readLine.length() != INPUT_SIZE) {
