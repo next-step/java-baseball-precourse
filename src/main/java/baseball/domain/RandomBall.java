@@ -62,6 +62,7 @@ public class RandomBall {
      * 기존의 랜덤 번호 리스트를 초기화 후 재 생성한다.
      */
     public void directInitializeRandomNumbers(String inputNumber) {
+        clearRandomBall();
         for (int i = 0; i < inputNumber.length(); i++) {
             int number = Character.getNumericValue(inputNumber.charAt(i));
             this.randomBalls.add(new Ball (i, number));
