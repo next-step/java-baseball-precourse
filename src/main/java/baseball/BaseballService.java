@@ -22,16 +22,20 @@ public class BaseballService {
 
   private List<Character> getRandomNumber() {
     List<Character> chars = new ArrayList<>();
-    Consumer<Character> numConsumer = num -> {
-      if(!chars.contains(num)) chars.add(num);
-    };
-
     while (chars.size() < 3) {
       char randomNum = Character.forDigit(Randoms.pickNumberInRange(1, 9), 10);
-      numConsumer.accept(randomNum);
+      getNumConsumer(chars).accept(randomNum);
     }
 
     return chars;
+  }
+
+  private Consumer<Character> getNumConsumer(List<Character> chars) {
+   return num -> {
+      if(!chars.contains(num)) {
+        chars.add(num);
+      }
+    };
   }
 
   private void playBaseball(List<Character> chars) {

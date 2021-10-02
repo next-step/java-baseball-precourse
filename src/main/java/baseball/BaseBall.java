@@ -12,23 +12,22 @@ public class BaseBall {
 
   private final List<Character> answers;
   private boolean isAnswer = false;
+  private ResultStatus status;
 
   public BaseBall(List<Character> chars) {
     this.answers = new ArrayList<>(chars);
   }
 
   public String getState(String input) {
-    if(!isValidate(input)) return getDesc(INPUT_ERROR_AND_REINPUT);
-
-    char[] inputChars = input.toCharArray();
-    ResultStatus status = new ResultStatus();
-
-    for (int i = 0; i < input.length(); i++) {
-      checkStatus(answers.get(i), inputChars[i], status);
+    if(!isValidate(input)) {
+      return getDesc(INPUT_ERROR_AND_REINPUT);
     }
 
+    this.status = new ResultStatus();
+    checkStatus(input);
+
     this.isAnswer = status.is3Strike();
-    return status.now();
+    return status.getResult();
   }
 
   private boolean isValidate(String input) {
@@ -62,7 +61,14 @@ public class BaseBall {
     return set.size() == 3;
   }
 
-  private void checkStatus(char source, char target, ResultStatus status) {
+  private void checkStatus(String input) {
+    char[] inputChars = input.toCharArray();
+    for (int i = 0; i < input.length(); i++) {
+      diffChar(answers.get(i), inputChars[i]);
+    }
+  }
+
+  private void diffChar(char source, char target) {
     if (source == target) {
       status.strike();
       return;

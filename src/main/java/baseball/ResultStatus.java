@@ -12,20 +12,25 @@ public class ResultStatus {
     this.ballCnt++;
   }
 
-  public String now() {
+  public String getResult() {
     if (strikeCnt == 0 && ballCnt == 0) {
       return "낫싱";
     }
 
-    if (strikeCnt == 0) {
-      return ballCnt + "볼";
+    return getGameResult();
+  }
+
+  private String getGameResult() {
+    String result = "";
+    if (strikeCnt != 0) {
+      result += strikeCnt + "스트라이크 ";
     }
 
-    if (ballCnt == 0) {
-      return strikeCnt + "스트라이크";
+    if (ballCnt != 0) {
+      result += ballCnt + "볼";
     }
 
-    return strikeCnt + "스트라이크 " + ballCnt + "볼";
+    return result.trim();
   }
 
   public boolean is3Strike() {
