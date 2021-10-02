@@ -101,4 +101,21 @@ class ComputerTest {
 			+ (INPUT_SIZE - 2) + HINT_BALL_MESSAGE);
 	}
 
+	@Test
+	@DisplayName("0스트라이크 0볼 인지 확인한다")
+	void 낫싱_확인() {
+		List randomValue = computer.getClearRandomValue();
+		List userInput = Arrays.asList(Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE);
+
+		computer.checkStrike(randomValue, userInput);
+		computer.checkBall(randomValue, userInput);
+
+		boolean isNothing = computer.checkNothing();
+		assertThat(isNothing).isTrue();
+
+		String hint = computer.makeHint();
+		assertThat(hint).isEqualTo(HINT_NOTHING_MESSAGE);
+
+	}
+
 }

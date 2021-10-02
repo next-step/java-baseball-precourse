@@ -22,6 +22,7 @@ public class Computer {
 	private final int PICK_NUMBER_MAX = ConfigBaseball.PICK_NUMBER_MAX;
 	private final String HINT_STRIKE_MESSAGE = ConfigBaseball.HINT_STRIKE_MESSAGE;
 	private final String HINT_BALL_MESSAGE = ConfigBaseball.HINT_BALL_MESSAGE;
+	private final String HINT_NOTHING_MESSAGE = ConfigBaseball.HINT_NOTHING_MESSAGE;
 	private String hint = "";
 	private int strike = 0;
 	private int ball = 0;
@@ -30,6 +31,14 @@ public class Computer {
 		clear();
 		init();
 		return getRandomValue();
+	}
+
+	public boolean checkNothing() {
+		if (getStrike() == 0 && getBall() == 0) {
+			return true;
+		}
+
+		return false;
 	}
 
 	public int checkBall(List randomValue, List userInput) {
@@ -55,11 +64,22 @@ public class Computer {
 	public String makeHint() {
 		StringBuilder hintBuilder = new StringBuilder();
 
-		appendHint(hintBuilder);
+		if (!isNothing(hintBuilder)) {
+			appendHint(hintBuilder);
+		}
 
 		setHint(hintBuilder.toString());
 
 		return getHint();
+	}
+
+	private boolean isNothing(StringBuilder hintBuilder) {
+		if (checkNothing()) {
+			hintBuilder.append(HINT_NOTHING_MESSAGE);
+			return true;
+		}
+
+		return false;
 	}
 
 	private boolean isThreeStrike(List randomValue, List userInput) {

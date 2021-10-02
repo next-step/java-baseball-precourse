@@ -9,6 +9,7 @@ public class ConfigBaseball {
 	public static final String READLINE_MESSAGE = "숫자를 입력해주세요 : ";
 	public static final String HINT_STRIKE_MESSAGE = "스트라이크";
 	public static final String HINT_BALL_MESSAGE = "볼";
+	public static final String HINT_NOTHING_MESSAGE = "낫싱";
 
 	private ConfigBaseball() {
 	}
