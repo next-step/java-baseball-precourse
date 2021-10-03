@@ -25,10 +25,19 @@ class BaseballNumberTest {
         assertTrue(baseballNumber.getValueByIndex(1) != baseballNumber.getValueByIndex(2));
     }
 
+    @DisplayName("서로다른 숫자 생성 Test")
+    @RepeatedTest(10)
+    public void pickRandomNumberTest() {
+        BaseballNumber baseballNumber = new BaseballNumber();
+        assertTrue(baseballNumber.getValueByIndex(0) != baseballNumber.getValueByIndex(1));
+        assertTrue(baseballNumber.getValueByIndex(0) != baseballNumber.getValueByIndex(2));
+        assertTrue(baseballNumber.getValueByIndex(1) != baseballNumber.getValueByIndex(2));
+    }
+
     @DisplayName("입력숫자 input Test")
     @ParameterizedTest
     @ValueSource(ints = {123, 456, 789, 534, 472})
-    public void initBallNumberArgTest(int inputNumber) {
+    public void BaseballNumberArgTest(int inputNumber) {
         BaseballNumber baseballNumber = new BaseballNumber(inputNumber);
         assertTrue(
                 "123".equals(baseballNumber.numberToString()) ||

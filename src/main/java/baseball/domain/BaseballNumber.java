@@ -18,9 +18,17 @@ public class BaseballNumber {
 
     public BaseballNumber() {
         this.numbers = new ArrayList<>();
-        while (this.numbers.size() != MAX_SIZE) {
-            this.numbers.add(Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER));
+        while (numbers.size() != MAX_SIZE) {
+            pickRandomNumber();
         }
+    }
+
+    private void pickRandomNumber() {
+        int randomNumber = Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
+        if (numbers.contains(randomNumber)) {
+            return;
+        }
+        numbers.add(randomNumber);
     }
 
     public int getValueByIndex(int index) {
@@ -59,7 +67,7 @@ public class BaseballNumber {
         }
     }
 
-    public String numberToString(){
+    public String numberToString() {
         StringBuilder numberForString = new StringBuilder();
         for (Integer number : numbers) {
             numberForString.append(number);
