@@ -49,6 +49,17 @@ public class ApplicationTest extends NSTest {
     }
 
     @Test
+    void 비정상_데이터_입력_추가() {
+        try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
+            mockRandoms.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
+                    .thenReturn(7, 1, 3);
+            running("ABC");
+            verify("오류");
+        }
+    }
+
+
+    @Test
     void 스트라이크_결과_검증() {
         try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
             mockRandoms.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
@@ -87,6 +98,7 @@ public class ApplicationTest extends NSTest {
             verify("3볼");
         }
     }
+
 
 
     @AfterEach
