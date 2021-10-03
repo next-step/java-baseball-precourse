@@ -128,7 +128,7 @@ class ComputerTest {
 
 		computer.checkStrike(randomValue, userInput);
 
-		assertThat(computer.isGameClear()).isTrue();
+		assertThat(computer.getStrike() == INPUT_SIZE).isTrue();
 	}
 
 }

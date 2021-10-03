@@ -7,23 +7,19 @@ import baseball.domain.User;
 
 public class Application {
 
+	static Computer computer = new Computer();
+	static User user = new User();
+
 	public static void main(String[] args) {
-		Computer computer = new Computer();
-		User user = new User();
 		List randomValue = computer.getClearRandomValue();
 		List userInput = null;
-
 		while (!computer.isGameClear()) {
 			userInput = user.getClearInputReadLine();
 
 			computer.checkStrike(randomValue, userInput);
 			computer.checkBall(randomValue, userInput);
 			computer.checkNothing();
-
-			String hint = computer.makeHint();
-			System.out.println(hint);
+			computer.makeHint();
 		}
-
 	}
-
 }
