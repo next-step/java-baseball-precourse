@@ -24,5 +24,13 @@ public class BaseballController {
             compareResultShowView.show(compareResult);
             isSuccess = compareResult.isSuccess();
         } while (!isSuccess);
+
+        askReGame();
+    }
+
+    public void askReGame() {
+        if (inputView.inputReGameFlag()) {
+            play();
+        }
     }
 }
