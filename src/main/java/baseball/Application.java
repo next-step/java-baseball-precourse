@@ -6,8 +6,9 @@ public class Application {
     public static void main(String[] args) {
         // TODO 숫자 야구 게임 구현
         BaseBallGameManager baseBallGameManager = new BaseBallGameManager();
-
-        String userInput = Console.readLine();
-        System.out.println(userInput);
+        System.out.print("숫자를 입력해주세요 : ");
+        String userAnswer = Console.readLine();
+        baseBallGameManager.checkUserAnswer(userAnswer);
+        System.out.println(userAnswer);
     }
 }
