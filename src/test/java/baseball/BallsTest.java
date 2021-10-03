@@ -23,7 +23,7 @@ class BallsTest {
 	void _3_스트라이크() {
 		Balls userBalls = new Balls(Arrays.asList(1, 2, 3));
 		GameResult gameResult = balls.play(userBalls);
-		assertGameResult(gameResult, GameResultStatus.COMPLETE, "3스트라이크");
+		assertGameResult(gameResult, true, "3스트라이크");
 	}
 
 	@Test
@@ -31,7 +31,7 @@ class BallsTest {
 	void _1_스트라이크_2볼() {
 		Balls userBalls = new Balls(Arrays.asList(1, 3, 2));
 		GameResult gameResult = balls.play(userBalls);
-		assertGameResult(gameResult, GameResultStatus.INCOMPLETE, "1스트라이크 2볼");
+		assertGameResult(gameResult, false, "1스트라이크 2볼");
 	}
 
 	@Test
@@ -39,7 +39,7 @@ class BallsTest {
 	void _3볼() {
 		Balls userBalls = new Balls(Arrays.asList(3, 1, 2));
 		GameResult gameResult = balls.play(userBalls);
-		assertGameResult(gameResult, GameResultStatus.INCOMPLETE, "3볼");
+		assertGameResult(gameResult, false, "3볼");
 	}
 
 	@Test
@@ -47,11 +47,11 @@ class BallsTest {
 	void 낫싱() {
 		Balls userBalls = new Balls(Arrays.asList(4, 5, 6));
 		GameResult gameResult = balls.play(userBalls);
-		assertGameResult(gameResult, GameResultStatus.NOTHING, "낫싱");
+		assertGameResult(gameResult, false, "낫싱");
 	}
 
-	private void assertGameResult(GameResult gameResult, GameResultStatus status, String message) {
-		assertThat(gameResult.status()).isEqualTo(status);
+	private void assertGameResult(GameResult gameResult, boolean isComplete, String message) {
+		assertThat(gameResult.isComplete()).isEqualTo(isComplete);
 		assertThat(gameResult.toString()).isEqualTo(message);
 	}
 }

@@ -13,15 +13,8 @@ public class GameResult {
 		this.ball++;
 	}
 
-	public GameResultStatus status() {
-
-		if (strike == 3) {
-			return GameResultStatus.COMPLETE;
-		}
-		if (strike > 0 || ball > 0) {
-			return GameResultStatus.INCOMPLETE;
-		}
-		return GameResultStatus.NOTHING;
+	public boolean isComplete() {
+		return strike == 3;
 	}
 
 	public void recordScore(BallStatus ballStatus) {
