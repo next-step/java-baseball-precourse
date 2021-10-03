@@ -3,17 +3,22 @@ package baseball;
 import nextstep.utils.Console;
 import nextstep.utils.Randoms;
 
+import java.util.LinkedHashSet;
+
 public class Application {
 
     public static String setGame() {    //맞춰야할 숫자 초기화
-        String answerNum = "" + Randoms.pickNumberInRange(1,9) ;  // 정답 번호 : 1~9까지 랜덤수 하나를 투입
-        while(answerNum.length()<3)
-        {
-            String strTemp = "" + Randoms.pickNumberInRange(1,9);
-            if(answerNum.contains(strTemp) == false)   // 새로 받은 숫자가 기존에 존재 하지 않으면 투입!
-                answerNum += strTemp;
+
+        LinkedHashSet<String> set = new LinkedHashSet<String>();
+        while (set.size()<3) {
+            set.add("" + Randoms.pickNumberInRange(1,9));
         }
-        return answerNum;
+
+        String returnNum="";
+        for (String num : set) {
+            returnNum+= num;
+        }
+        return returnNum;
     }
 
     public static boolean checkNumber(String str_num) {    //유저가 입력한 숫자가 이상이 없는지 확인
@@ -23,6 +28,7 @@ public class Application {
             System.out.print("[ERROR] 숫자가 3자리가 아닙니다.");
             return false;
         }
+
         for(char x : str_num.toCharArray())
         {
             if ((int)x>(int)'9' || (int)x<(int)'1') {
