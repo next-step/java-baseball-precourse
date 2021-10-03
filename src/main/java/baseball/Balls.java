@@ -11,6 +11,20 @@ public class Balls {
 		this.balls = mapToBallList(input);
 	}
 
+	public Balls(String input) {
+		this.balls = mapToBallList(input);
+	}
+
+	private List<Ball> mapToBallList(String input) {
+
+		List<Integer> balls = new ArrayList<Integer>();
+
+		for (char c : input.toCharArray()) {
+			balls.add(c - '0');
+		}
+		return mapToBallList(balls);
+	}
+
 	private List<Ball> mapToBallList(List<Integer> input) {
 		List<Ball> balls = new ArrayList<>();
 
