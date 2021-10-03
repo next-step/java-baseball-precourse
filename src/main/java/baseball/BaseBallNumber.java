@@ -1,10 +1,12 @@
 package baseball;
 
-import java.util.Arrays;
-
 public class BaseBallNumber {
 
     private BaseBallAnswer baseBallAnswer;
+
+    public BaseBallNumber(int number) {
+        baseBallAnswer = new BaseBallAnswer(number);
+    }
 
     public BaseBallNumber() {
         baseBallAnswer = new BaseBallAnswer();
@@ -16,8 +18,4 @@ public class BaseBallNumber {
         return answerResult.isCorrectAnswer();
     }
 
-
-    public void printAnswer() {
-        System.out.println(Arrays.toString(baseBallAnswer.getAnswer().toArray()));
-    }
 }

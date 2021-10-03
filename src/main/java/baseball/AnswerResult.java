@@ -6,7 +6,7 @@ public class AnswerResult {
 
     private int ballCount;
 
-    public int strikeCount;
+    private int strikeCount;
 
     public void addBallCount() {
         ballCount++;

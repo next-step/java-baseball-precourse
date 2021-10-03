@@ -11,6 +11,10 @@ public class BaseBallGameManager {
     private static final String RETRY_GAME_ANSWER = "1";
     private static final String END_GAME_ANSWER = "2";
 
+    public BaseBallGameManager(int number) {
+        baseBallNumber = new BaseBallNumber(number);
+    }
+
     public BaseBallGameManager() {
         baseBallNumber = new BaseBallNumber();
     }
@@ -22,9 +26,7 @@ public class BaseBallGameManager {
     public void checkUserAnswer(String userAnswer) {
         validateInteger(userAnswer);
         validateAnswerSize(userAnswer);
-        isFinished = baseBallNumber.isCorrectAnswer(Integer.valueOf(userAnswer));
-        enterRetryGame(isFinished);
-        baseBallNumber.printAnswer();
+        enterRetryGame(baseBallNumber.isCorrectAnswer(Integer.valueOf(userAnswer)));
     }
 
     private void enterRetryGame(boolean isFinished) {

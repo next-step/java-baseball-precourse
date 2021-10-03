@@ -11,6 +11,14 @@ public class BaseBallAnswer {
 
     private List<Integer> answer = new ArrayList<>();
 
+    public BaseBallAnswer(int number) {
+        String stringNumber = String.valueOf(number);
+        char[] digits = stringNumber.toCharArray();
+        for (char digit : digits) {
+            answer.add(Integer.valueOf(digit) - '0');
+        }
+    }
+
     public BaseBallAnswer() {
         while (answer.size() != ANSWER_SIZE) {
             int number = Randoms.pickNumberInRange(1, 9);
