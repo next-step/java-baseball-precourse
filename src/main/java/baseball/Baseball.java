@@ -59,6 +59,6 @@ public class Baseball {
 
     //    게임을종료한후게임을다시시작하거나완전히종료할수있다.
     public boolean endGame(){
-        return true;
+        return readLine() == "1" ? true : false;
     }
 }
