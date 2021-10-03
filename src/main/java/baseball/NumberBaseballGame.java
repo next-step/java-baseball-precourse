@@ -127,14 +127,14 @@ public class NumberBaseballGame {
 		}
 
 		if (ball > 0) {
-			resultBuilder.append(String.format(" %s볼", strike));
+			resultBuilder.append(String.format(" %s볼", ball));
 		}
 
 		if (strike == 0 && ball == 0) {
 			resultBuilder.append("낫싱");
 		}
 
-		System.out.println(resultBuilder);
+		System.out.println(resultBuilder.toString().trim());
 	}
 
 	/**
