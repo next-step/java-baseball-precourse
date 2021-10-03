@@ -1,5 +1,7 @@
 package baseball;
 
+import static nextstep.utils.Randoms.pickNumberInRange;
+
 public class Baseball {
     boolean gameEndFlag = false;
 
@@ -19,7 +21,11 @@ public class Baseball {
 
     //    컴퓨터는 1에서9까지 서로 다른 임의의 수 3개를 선택한다.
     public char[] generateNumber(){
-        return new char[3];
+        char[] gameNumber = new char[3];
+        for (int i = 0; i < 3; i++) {
+            gameNumber[i] = Integer.toString(pickNumberInRange(1, 9)).charAt(0);
+        }
+        return gameNumber ;
     }
 
     //    기본적으로1부터9까지서로다른수로이루어진3자리의수를맞추는게임이다.
