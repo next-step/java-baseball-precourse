@@ -22,8 +22,8 @@ public class Numbers {
 		}
 
 		List<Number> numbers = new ArrayList<>(SIZE);
-		for (int digit = 0; digit < values.size(); digit++) {
-			numbers.add(new Number(values.get(digit), digit));
+		for (Integer value : values) {
+			numbers.add(new Number(value));
 		}
 		this.values = Collections.unmodifiableList(numbers);
 	}

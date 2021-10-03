@@ -26,7 +26,7 @@ class NumbersTest {
 		// then
 		assertThat(numbers.getValues())
 			.hasSize(3)
-			.contains(new Number(1, 0), new Number(2, 1), new Number(3, 2));
+			.contains(new Number(1), new Number(2), new Number(3));
 	}
 
 	@Test
