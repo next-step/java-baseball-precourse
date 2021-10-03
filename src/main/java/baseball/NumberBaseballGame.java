@@ -63,6 +63,16 @@ public class NumberBaseballGame {
 
 		printResult();
 
+		startOrExitByResult();
+	}
+
+	/**
+	 * @author : yh22953905
+	 * @Date : 2021/10/03 10:12 오후
+	 * @Description : 3스트라이크 여부 판단 - (true : 입력값에 따라 다시 시작 or 완전 종료 / false : 다시 시작)
+	 *
+	 **/
+	private void startOrExitByResult() {
 		if (strike == 3) {
 			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
 			System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
