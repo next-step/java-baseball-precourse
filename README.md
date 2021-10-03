@@ -11,6 +11,7 @@
   - Numbers
     - `각기 다른 세 자리 수`를 지닌 일급 컬렉션
     - 중복된 숫자가 있을 경우 DuplicateNumberException 예외 발생
+    - 세 자리수가 아닐 경우 InvalidNumbersSizeException 예외 발생
   - StrikeZone
     - 타자가 공을 칠 수 있는 범위, 즉 플레이어의 입력 값에 대한 결과 이넘 클래스
     - STRIKE, BALL, NOTHING
