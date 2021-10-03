@@ -6,6 +6,8 @@ package baseball.util;
 public class ValidationUtils {
 
 	private static final int BASEBALL_INPUT_LENGTH = 3;
+	private static final int MAX_BASEBALL_NUMBER = 9;
+	private static final int MIN_BASEBALL_NUMBER = 1;
 
 	/**
 	 * input 의 길이가 3인지 확인한 뒤 올바르지 않은 경우 예외를 던진다.
@@ -35,7 +37,8 @@ public class ValidationUtils {
 	 * @param inputChar 1-9 사이의 숫자인지 검증할 character
 	 */
 	private static void isBetweenOneToNine(char inputChar) {
-		if (inputChar < '1' || inputChar > '9') {
+		final int inputInt = charToInt(inputChar);
+		if (inputInt < MIN_BASEBALL_NUMBER || inputInt > MAX_BASEBALL_NUMBER) {
 			throw new IllegalArgumentException("[ERROR] 1-9 까지의 문자만 입력가능합니다.");
 		}
 	}
