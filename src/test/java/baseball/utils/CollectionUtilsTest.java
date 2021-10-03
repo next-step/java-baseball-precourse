@@ -11,7 +11,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class CollectionUtilsTest {
-
 	@Test
 	@DisplayName("컬렉션이 null일 경우 true를 반환한다.")
 	void isEmpty_should_true_when_null_list() {

@@ -13,7 +13,6 @@ import baseball.exception.DuplicateNumberException;
 import baseball.exception.InvalidNumbersSizeException;
 
 class NumbersTest {
-
 	@Test
 	@DisplayName("숫자와 자릿수를 가지고 있는 일급 컬렉션 Numbers 인스턴스 생성한다.")
 	void create() {

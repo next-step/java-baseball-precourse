@@ -7,7 +7,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class StrikeZoneTest {
-
 	@Test
 	@DisplayName("같은 숫자가 존재하는지, 자릿수가 같은지 여부에 따라 값을 반환한다.")
 	void of() {

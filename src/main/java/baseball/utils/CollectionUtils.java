@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public final class CollectionUtils {
-
 	private CollectionUtils() {
 	}
 

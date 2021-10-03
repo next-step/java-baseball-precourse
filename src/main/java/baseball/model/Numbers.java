@@ -10,7 +10,6 @@ import baseball.exception.InvalidNumbersSizeException;
 import baseball.utils.CollectionUtils;
 
 public class Numbers {
-
 	public static final int SIZE = 3;
 
 	private final List<Number> values;
@@ -32,6 +31,23 @@ public class Numbers {
 		return values;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		Numbers numbers = (Numbers)o;
+		return Objects.equals(values, numbers.values);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(values);
+	}
+
 	private void checkValidValuesSize(List<Integer> values) {
 		boolean isValid = !CollectionUtils.isEmpty(values) && values.size() == SIZE;
 		if (!isValid) {
@@ -44,20 +60,5 @@ public class Numbers {
 		if (!isValid) {
 			throw new DuplicateNumberException();
 		}
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-		Numbers numbers = (Numbers)o;
-		return Objects.equals(values, numbers.values);
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(values);
 	}
 }

@@ -10,7 +10,6 @@ import baseball.exception.InvalidNumberRangeException;
 import nextstep.utils.Randoms;
 
 class NumberTest {
-
 	@RepeatedTest(1_000)
 	@DisplayName("1~9 범위의 숫자, 0~2 범위를 지닌 자릿 수를 숫자 객체가 생성되는지")
 	void create() {
