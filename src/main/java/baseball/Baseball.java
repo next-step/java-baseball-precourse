@@ -4,6 +4,17 @@ public class Baseball {
     boolean gameEndFlag = false;
 
     public void startGame() {
+        gameEndFlag = false;
+        char[] gameNumber = generateNumber();
+//        System.out.println("정답 숫자 : " + gameNumber);
+
+        while(!gameEndFlag){
+            System.out.println("숫자를 입력해주세요 : ");
+            String result = checkNumber(gameNumber, inputNumber());
+            System.out.println(result);
+
+            if (result.equals("3스트라이크 ")) gameEndFlag = true;
+        }
     }
 
     //    컴퓨터는 1에서9까지 서로 다른 임의의 수 3개를 선택한다.
