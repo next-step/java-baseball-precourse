@@ -7,6 +7,9 @@ version '1.0.0'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+/* 테스트시 인코딩이 안되던 문제가 있어 추가하게 되었습니다.*/
+compileJava.options.encoding = 'utf-8'
+
 repositories {
     mavenCentral()
 }
