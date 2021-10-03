@@ -1,9 +1,9 @@
 package baseball.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+
+import baseball.utils.CollectionUtils;
 
 public enum StrikeZone {
 	STRIKE(true, true),
@@ -27,7 +27,7 @@ public enum StrikeZone {
 	}
 
 	public static StrikeZone of(boolean existsNumber, boolean sameDigit) {
-		List<StrikeZone> list = getList(StrikeZone.values());
+		List<StrikeZone> list = CollectionUtils.listOf(StrikeZone.values());
 		Iterator<StrikeZone> iterator = list.iterator();
 
 		while (iterator.hasNext()) {
@@ -46,11 +46,5 @@ public enum StrikeZone {
 
 	private boolean equalsOf(boolean existNumber, boolean sameDigit) {
 		return this.existsNumber == existNumber && this.sameDigit == sameDigit;
-	}
-
-	private static <T> List<T> getList(T[] arrays) {
-		List<T> result = new ArrayList<>();
-		Collections.addAll(result, arrays);
-		return result;
 	}
 }
