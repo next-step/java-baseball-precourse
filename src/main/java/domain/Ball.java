@@ -11,13 +11,20 @@ public class Ball {
 	}
 
 	public BallStatus compare(Ball ball) {
-		if (this.number == ball.number && this.position == ball.position) {
+
+		if (this.equals(ball)) {
 			return BallStatus.STRIKE;
-		} else if (this.number == ball.number && this.position != ball.position) {
-			return BallStatus.BALL;
-		} else {
-			return BallStatus.NOTHING;
 		}
+
+		if (this.matchNumber(ball)) {
+			return BallStatus.BALL;
+		}
+
+		return BallStatus.NOTHING;
+	}
+
+	private boolean matchNumber(Ball ball) {
+		return this.number == ball.number;
 	}
 
 	@Override

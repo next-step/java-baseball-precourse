@@ -3,13 +3,57 @@ package baseball;
 import java.util.ArrayList;
 import java.util.List;
 
+import domain.Ball;
+import domain.Game;
+import domain.GameStatus;
 import nextstep.utils.Console;
 import nextstep.utils.Randoms;
+import service.BaseballService;
+import util.BallGenerator;
+import util.Validator;
 
 public class Application {
 
 	public static void main(String[] args) {
-		start();
+		start2();
+	}
+
+	public static void start2() {
+
+		BaseballService baseballService = new BaseballService();
+		Validator validator = new Validator();
+		List<Ball> balls = BallGenerator.createBalls();
+		System.out.println(balls);
+
+		while (true) {
+
+			System.out.print("숫자를 입력해주세요 : ");
+			String input = Console.readLine();
+			try {
+				validator.isValid(input);
+			} catch (IllegalArgumentException e) {
+				System.out.println("[ERROR] : " + e.getMessage());
+				continue;
+			}
+
+			List<Ball> inputBalls = BallGenerator.convertInput(input);
+			Game game = baseballService.compare(balls, inputBalls);
+			System.out.println(game.toString());
+			if (game.getGameStatus() == GameStatus.CORRECT) {
+				System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
+				input = Console.readLine();
+				if ("1".equals(input)) {
+					balls = BallGenerator.createBalls();
+					System.out.println(balls);
+				} else {
+					break;
+				}
+			} else {
+				continue;
+			}
+		}
+		System.out.println("게임종료");
+
 	}
 
 	public static void start() {
