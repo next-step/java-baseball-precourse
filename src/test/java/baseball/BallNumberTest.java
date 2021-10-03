@@ -1,0 +1,43 @@
+package baseball;
+
+import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import org.junit.jupiter.api.Test;
+
+
+class BallNumberTest {
+    @Test
+    void ballNumberMinFailTest() {
+        assertThatThrownBy(
+                () -> BallNumber.of(0)
+        ).isInstanceOf(IllegalArgumentException.class);
+    }
+    @Test
+    void ballNumberMinPassTest() {
+       BallNumber ballNumber = BallNumber.of(1);
+       assertThat(ballNumber.isBallNumber(1)).isTrue();
+    }
+
+    @Test
+    void ballNumberMaxFailTest() {
+        assertThatThrownBy(
+                () -> BallNumber.of(10)
+        ).isInstanceOf(IllegalArgumentException.class);
+    }
+    @Test
+    void ballNumberMaxPassTest() {
+        BallNumber ballNumber = BallNumber.of(9);
+        assertThat(ballNumber.isBallNumber(9)).isTrue();
+    }
+
+    @Test
+    void compareBallNumber() {
+
+        BallNumber ballnumber1 = BallNumber.of(1);
+        BallNumber ballnumber2 = BallNumber.of(1);
+
+        assertThat(ballnumber1.equals(ballnumber2)).isTrue();
+
+    }
+}
