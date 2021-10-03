@@ -35,6 +35,11 @@ public class Console {
         return scanner.nextLine();
     }
 
+    public static int readInt() {
+        String readLine = Console.readLine();
+        return Integer.parseInt(readLine);
+    }
+
     private static void makeNewScannerIfScannerIsClosed() {
         if (Objects.isNull(scanner) || scannerIsClosed()) {
             scanner = getScanner();
