@@ -30,6 +30,11 @@ public class TryResult {
 		return isWin;
 	}
 
+	/**
+	 * 입력된 숫자마다 각 결과를 입력하는 메소드
+	 *
+	 * @param result 각 문자의 매칭여부의 결과
+	 */
 	public void addResultEnum(ResultEnum result) {
 		if(result.equals(ResultEnum.STRIKE)) {
 			strikeCount++;
@@ -44,13 +49,14 @@ public class TryResult {
 
 	/**
 	*  입력된 3개의 결과를 통해 메세지 출력
+	 * @return 결과에 따라 힌트 또는 승리 메세지 제공
 	* */
 	@Override
 	public String toString() {
 		if(strikeCount+ballCount == 0){
 			return NOTHING_STR;
 		}
-		if(strikeCount == 3) {
+		if(isWin) {
 			return WIN;
 		}
 		String result = "";
