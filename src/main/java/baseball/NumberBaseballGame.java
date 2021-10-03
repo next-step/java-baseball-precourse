@@ -74,21 +74,7 @@ public class NumberBaseballGame {
 			}
 		}
 
-		StringBuilder resultBuilder = new StringBuilder();
-
-		if (strike > 0) {
-			resultBuilder.append(String.format("%s스트라이크", strike));
-		}
-
-		if (ball > 0) {
-			resultBuilder.append(String.format(" %s볼", strike));
-		}
-
-		if (strike == 0 && ball == 0) {
-			resultBuilder.append("낫싱");
-		}
-
-		System.out.println(resultBuilder.toString());
+		printResult(strike, ball);
 
 		if (strike == 3) {
 			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
@@ -106,6 +92,30 @@ public class NumberBaseballGame {
 		if (strike != 3) {
 			start();
 		}
+	}
+
+	/**
+	 * @author : yh22953905
+	 * @Date : 2021/10/03 9:24 오후
+	 * @Description : 판단 결과 출력
+	 *
+	 **/
+	private void printResult(int strike, int ball) {
+		StringBuilder resultBuilder = new StringBuilder();
+
+		if (strike > 0) {
+			resultBuilder.append(String.format("%s스트라이크", strike));
+		}
+
+		if (ball > 0) {
+			resultBuilder.append(String.format(" %s볼", strike));
+		}
+
+		if (strike == 0 && ball == 0) {
+			resultBuilder.append("낫싱");
+		}
+
+		System.out.println(resultBuilder);
 	}
 
 	/**
