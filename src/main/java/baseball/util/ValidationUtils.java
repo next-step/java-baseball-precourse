@@ -39,4 +39,39 @@ public class ValidationUtils {
 			throw new IllegalArgumentException("[ERROR] 1-9 까지의 문자만 입력가능합니다.");
 		}
 	}
+
+	/**
+	 * 중복된 숫자가 있는지 판별한다.
+	 *
+	 * @param input 1-9 사이의 숫자로 된 문자열
+	 */
+	public static void hasNoDuplicateNumber(String input) {
+		int[] array = new int[10];
+
+		for (int i = 0; i < input.length(); i++) {
+			final int count = ++array[charToInt(input.charAt(i))];
+			isDuplicate(count);
+		}
+	}
+
+	/**
+	 * hasNoDuplicateNumber 에서 배열의 원소값에 따라 중복을 판단한다.
+	 *
+	 * @param count 1(중복아님) 혹은 2(중복)
+	 */
+	private static void isDuplicate(int count) {
+		if (count > 1) {
+			throw new IllegalArgumentException("[ERROR] 중복된 숫자가 포함되어있는 문자열입니다.");
+		}
+	}
+
+	/**
+	 * 숫자형태의 character ('0'-'9') 를 int (0-9) 로 변환하여 반환한다.
+	 *
+	 * @param input 숫자 형태의 character
+	 * @return int 로 변환된 character
+	 */
+	private static int charToInt(char input) {
+		return input - '0';
+	}
 }

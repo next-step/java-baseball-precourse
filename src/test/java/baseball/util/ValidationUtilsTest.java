@@ -53,4 +53,26 @@ public class ValidationUtilsTest {
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining("[ERROR] 1-9 까지의 문자만 입력가능합니다.");
 	}
+
+	@DisplayName("hasNoDuplicateNumber() / 숫자로 된 문자열이 중복되는지 검증한다.")
+	@Test
+	void hasNoDuplicateNumber() {
+		// given
+		final String input = "123456789";
+
+		// when then
+		assertDoesNotThrow(() -> ValidationUtils.hasNoDuplicateNumber(input));
+	}
+
+	@DisplayName("hasNoDuplicateNumber() / 숫자로 된 문자열이 중복된 경우, IllegalArgumentException 을 던진다.")
+	@ParameterizedTest
+	@ValueSource(strings = {"1233", "44", "1123", "1223"})
+	void hasNoDuplicateNumber_fail_test(String input) {
+		// given: none
+
+		// when then
+		assertThatThrownBy(() -> ValidationUtils.hasNoDuplicateNumber(input))
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessageContaining("[ERROR] 중복된 숫자가 포함되어있는 문자열입니다.");
+	}
 }
