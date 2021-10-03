@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class ValidationUtilsTest {
 
-	@DisplayName("isValidLength() / input 의 길이가 3이 아닌 경우 IllegalArgumentException 을 던지도록 한다.")
+	@DisplayName("isValidLength() / input 의 길이가 3인지 확인한다.")
 	@Test
 	void isValidLength() {
 		// given
