@@ -38,6 +38,57 @@ public class ApplicationTest extends NSTest {
         }
     }
 
+    @Test
+    void 비정상_데이터_입력() {
+        try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
+            mockRandoms.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
+                    .thenReturn(7, 1, 3);
+            run("7134", "011", "713", "2");
+            verify("오류", "게임 끝");
+        }
+    }
+
+    @Test
+    void 스트라이크_결과_검증() {
+        try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
+            mockRandoms.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
+                    .thenReturn(7, 1, 3);
+            running("713");
+            verify("3스트라이크");
+        }
+    }
+
+    @Test
+    void 결과_검증_1() {
+        try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
+            mockRandoms.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
+                    .thenReturn(7, 1, 3);
+            running("723");
+            verify("2스트라이크");
+        }
+    }
+
+    @Test
+    void 결과_검증_2() {
+        try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
+            mockRandoms.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
+                    .thenReturn(7, 1, 3);
+            running("731");
+            verify("1스트라이크 2볼");
+        }
+    }
+
+    @Test
+    void 결과_검증_3() {
+        try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
+            mockRandoms.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
+                    .thenReturn(7, 1, 3);
+            running("137");
+            verify("3볼");
+        }
+    }
+
+
     @AfterEach
     void tearDown() {
         outputStandard();
