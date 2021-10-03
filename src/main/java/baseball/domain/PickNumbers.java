@@ -2,6 +2,8 @@ package baseball.domain;
 
 import java.util.LinkedHashSet;
 
+import static nextstep.utils.Randoms.pickNumberInRange;
+
 public class PickNumbers {
 
     private static LinkedHashSet<Integer> pickNumbersSet;
@@ -9,23 +11,20 @@ public class PickNumbers {
     private PickNumbers() {
     }
 
-    public static LinkedHashSet<Integer> makePickNumbers() {
+    public static boolean makePickNumbers() {
         if (pickNumbersSet == null || pickNumbersSet.isEmpty()) {
             pickNumbersSet = new LinkedHashSet<>();
-//            addPickNumber();
+            addPickNumber();
+            return true;
         }
-        return pickNumbersSet;
+        return false;
     }
 
-//    private static void addPickNumber() {
-//        while (pickNumbersSet.size() < Constants.PICK_NUMBER_SIZE) {
-//            int pickNumber = pickNumberInRange(Constants.MIN_NUMBER, Constants.MAX_NUMBER);
-//            pickNumbersSet.add(pickNumber);
-//        }
-//    }
-
-    public static void pickNumbersClear() {
-        pickNumbersSet.clear();
+    private static void addPickNumber() {
+        while (pickNumbersSet.size() < GameConfig.PICK_NUMBER_SIZE.getValue()) {
+            int pickNumber = pickNumberInRange(GameConfig.MIN_NUMBER.getValue(), GameConfig.MAX_NUMBER.getValue());
+            pickNumbersSet.add(pickNumber);
+        }
     }
 
     public static LinkedHashSet<Integer> getPickNumbersSet() {
