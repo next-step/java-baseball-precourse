@@ -62,12 +62,13 @@ public class GameController {
 	}
 
 	private boolean isNumber(String number) {
+		int positive;
 		try {
-			Integer.parseInt(number);
+			positive = Integer.parseInt(number);
 		} catch (NumberFormatException e) {
 			return false;
 		}
-		return true;
+		return positive > 0;
 	}
 
 	private boolean isUniqueNumber(String number) {
