@@ -7,7 +7,7 @@ import java.util.LinkedHashSet;
 
 public class Application {
 
-    public static String setGame() {    //맞춰야할 숫자 초기화
+    public static String setGame() {    // 처음 게임에 쓰일 3자리 난수 생성 (1~9번)
 
         LinkedHashSet<String> set = new LinkedHashSet<String>();
         while (set.size()<3) {
@@ -21,7 +21,7 @@ public class Application {
         return returnNum;
     }
 
-    public static boolean checkNumber(String str_num) {    //유저가 입력한 숫자가 이상이 없는지 확인
+    public static boolean checkNumber(String str_num) {    // 유저가 입력한 숫자가 이상이 없는지 확인
         String strDoubleCheck="";
 
         if (str_num.length() != 3) {
@@ -44,6 +44,12 @@ public class Application {
         return true;
     }
 
+    public static String reStartORnot() {
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
+        System.out.println("게임을 새로 시작하려면 1, 끝내려면 2를 입력해주세요.");
+        return Console.readLine();
+    }
+
     public static void main(String[] args) {
         // TODO 숫자 야구 게임 구현
 
@@ -52,19 +58,19 @@ public class Application {
 
         int strike = 0;
         int ball = 0;
-        boolean bReGame=true;    // 정답 숫자를 재설정 할건지 결정
+        boolean reGameCheck=true;    // 정답 숫자를 재설정 할건지 결정
 
         while(true)
         {
-            if(bReGame==true) {
+            if(reGameCheck==true) {
                 answerNumber = setGame();
-                bReGame=false;
+                reGameCheck=false;
             }
 
             strike = 0;   // 한턴 돌때마다 초기화
             ball = 0;
 
-            System.out.println(answerNumber); // 미리 정답을 출력해 보고 싶을때(test용)
+            //System.out.println(answerNumber); // 미리 정답을 출력해 보고 싶을때(test용)
 
             System.out.print("숫자를 입력해 주세요 : ");
             userNumber =Console.readLine();
@@ -82,22 +88,15 @@ public class Application {
                 if (i!=temp && temp!=-1) ball++;
             }
 
-            if (strike==3)  //게임 끝
-            {
-                System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
-                System.out.println("게임을 새로 시작하려면 1, 끝내려면 2를 입력해주세요.");
-                String isClose =Console.readLine();
-
-                if(isClose.charAt(0) =='2')
-                    break;
-                if(isClose.charAt(0) =='1') {
-                    bReGame = true;
-                    continue;
-                }
+            if (strike!=3) {  // Hint 출력
+                System.out.println(strike+"스트라이크 " + ball+" 볼");
+                continue;
             }
 
-            System.out.println(strike+"스트라이크 " + ball+" 볼");
+            if (reStartORnot().equals("2"))  // 3 strike, 게임 종료
+                break;
 
+            reGameCheck = true;  // 3 strike, 게임 재실행
         }
     }
 }
