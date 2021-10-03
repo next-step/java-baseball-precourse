@@ -27,6 +27,7 @@ public class Game {
             player.setBaseballNumber(new BaseballNumber(inputNumber));
         } catch (BaseballInputException e) {
             System.out.println(e.getMessage());
+            inputPlayerNumber();
         }
     }
 }
