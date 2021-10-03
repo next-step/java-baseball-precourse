@@ -5,11 +5,11 @@ import java.util.Objects;
 public class Ball {
 
 	private final BallNumber number;
-	private final int position;
+	private final BallPosition position;
 
 	public Ball(int number, int position) {
 		this.number = new BallNumber(number);
-		this.position = position;
+		this.position = new BallPosition(position);
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class Ball {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		Ball ball = (Ball)o;
-		return position == ball.position && Objects.equals(number, ball.number);
+		return Objects.equals(number, ball.number) && Objects.equals(position, ball.position);
 	}
 
 	@Override
