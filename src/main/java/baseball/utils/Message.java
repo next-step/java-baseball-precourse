@@ -1,4 +1,4 @@
-package baseball;
+package baseball.utils;
 
 public class Message {
     public static void printStartMessage() {

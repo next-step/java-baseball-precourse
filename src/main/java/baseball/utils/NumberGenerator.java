@@ -1,4 +1,4 @@
-package baseball;
+package baseball.utils;
 
 import nextstep.utils.Randoms;
 

@@ -1,4 +1,4 @@
-package baseball;
+package baseball.game;
 
 public class GameResult {
 
@@ -19,17 +19,18 @@ public class GameResult {
     }
 
     private boolean isFinish(int strikeCount) {
-        if(strikeCount == totalStrikeCount) {
-            return true;
-        }
-        return false;
+        return strikeCount == totalStrikeCount;
     }
 
     private void calculateStrikeCount(String systemNumbers, String numbers) {
-        this.strikeCount = 0;
+        clearStrikeCount();
         for (int i = 0; i < systemNumbers.length(); i++) {
             plusCountIfIsStrike(systemNumbers.charAt(i), numbers.charAt(i));
         }
+    }
+
+    private void clearStrikeCount() {
+        this.strikeCount = 0;
     }
 
     private void plusCountIfIsStrike(char systemNumberChar, char inputNumberChar) {
@@ -40,10 +41,14 @@ public class GameResult {
 
 
     private void calculateBallCount(String systemNumber, String number) {
-        this.ballCount = 0;
+        clearBallCount();
         for (int i = 0; i < systemNumber.length(); i++) {
             plusCountIfIsBall(systemNumber, i, number.charAt(i));
         }
+    }
+
+    private void clearBallCount() {
+        this.ballCount = 0;
     }
 
     private void plusCountIfIsBall(String systemNumber, int inputNumberIndex, char inputNumberChar) {
