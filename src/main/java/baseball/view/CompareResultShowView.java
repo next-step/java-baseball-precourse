@@ -26,5 +26,5 @@ public class CompareResultShowView {
             sb.append(String.format("%d볼 ", ball));
         }
         return sb.toString();
-    };
+    }
 }
