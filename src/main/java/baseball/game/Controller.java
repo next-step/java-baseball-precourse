@@ -1,5 +1,6 @@
 package baseball.game;
 
+import baseball.util.Static;
 import nextstep.utils.Console;
 
 /**
@@ -8,7 +9,11 @@ import nextstep.utils.Console;
  * @since 1.0
  * */
 public class Controller {
-	public Controller() { } // 생성자 
+	private Computer computer = new Computer();
+	
+	private Validation validation = new Validation();
+	
+	public Controller() { } // 생성자
 	
 	/**
 	 * Application에서 시작하는 메소드
@@ -40,7 +45,7 @@ public class Controller {
 	 * @return 입력값 validation의 참 거짓
 	 * */
 	private boolean inputValid(String input) {
-		return true ; 
+		return validation.isValid(input) ; 
 	}
 	
 	/**
@@ -50,6 +55,64 @@ public class Controller {
 	 * @return 야구게임 진행 여부
 	 * */
 	private boolean result(String input) {
-		return true ;
+		int strikeCount = computer.getStrikeCount(input);
+		int ballCount = computer.getBallCount(input);
+		
+		printResult(strikeCount,ballCount);
+		
+		if ( strikeCount == Static.GAME_MAX_LEN ) {
+			return true ; 
+		}
+		
+		return false ;
 	}
+	
+	/**
+	 * 야구 게임 결과 표시
+	 * 
+	 * @param strikeCount 스트라이크 카운트
+	 * @param ballCount 볼 카운트 
+	 * */
+	private void printResult(int strikeCount , int ballCount) {
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append(getNothingPrint(strikeCount, ballCount));
+		
+		sb.append(getStrikePrint(strikeCount));
+		
+		if ( strikeCount > 0 ) {
+			sb.append(" ");
+		}
+		
+		sb.append(getBallPrint(ballCount));
+			
+		System.out.println(sb.toString());
+	}
+	
+	private String getNothingPrint(int strikeCount, int ballCount) {
+		if ( strikeCount == 0 && ballCount == 0 ) {
+			return "낫싱";
+		} 
+		
+		return "";
+	}
+	
+	private String getStrikePrint(int strikeCount) {
+		if ( strikeCount > 0 ) {
+			return strikeCount + "스트라이크";
+		} 
+		
+		return "";
+	}
+	
+	private String getBallPrint(int ballCount) {
+		if ( ballCount > 0 ) {
+			return ballCount + "볼";
+		} 
+		
+		return "";
+	}
+	
+	
+	
 }
