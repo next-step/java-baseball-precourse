@@ -20,8 +20,8 @@ class GameStatusTest {
 	@DisplayName("스트라이크나 볼을 맞췄을 때")
 	void isIncorrect() {
 		Game game = new Game();
-		game.addStike();
-		game.addStike();
+		game.addStrike();
+		game.addStrike();
 		game.addBall();
 		assertThat(game.getGameStatus()).isEqualTo(GameStatus.INCORRECT);
 		assertThat(game.toString()).isEqualTo("2스트라이크 1볼");
@@ -31,9 +31,9 @@ class GameStatusTest {
 	@DisplayName("스트라이크를 모두 맞췄을 때")
 	void isCorrect() {
 		Game game = new Game();
-		game.addStike();
-		game.addStike();
-		game.addStike();
+		game.addStrike();
+		game.addStrike();
+		game.addStrike();
 		assertThat(game.getGameStatus()).isEqualTo(GameStatus.CORRECT);
 		assertThat(game.toString()).isEqualTo("3개의 숫자를 모두 맞히셨습니다! 게임끝");
 	}

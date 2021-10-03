@@ -14,7 +14,7 @@ public class Game {
 		gameStatus = NOTHING;
 	}
 
-	public void addStike() {
+	public void addStrike() {
 		this.strike++;
 
 		if (strike == CORRECT_NUMBER) {
@@ -62,5 +62,23 @@ public class Game {
 		}
 
 		throw new IllegalStateException("Unknown Game Status");
+	}
+
+	public void record(BallStatus ballStatus) {
+
+		if (ballStatus == BallStatus.NOTHING) {
+			return;
+		}
+
+		if (ballStatus == BallStatus.STRIKE) {
+			addStrike();
+			return;
+		}
+
+		if (ballStatus == BallStatus.BALL) {
+			addBall();
+			return;
+		}
+
 	}
 }
