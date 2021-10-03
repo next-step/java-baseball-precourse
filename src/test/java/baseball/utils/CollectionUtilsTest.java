@@ -62,4 +62,19 @@ class CollectionUtilsTest {
 			}
 		);
 	}
+
+	@Test
+	@DisplayName("배열을 리스트로 변환하는지")
+	void listOf() {
+		// given
+		Integer[] integers = {1, 2, 3};
+
+		// when
+		List<Integer> actual = CollectionUtils.listOf(integers);
+
+		// then
+		assertThat(actual)
+			.hasSize(3)
+			.containsExactly(1, 2, 3);
+	}
 }

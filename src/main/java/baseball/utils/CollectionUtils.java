@@ -1,5 +1,7 @@
 package baseball.utils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,6 +26,10 @@ public final class CollectionUtils {
 		copy.remove(element);
 
 		return !copy.contains(element);
+	}
+
+	public static <T> List<T> listOf(T[] arrays) {
+		return new ArrayList<>(Arrays.asList(arrays));
 	}
 }
 
