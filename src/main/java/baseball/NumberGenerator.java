@@ -1,9 +1,7 @@
 package baseball;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import nextstep.utils.Randoms;
 
@@ -15,13 +13,20 @@ public class NumberGenerator {
 
 	public static List<Integer> createNumber() {
 
-		Set<Integer> set = new HashSet<>();
+		boolean[] already = new boolean[MAX_NUMBER + 1];
+		List<Integer> result = new ArrayList<Integer>();
 
-		while (set.size() < MAX_DIGITS) {
-			set.add(Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER));
+		for (int i = 0; i < MAX_DIGITS;) {
+
+			int number = Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
+
+			if (!already[number]) {
+				already[number] = true;
+				result.add(number);
+				i++;
+			}
 		}
-
-		return new ArrayList<Integer>(set);
+		return result;
 	}
 
 }
