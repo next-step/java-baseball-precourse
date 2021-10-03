@@ -12,20 +12,8 @@ public class Game {
         return GAME;
     }
 
-    // 게임 진행 메소드
-    public void run() {
-        do {
-            // 난수 생성
-            String number = Opponent.getOpponent().makeNumber();
-            // 게임 진행
-            play(number);
-            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
-        }
-        while (isEndFromInput());
-    }
-
     // 사용자가 문제 맞추는 메소드
-    private void play(String number) {
+    public void play(String number) {
         Score score = Score.getInstance();
         do {
             // 입력 받기
@@ -65,7 +53,7 @@ public class Game {
     }
 
     // 사용자 input - 게임 계속할지 여부 (1이면 true 반환하여 계속 진행)
-    private boolean isEndFromInput() {
+    public boolean isEndFromInput() {
         System.out.println("게임을 새로 시작하시려면 1, 종료하려면 2를 입력하세요.");
 
         String input = Console.readLine();
