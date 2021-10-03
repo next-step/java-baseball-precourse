@@ -1,5 +1,7 @@
 package baseball;
 
+import static nextstep.utils.Console.readLine;
+
 public class Baseball {
     boolean gameEndFlag = false;
 
@@ -24,7 +26,7 @@ public class Baseball {
 
     //    기본적으로1부터9까지서로다른수로이루어진3자리의수를맞추는게임이다.
     public char[] inputNumber(){
-        return new char[3];
+        return readLine().toCharArray();
     }
 
     //    같은수가같은자리에있으면스트라이크,다른자리에있으면볼,같은수가전혀없으면포볼또는낫싱
