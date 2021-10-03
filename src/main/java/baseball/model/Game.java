@@ -19,4 +19,14 @@ public class Game {
 			targets.add(new Target(targets.size(), Randoms.pickNumberInRange(1, 9)));
 		}
 	}
+
+	public void check(Set<Input> inputs) {
+		for (Input input : inputs) {
+			check(input);
+		}
+	}
+
+	private void check(Input input) {
+		input.hit(targets);
+	}
 }
