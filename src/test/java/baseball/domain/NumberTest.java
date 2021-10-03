@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 class NumberTest {
 
@@ -14,5 +14,14 @@ class NumberTest {
     void create(int value) {
         Number number = new Number(value);
         assertThat(number.getValue()).isEqualTo(value);
+    }
+
+    @DisplayName("1미만 9초과 숫자는 에러를 발생한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 0, 10, Integer.MAX_VALUE, Integer.MIN_VALUE})
+    void create_error(int value) {
+        assertThatExceptionOfType(RuntimeException.class)
+                .isThrownBy(() -> new Number(value))
+                .withMessage("[ERROR] 올바른 숫자를 입력해주세요.");
     }
 }
