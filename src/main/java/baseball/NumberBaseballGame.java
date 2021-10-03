@@ -10,6 +10,8 @@ import nextstep.utils.Randoms;
 
 public class NumberBaseballGame {
 	private List<String> answers;
+	private int strike = 0;
+	private int ball = 0;
 
 	NumberBaseballGame() {
 	}
@@ -54,27 +56,12 @@ public class NumberBaseballGame {
 	private void checkInput(String readLine) {
 		List<String> inputs = Arrays.asList(readLine.split(""));
 
-		int strike = 0;
-		int ball = 0;
+		strike = 0;
+		ball = 0;
 
-		for (int i = 0; i < inputs.size(); i++) {
-			// TODO 정답 입력과 정답 후 새로 시작 or 종료 입력 여부 분리
-			if (inputs.size() != 3) {
-				break;
-			}
+		addResult(inputs);
 
-			if (Objects.equals(inputs.get(i), answers.get(i))) {
-				strike++;
-				continue;
-			}
-
-			if (answers.contains(inputs.get(i))) {
-				ball++;
-				continue;
-			}
-		}
-
-		printResult(strike, ball);
+		printResult();
 
 		if (strike == 3) {
 			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
@@ -96,11 +83,33 @@ public class NumberBaseballGame {
 
 	/**
 	 * @author : yh22953905
+	 * @Date : 2021/10/03 9:46 오후
+	 * @Description : 스트라이크, 볼 개수 구하기
+	 *
+	 **/
+	private void addResult(List<String> inputs) {
+		for (int i = 0; i < inputs.size(); i++) {
+			if (inputs.size() != 3) break;
+
+			if (Objects.equals(inputs.get(i), answers.get(i))) {
+				strike++;
+				continue;
+			}
+
+			if (answers.contains(inputs.get(i))) {
+				ball++;
+				continue;
+			}
+		}
+	}
+
+	/**
+	 * @author : yh22953905
 	 * @Date : 2021/10/03 9:24 오후
 	 * @Description : 판단 결과 출력
 	 *
 	 **/
-	private void printResult(int strike, int ball) {
+	private void printResult() {
 		StringBuilder resultBuilder = new StringBuilder();
 
 		if (strike > 0) {
