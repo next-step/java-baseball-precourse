@@ -13,7 +13,6 @@ public class BaseballGame {
 
 	private void setNewBalls() {
 		this.computerBalls = new Balls(NumberGenerator.createNumber());
-		System.out.println(this.computerBalls);
 	}
 
 	private boolean isValid(String inputNumber) {
@@ -42,13 +41,13 @@ public class BaseballGame {
 			baseballUi.printGameResult(result);
 
 			if (result.isComplete()) {
+				baseballUi.printEnd();
 				if (!baseballUi.askForRestart()) {
 					break;
 				}
 				setNewBalls();
 			}
 		}
-		baseballUi.printEnd();
 	}
 
 }
