@@ -4,13 +4,21 @@ public class BaseBallGameManager {
 
     private BaseBallNumber baseBallNumber;
 
+    private boolean isFinished = false;
+
     public BaseBallGameManager() {
         baseBallNumber = new BaseBallNumber();
+    }
+
+    public boolean isFinished() {
+        return isFinished;
     }
 
     public void checkUserAnswer(String userAnswer) {
         validateInteger(userAnswer);
         validateAnswerSize(userAnswer);
+        isFinished = baseBallNumber.isCorrectAnswer(Integer.valueOf(userAnswer));
+        baseBallNumber.printAnswer();
     }
 
     private void validateAnswerSize(String userAnswer) {
