@@ -24,4 +24,12 @@ public enum GameStatus {
 	private static boolean isNothing(GameStatus gameStatus) {
 		return gameStatus == NOTHING;
 	}
+
+	public static boolean isStrike(GameStatus gameStatus) {
+		return gameStatus == STRIKE;
+	}
+
+	public static boolean isBall(GameStatus gameStatus) {
+		return gameStatus == BALL;
+	}
 }

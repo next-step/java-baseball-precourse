@@ -51,7 +51,7 @@ public class BallsTest {
 			.hasMessageContaining("[ERROR] 숫자야구 게임을 하기위해서는 3개의 공이 필요합니다.");
 	}
 
-	@DisplayName("컴퓨터의 숫자야구(123) 과 테스트하여 nothing 을 반환하는 케이스를 테스트한다.")
+	@DisplayName("컴퓨터의 숫자야구(123) 과 한개의 Ball 을 테스트하여 nothing 을 반환하는 케이스를 테스트한다.")
 	@ParameterizedTest(name = "{displayName} {0}:{1}")
 	@CsvSource(value = {"4:1", "5:2", "6:3"}, delimiter = ':')
 	void nothing(int number, int position) {
@@ -62,7 +62,7 @@ public class BallsTest {
 		assertEquals(GameStatus.NOTHING, computerBalls.play(playerBall));
 	}
 
-	@DisplayName("컴퓨터의 숫자야구(123) 과 테스트하여 ball 을 반환하는 케이스를 테스트한다.")
+	@DisplayName("컴퓨터의 숫자야구(123) 과 과 한개의 Ball 을 테스트하여 ball 을 반환하는 케이스를 테스트한다.")
 	@ParameterizedTest(name = "{displayName} {0}:{1}")
 	@CsvSource(value = {"1:2", "2:3", "3:1"}, delimiter = ':')
 	void ball(int number, int position) {
@@ -73,7 +73,7 @@ public class BallsTest {
 		assertEquals(GameStatus.BALL, computerBalls.play(playerBall));
 	}
 
-	@DisplayName("컴퓨터의 숫자야구(123) 과 테스트하여 strike 를 반환하는 케이스를 테스트한다.")
+	@DisplayName("컴퓨터의 숫자야구(123) 과 과 한개의 Ball 을 테스트하여 strike 를 반환하는 케이스를 테스트한다.")
 	@ParameterizedTest(name = "{displayName} {0}:{1}")
 	@CsvSource(value = {"1:1", "2:2", "3:3"}, delimiter = ':')
 	void strike(int number, int position) {
@@ -82,5 +82,57 @@ public class BallsTest {
 
 		// when then
 		assertEquals(GameStatus.STRIKE, computerBalls.play(playerBall));
+	}
+
+	@DisplayName("컴퓨터의 숫자야구(123) 과 3개의 Ball(Balls) 테스트하여 0strike 0ball 을 반환하는 케이스를 테스트한다.")
+	@Test
+	void strike0_and_ball0() {
+		// given
+		final List<Ball> ballList = Arrays.asList(
+			new Ball(4, 1),
+			new Ball(5, 2),
+			new Ball(6, 3)
+		);
+
+		final Balls playerBalls = new Balls(ballList);
+
+		// when then
+		final GameResult play = computerBalls.play(playerBalls);
+		assertEquals(new GameResult(0, 0), play);
+	}
+
+	@DisplayName("컴퓨터의 숫자야구(123) 과 3개의 Ball(Balls) 테스트하여 1strike 1ball 을 반환하는 케이스를 테스트한다.")
+	@ParameterizedTest(name = "{displayName} Balls : {0}{1}{2}")
+	@CsvSource(value = {"1:3:5", "3:2:5", "9:2:1", "2:5:3"}, delimiter = ':')
+	void strike1_and_ball1(int first, int second, int third) {
+		// given
+		final List<Ball> ballList = Arrays.asList(
+			new Ball(first, 1),
+			new Ball(second, 2),
+			new Ball(third, 3)
+		);
+
+		final Balls playerBalls = new Balls(ballList);
+
+		// when then
+		final GameResult play = computerBalls.play(playerBalls);
+		assertEquals(new GameResult(1, 1), play);
+	}
+
+	@DisplayName("컴퓨터의 숫자야구(123) 과 3개의 Ball(Balls) 테스트하여 3strike 를 반환하는 케이스를 테스트한다.")
+	@Test
+	void strike3_ball0() {
+		// given
+		final List<Ball> ballList = Arrays.asList(
+			new Ball(1, 1),
+			new Ball(2, 2),
+			new Ball(3, 3)
+		);
+
+		final Balls playerBalls = new Balls(ballList);
+
+		// when then
+		final GameResult play = computerBalls.play(playerBalls);
+		assertEquals(new GameResult(3, 0), play);
 	}
 }

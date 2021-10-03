@@ -4,8 +4,9 @@ import java.util.List;
 
 public class Balls {
 
-	private static final int VALID_BALLS_SIZE = 3;
 	private final List<Ball> balls;
+
+	private static final int VALID_BALLS_SIZE = 3;
 
 	public Balls(List<Ball> balls) {
 		isValidBalls(balls);
@@ -32,5 +33,21 @@ public class Balls {
 		}
 
 		return gameStatus;
+	}
+
+	/**
+	 * 여러개의 공을 갖고있는 Balls 객체와 다른 Balls 을 비교하여 결과를 반환한다.
+	 *
+	 * @param inputBalls Balls 와 비교할 3개의 공을 가지고있는 Balls
+	 * @return 게임을 진행 한 뒤 strike / ball 의 갯수를 갖고있는 GameResult
+	 */
+	public GameResult play(Balls inputBalls) {
+		GameResult gameResult = new GameResult();
+
+		for (Ball ball : balls) {
+			gameResult = gameResult.applyGameStatus(inputBalls.play(ball));
+		}
+
+		return gameResult;
 	}
 }
