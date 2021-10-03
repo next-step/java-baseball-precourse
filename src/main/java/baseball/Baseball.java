@@ -29,12 +29,24 @@ public class Baseball {
 
     //    같은수가같은자리에있으면스트라이크,다른자리에있으면볼,같은수가전혀없으면포볼또는낫싱
     public String checkNumber( char[] gameNumberArray,  char[] inputNumberArray){
-        return "낫싱";
+        int strike = 0;
+        int ball = 0;
+
+        for (int i = 0; i < gameNumberArray.length; i++) {
+            if (gameNumberArray[i] == inputNumberArray[i]) {
+                strike++;
+                continue;
+            }
+            if (gameNumberArray.toString().contains(String.valueOf(inputNumberArray[i])))
+                ball++;
+        }
+        return makeResultString(strike, ball);
     }
 
-    public String makeResultString(int strike, int ball) {
+    public String makeResultString(int strike, int ball){
         String result = "낫싱";
-
+        if(strike> 0) result = strike + "스트라이크 ";
+        if(ball> 0) result = result  + ball + "볼";
         return result;
     }
 
