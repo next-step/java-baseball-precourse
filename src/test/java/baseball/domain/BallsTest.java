@@ -1,0 +1,86 @@
+package baseball.domain;
+
+import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
+public class BallsTest {
+
+	private Balls computerBalls;
+
+	@BeforeEach
+	void setUp() {
+		computerBalls = new Balls(Arrays.asList(
+			new Ball(1, 1),
+			new Ball(2, 2),
+			new Ball(3, 3)));
+	}
+
+	@DisplayName("balls 객체를 생성한다. 정확하게 3개의 공을 갖고있어야 한다.")
+	@Test
+	void create() {
+		// given
+		final List<Ball> ballList = Arrays.asList(
+			new Ball(1, 1),
+			new Ball(2, 2),
+			new Ball(3, 3));
+
+		// when then
+		final Balls balls = new Balls(ballList);
+	}
+
+	@DisplayName("balls 객체를 생성한다. 정확하게 3개의 공을 갖고있어야 한다, 테스트에서는 2개만 갖고있에 예외를 발생시킨다.")
+	@Test
+	void create_fail_test() {
+		// given
+		final List<Ball> ballList = Arrays.asList(
+			new Ball(1, 1),
+			new Ball(2, 2));
+
+		// when then
+		assertThatThrownBy(() -> new Balls(ballList))
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessageContaining("[ERROR] 숫자야구 게임을 하기위해서는 3개의 공이 필요합니다.");
+	}
+
+	@DisplayName("컴퓨터의 숫자야구(123) 과 테스트하여 nothing 을 반환하는 케이스를 테스트한다.")
+	@ParameterizedTest(name = "{displayName} {0}:{1}")
+	@CsvSource(value = {"4:1", "5:2", "6:3"}, delimiter = ':')
+	void nothing(int number, int position) {
+		// given
+		final Ball playerBall = new Ball(number, position);
+
+		// when then
+		assertEquals(GameStatus.NOTHING, computerBalls.play(playerBall));
+	}
+
+	@DisplayName("컴퓨터의 숫자야구(123) 과 테스트하여 ball 을 반환하는 케이스를 테스트한다.")
+	@ParameterizedTest(name = "{displayName} {0}:{1}")
+	@CsvSource(value = {"1:2", "2:3", "3:1"}, delimiter = ':')
+	void ball(int number, int position) {
+		// given
+		final Ball playerBall = new Ball(number, position);
+
+		// when then
+		assertEquals(GameStatus.BALL, computerBalls.play(playerBall));
+	}
+
+	@DisplayName("컴퓨터의 숫자야구(123) 과 테스트하여 strike 를 반환하는 케이스를 테스트한다.")
+	@ParameterizedTest(name = "{displayName} {0}:{1}")
+	@CsvSource(value = {"1:1", "2:2", "3:3"}, delimiter = ':')
+	void strike(int number, int position) {
+		// given
+		final Ball playerBall = new Ball(number, position);
+
+		// when then
+		assertEquals(GameStatus.STRIKE, computerBalls.play(playerBall));
+	}
+}
