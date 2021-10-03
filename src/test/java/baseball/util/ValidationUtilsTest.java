@@ -31,4 +31,26 @@ public class ValidationUtilsTest {
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining("[ERROR] 길이가 3인 문자열만 입력가능합니다.");
 	}
+
+	@DisplayName("containsBetweenOneToNine() / input String 이 모두 1-9 사이의 문자인지 검증한다.")
+	@Test
+	void containsBetweenOneToNine() {
+		// given
+		final String input = "123456789";
+
+		// when then
+		assertDoesNotThrow(() -> ValidationUtils.containsBetweenOneToNine(input));
+	}
+
+	@DisplayName("containsBetweenOneToNine() / input String 1-9 사이의 문자가 아닌경우 IllegalArgumentException 을 던진다.")
+	@ParameterizedTest
+	@ValueSource(strings = {"012", "abc", "1ac", "0"})
+	void containsBetweenOneToNine_fail_test(String input) {
+		// given: none
+
+		// when then
+		assertThatThrownBy(() -> ValidationUtils.containsBetweenOneToNine(input))
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessageContaining("[ERROR] 1-9 까지의 문자만 입력가능합니다.");
+	}
 }

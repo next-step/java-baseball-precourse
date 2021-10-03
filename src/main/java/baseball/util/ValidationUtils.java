@@ -17,4 +17,26 @@ public class ValidationUtils {
 			throw new IllegalArgumentException("[ERROR] 길이가 3인 문자열만 입력가능합니다.");
 		}
 	}
+
+	/**
+	 * input 이 1-9 의 숫자들만을 포함하는 String 인지 판별한다.
+	 *
+	 * @param input 1-9 사이의 숫자들만 포함하는지 검증할 문자열
+	 */
+	public static void containsBetweenOneToNine(String input) {
+		for (int i = 0; i < input.length(); i++) {
+			isBetweenOneToNine(input.charAt(i));
+		}
+	}
+
+	/**
+	 * 1보다 작은 문자이거나, 9보다 큰 문자의 경우에 대해서 예외를 던진다.
+	 *
+	 * @param inputChar 1-9 사이의 숫자인지 검증할 character
+	 */
+	private static void isBetweenOneToNine(char inputChar) {
+		if (inputChar < '1' || inputChar > '9') {
+			throw new IllegalArgumentException("[ERROR] 1-9 까지의 문자만 입력가능합니다.");
+		}
+	}
 }
