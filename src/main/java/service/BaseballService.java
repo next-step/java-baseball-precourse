@@ -14,7 +14,7 @@ public class BaseballService {
 		for (Ball ball : balls) {
 
 			for (Ball input : inputs) {
-				game.record(ball.compare(input));
+				game.record(ball.play(input));
 			}
 		}
 		return game;

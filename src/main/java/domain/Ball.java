@@ -10,7 +10,7 @@ public class Ball {
 		this.position = position;
 	}
 
-	public BallStatus compare(Ball ball) {
+	public BallStatus play(Ball ball) {
 
 		if (this.equals(ball)) {
 			return BallStatus.STRIKE;

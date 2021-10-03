@@ -37,7 +37,7 @@ class BaseballServiceTest {
 	@MethodSource("provideBalls")
 	@DisplayName("각각의 공을 비교하여 결과값 확인")
 	void compareBall(Ball input, BallStatus ballStatus) {
-		assertThat(ball.compare(input)).isEqualTo(ballStatus);
+		assertThat(ball.play(input)).isEqualTo(ballStatus);
 	}
 
 	@ParameterizedTest
