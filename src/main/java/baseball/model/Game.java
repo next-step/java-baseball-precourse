@@ -1,5 +1,6 @@
 package baseball.model;
 
+import baseball.dto.ResultDto;
 import nextstep.utils.Randoms;
 
 import java.util.LinkedHashSet;
@@ -20,10 +21,11 @@ public class Game {
 		}
 	}
 
-	public void check(Set<Input> inputs) {
+	public ResultDto check(Set<Input> inputs) {
 		for (Input input : inputs) {
 			check(input);
 		}
+		return ResultDto.of(inputs);
 	}
 
 	private void check(Input input) {
