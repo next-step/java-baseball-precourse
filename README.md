@@ -5,3 +5,8 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 구현할 기능 목록
+* 입력된 값에 해당하는 사이즈의 랜덤 값을 발급 
+* 입력한 숫자로 스트라이크/볼을 판정하여 문자열을 반환
+* 새로운 게임 시작
