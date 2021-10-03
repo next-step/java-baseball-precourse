@@ -13,7 +13,7 @@ public class BaseballUi {
 	}
 
 	public String askForNumber() {
-		System.out.print("숫자를 입력해주세요 :");
+		System.out.print("숫자를 입력해주세요 : ");
 		return Console.readLine();
 	}
 
@@ -23,7 +23,7 @@ public class BaseballUi {
 	}
 
 	public void printEnd() {
-		System.out.println("게임끝");
+		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
 	}
 
 }
