@@ -5,8 +5,10 @@ import nextstep.utils.Console;
 
 public class GameOverConsole extends BaseConsole {
 
+    private final int inputLength;
+
     public GameOverConsole(int inputLength) {
-        super(inputLength);
+        this.inputLength = inputLength;
     }
 
     @Override
@@ -26,7 +28,7 @@ public class GameOverConsole extends BaseConsole {
 
     @Override
     protected boolean isValidPolicy(String inputValue) {
-        return isKey(inputValue) && inputValue.length() == super.inputLength;
+        return isKey(inputValue) && inputValue.length() == inputLength;
     }
 
     @Override

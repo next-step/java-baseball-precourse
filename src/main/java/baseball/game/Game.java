@@ -51,6 +51,7 @@ public class Game {
 
     private void generateSystemNumberIfNull() {
         this.systemNumbers = numberGenerator.generateNumbers(PICK_NUMBER_COUNT);
+        System.err.println(systemNumbers);
     }
 
 }

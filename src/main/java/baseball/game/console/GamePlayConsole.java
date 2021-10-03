@@ -3,10 +3,15 @@ package baseball.game.console;
 import baseball.utils.Message;
 import nextstep.utils.Console;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class GamePlayConsole extends BaseConsole {
 
+    private final int inputLength;
+
     public GamePlayConsole(int inputLength) {
-        super(inputLength);
+        this.inputLength = inputLength;
     }
 
     @Override
@@ -27,7 +32,7 @@ public class GamePlayConsole extends BaseConsole {
 
     @Override
     protected boolean isValidPolicy(String inputValue) {
-        return isNumber(inputValue) && inputValue.length() == super.inputLength && !containSameNumber(inputValue);
+        return isNumber(inputValue) && inputValue.length() == inputLength && !containSameNumber(inputValue);
     }
 
     @Override
@@ -39,12 +44,12 @@ public class GamePlayConsole extends BaseConsole {
 
 
     private boolean containSameNumber(String numbers) {
-        boolean contain = false;
+        Set<String> numberSet = new HashSet<>();
         for (int i = 0; i < numbers.length(); i++) {
             String number = String.valueOf(numbers.charAt(i));
-            contain = contain(numbers, number);
+            numberSet.add(number);
         }
-        return contain;
+        return numberSet.size() != 3;
     }
 
     private boolean contain(String text, String value) {

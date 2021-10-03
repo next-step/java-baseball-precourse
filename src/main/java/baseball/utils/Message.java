@@ -12,22 +12,25 @@ public class Message {
     }
 
     public static void printResultMessage(int strikeCount, int ballCount) {
+        String message = makeMessage(strikeCount, ballCount);
+        println(message);
+    }
+
+    private static String makeMessage(int strikeCount, int ballCount) {
+        StringBuilder stringBuilder = new StringBuilder();
+        if(strikeCount > 0) {
+            stringBuilder.append(strikeCount).append("스트라이크");
+        }
+        if(strikeCount > 0 && ballCount > 0) {
+            stringBuilder.append(" ");
+        }
+        if(ballCount > 0) {
+            stringBuilder.append(ballCount).append("볼");
+        }
         if(strikeCount == 0 && ballCount == 0) {
-            String message = "낫싱";
-            println(message);
+            stringBuilder.append("낫싱");
         }
-        else if(ballCount == 0 && strikeCount > 0) {
-            String message = strikeCount + "스트라이크";
-            println(message);
-        }
-        else if(strikeCount == 0 && ballCount > 0) {
-            String message = ballCount + "볼";
-            println(message);
-        }
-        else if(strikeCount > 0 && ballCount > 0) {
-            String message = strikeCount + "스트라이크 " + ballCount + "볼";
-            println(message);
-        }
+        return stringBuilder.toString();
     }
 
     public static void printFinishMessage() {
