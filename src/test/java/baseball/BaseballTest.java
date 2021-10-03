@@ -20,6 +20,8 @@ class BaseballTest {
     private final Method generateCustomAnswerMethod;
     private final Method generateAnswerMethod;
     private final Method generateNewNumberMethod;
+    private final Method getBallCountMethod;
+    private final Method checkBallCountMethod;
 
     public BaseballTest() throws NoSuchMethodException {
         this.generateCustomAnswerMethod = Baseball.class.getDeclaredMethod("generateAnswer", Integer.class);
@@ -30,6 +32,12 @@ class BaseballTest {
 
         this.generateAnswerMethod = Baseball.class.getDeclaredMethod("generateAnswer");
         generateAnswerMethod.setAccessible(true);
+
+        this.getBallCountMethod = Baseball.class.getDeclaredMethod("getBallCount", Integer.class);
+        getBallCountMethod.setAccessible(true);
+
+        this.checkBallCountMethod = Baseball.class.getDeclaredMethod("checkBallCount", BallCount.class, Integer.class, Integer.class);
+        checkBallCountMethod.setAccessible(true);
     }
 
 
@@ -132,6 +140,97 @@ class BaseballTest {
         assertThat(answerPositionMap).containsEntry(1, 1);
         assertThat(answerPositionMap).containsEntry(2, 2);
         assertThat(answerPositionMap).containsEntry(3, 3);
+    }
+
+    @Test
+    @DisplayName("checkBallCount | Strike가 증가하는 경우 확인")
+    public void checkBallCountTest1() throws InvocationTargetException, IllegalAccessException {
+        // given
+        Baseball baseball = new Baseball();
+
+        BallCount ballCount = new BallCount();
+
+        // when
+        checkBallCountMethod.invoke(baseball, ballCount, 1, 1);
+
+        // then
+        assertThat(ballCount.getStrike()).isEqualTo(1);
+        assertThat(ballCount.getBall()).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("checkBallCount | Ball 증가하는 경우 확인")
+    public void checkBallCountTest2() throws InvocationTargetException, IllegalAccessException {
+        // given
+        Baseball baseball = new Baseball();
+        BallCount ballCount = new BallCount();
+
+        // when
+        checkBallCountMethod.invoke(baseball, ballCount, 2, 1);
+
+        // then
+        assertThat(ballCount.getStrike()).isEqualTo(0);
+        assertThat(ballCount.getBall()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("checkBallCount | 아무것도 증가하지 않는 경우 확인")
+    public void checkBallCountTest3() throws InvocationTargetException, IllegalAccessException {
+        // given
+        Baseball baseball = new Baseball();
+        BallCount ballCount = new BallCount(0, 0);
+
+        // when
+        checkBallCountMethod.invoke(baseball, ballCount, 2, null);
+
+        // then
+        assertThat(ballCount.getStrike()).isEqualTo(0);
+        assertThat(ballCount.getBall()).isEqualTo(0);
+    }
+
+
+
+    @Test
+    @DisplayName("getBallCount | 숫자와 위치를 모두 맞출 경우 확인")
+    public void getBallCountTest1() throws InvocationTargetException, IllegalAccessException {
+        // given
+        Baseball baseball = new Baseball();
+        generateCustomAnswerMethod.invoke(baseball, 123);
+
+        // when
+        BallCount ballCount = (BallCount) getBallCountMethod.invoke(baseball, 123);
+
+        // then
+        assertThat(ballCount).isEqualTo(new BallCount(3, 0));
+    }
+
+    @Test
+    @DisplayName("getBallCount | 숫자를 하나도 못 맞출 경우 확인")
+    public void getBallCountTest2() throws InvocationTargetException, IllegalAccessException {
+        // given
+        Baseball baseball = new Baseball();
+        generateCustomAnswerMethod.invoke(baseball, 123);
+
+        // when
+        BallCount ballCount = (BallCount) getBallCountMethod.invoke(baseball, 456);
+
+        // then
+        assertThat(ballCount).isEqualTo(new BallCount(0, 0));
+    }
+
+
+    @Test
+    @DisplayName("getBallCount | 숫자는 모두 맞췄지만 위치가 모두 다를 경우 확인")
+    public void getBallCountTest3() throws InvocationTargetException, IllegalAccessException {
+        // given
+        Baseball baseball = new Baseball();
+        generateCustomAnswerMethod.invoke(baseball, 123);
+
+        // when
+        BallCount ballCount = (BallCount) getBallCountMethod.invoke(baseball, 312);
+
+        // then
+        assertThat(ballCount).isEqualTo(new BallCount(0, 3));
     }
 
 }

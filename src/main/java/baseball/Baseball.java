@@ -62,6 +62,45 @@ public class Baseball {
         return positionMap;
     }
 
+    // 정답을 맞추기 위한 숫자를 입력받고 그 결과를 반환하는 함수
+    public BallCount guessAnswer(int tryNumber) {
+        try {
+            if ((int) Math.log10(tryNumber) + 1 != N) {
+                throw new RuntimeException("잘못된 숫자 기입");
+            }
+            return getBallCount(tryNumber);
+        } catch (RuntimeException e) {
+            throw e;
+        }
+    }
+
+    // 매개변수 tryNumber와 전역필드 answer를 비교하여 BallCount를 반환하는 함수
+    private BallCount getBallCount(Integer tryNumber) {
+        assert tryNumber != null;
+        BallCount ballCount = new BallCount();
+        Map<Integer, Integer> tryPositionMap = getPositionMap(tryNumber);
+        if (tryPositionMap.size() != 3) {
+            throw new RuntimeException("잘못된 숫자 기입 ( 서로 다른 숫자 입력 필요 )");
+        }
+        for (int num : answerPositionMap.keySet()) {
+            Integer answerNumPosition = answerPositionMap.get(num);
+            Integer tryNumPosition = tryPositionMap.get(num);
+            checkBallCount(ballCount, answerNumPosition, tryNumPosition);
+        }
+        return ballCount;
+    }
+
+    // 매개변수 answerNumPosition과 tryNumPosition을 비교하여 ballCount의 strike와 ball을 업데이트하는 함수
+    private void checkBallCount(BallCount ballCount, Integer answerNumPosition, Integer tryNumPosition) {
+        if (answerNumPosition.equals(tryNumPosition)) {
+            ballCount.increaseStrike();
+            return;
+        }
+        if (tryNumPosition != null) {
+            ballCount.increaseBall();
+        }
+    }
+
     public int getAnswer() {
         return answer;
     }
