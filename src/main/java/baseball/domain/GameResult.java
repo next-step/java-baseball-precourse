@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class GameResult {
 
-	private final int strike;
+	private final StrikeResult strike;
 	private final int ball;
 
 	public GameResult() {
@@ -12,6 +12,10 @@ public class GameResult {
 	}
 
 	public GameResult(int strike, int ball) {
+		this(new StrikeResult(strike), ball);
+	}
+
+	public GameResult(StrikeResult strike, int ball) {
 		this.strike = strike;
 		this.ball = ball;
 	}
@@ -24,16 +28,15 @@ public class GameResult {
 	 * @return immutable 한 GameResult
 	 */
 	public GameResult applyGameStatus(GameStatus gameStatus) {
-		int strike = this.strike;
 		int ball = this.ball;
 
 		if (GameStatus.isStrike(gameStatus)) {
-			strike++;
+			return new GameResult(strike.increase(), ball);
 		}
 		if (GameStatus.isBall(gameStatus)) {
-			ball++;
+			return new GameResult(strike, ball + 1);
 		}
-		return new GameResult(strike, ball);
+		return this;
 	}
 
 	@Override
@@ -43,7 +46,7 @@ public class GameResult {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		GameResult that = (GameResult)o;
-		return strike == that.strike && ball == that.ball;
+		return ball == that.ball && Objects.equals(strike, that.strike);
 	}
 
 	@Override
