@@ -4,9 +4,12 @@ import nextstep.utils.Console;
 
 public class BaseBallGameManager {
 
+
     private BaseBallNumber baseBallNumber;
 
     private boolean isFinished = false;
+    private static final String RETRY_GAME_ANSWER = "1";
+    private static final String END_GAME_ANSWER = "2";
 
     public BaseBallGameManager() {
         baseBallNumber = new BaseBallNumber();
@@ -21,23 +24,34 @@ public class BaseBallGameManager {
         validateAnswerSize(userAnswer);
         isFinished = baseBallNumber.isCorrectAnswer(Integer.valueOf(userAnswer));
         enterRetryGame(isFinished);
+        baseBallNumber.printAnswer();
     }
 
     private void enterRetryGame(boolean isFinished) {
         if (isFinished) {
             System.out.println("3개의 숫자를 모두 맞혔습니다. 게임 끝!");
             System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
-            String retryAnswer = Console.readLine();
-            prepareNextGame(retryAnswer);
+            prepareNextGame();
         }
     }
 
-    private void prepareNextGame(String retryAnswer) {
-        if (retryAnswer.equals("2")) {
+    private void prepareNextGame() {
+        String retryAnswer = enterRetryAnswer();
+        if (retryAnswer.equals(END_GAME_ANSWER)) {
             return;
         }
-        isFinished = false;
-        baseBallNumber = new BaseBallNumber();
+        if (retryAnswer.equals(RETRY_GAME_ANSWER)) {
+            isFinished = false;
+            baseBallNumber = new BaseBallNumber();
+        }
+    }
+
+    private String enterRetryAnswer() {
+        String retryAnswer;
+        do {
+            retryAnswer = Console.readLine();
+        } while (!retryAnswer.equals(END_GAME_ANSWER) && !retryAnswer.equals(RETRY_GAME_ANSWER));
+        return retryAnswer;
     }
 
     private void validateAnswerSize(String userAnswer) {
@@ -49,9 +63,8 @@ public class BaseBallGameManager {
     }
 
     private void validateInteger(String userAnswer) {
-        int number = 0;
         try {
-            number = Integer.valueOf(userAnswer);
+            Integer.valueOf(userAnswer);
         } catch (NumberFormatException e) {
             System.out.println("ERROR");
             return;

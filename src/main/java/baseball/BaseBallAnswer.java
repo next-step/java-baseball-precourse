@@ -28,17 +28,20 @@ public class BaseBallAnswer {
     public AnswerResult makeAnswerResult(int userAnswer) {
         AnswerResult answerResult = new AnswerResult();
         for (int i = 2; i >= 0; i--) {
-            int answerNumber = userAnswer % 10;
-            if (answer.get(i) == answerNumber) {
-                answerResult.addStrikeCount();
-            }
-            if (answer.get(i) != answerNumber && answer.contains(answerNumber)) {
-                answerResult.addBallCount();
-            }
+            int userNumber = userAnswer % 10;
+            checkAnswerResult(answerResult, answer.get(i), userNumber);
             userAnswer = userAnswer / 10;
         }
-
         return answerResult;
+    }
+
+    private void checkAnswerResult(AnswerResult answerResult, int answerNumber, int userNumber) {
+        if (answerNumber == userNumber) {
+            answerResult.addStrikeCount();
+        }
+        if (answerNumber != userNumber && answer.contains(userNumber)) {
+            answerResult.addBallCount();
+        }
     }
 
     public List<Integer> getAnswer() {
