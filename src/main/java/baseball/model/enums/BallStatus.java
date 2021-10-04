@@ -1,7 +1,20 @@
 package baseball.model.enums;
 
 public enum BallStatus {
-    NONE, BALL, STRIKE;
+    NONE("낫싱"),
+    BALL("볼"),
+    STRIKE("스트라이크")
+    ;
+
+    private final String message;
+
+    BallStatus(String message) {
+        this.message = message;
+    }
+
+    public String message() {
+        return message;
+    }
 
     /**
      * 한번이라도 BALL 이나 STRIKE 를 만나면 그 상태를 유지하기 위한 메소드
