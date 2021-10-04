@@ -23,44 +23,95 @@ public class Baseball {
     }
 
     //    컴퓨터는 1에서9까지 서로 다른 임의의 수 3개를 선택한다.
-    public char[] generateNumber(){
-        char[] gameNumber = new char[3];
-        for (int i = 0; i < 3; i++) {
-            gameNumber[i] = Integer.toString(pickNumberInRange(1, 9)).charAt(0);
+    public Set<Character> generateNumber(){
+        Set<Character> gameNumberSet = new LinkedHashSet<>();
+        while(gameNumberSet.size() < 3) {
+            gameNumberSet.add( Integer.toString(pickNumberInRange(1, 9)).charAt(0));
         }
-        return gameNumber ;
+        return gameNumberSet;
     }
 
     //    기본적으로1부터9까지서로다른수로이루어진3자리의수를맞추는게임이다.
-    public char[] inputNumber(){
-        return readLine().toCharArray();
+    public List<Character> inputNumber(){
+        boolean validInputNumberFlag = false;
+        List<Character> inputNumberList = null;
+        while(!validInputNumberFlag){
+            System.out.println("숫자를 입력해주세요 : ");
+            String inputNumberString  = readLine();
+
+            inputNumberList = convertStringToSet(inputNumberString);
+            validInputNumberFlag = validInputNumber(inputNumberString, inputNumberList);
+        }
+        return inputNumberList;
+    }
+    public List<Character> convertStringToSet(String inputNumberString){
+        List<Character> inputNumberList = new ArrayList<>();
+        for (char ch :inputNumberString.toCharArray()) {
+            inputNumberList.add(ch);
+        }
+        return inputNumberList;
     }
 
-    //    같은수가같은자리에있으면스트라이크,다른자리에있으면볼,같은수가전혀없으면포볼또는낫싱
-    public String checkNumber( char[] gameNumberArray,  char[] inputNumberArray){
-        int strike = 0;
-        int ball = 0;
+    public boolean validInputNumber(String inputNumberString, List inputNumberSet){
+        if (!inputNumberString.matches("[0-9]+") ) {
+            System.out.println("[ERROR] 잘못된 값을 입력하셨습니다.");
+            return false;
+        }
+        if (inputNumberSet.size() > 3){
+            System.out.println("[ERROR] 잘못된 값을 입력하셨습니다.");
+            return false;
+        }
+        return true;
+    }
 
-        for (int i = 0; i < gameNumberArray.length; i++) {
-            if (gameNumberArray[i] == inputNumberArray[i]) {
-                strike++;
-                continue;
-            }
-            if (gameNumberArray.toString().contains(String.valueOf(inputNumberArray[i])))
-                ball++;
+
+    //    같은수가같은자리에있으면스트라이크,다른자리에있으면볼,같은수가전혀없으면포볼또는낫싱
+    public String checkNumber(List<Character> gameNumberList, List<Character> inputNumberList){
+        strike=0;
+        ball=0;
+        for (int i = 0; i < gameNumberList.size(); i++) {
+            ballCheck(gameNumberList.toString(), gameNumberList.get(i), inputNumberList.get(i));
         }
         return makeResultString(strike, ball);
     }
 
+    public void ballCheck(String gameNumberString, char gameNumber,  char inputNumber){
+        if (gameNumber == inputNumber){
+            this.strike++;
+            return;
+        }
+        if (gameNumberString.contains(String.valueOf(inputNumber)))  this.ball++;
+    }
+
     public String makeResultString(int strike, int ball){
-        String result = "낫싱";
-        if(strike> 0) result = strike + "스트라이크 ";
+        String result = "";
+        if(strike==0 && ball == 0) result = "낫싱";
+        if(strike> 0) result = result  + strike + "스트라이크 ";
         if(ball> 0) result = result  + ball + "볼";
-        return result;
+        return result.trim();
+    }
+
+    public void endThisGame(String result){
+        if (result.equals("3스트라이크")) gameEndFlag = true;
     }
 
     //    게임을종료한후게임을다시시작하거나완전히종료할수있다.
     public boolean endGame(){
-        return readLine() == "1" ? true : false;
+        boolean validInputNumberFlag = false;
+        String endGameInput = "";
+        while(!validInputNumberFlag) {
+            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요 ");
+            endGameInput = readLine();
+            validInputNumberFlag = validInputEndFlag(endGameInput);
+        }
+        return endGameInput.equals("1") ? true : false;
+    }
+
+    public boolean validInputEndFlag(String endGameInput){
+        if (!"12".contains(endGameInput)) {
+            System.out.println("[ERROR] 잘못된 값을 입력하셨습니다.");
+            return false;
+        }
+        return true;
     }
 }
