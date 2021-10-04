@@ -25,6 +25,7 @@ public class Balls {
     }
 
     public CompareResult compareWith(List<Integer> numbers) {
+        validateCompareListSize(numbers);
         Balls otherBalls = new Balls(numbers);
         CompareResult result = new CompareResult();
 
@@ -34,6 +35,15 @@ public class Balls {
         }
 
         return result;
+    }
+
+    private void validateCompareListSize(List<Integer> numbers) {
+        int numberSize = numbers.size();
+        int ballsSize = balls.size();
+
+        if (numberSize != ballsSize) {
+            throw new IllegalArgumentException("비교하려는 두 Balls 의 크기가 다릅니다. 입력값: " + numberSize + ", 정답: " + ballsSize);
+        }
     }
 
     private BallStatus compareWith(Ball otherBall) {
