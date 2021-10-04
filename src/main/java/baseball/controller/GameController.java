@@ -27,7 +27,6 @@ public class GameController {
      */
     private void startGame(List<Integer> answer) {
         while (true) {
-
             final List<Integer> inputList = getInputNumber();
             if (answerCheck(inputList, answer)) {
                 break;
