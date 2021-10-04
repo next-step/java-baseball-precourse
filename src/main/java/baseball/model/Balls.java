@@ -24,6 +24,18 @@ public class Balls {
         return balls;
     }
 
+    public CompareResult compareWith(List<Integer> numbers) {
+        Balls otherBalls = new Balls(numbers);
+        CompareResult result = new CompareResult();
+
+        for (Ball ball : balls) {
+            BallStatus status = otherBalls.compareWith(ball);
+            result.increaseCountByStatus(status);
+        }
+
+        return result;
+    }
+
     public BallStatus compareWith(Ball otherBall) {
         BallStatus resultStatus = BallStatus.NONE;
 

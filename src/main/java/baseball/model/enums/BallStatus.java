@@ -20,4 +20,12 @@ public enum BallStatus {
     public boolean isNone() {
         return this == NONE;
     }
+
+    public boolean isStrike() {
+        return this == STRIKE;
+    }
+
+    public boolean isBall() {
+        return this == BALL;
+    }
 }
