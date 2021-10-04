@@ -3,6 +3,9 @@ package baseball.view;
 import nextstep.utils.Console;
 
 public class Command {
+    private static final int START_GAME_NUM = 1;
+    private static final int END_GAME_NUM = 1;
+
     private final Console console;
 
     public Command(Console console) {
@@ -44,4 +47,12 @@ public class Command {
         System.out.println("[ERROR]");
     }
 
+    public void printGameClear() {
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
+    }
+
+    public int askContinueGame() {
+        System.out.println(String.format("게임을 새로 시작하려면 %d, 종료하려면 %d를 입력하세요.", START_GAME_NUM, END_GAME_NUM));
+        return Integer.parseInt(Console.readLine());
+    }
 }
