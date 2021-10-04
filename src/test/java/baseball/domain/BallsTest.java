@@ -18,20 +18,14 @@ public class BallsTest {
 
 	@BeforeEach
 	void setUp() {
-		computerBalls = new Balls(Arrays.asList(
-			new Ball(1, 1),
-			new Ball(2, 2),
-			new Ball(3, 3)));
+		computerBalls = new Balls(Arrays.asList(1, 2, 3));
 	}
 
 	@DisplayName("balls 객체를 생성한다. 정확하게 3개의 공을 갖고있어야 한다.")
 	@Test
 	void create() {
 		// given
-		final List<Ball> ballList = Arrays.asList(
-			new Ball(1, 1),
-			new Ball(2, 2),
-			new Ball(3, 3));
+		final List<Integer> ballList = Arrays.asList(1, 2, 3);
 
 		// when then
 		final Balls balls = new Balls(ballList);
@@ -41,9 +35,7 @@ public class BallsTest {
 	@Test
 	void create_fail_test() {
 		// given
-		final List<Ball> ballList = Arrays.asList(
-			new Ball(1, 1),
-			new Ball(2, 2));
+		final List<Integer> ballList = Arrays.asList(1, 2);
 
 		// when then
 		assertThatThrownBy(() -> new Balls(ballList))
@@ -88,11 +80,7 @@ public class BallsTest {
 	@Test
 	void strike0_and_ball0() {
 		// given
-		final List<Ball> ballList = Arrays.asList(
-			new Ball(4, 1),
-			new Ball(5, 2),
-			new Ball(6, 3)
-		);
+		final List<Integer> ballList = Arrays.asList(4, 5, 6);
 
 		final Balls playerBalls = new Balls(ballList);
 
@@ -106,11 +94,7 @@ public class BallsTest {
 	@CsvSource(value = {"1:3:5", "3:2:5", "9:2:1", "2:5:3"}, delimiter = ':')
 	void strike1_and_ball1(int first, int second, int third) {
 		// given
-		final List<Ball> ballList = Arrays.asList(
-			new Ball(first, 1),
-			new Ball(second, 2),
-			new Ball(third, 3)
-		);
+		final List<Integer> ballList = Arrays.asList(first, second, third);
 
 		final Balls playerBalls = new Balls(ballList);
 
@@ -123,11 +107,7 @@ public class BallsTest {
 	@Test
 	void strike3_ball0() {
 		// given
-		final List<Ball> ballList = Arrays.asList(
-			new Ball(1, 1),
-			new Ball(2, 2),
-			new Ball(3, 3)
-		);
+		final List<Integer> ballList = Arrays.asList(1, 2, 3);
 
 		final Balls playerBalls = new Balls(ballList);
 

@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,12 +12,16 @@ public class Balls {
 
 	private static final int VALID_BALLS_SIZE = 3;
 
-	public Balls(List<Ball> balls) {
-		isValidBalls(balls);
-		this.balls = balls;
+	public Balls(List<Integer> intBalls) {
+		isValidBalls(intBalls);
+
+		balls = new ArrayList<>();
+		for (int i = 0; i < intBalls.size(); i++) {
+			balls.add(new Ball(intBalls.get(i), i + 1));
+		}
 	}
 
-	private void isValidBalls(List<Ball> balls) {
+	private void isValidBalls(List<Integer> balls) {
 		if (balls.isEmpty() || balls.size() != VALID_BALLS_SIZE) {
 			throw new IllegalArgumentException("[ERROR] 숫자야구 게임을 하기위해서는 3개의 공이 필요합니다.");
 		}
