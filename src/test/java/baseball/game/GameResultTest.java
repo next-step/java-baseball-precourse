@@ -3,6 +3,7 @@ package baseball.game;
 import baseball.BaseTest;
 import baseball.game.constant.GameRule;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -21,6 +22,7 @@ class GameResultTest extends BaseTest<GameResult> {
         gameResult = new GameResult(GameRule.PICK_NUMBER_COUNT);
     }
 
+    @DisplayName("값 비교 테스트")
     @ParameterizedTest
     @CsvSource({
             "123, 456, 0, 0",
@@ -39,6 +41,7 @@ class GameResultTest extends BaseTest<GameResult> {
         }
     }
 
+    @DisplayName("게임 완료 여부 검증")
     @ParameterizedTest
     @CsvSource({
             "3, true",
@@ -52,6 +55,7 @@ class GameResultTest extends BaseTest<GameResult> {
         assertThat(result == expectedResult).isTrue();
     }
 
+    @DisplayName("스트라이크 값 초기화 기능 테스트")
     @Test
     void testResetStrikeCount() throws InvocationTargetException, IllegalAccessException {
         int initStrikeCount = 0;
@@ -64,6 +68,7 @@ class GameResultTest extends BaseTest<GameResult> {
         assertThat(gameResult.getStrikeCount() == initStrikeCount).isTrue();
     }
 
+    @DisplayName("스트라이크 조건 일치할때만 값 증가하는지 테스트")
     @ParameterizedTest
     @CsvSource({
             "1, 2, 0",
@@ -78,6 +83,7 @@ class GameResultTest extends BaseTest<GameResult> {
         assertThat(expectedStrikeCount == gameResult.getStrikeCount()).isTrue();
     }
 
+    @DisplayName("스트라이크 값 증가 테스트")
     @ParameterizedTest
     @CsvSource({
             "123, 123, 3",
@@ -92,6 +98,7 @@ class GameResultTest extends BaseTest<GameResult> {
         assertThat(expectedStrikeCount == gameResult.getStrikeCount()).isTrue();
     }
 
+    @DisplayName("볼 값 초기화 기능 테스트")
     @Test
     void testResetBallCount() throws InvocationTargetException, IllegalAccessException {
         int initBallCount = 0;
@@ -104,6 +111,7 @@ class GameResultTest extends BaseTest<GameResult> {
         assertThat(gameResult.getBallCount() == initBallCount).isTrue();
     }
 
+    @DisplayName("볼 조건 테스트")
     @ParameterizedTest
     @CsvSource({
             "123, 1, 3, true",
@@ -116,6 +124,7 @@ class GameResultTest extends BaseTest<GameResult> {
         assertThat(isBall == expectedResult).isTrue();
     }
 
+    @DisplayName("볼 조건 일치할때만 값 증가하는지 테스트")
     @ParameterizedTest
     @CsvSource({
             "123, 1, 4, 0",
@@ -128,6 +137,7 @@ class GameResultTest extends BaseTest<GameResult> {
         assertThat(expectedBallCount == gameResult.getBallCount()).isTrue();
     }
 
+    @DisplayName("볼 값 증가 테스트")
     @ParameterizedTest
     @CsvSource({
             "123, 456, 0",

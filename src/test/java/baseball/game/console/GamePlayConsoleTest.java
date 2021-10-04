@@ -3,6 +3,7 @@ package baseball.game.console;
 import baseball.BaseTest;
 import baseball.game.constant.GameRule;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -20,6 +21,7 @@ class GamePlayConsoleTest extends BaseTest<GamePlayConsole> {
         gamePlayConsole = new GamePlayConsole(GameRule.PLAY_INPUT_NUMBER_LENGTH);
     }
 
+    @DisplayName("유효한 입력값인지 검증")
     @ParameterizedTest
     @CsvSource({
             "123, true",
@@ -36,6 +38,7 @@ class GamePlayConsoleTest extends BaseTest<GamePlayConsole> {
         assertThat(result == expectedResult).isTrue();
     }
 
+    @DisplayName("중복되는 숫자가 없는지 검증")
     @ParameterizedTest
     @CsvSource({
             "123, false",
@@ -48,6 +51,7 @@ class GamePlayConsoleTest extends BaseTest<GamePlayConsole> {
         assertThat(result == expectedResult).isTrue();
     }
 
+    @DisplayName("입력값이 숫자인지 검증")
     @ParameterizedTest
     @CsvSource({
             "123, true",

@@ -3,6 +3,7 @@ package baseball.game.console;
 import baseball.BaseTest;
 import baseball.game.constant.GameRule;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -20,6 +21,7 @@ class GameOverConsoleTest extends BaseTest<GameOverConsole> {
         gameOverConsole = new GameOverConsole(GameRule.OVER_INPUT_NUMBER_LENGTH);
     }
 
+    @DisplayName("유효한 입력값인지 검증")
     @ParameterizedTest
     @CsvSource({
             "1, true",
@@ -36,6 +38,7 @@ class GameOverConsoleTest extends BaseTest<GameOverConsole> {
         assertThat(result == expectedResult).isTrue();
     }
 
+    @DisplayName("1,2만 입력 가능한지 검증")
     @ParameterizedTest
     @CsvSource({
             "1, true",

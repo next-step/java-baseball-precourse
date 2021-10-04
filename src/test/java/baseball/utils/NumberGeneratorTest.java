@@ -2,6 +2,7 @@ package baseball.utils;
 
 import baseball.game.constant.GameRule;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
@@ -18,6 +19,7 @@ class NumberGeneratorTest {
         numberGenerator = new NumberGenerator(GameRule.START_INCLUSIVE, GameRule.END_INCLUSIVE);
     }
 
+    @DisplayName("숫자 생성 테스트")
     @Test
     void testGenerateNumbers() {
         int count = GameRule.PICK_NUMBER_COUNT;
