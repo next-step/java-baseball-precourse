@@ -38,11 +38,13 @@ public class GameController {
 				isContinuedRound = !game.isFinished();
 			}
 
-			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
+			this.outputView.printRoundEnd();
 			// 재시작 여부 확인
-			System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+			this.outputView.printRestartCheck();
 			isContinue = this.inputView.inputEndNumber();
 		}
+
+		this.outputView.printGameEnd();
 
 	}
 
