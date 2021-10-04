@@ -54,4 +54,8 @@ public class StrikeResult {
 	public int hashCode() {
 		return Objects.hash(strikeCount);
 	}
+
+	public boolean isNotFinished() {
+		return strikeCount != MAX_STRIKE_COUNT;
+	}
 }

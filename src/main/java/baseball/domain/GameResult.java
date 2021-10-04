@@ -54,4 +54,12 @@ public class GameResult {
 	public int hashCode() {
 		return Objects.hash(strike, ball);
 	}
+
+	public String resultMsg() {
+		return strike.toString() + ball.toString();
+	}
+
+	public boolean isNotFinished() {
+		return strike.isNotFinished();
+	}
 }
