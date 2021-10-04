@@ -2,31 +2,64 @@ package baseball;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Balls {
 
-    private List<Ball> balls = new ArrayList<>();
+    public static final int COMMON_ZERO = 0;
+    public static final int COMMON_ONE = 1;
+    public static final int COMMON_THREE = 3;
+
+    private List<Ball> computerBalls = new ArrayList<>();
 
 
     public Balls() {
-        initBalls();
+        initComputerBalls();
     }
 
-    private void initBalls() {
-        for (int i = 0; i < 3; i++) {
-            System.out.println(i+1);
-            balls.add(Ball.of(i + 1, i));
+    private void initComputerBalls() {
+        for (int i = COMMON_ZERO; i < COMMON_THREE; i++) {
+            computerBalls.add(Ball.of(i + COMMON_ONE, i));
         }
     }
+
+    public static List<Ball> playerBallInit(String playerBallNumber) {
+
+        validBallNumber(playerBallNumber);
+
+        return IntStream.range(0, 3)
+                .mapToObj(index -> Ball.of(playerBallNumber.charAt(index) - '0', index))
+                .collect(Collectors.toList());
+    }
+
 
     public static Balls of() {
         return new Balls();
     }
 
     public Status playBall(Ball playerBall) {
-        return balls.stream()
-                    .map(ball -> ball.compareBall(playerBall))
-                    .findFirst()
-                    .orElse(Status.NOTHING);
+        return computerBalls.stream()
+                .map(ball -> ball.compareBall(playerBall))
+                .filter(status -> status != Status.NOTHING)
+                .findFirst()
+                .orElse(Status.NOTHING);
+    }
+
+    public PlayResult playBalls(List<Ball> playerBalls) {
+
+        PlayResult playResult = PlayResult.of();
+
+        for (Ball playerBall : playerBalls) {
+            playResult.reulstCount(playBall(playerBall));
+        }
+
+        return playResult;
+    }
+
+    private static void validBallNumber(String playerBallNumber) {
+        if (playerBallNumber.length() != 3) {
+            throw new IllegalArgumentException("입력하신숫자는 3자리여야 됩니다.");
+        }
     }
 }

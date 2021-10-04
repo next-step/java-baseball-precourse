@@ -1,9 +1,9 @@
 package baseball;
 
-import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import org.junit.jupiter.api.Test;
 
 
 class BallNumberTest {
@@ -13,10 +13,11 @@ class BallNumberTest {
                 () -> BallNumber.of(0)
         ).isInstanceOf(IllegalArgumentException.class);
     }
+
     @Test
     void ballNumberMinPassTest() {
-       BallNumber ballNumber = BallNumber.of(1);
-       assertThat(ballNumber.isBallNumber(1)).isTrue();
+        BallNumber ballNumber = BallNumber.of(1);
+        assertThat(ballNumber.isBallNumber(1)).isTrue();
     }
 
     @Test
@@ -25,6 +26,7 @@ class BallNumberTest {
                 () -> BallNumber.of(10)
         ).isInstanceOf(IllegalArgumentException.class);
     }
+
     @Test
     void ballNumberMaxPassTest() {
         BallNumber ballNumber = BallNumber.of(9);

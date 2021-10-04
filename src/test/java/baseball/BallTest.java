@@ -10,13 +10,13 @@ public class BallTest {
     @Test
     void ballMaxNumberTestFail() {
         assertThatThrownBy(
-                () -> Ball.of(10,0)
+                () -> Ball.of(10, 0)
         ).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void ballMaxNumberTestPass() {
-        assertThat(Ball.of(9,0).isBallNumber(9)).isTrue();
+        assertThat(Ball.of(9, 0).isBallNumber(9)).isTrue();
     }
 
     @Test
@@ -28,23 +28,25 @@ public class BallTest {
 
     @Test
     void ballMixNumberTestPass() {
-        assertThat(Ball.of(1 , 0).isBallNumber(1)).isTrue();
+        assertThat(Ball.of(1, 0).isBallNumber(1)).isTrue();
     }
 
 
     @Test
-    void strikeTest(){
-        Ball ball = Ball.of(1,0);
-        assertThat(ball.compareBall(Ball.of(1,0))).isEqualTo(Status.STRIKE);
+    void strikeTest() {
+        Ball ball = Ball.of(1, 0);
+        assertThat(ball.compareBall(Ball.of(1, 0))).isEqualTo(Status.STRIKE);
     }
+
     @Test
-    void ballTest(){
-        Ball ball = Ball.of(1,0);
-        assertThat(ball.compareBall(Ball.of(1,1))).isEqualTo(Status.BALL);
+    void ballTest() {
+        Ball ball = Ball.of(1, 0);
+        assertThat(ball.compareBall(Ball.of(1, 1))).isEqualTo(Status.BALL);
     }
+
     @Test
-    void NothingTest(){
-        Ball ball = Ball.of(1,0);
-        assertThat(ball.compareBall(Ball.of(2,2))).isEqualTo(Status.NOTHING);
+    void NothingTest() {
+        Ball ball = Ball.of(1, 0);
+        assertThat(ball.compareBall(Ball.of(2, 2))).isEqualTo(Status.NOTHING);
     }
 }
