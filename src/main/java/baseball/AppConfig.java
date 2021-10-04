@@ -35,11 +35,11 @@ public class AppConfig {
         return gameStatus;
     }
 
-    public static void gameStatusEnd() {
+    public static void setGameStatusEnd() {
         gameStatus = GameStatus.END;
     }
 
-    public static void gameStatusStart() {
+    public static void setGameStatusStart() {
         gameStatus = GameStatus.START;
     }
 }

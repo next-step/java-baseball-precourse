@@ -25,7 +25,7 @@ public class GameController {
     }
 
     public void start() {
-        gameStatusStart();
+        setGameStatusStart();
         boolean isMakePickNumbers = makePickNumbers();
 
         if (isMakePickNumbers) {
@@ -80,7 +80,7 @@ public class GameController {
             makePickNumbers();
             return;
         }
-        gameStatusEnd();
+        setGameStatusEnd();
         System.out.println(GameMessage.GAME_OVER.getMsg());
     }
 
