@@ -1,6 +1,6 @@
 package baseball;
 
-public class Result {
+public class Record {
     int strike;
     int ball;
 

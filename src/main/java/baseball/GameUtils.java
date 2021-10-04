@@ -18,7 +18,7 @@ public class GameUtils {
         return new ArrayList<>(numbers);
     }
 
-    public static Result match(List<Integer> answer, String input) {
-
+    public static Record match(List<Integer> answer, String input) {
+        return new Record();
     }
 }
