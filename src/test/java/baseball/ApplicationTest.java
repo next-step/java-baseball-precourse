@@ -39,15 +39,13 @@ public class ApplicationTest extends NSTest {
         }
     }
 
-
-
     @Test
     void 낫싱() {
         try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
             mockRandoms
                     .when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
-                    .thenReturn(1, 3, 5);
-            running("246");
+                    .thenReturn(123, 987, 5);
+            running("465");
             verify("낫싱");
         }
     }
@@ -56,12 +54,12 @@ public class ApplicationTest extends NSTest {
     void 게임종료_후_재시작() {
         try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
             mockRandoms.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
-                    .thenReturn(7, 1, 3)
-                    .thenReturn(5, 8, 9);
-            run("713", "1", "597", "589", "2");
+                    .thenReturn(776, 123, 987);
+            run("456", "1 or 0", "913", "2", "1,2,3", "게임 끝","987");
             verify("3스트라이크", "게임 끝", "1스트라이크 1볼");
         }
     }
+
 
     @AfterEach
     void tearDown() {

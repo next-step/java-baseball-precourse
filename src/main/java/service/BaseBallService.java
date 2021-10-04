@@ -10,8 +10,6 @@ public class BaseBallService {
 
     public void running(BassBall bbObj) {
 
-        System.out.println(bbObj);
-
         if(bbObj == null){
             bbObj = this.init();
         }
@@ -20,14 +18,22 @@ public class BaseBallService {
         String inputText = this.inputText();
 
         //입력값 체크
-                Map <String,String> verifyInfo = this.verify(inputText);
+        Map <String,String> verifyInfo = this.verify(inputText);
         if(!"0".equals(verifyInfo.get("reCode"))){
             System.out.println("[SYSTEM MESSAGE] " + verifyInfo.get("eMsg"));
             running(bbObj);
+            return;
         }
-        System.out.println("사용자 입력값 확인 : " +verifyInfo.get("returnStr"));
 
+        //야구 로직
+        bbObj =  this.chkData(bbObj, verifyInfo.get("returnStr"));
+        System.out.println("[SYSTEM MESSAGE]  -  " + bbObj.getMsg());
 
+        if("3".equals(bbObj.getStrike())){
+            this.exit();
+        }else if(!"3".equals(bbObj.getStrike())){
+            this.running(bbObj);
+        }
     }
 
     /**
@@ -92,6 +98,66 @@ public class BaseBallService {
         //System.out.println("====== END : validationText =========");
 
         return result;
+    }
+
+    /**
+     * 배이스볼 체크로직
+     * @param inputData : 사용자 입력값
+     * @return
+     */
+    public BassBall chkData(BassBall bbObj, String inputData) {
+
+        //System.out.println("====== START : baseBall Process =========");
+
+        Map<String, String> result = new HashMap<String, String>();
+
+        String[] answerArray = bbObj.getBaseBallNum().split("");
+        String[] inputArray = String.valueOf(inputData).split("");
+
+        int strike = 0;
+        int ball = 0;
+
+        for (int i =0; i < answerArray.length; i++) {
+            for (int j =0; j < inputArray.length; j++) {
+                if(answerArray[i].equals(inputArray[j])){
+                    if(i==j){
+                        strike++;
+                    }else{
+                        ball++;
+                    }
+                }
+            }
+        }
+
+        bbObj.setStrike(String.valueOf(strike));
+        bbObj.setBall(String.valueOf(ball));
+
+
+        String msg = strike+"스트라이크 "+ball +"볼";
+        if(0 == strike && 0 == ball){
+            msg = "낫싱";
+        }else if(3 ==strike){
+            msg = strike+"스트라이크";
+        }
+        bbObj.setMsg(msg);
+
+        //System.out.println("====== END : baseBall Process =========");
+
+        return bbObj;
+    }
+
+
+    /**
+     * 종료
+     */
+    private void exit() {
+        System.out.println("[SYSTEM MESSAGE] 정답입니다. 다시 시작하시겠습니까 ? 무작위 입력값 /[게임 끝]");
+        String endText = nextstep.utils.Console.readLine();
+        endText = CustomUtils.removeSpace(endText);
+        System.out.println(endText);
+        if(!"게임끝".equals(endText)){
+            this.running(null);
+        }
     }
 
 

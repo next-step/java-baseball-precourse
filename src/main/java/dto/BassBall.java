@@ -4,6 +4,9 @@ public class BassBall {
 
     String initYN = "";
     String baseBallNum = "";
+    String strike ="";
+    String ball = "";
+    String msg = "";
 
 
     public BassBall() {
@@ -28,4 +31,24 @@ public class BassBall {
         this.baseBallNum = baseBallNum;
     }
 
+    public String getStrike() {
+        return strike;
+    }
+    public void setStrike(String strike) {
+        this.strike = strike;
+    }
+
+    public String getBall() {
+        return ball;
+    }
+    public void setBall(String ball) {
+        this.ball = ball;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
 }
