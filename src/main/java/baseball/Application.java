@@ -47,7 +47,7 @@ public class Application {
      * @param answerSize 몇개 맞췄는지 알려주기 위한 정답 크기
      */
     private static void gameOver(AnswerSize answerSize) {
-        System.out.println(answerSize + "개의 숫자를 모두 맞히셨습니다! 게임 끝");
+        System.out.println(answerSize.size() + "개의 숫자를 모두 맞히셨습니다! 게임 끝");
     }
 
     /**
