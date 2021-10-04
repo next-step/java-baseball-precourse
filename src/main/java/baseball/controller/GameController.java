@@ -3,10 +3,13 @@ package baseball.controller;
 import java.util.List;
 
 import baseball.model.BaseballGame;
+import baseball.utils.RandomNumberGenerator;
 import baseball.view.InputView;
 import baseball.view.OutputView;
 
 public class GameController {
+
+	private static final int NUMBER_SIZE = 3;
 
 	private final InputView inputView;
 	private final OutputView outputView;
@@ -52,6 +55,6 @@ public class GameController {
 	}
 
 	private BaseballGame startGame() {
-		return new BaseballGame();
+		return new BaseballGame(new RandomNumberGenerator(NUMBER_SIZE));
 	}
 }
