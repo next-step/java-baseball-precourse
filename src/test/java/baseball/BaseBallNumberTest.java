@@ -7,8 +7,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class BaseBallNumberTest {
 
     @Test
-    public void create_different_number_test() {
+    public void collect_answer_result_test() {
         BaseBallNumber baseBallNumber = new BaseBallNumber(123);
-        assertThat(baseBallNumber.isCorrectAnswer(123)).isEqualTo(true);
+        AnswerResult answerResult = new AnswerResult(3, 0);
+
+        assertThat(baseBallNumber.makeAnswerResult(123)).isEqualTo(answerResult);
     }
 }

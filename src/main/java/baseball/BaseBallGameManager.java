@@ -1,15 +1,13 @@
 package baseball;
 
-import nextstep.utils.Console;
-
 public class BaseBallGameManager {
 
 
     private BaseBallNumber baseBallNumber;
 
     private boolean isFinished = false;
-    private static final String RETRY_GAME_ANSWER = "1";
-    private static final String END_GAME_ANSWER = "2";
+    public static final String RETRY_GAME_ANSWER = "1";
+    public static final String END_GAME_ANSWER = "2";
 
     public BaseBallGameManager(int number) {
         baseBallNumber = new BaseBallNumber(number);
@@ -23,22 +21,17 @@ public class BaseBallGameManager {
         return isFinished;
     }
 
-    public void checkUserAnswer(String userAnswer) {
-        validateInteger(userAnswer);
-        validateAnswerSize(userAnswer);
-        enterRetryGame(baseBallNumber.isCorrectAnswer(Integer.valueOf(userAnswer)));
+    public boolean checkUserAnswer(String userAnswer) {
+        isFinished = baseBallNumber.makeAnswerResult(Integer.valueOf(userAnswer)).isCorrectAnswer();
+        return baseBallNumber.makeAnswerResult(Integer.valueOf(userAnswer)).isCorrectAnswer();
     }
 
-    private void enterRetryGame(boolean isFinished) {
-        if (isFinished) {
-            System.out.println("3개의 숫자를 모두 맞혔습니다. 게임 끝!");
-            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
-            prepareNextGame();
-        }
+    public AnswerResult findAnswerResult(String userAnswer) {
+        return baseBallNumber.makeAnswerResult(Integer.valueOf(userAnswer));
     }
 
-    private void prepareNextGame() {
-        String retryAnswer = enterRetryAnswer();
+
+    public void prepareNextGame(String retryAnswer) {
         if (retryAnswer.equals(END_GAME_ANSWER)) {
             return;
         }
@@ -48,27 +41,23 @@ public class BaseBallGameManager {
         }
     }
 
-    private String enterRetryAnswer() {
-        String retryAnswer;
-        do {
-            retryAnswer = Console.readLine();
-        } while (!retryAnswer.equals(END_GAME_ANSWER) && !retryAnswer.equals(RETRY_GAME_ANSWER));
-        return retryAnswer;
+    public static void validate(String userAnswer) {
+        validateInteger(userAnswer);
+        validateAnswerSize(userAnswer);
     }
 
-    private void validateAnswerSize(String userAnswer) {
+
+    private static void validateAnswerSize(String userAnswer) {
         int number = Integer.valueOf(userAnswer);
         if (number < 100 || number >= 1000) {
-            System.out.println("ERROR");
-            return;
+            throw new IllegalArgumentException();
         }
     }
 
-    private void validateInteger(String userAnswer) {
+    private static void validateInteger(String userAnswer) {
         try {
             Integer.valueOf(userAnswer);
         } catch (NumberFormatException e) {
-            System.out.println("ERROR");
             return;
         }
     }

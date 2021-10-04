@@ -1,12 +1,32 @@
 package baseball;
 
+import java.util.Objects;
+
 public class AnswerResult {
+
 
     private static final int FINISH_STRIKE_COUNT = 3;
 
     private int ballCount;
 
     private int strikeCount;
+
+
+    public AnswerResult() {
+    }
+
+    public AnswerResult(int strikeCount, int ballCount) {
+        this.ballCount = ballCount;
+        this.strikeCount = strikeCount;
+    }
+
+    public int getBallCount() {
+        return ballCount;
+    }
+
+    public int getStrikeCount() {
+        return strikeCount;
+    }
 
     public void addBallCount() {
         ballCount++;
@@ -21,16 +41,15 @@ public class AnswerResult {
     }
 
     @Override
-    public String toString() {
-        if (ballCount == 0 && strikeCount == 0) {
-            return "낫싱";
-        }
-        if (ballCount == 0 && strikeCount != 0) {
-            return strikeCount + "스트라이크";
-        }
-        if (ballCount != 0 && strikeCount == 0) {
-            return ballCount + "볼";
-        }
-        return strikeCount + "스트라이크 " + ballCount + "볼";
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AnswerResult that = (AnswerResult) o;
+        return ballCount == that.ballCount && strikeCount == that.strikeCount;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ballCount, strikeCount);
     }
 }
