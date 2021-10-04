@@ -1,16 +1,31 @@
-package baseball;
+package baseball.view;
 
+import baseball.controller.UserController;
 import nextstep.utils.Console;
 
-public class Result {
+public class UserView {
+    public static String ASK_NUMBER_INPUT = "숫자를 입력해주세요: ";
     public static String noticeFinishMsg = "3스트라이크\n3개의 숫자를 모두 맞히셨습니다! 게임 끝";
     public static String oneMoreGameMsg = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
     public static String nothingMsg = "낫싱";
     public static String gameFinishMsg = "게임이 종료되었습니다.";
     public String resultMsg = "";
 
-    public Result() {
+    private UserController userController;
+
+    public UserView() {
         this.resultMsg = "";
+        this.userController = new UserController();
+    }
+
+    public String askUser () {
+        System.out.print(ASK_NUMBER_INPUT);
+        String inputVal = Console.readLine();
+        if (userController.checkNum(inputVal) && userController.checkCorrectLen(inputVal)
+            && userController.checkCorrectNum(inputVal)) {
+            return inputVal;
+        }
+        return "";
     }
 
     public Boolean askOneMoreGame() {

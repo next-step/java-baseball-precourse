@@ -1,16 +1,16 @@
-package baseball;
+package baseball.controller;
 
 import nextstep.utils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BeforeCounting {
+public class CountingController {
     public List<Integer> answerNumList;
     public List<Integer> inputNumList;
     public int answerNum;
 
-    public BeforeCounting() {
+    public CountingController() {
         this.answerNumList = new ArrayList<>();
         this.inputNumList = new ArrayList<>();
         this.answerNum = 0;

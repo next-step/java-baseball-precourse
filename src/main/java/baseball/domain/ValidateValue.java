@@ -1,4 +1,4 @@
-package baseball;
+package baseball.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,6 @@ public class ValidateValue {
 
     public Boolean isCorrectLength (String input) {
         try {
-            checkLength(input);
             if (input.length() != 3) {
                 throw new Exception(errorMsg);
             }
@@ -30,12 +29,6 @@ public class ValidateValue {
             System.out.println(e.getMessage());
             return false;
         }
-    }
-
-    public void checkLength (String input) {
-//        if (input.length() != 3) {
-//            throw new Exception(errorMsg);
-//        }
     }
 
     public Boolean isDiffNum (String input) {

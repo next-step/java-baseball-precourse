@@ -1,23 +1,14 @@
-package baseball;
+package baseball.controller;
 
+import baseball.domain.ValidateValue;
 import nextstep.utils.Console;
 
-public class AskUser {
-    public static String ASK_NUMBER_INPUT = "숫자를 입력해주세요: ";
+public class UserController {
 
     private ValidateValue validateValue;
 
-    public AskUser() {
+    public UserController() {
         this.validateValue = new ValidateValue();
-    }
-
-    public String askUser () {
-        System.out.print(ASK_NUMBER_INPUT);
-        String inputVal = Console.readLine();
-        if (checkNum(inputVal) && checkCorrectLen(inputVal) && checkCorrectNum(inputVal)) {
-            return inputVal;
-        }
-        return "";
     }
 
     public Boolean checkNum (String inputVal) {
