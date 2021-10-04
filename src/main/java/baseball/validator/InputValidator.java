@@ -15,9 +15,15 @@ public class InputValidator {
     }
 
     public static String validateInput(String input) {
-        validateIsThreeDigits(input);
-        validateIsNumberWithOutZero(input);
-        validateDuplicateNumber(input);
+        if (validateIsThreeDigits(input).startsWith("[ERROR]")) {
+            return validateIsThreeDigits(input);
+        }
+        if (validateIsNumberWithOutZero(input).startsWith("[ERROR]")) {
+            return validateIsNumberWithOutZero(input);
+        }
+        if (validateDuplicateNumber(input).startsWith("[ERROR]")) {
+            return validateDuplicateNumber(input);
+        }
 
         return input;
     }
@@ -25,22 +31,25 @@ public class InputValidator {
 
 
 
-    private static void validateIsThreeDigits(String input) {
+    private static String validateIsThreeDigits(String input) {
         if (input.toCharArray().length != 3) {
-            throw new ValidationException(ErrorCode.VALIDATE_EXCEPTION_IS_NOT_THREE_DIGITS);
+            return ErrorCode.VALIDATE_EXCEPTION_IS_NOT_THREE_DIGITS;
         }
+        return input;
     }
 
-    private static void validateIsNumberWithOutZero(String input) {
+    private static String validateIsNumberWithOutZero(String input) {
         if (!isNumber.matcher(input).matches()) {
-            throw new ValidationException(ErrorCode.VALIDATE_EXCEPTION_IS_NOT_NUMBER_OR_CONTAIN_ZERO);
+            return ErrorCode.VALIDATE_EXCEPTION_IS_NOT_NUMBER_OR_CONTAIN_ZERO;
         }
+        return input;
     }
 
-    private static void validateDuplicateNumber(String input) {
+    private static String validateDuplicateNumber(String input) {
         if (new HashSet<>(Arrays.asList(input.toCharArray())).size() != 3) {
-            throw new ValidationException(ErrorCode.VALIDATE_EXCEPTION_IS_DUPLICATE);
+            return ErrorCode.VALIDATE_EXCEPTION_IS_DUPLICATE;
         }
+        return input;
     }
 
 
