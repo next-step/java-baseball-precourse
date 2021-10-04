@@ -34,30 +34,26 @@ public class GameController {
         }
     }
 
-    private void readPickNumer() {
+    public void readPickNumer() {
         while (GameStatus.START.equals(getGameStatus())) {
             System.out.print("숫자를 입력해주세요 : ");
             String readPickNumber = readLine();
             System.out.println(readPickNumber);
-            checkPickNumber(readPickNumber);
-        }
-    }
-
-    private void checkPickNumber(String readPickNumber) {
-        boolean isValidReadPickNumber = gameService.isValidReadPickNumber(readPickNumber);
-        if (isValidReadPickNumber) {
             comparePickNumber(readPickNumber);
         }
     }
 
-    private void comparePickNumber(String readPickNumber) {
-        PickNumberMatchResultView pickNumberMatchResult = gameService.comparePickNumber(readPickNumber);
-        System.out.println(pickNumberMatchResult.toString());
+    public void comparePickNumber(String readPickNumber) {
+        boolean isValidReadPickNumber = gameService.isValidReadPickNumber(readPickNumber);
+        if (isValidReadPickNumber) {
+            PickNumberMatchResultView pickNumberMatchResult = gameService.comparePickNumber(readPickNumber);
+            System.out.println(pickNumberMatchResult.toString());
 
-        gameResult(pickNumberMatchResult);
+            gameResult(pickNumberMatchResult);
+        }
     }
 
-    private void gameResult(PickNumberMatchResultView pickNumberMatchResult) {
+    public void gameResult(PickNumberMatchResultView pickNumberMatchResult) {
         if (pickNumberMatchResult.getStrike() == GameConfig.PICK_NUMBER_SIZE.getValue()) {
             pickNumbersClear();
             System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
@@ -67,7 +63,7 @@ public class GameController {
         }
     }
 
-    private int choiceGameStatus() {
+    public int choiceGameStatus() {
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
         String readGameStatus = readLine();
         System.out.println(readGameStatus);
@@ -75,7 +71,7 @@ public class GameController {
         return Integer.parseInt(readGameStatus);
     }
 
-    private void choiceGameStatusResult(int choiceGameStatus) {
+    public void choiceGameStatusResult(int choiceGameStatus) {
         if (GameStatus.START.getGameStatus() == choiceGameStatus) {
             makePickNumbers();
             return;
