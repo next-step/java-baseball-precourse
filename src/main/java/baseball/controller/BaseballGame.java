@@ -1,48 +1,44 @@
 package baseball.controller;
 
-import java.util.List;
-
-import baseball.domain.Balls;
 import baseball.domain.GameResult;
-import baseball.util.ParseUtils;
 import baseball.util.RandomUtils;
 import baseball.util.ValidationUtils;
 import baseball.view.BaseBallView;
 
 public class BaseballGame {
 
+	/**
+	 * 컴퓨터와 사용자가 대결한다.
+	 * 	- 컴퓨터는 랜덤한 숫자야구공을 생성한다.
+	 * 	- 플레이어는 입력받은 숫자야구공으로 컴퓨터의 야구공을 맞춘다.
+	 * 	- 결과를 출력한다.
+	 * 	- 3스트라이크가 되기 전까지 종료하지 않는다.
+	 */
 	public void gameStart() {
-		// TODO create Computer Rule
-		final Balls computerBalls = new Balls(createComputerBalls(1, 9, 3));
-		play(computerBalls);
-	}
+		final Computer computer = new Computer(RandomUtils.generateNoDuplicateThreeBaseball());
 
-	private void play(Balls computerBalls) {
 		GameResult gameResult;
 
 		do {
-			final Balls playerBalls = new Balls(solveInput());
-			gameResult = computerBalls.play(playerBalls);
-			solveOutput(gameResult.resultMsg());
+			final Player player = new Player(readInput());
+			gameResult = player.play(computer);
+			writeOutput(gameResult.resultMsg());
 		} while (gameResult.isNotFinished());
 	}
 
-	private void solveOutput(String resultMsg) {
-		BaseBallView.printResult(resultMsg);
-	}
-
-	private List<Integer> createComputerBalls(final int startInclusive, final int endInclusive, final int resultSize) {
-		return RandomUtils.generateNoDuplicateNumbers(startInclusive, endInclusive, resultSize);
-	}
-
-	private List<Integer> solveInput() {
+	/**
+	 * UI 로부터 문자열을 읽어들이며, ValidationUtils 를 통해 검증한다.
+	 *
+	 * @return 1-9 사이의 길이가 3인 문자열
+	 */
+	private String readInput() {
 		String input;
 
 		do {
 			input = BaseBallView.requestInputNumber();
 		} while (isInvalidInput(input));
 
-		return ParseUtils.toIntList(input);
+		return input;
 	}
 
 	private boolean isInvalidInput(String input) {
@@ -54,5 +50,9 @@ public class BaseballGame {
 		}
 
 		return false;
+	}
+
+	private void writeOutput(String resultMsg) {
+		BaseBallView.printResult(resultMsg);
 	}
 }
