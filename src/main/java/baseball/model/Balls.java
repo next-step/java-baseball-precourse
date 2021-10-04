@@ -1,5 +1,7 @@
 package baseball.model;
 
+import static baseball.model.BallStatus.*;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -37,7 +39,7 @@ public class Balls {
 		return balls;
 	}
 
-	public List<BallStatus> match(Balls targets) {
+	public BallCount match(Balls targets) {
 		List<BallStatus> statuses = new ArrayList<>();
 
 		for (int sourceIndex = START_INDEX; sourceIndex < this.balls.size(); sourceIndex++) {
@@ -45,17 +47,17 @@ public class Balls {
 			statuses.add(matchStatus(sourceIndex, targetIndex));
 		}
 
-		return statuses;
+		return BallCount.from(statuses);
 	}
 
 	private BallStatus matchStatus(int sourceIndex, int targetIndex) {
 		if (targetIndex == sourceIndex) {
-			return BallStatus.STRIKE;
+			return STRIKE;
 		}
 		if (targetIndex == NOTHING_INDEX) {
-			return BallStatus.NOTHING;
+			return NOTHING;
 		}
 
-		return BallStatus.BALL;
+		return BALL;
 	}
 }
