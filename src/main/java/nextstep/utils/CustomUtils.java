@@ -27,4 +27,14 @@ public class CustomUtils {
 
         return flag;
     }
+
+    //모든 공백제거
+    public static String removeSpace(String str){
+        return str.replaceAll("\\s", "");
+    }
+
+    //숫자만 추출
+    public static String extractNumber(String str){
+        return str.replaceAll("[^0-9]*","");
+    }
 }

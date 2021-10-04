@@ -8,7 +8,7 @@ public class Application {
 
         System.out.println("##### 야구게임을 시작합니다 #####");
         BaseBallService bbService = new BaseBallService();
-        bbService.running();
+        bbService.running(null);
 
     }
 }
