@@ -18,7 +18,7 @@ public class HintGenerator {
         this.ball = 0;
     }
 
-    public void getHint() {
+    public boolean getHint() {
         for (int i = 0; i < 3; i++) {
             if (answer.contains(input.get(i))) {
                 ball++;
@@ -28,28 +28,29 @@ public class HintGenerator {
                 strike++;
             }
         }
-        printHint(strike, ball);
+        return printHint(strike, ball);
     }
 
-    private void printHint(int strike, int ball) {
+    private boolean printHint(int strike, int ball) {
         if (strike == 3) {
+            System.out.println(HintMessage.OnlyStrike(strike));
             System.out.println(HintMessage.ANSWER);
-            return;
+            return true;
         }
         if (strike == 0 && ball == 0) {
             System.out.println(HintMessage.NOTHING);
-            return;
+            return false;
         }
         if (strike != 0 && ball == 0) {
             System.out.println(HintMessage.OnlyStrike(strike));
-            return;
+            return false;
         }
         if (strike == 0) {
             System.out.println(HintMessage.OnlyBall(ball));
-            return;
+            return false;
         }
         System.out.println(HintMessage.StrikeAndBall(strike, ball));
-
+        return false;
     }
 
 

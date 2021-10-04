@@ -3,27 +3,46 @@ package baseball.controller;
 import baseball.generator.HintGenerator;
 import baseball.generator.InputGenerator;
 import baseball.generator.NumberGenerator;
+import baseball.message.error.ErrorCode;
+import baseball.message.text.TextMessage;
 import baseball.validator.InputValidator;
+import nextstep.utils.Console;
 
 import java.util.List;
 
 public class GameController {
 
-    public void baseballGame() {
+    public Boolean baseballGame() {
         startGame(gameSetup());
+        return continueGame();
+    }
+
+    private boolean continueGame() {
+        while (true) {
+            System.out.print(TextMessage.CONTINUE_OR_END);
+            final String kb = Console.readLine();
+            if ("1".equals(kb)) {
+                return true;
+            }
+            if ("2".equals(kb)) {
+                return false;
+            }
+        }
     }
 
     private void startGame(List<Integer> answer) {
         while (true) {
 
-            final String input = inputNumber(answer);
+            final String input = inputNumber();
             if (isInputError(input)) {
                 System.out.println(input);
                 continue;
             }
 
             final List<Integer> inputList = InputGenerator.convertToIntegerList(input);
-            answerCheck(inputList, answer);
+            if (answerCheck(inputList, answer)) {
+                break;
+            }
         }
     }
 
@@ -33,16 +52,16 @@ public class GameController {
     }
 
     private boolean isInputError(String input) {
-        return input.startsWith("[ERROR]");
+        return input.startsWith(ErrorCode.ERROR);
     }
 
-    private void answerCheck(List<Integer> input, List<Integer> answer) {
+    private boolean answerCheck(List<Integer> input, List<Integer> answer) {
         final HintGenerator hintGenerator = HintGenerator.of(input, answer);
-        hintGenerator.getHint();
+        return hintGenerator.getHint();
     }
 
 
-    private String inputNumber(List<Integer> answer) {
+    private String inputNumber() {
         return InputValidator.validateInput(InputGenerator.inputThreeDigits());
     }
 
