@@ -1,7 +1,7 @@
 package baseball.domain;
 
 public class Computer {
-    private BaseballNumber baseballNumber;
+    private final BaseballNumber baseballNumber;
 
     public Computer() {
         this.baseballNumber = new BaseballNumber();

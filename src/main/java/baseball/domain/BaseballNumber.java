@@ -10,13 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseballNumber {
-    private static List<Integer> numbers;
+    private final List<Integer> numbers;
 
     public BaseballNumber() {
         numbers = new ArrayList<>();
         while (!NumberOption.MAX_SIZE.isEqualValue(numbers.size())) {
             pickRandomNumber();
         }
+        System.out.println(numbers);
     }
 
     private void pickRandomNumber() {
