@@ -36,4 +36,18 @@ public class InputView {
 		}
 		return input;
 	}
+
+	public boolean inputEndNumber() {
+		final String input = Console.readLine();
+
+		if (input.length() != 1) {
+			throw new IllegalArgumentException();
+		}
+
+		final int inputNumber = Integer.parseInt(input);
+		if (inputNumber != 1 && inputNumber != 2) {
+			throw new IllegalArgumentException();
+		}
+		return inputNumber == 1;
+	}
 }

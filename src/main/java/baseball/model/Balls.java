@@ -3,6 +3,8 @@ package baseball.model;
 import static baseball.model.BallStatus.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -27,11 +29,15 @@ public class Balls {
 		this.balls = balls;
 	}
 
-	public static Balls of(Integer... numbers) {
+	public static Balls of(List<Integer> numbers) {
 		return new Balls(generateBalls(numbers));
 	}
 
-	private static List<Ball> generateBalls(Integer... numbers) {
+	public static Balls of(Integer... numbers) {
+		return Balls.of(Arrays.asList(numbers));
+	}
+
+	private static List<Ball> generateBalls(Collection<Integer> numbers) {
 		List<Ball> balls = new ArrayList<>();
 		for (Integer number : numbers) {
 			balls.add(Ball.valueOf(number));
