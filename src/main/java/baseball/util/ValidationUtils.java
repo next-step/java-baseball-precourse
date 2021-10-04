@@ -43,7 +43,7 @@ public class ValidationUtils {
 	 * @param inputChar 1-9 사이의 숫자인지 검증할 character
 	 */
 	private static void isBetweenOneToNine(char inputChar) {
-		final int inputInt = charToInt(inputChar);
+		final int inputInt = ConvertUtils.charToInt(inputChar);
 		if (inputInt < MIN_BASEBALL_NUMBER || inputInt > MAX_BASEBALL_NUMBER) {
 			throw new IllegalArgumentException("[ERROR] 1-9 까지의 문자만 입력가능합니다.");
 		}
@@ -58,7 +58,7 @@ public class ValidationUtils {
 		int[] array = new int[10];
 
 		for (int i = 0; i < input.length(); i++) {
-			final int count = ++array[charToInt(input.charAt(i))];
+			final int count = ++array[ConvertUtils.charToInt(input.charAt(i))];
 			isDuplicate(count);
 		}
 	}
@@ -74,13 +74,4 @@ public class ValidationUtils {
 		}
 	}
 
-	/**
-	 * 숫자형태의 character ('0'-'9') 를 int (0-9) 로 변환하여 반환한다.
-	 *
-	 * @param input 숫자 형태의 character
-	 * @return int 로 변환된 character
-	 */
-	private static int charToInt(char input) {
-		return input - '0';
-	}
 }

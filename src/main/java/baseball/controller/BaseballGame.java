@@ -2,6 +2,7 @@ package baseball.controller;
 
 import java.util.List;
 
+import baseball.util.ParseUtils;
 import baseball.util.RandomUtils;
 import baseball.util.ValidationUtils;
 import baseball.view.BaseBallView;
@@ -9,8 +10,9 @@ import baseball.view.BaseBallView;
 public class BaseballGame {
 
 	public void play() {
+		// TODO create Computer Rule
 		final List<Integer> computerBalls = createComputerBalls(1, 9, 3);
-		final String input = solveInput();
+		final List<Integer> playerBalls = ParseUtils.toIntList(solveInput());
 	}
 
 	private List<Integer> createComputerBalls(final int startInclusive, final int endInclusive, final int resultSize) {
