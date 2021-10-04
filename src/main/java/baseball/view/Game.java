@@ -1,5 +1,6 @@
 package baseball.view;
 
+import baseball.common.EndOption;
 import baseball.common.GameState;
 import baseball.common.NumberOption;
 import baseball.controller.GameRule;
@@ -32,9 +33,7 @@ public class Game {
         System.out.print("숫자를 입력해주세요: ");
         try {
             int inputNumber = Integer.parseInt(Console.readLine());
-            BaseballNumber playerNumber = new BaseballNumber(inputNumber);
-            player.setBaseballNumber(playerNumber);
-            System.out.println(computer.getBaseballNumber().numberToString());
+            player.setBaseballNumber(new BaseballNumber(inputNumber));
         } catch (BaseballInputException e) {
             System.out.println(e.getMessage());
             inputPlayerNumber();
@@ -47,7 +46,7 @@ public class Game {
             return;
         }
         System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
-        gameState = GameState.END;
+        endGame();
     }
 
     private void checkStrikeBall() {
@@ -60,7 +59,7 @@ public class Game {
 
     private void checkStrike(GameResult gameResult) {
         if (gameResult.getStrike() > NumberOption.ZERO.getValue()) {
-            System.out.println(gameResult.getStrike() + "스트라이크");
+            System.out.print(gameResult.getStrike() + "스트라이크 ");
         }
     }
 
@@ -74,6 +73,18 @@ public class Game {
         if (gameResult.getStrike() == NumberOption.ZERO.getValue()
                 && gameResult.getBall() == NumberOption.ZERO.getValue()) {
             System.out.println("낫싱");
+        }
+    }
+
+    private void endGame() {
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        int endOptionInput = Integer.parseInt(Console.readLine());
+        if (EndOption.RESTART.isEqualValue(endOptionInput)) {
+            startGame();
+            return;
+        }
+        if (EndOption.EXIT.isEqualValue(endOptionInput)) {
+            gameState = GameState.END;
         }
     }
 }

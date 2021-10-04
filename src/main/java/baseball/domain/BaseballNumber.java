@@ -17,7 +17,6 @@ public class BaseballNumber {
         while (!NumberOption.MAX_SIZE.isEqualValue(numbers.size())) {
             pickRandomNumber();
         }
-        System.out.println(numbers);
     }
 
     private void pickRandomNumber() {
