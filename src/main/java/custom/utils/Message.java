@@ -2,6 +2,9 @@ package custom.utils;
 
 public class Message {
 
+    /**
+     * 자바 표준 출력(콘솔 출력)을 하는 java api
+     */
     public  Message(){
 
     }
@@ -20,9 +23,6 @@ public class Message {
     }
 
     private static boolean isNotEmpty(String message){
-        if(message != null && message.length()>0) {
-            return true;
-        }
-        return false;
+        return message != null && message.length() > 0;
     }
 }
