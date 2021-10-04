@@ -16,4 +16,12 @@ public class Facilitator {
         }
         return numbers;
     }
+
+    public List<Integer> splitNumbers(String numbersStr) {
+        List<Integer> numbers = new ArrayList<>();
+        for(String numStr : numbersStr.split("")) {
+            numbers.add(Integer.valueOf(numStr));
+        }
+        return numbers;
+    }
 }
