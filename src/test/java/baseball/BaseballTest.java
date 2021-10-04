@@ -5,6 +5,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mockStatic;
@@ -26,9 +30,9 @@ class BaseballTest {
             mockRandoms
                     .when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
                     .thenReturn(1, 3, 5);
-            char[] sourceNumber = {'1','3','5'};
-            char[] gameNumber = baseball.generateNumber();
-            assertArrayEquals(sourceNumber, gameNumber);
+            Set<Character> sourceNumberSet = new LinkedHashSet<Character>(Arrays.asList('1','3','5'));
+            Set<Character> gameNumberSet= baseball.generateNumber();
+            assertEquals(sourceNumberSet, gameNumberSet);
         }
     }
 

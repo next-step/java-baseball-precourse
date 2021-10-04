@@ -1,23 +1,25 @@
 package baseball;
 
+import java.util.*;
+
 import static nextstep.utils.Console.readLine;
 import static nextstep.utils.Randoms.pickNumberInRange;
 
 public class Baseball {
+    private int strike = 0;
+    private int ball = 0;
     boolean gameEndFlag = false;
 
     public void startGame() {
-        gameEndFlag = false;
-        char[] gameNumber = generateNumber();
-//        System.out.println("정답 숫자 : " + gameNumber);
-
+        strike = 0; ball = 0; gameEndFlag = false;
+        List<Character> gameNumberList = new ArrayList<>(generateNumber());        System.out.println(gameNumberList);
         while(!gameEndFlag){
-            System.out.println("숫자를 입력해주세요 : ");
-            String result = checkNumber(gameNumber, inputNumber());
+            List<Character> inputNumberSet = new ArrayList<>(inputNumber());
+            String result = checkNumber(gameNumberList, inputNumberSet );
             System.out.println(result);
-
-            if (result.equals("3스트라이크 ")) gameEndFlag = true;
+            endThisGame(result);
         }
+        System.out.println("게임 끝");
     }
 
     //    컴퓨터는 1에서9까지 서로 다른 임의의 수 3개를 선택한다.
