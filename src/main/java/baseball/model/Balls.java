@@ -27,7 +27,7 @@ public class Balls {
     public CompareResult compareWith(List<Integer> numbers) {
         validateCompareListSize(numbers);
         Balls otherBalls = new Balls(numbers);
-        CompareResult result = new CompareResult();
+        CompareResult result = new CompareResult(numbers.size());
 
         for (Ball ball : balls) {
             BallStatus status = otherBalls.compareWith(ball);

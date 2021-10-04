@@ -3,8 +3,13 @@ package baseball.model;
 import baseball.model.enums.BallStatus;
 
 public class CompareResult {
+    private final int maxSize;
     private int strikeCount;
     private int ballCount;
+
+    public CompareResult(int maxSize) {
+        this.maxSize = maxSize;
+    }
 
     public int getStrikeCount() {
         return strikeCount;
