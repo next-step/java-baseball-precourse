@@ -2,6 +2,9 @@ package baseball.domain;
 
 import java.util.Objects;
 
+/**
+ * 숫자야구게임에서 숫자의 위치가 몇번째인지에 대한 원시값을 포장하는 객체
+ */
 public class BallPosition {
 
 	private final int position;

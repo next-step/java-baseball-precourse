@@ -2,6 +2,9 @@ package baseball.domain;
 
 import java.util.Objects;
 
+/**
+ * 숫자야구게임의 결과를 담고있는 객체
+ */
 public class GameResult {
 
 	private final StrikeResult strike;

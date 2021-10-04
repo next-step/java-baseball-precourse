@@ -2,6 +2,9 @@ package baseball.domain;
 
 import java.util.List;
 
+/**
+ * 숫자야구게임의 상대방 혹은 내가 선택한 ball의 리스트를 갖고있는 일급컬렉션 객체
+ */
 public class Balls {
 
 	private final List<Ball> balls;

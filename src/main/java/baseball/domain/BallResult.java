@@ -2,6 +2,10 @@ package baseball.domain;
 
 import java.util.Objects;
 
+/**
+ * 숫자야구게임의 결과 중, 볼의 갯수에 대해서 원시값을 포장하는 객체
+ */
+
 public class BallResult {
 
 	private final int ballCount;

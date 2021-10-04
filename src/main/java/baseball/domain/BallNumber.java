@@ -3,7 +3,7 @@ package baseball.domain;
 import java.util.Objects;
 
 /**
- * 숫자야구게임의 숫자를 래핑하는 객체
+ * 숫자 야구게임에서 숫자에 대한 원시값을 포장하는 객체
  */
 public class BallNumber {
 
