@@ -1,0 +1,37 @@
+package baseball;
+
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.ArrayList;
+
+public class InputParserTest {
+    @ParameterizedTest
+    @CsvSource(value = {"123,1,2,3", "245,2,4,5", "789,7,8,9", "765,7,6,5"}, delimiter = ',')
+    void 유효한_문자열이_전달될_경우_문자열을_정수형_리스트로_변환한다(String input, int firstBallNum, int secondBallNum, int thirdBallNum) {
+        ArrayList<Integer> parsed = new InputParser().parse(input);
+
+        Assertions.assertThat(parsed.size()).isEqualTo(3);
+        Assertions.assertThat(parsed).containsExactly(firstBallNum, secondBallNum, thirdBallNum);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"5457", "796554645645", "-467562309", "abcj9hf", "abc", "99999"})
+    void 유효하지_않은_문자열이_전달될_경우_IllegalArgumentException이_발생한다(String input) {
+        Assertions.assertThatIllegalArgumentException().isThrownBy(() -> new InputParser().parse(input));
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1,1", "2,2", "3,3", "9,9"}, delimiter = ',')
+    void 유효한_문자가_전달될_경우_문자를_정수형으로_변환한다(String input, int expected){
+        Assertions.assertThat(new InputParser().parseInteger(input)).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"abv", "d98", "0-9", "#df"})
+    void 유효한_문자가_전달될_경우_문자를_정수형으로_변환한다(String input){
+        Assertions.assertThatIllegalArgumentException().isThrownBy(() -> new InputParser().parseInteger(input));
+    }
+}
