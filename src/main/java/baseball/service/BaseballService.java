@@ -16,4 +16,8 @@ public class BaseballService {
 		}
 		return this.answer;
 	}
+
+	public boolean isValidInput(String input) {
+		return !NumberForBaseball.hasDuplicateDigits(Integer.parseInt(input));
+	}
 }
