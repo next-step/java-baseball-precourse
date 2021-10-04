@@ -8,7 +8,7 @@ public class NumberValidation {
 
     }
 
-    public static boolean check3digitsOfLength(String numStr){
+    public static boolean Is3digitsOfLength(String numStr){
         if(numStr.length() != 3){
             Message.printError("입력한 자릿수가 3자리가 아닙니다.");
             return false;
@@ -16,7 +16,7 @@ public class NumberValidation {
         return true;
     }
 
-    public static boolean checkContainOnlyNumber(String numStr){
+    public static boolean containOnlyNumber(String numStr){
         if(!numStr.matches("^[1-9]+$")){
             Message.printError("숫자가 아닌 문자가 포함되었습니다.");
             return false;
@@ -24,7 +24,7 @@ public class NumberValidation {
         return true;
     }
 
-    public static boolean checkDuplicateNumbers(String userNum){
+    public static boolean haveDuplicateNumbers(String userNum){
         boolean[] numSet = new boolean[9];
         for(int i =0; i<3; i++){
             if(numSet[userNum.charAt(i) - '0']){
