@@ -14,7 +14,7 @@ public class NumberGenerator {
 
     public static List<Integer> makeThreeDigits() {
         List<Integer> answer = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
+        while(answer.size() != 3) {
             final int number = Randoms.pickNumberInRange(1, 9);
             validateNumber(answer, number);
         }
