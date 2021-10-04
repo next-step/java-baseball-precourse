@@ -3,25 +3,24 @@ package baseball.referee;
 import baseball.balls.Ball;
 import baseball.balls.Balls;
 
+
 public class Referee {
 
     private Balls computerBalls;
-    private Ball userBall;
 
-    public Referee(Balls computerBalls, Ball userBall) {
+    public Referee(Balls computerBalls) {
         this.computerBalls = computerBalls;
-        this.userBall = userBall;
     }
 
-    public String judge() {
+    public String judge(Ball userBall) {
         for (int i = 0; i < computerBalls.getBallList().size(); i++) {
-            Ball computerBall = computerBalls.getBallList().get(i);
+                Ball computerBall = computerBalls.getBallList().get(i);
 
             if (computerBall.getNumber() == userBall.getNumber() && computerBall.getPosition() == userBall.getPosition()) {
                 return "STRIKE";
             }
 
-            if (computerBall.getNumber() == userBall.getNumber() && computerBall.getPosition() != userBall.getPosition()) {
+            if(computerBall.getNumber() == userBall.getNumber() && computerBall.getPosition() != userBall.getPosition()){
                 return "BALL";
             }
 
@@ -29,6 +28,9 @@ public class Referee {
 
         return "NOTHING";
     }
+
+
+
 
 
 }

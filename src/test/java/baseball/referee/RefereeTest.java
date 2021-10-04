@@ -28,9 +28,9 @@ public class RefereeTest {
     public void isStrike() {
         Ball userBall = new Ball(1, 2);
 
-        Referee referee = new Referee(computerBalls, userBall);
+        Referee referee = new Referee(computerBalls);
 
-        String refereeResult = referee.judge();
+        String refereeResult = referee.judge(userBall);
 
         assertThat(refereeResult).isEqualTo("STRIKE");
     }
@@ -40,26 +40,23 @@ public class RefereeTest {
     public void isBall() {
         Ball userBall = new Ball(1, 4);
 
-        Referee referee = new Referee(computerBalls, userBall);
+        Referee referee = new Referee(computerBalls);
 
-        String refereeResult = referee.judge();
+        String refereeResult = referee.judge(userBall);
 
         assertThat(refereeResult).isEqualTo("BALL");
     }
 
     @Test
     @DisplayName("정답에 일치하는 숫자가 사용자 공에 없다면 NOTHING 리턴")
-    public void isNOTHING() {
+    public void isNothing() {
         Ball userBall = new Ball(2, 8);
 
-        Referee referee = new Referee(computerBalls, userBall);
+        Referee referee = new Referee(computerBalls);
 
-        String refereeResult = referee.judge();
+        String refereeResult = referee.judge(userBall);
 
         assertThat(refereeResult).isEqualTo("NOTHING");
     }
-
-
-
 
 }
