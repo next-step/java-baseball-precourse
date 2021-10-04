@@ -3,7 +3,6 @@ package baseball.game;
 import baseball.game.console.GameOverConsole;
 import baseball.game.console.GamePlayConsole;
 import baseball.game.constant.GameRule;
-import baseball.utils.Message;
 import baseball.utils.NumberGenerator;
 
 public class Game {

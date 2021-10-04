@@ -1,6 +1,6 @@
 package baseball.game.console;
 
-import baseball.utils.Message;
+import baseball.game.Message;
 import nextstep.utils.Console;
 
 import java.util.HashSet;
