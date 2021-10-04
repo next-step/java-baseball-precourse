@@ -77,4 +77,16 @@ public class StringTest {
                 () -> assertThat(offerStr.charAt(index)).isEqualTo(expectChar)
         );
     }
+
+    @Test
+    @DisplayName("비정상적인 위치값을 입력할 경우 기대한 예외가 발생하는지 확인")
+    void checkStringIndexOutOfBoundsException() {
+        // given
+        String offerStr = "abc";
+
+        // then
+        assertThatThrownBy(() -> offerStr.charAt(offerStr.length()))
+                .isInstanceOf(StringIndexOutOfBoundsException.class)
+                .hasMessageContaining("String index out of range:");
+    }
 }
