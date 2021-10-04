@@ -32,4 +32,21 @@ public class Balls {
 		}
 		return balls;
 	}
+
+	public List<BallStatus> match(Balls targets) {
+		List<BallStatus> statuses = new ArrayList<>();
+
+		for (int i = 0; i < this.balls.size(); i++) {
+			final int targetIndex = targets.balls.indexOf(this.balls.get(i));
+			if (targetIndex == i) {
+				statuses.add(BallStatus.STRIKE);
+			} else if (targetIndex == -1) {
+				statuses.add(BallStatus.NOTHING);
+			} else {
+				statuses.add(BallStatus.BALL);
+			}
+		}
+
+		return statuses;
+	}
 }
