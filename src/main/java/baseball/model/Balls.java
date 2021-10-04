@@ -7,17 +7,19 @@ import java.util.Set;
 
 public class Balls {
 
+	private static final int BALLS_SIZE = 3;
 	private static final int START_INDEX = 0;
 	private static final int NOTHING_INDEX = -1;
+
 	private final List<Ball> balls;
 
 	private Balls(List<Ball> balls) {
-		if (balls.size() != 3) {
+		if (balls.size() != BALLS_SIZE) {
 			throw new IllegalArgumentException("숫자 3개를 입력 받아야 합니다.");
 		}
 
 		Set<Ball> duplicateChecker = new HashSet<>(balls);
-		if (duplicateChecker.size() != 3) {
+		if (duplicateChecker.size() != BALLS_SIZE) {
 			throw new IllegalArgumentException("중복된 숫자를 입력받을 수 없습니다.");
 		}
 		this.balls = balls;
