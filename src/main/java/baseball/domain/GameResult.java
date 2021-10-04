@@ -10,6 +10,8 @@ public class GameResult {
 	private final StrikeResult strike;
 	private final BallResult ball;
 
+	private static final String DELIMETER = " ";
+
 	public GameResult() {
 		this(0, 0);
 	}
@@ -40,6 +42,24 @@ public class GameResult {
 		return this;
 	}
 
+	public boolean isNotFinished() {
+		return strike.isNotFinished();
+	}
+
+	@Override
+	public String toString() {
+		final String result = createResult();
+		if (!result.isEmpty()) {
+			return result;
+		}
+
+		return GameStatus.NOTHING.getDescription();
+	}
+
+	private String createResult() {
+		return String.join(DELIMETER, strike.toString(), ball.toString()).trim();
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
@@ -53,13 +73,5 @@ public class GameResult {
 	@Override
 	public int hashCode() {
 		return Objects.hash(strike, ball);
-	}
-
-	public String resultMsg() {
-		return strike.toString() + ball.toString();
-	}
-
-	public boolean isNotFinished() {
-		return strike.isNotFinished();
 	}
 }

@@ -1,9 +1,15 @@
 package baseball.domain;
 
 public enum GameStatus {
-	STRIKE,
-	BALL,
-	NOTHING;
+	STRIKE("스트라이크"),
+	BALL("볼"),
+	NOTHING("낫싱");
+
+	private final String description;
+
+	GameStatus(String description) {
+		this.description = description;
+	}
 
 	/**
 	 * 하나의 볼과 여러 개의 볼을 비교하는 과정에서, 하나라도 Nothing 이 아니라면, 그 결과가 답이 된다.
@@ -31,5 +37,9 @@ public enum GameStatus {
 
 	public static boolean isBall(GameStatus gameStatus) {
 		return gameStatus == BALL;
+	}
+
+	public String getDescription() {
+		return description;
 	}
 }

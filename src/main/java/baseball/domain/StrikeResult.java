@@ -2,6 +2,8 @@ package baseball.domain;
 
 import java.util.Objects;
 
+import baseball.constant.CommonConstants;
+
 /**
  * 숫자야구게임의 결과 중, 스타라이크 갯수에 대해서 원시값을 포장하는 객체
  */
@@ -40,6 +42,18 @@ public class StrikeResult {
 		return new StrikeResult(strikeCount);
 	}
 
+	public boolean isNotFinished() {
+		return strikeCount != MAX_STRIKE_COUNT;
+	}
+
+	@Override
+	public String toString() {
+		if (strikeCount != 0) {
+			return strikeCount + GameStatus.STRIKE.getDescription();
+		}
+		return CommonConstants.EMPTY_STRING;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
@@ -53,9 +67,5 @@ public class StrikeResult {
 	@Override
 	public int hashCode() {
 		return Objects.hash(strikeCount);
-	}
-
-	public boolean isNotFinished() {
-		return strikeCount != MAX_STRIKE_COUNT;
 	}
 }

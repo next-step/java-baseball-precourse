@@ -2,6 +2,8 @@ package baseball.domain;
 
 import java.util.Objects;
 
+import baseball.constant.CommonConstants;
+
 /**
  * 숫자야구게임의 결과 중, 볼의 갯수에 대해서 원시값을 포장하는 객체
  */
@@ -38,6 +40,14 @@ public class BallResult {
 		isValidBall(ballCount);
 
 		return new BallResult(ballCount);
+	}
+
+	@Override
+	public String toString() {
+		if (ballCount != 0) {
+			return ballCount + GameStatus.BALL.getDescription();
+		}
+		return CommonConstants.EMPTY_STRING;
 	}
 
 	@Override

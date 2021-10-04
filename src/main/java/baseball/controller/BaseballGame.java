@@ -22,7 +22,7 @@ public class BaseballGame {
 		do {
 			final Player player = new Player(readInput());
 			gameResult = player.play(computer);
-			writeOutput(gameResult.resultMsg());
+			writeOutput(gameResult.toString());
 		} while (gameResult.isNotFinished());
 	}
 
