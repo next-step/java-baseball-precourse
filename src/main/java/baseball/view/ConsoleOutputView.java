@@ -11,12 +11,13 @@ public class ConsoleOutputView extends PrintView{
     }
 
     public void printRoundOver() {
+        super.printNewLine();
         super.printMessage(MessageEnum.ROUND_OVER_MESSAGE.getMessage());
     }
 
     private void printStrike(int strike) {
         if (strike != 0) {
-            super.printMessage(strike + MessageEnum.STRIKE.getMessage());
+            super.printInlineMessage(strike + MessageEnum.STRIKE.getMessage());
         }
     }
 
