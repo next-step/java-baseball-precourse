@@ -16,8 +16,8 @@ public class ScoreController extends ScoreServiceImpl {
     }
 
     @Override
-    public ArrayList<String> submit() {
-        return super.submit();
+    public ArrayList<String> input() {
+        return super.input();
     }
 
     @Override

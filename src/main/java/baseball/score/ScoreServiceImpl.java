@@ -34,7 +34,7 @@ public class ScoreServiceImpl implements ScoreService {
     }
 
     @Override
-    public ArrayList<String> submit() {
+    public ArrayList<String> input() {
         messageController.start();
         return validationSelectBalls(readLine());
     }
@@ -43,7 +43,7 @@ public class ScoreServiceImpl implements ScoreService {
     public ArrayList<String> validationSelectBalls(String inputBalls) {
         if (!isNumber(inputBalls) || !isCheckLength(SELECT.num, inputBalls)) {
             messageController.error();
-            submit();
+            input();
         }
 
         return new ArrayList<>(Arrays.asList(inputBalls.split("")));
@@ -148,7 +148,7 @@ public class ScoreServiceImpl implements ScoreService {
     }
 
     private void startCompare() {
-        ArrayList<String> selectBalls = submit();
+        ArrayList<String> selectBalls = input();
         Ball ball = compareValue(new Ball(), ballCount, selectBalls);
         checkResult(ball);
     }

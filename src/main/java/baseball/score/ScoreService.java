@@ -21,7 +21,7 @@ public interface ScoreService {
     /**
      * 볼 입력 값을 받음
      */
-    ArrayList<String> submit();
+    ArrayList<String> input();
 
     /**
      * 입력 받은 볼 카운트 검증
@@ -30,6 +30,14 @@ public interface ScoreService {
      */
     ArrayList<String> validationSelectBalls(String inputBalls);
 
+    /**
+     * 입력 값 비교하여 볼 카운트 변경
+     *
+     * @param ballCount  변경될 모델
+     * @param arr        비교 대상 1
+     * @param anotherArr 비교 대상 2
+     * @return 변경된 모델
+     */
     Ball compareValue(Ball ballCount, ArrayList<String> arr, ArrayList<String> anotherArr);
 
     /**
