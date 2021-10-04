@@ -9,6 +9,12 @@ public class ValidationUtils {
 	private static final int MAX_BASEBALL_NUMBER = 9;
 	private static final int MIN_BASEBALL_NUMBER = 1;
 
+	public static void validateInput(String input) {
+		isValidLength(input);
+		containsBetweenOneToNine(input);
+		hasNoDuplicateNumber(input);
+	}
+
 	/**
 	 * input 의 길이가 3인지 확인한 뒤 올바르지 않은 경우 예외를 던진다.
 	 *
