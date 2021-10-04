@@ -28,21 +28,23 @@ class BallsTest {
 	@DisplayName("입력된 숫자가 3자리수가 아니면 예외발생")
 	@Test
 	void create_length_check_exception() {
+		final String ERROR_MESSAGE = "숫자 3개를 입력 받아야 합니다.";
+
 		assertThatThrownBy(Balls::of)
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage("숫자 3개를 입력 받아야 합니다.");
+			.hasMessage(ERROR_MESSAGE);
 
 		assertThatThrownBy(() -> Balls.of(1))
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage("숫자 3개를 입력 받아야 합니다.");
+			.hasMessage(ERROR_MESSAGE);
 
 		assertThatThrownBy(() -> Balls.of(1, 2))
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage("숫자 3개를 입력 받아야 합니다.");
+			.hasMessage(ERROR_MESSAGE);
 
 		assertThatThrownBy(() -> Balls.of(1, 2, 3, 4))
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage("숫자 3개를 입력 받아야 합니다.");
+			.hasMessage(ERROR_MESSAGE);
 	}
 
 	@DisplayName("같은 수가 같은자리에 3개 있으면 3스트라이크")

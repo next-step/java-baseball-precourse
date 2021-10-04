@@ -18,6 +18,11 @@ public class Balls {
 	private final List<Ball> balls;
 
 	private Balls(List<Ball> balls) {
+		validate(balls);
+		this.balls = balls;
+	}
+
+	private void validate(List<Ball> balls) {
 		if (balls.size() != BALLS_SIZE) {
 			throw new IllegalArgumentException("숫자 3개를 입력 받아야 합니다.");
 		}
@@ -26,7 +31,6 @@ public class Balls {
 		if (duplicateChecker.size() != BALLS_SIZE) {
 			throw new IllegalArgumentException("중복된 숫자를 입력받을 수 없습니다.");
 		}
-		this.balls = balls;
 	}
 
 	public static Balls of(List<Integer> numbers) {
