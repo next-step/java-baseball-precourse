@@ -1,9 +1,7 @@
 package baseball.validator;
 
-import baseball.error.ErrorCode;
-import baseball.exception.ValidationException;
+import baseball.message.error.ErrorCode;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.regex.Pattern;
 

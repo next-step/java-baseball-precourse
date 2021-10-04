@@ -1,6 +1,6 @@
 package baseball.exception;
 
-import baseball.error.ErrorCode;
+import baseball.message.error.ErrorCode;
 
 public class ValidationException extends BusinessException {
     public ValidationException(ErrorCode errorCode) {

@@ -1,6 +1,6 @@
 package baseball.exception;
 
-import baseball.error.ErrorCode;
+import baseball.message.error.ErrorCode;
 
 public class BusinessException extends RuntimeException{
 

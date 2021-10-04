@@ -1,4 +1,4 @@
-package baseball.error;
+package baseball.message.error;
 
 public interface ErrorCode {
 
