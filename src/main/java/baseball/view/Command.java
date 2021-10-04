@@ -43,7 +43,7 @@ public class Command {
     }
 
     public int askContinueGame() {
-        System.out.println(String.format("게임을 새로 시작하려면 %d, 종료하려면 %d를 입력하세요.", START_GAME_NUM, END_GAME_NUM));
+        System.out.println(String.format("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."));
         return Integer.parseInt(Console.readLine());
     }
 }

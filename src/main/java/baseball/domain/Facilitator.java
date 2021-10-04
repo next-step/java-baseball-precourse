@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Facilitator {
+    private static final int START_GAME_NUM = 1;
+
     public List<Integer> numbersGenerator() {
         List<Integer> numbers = new ArrayList<>();
         while(numbers.size() < 3) {
@@ -23,5 +25,13 @@ public class Facilitator {
             numbers.add(Integer.valueOf(numStr));
         }
         return numbers;
+    }
+
+    public boolean isContinueGame(int select) {
+        boolean result = false;
+        if(select == START_GAME_NUM) {
+            result = true;
+        }
+        return result;
     }
 }

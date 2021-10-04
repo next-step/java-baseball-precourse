@@ -30,4 +30,12 @@ public class Referee {
         }
         return count;
     }
+
+    public boolean isStruckOut(int strike) {
+        boolean result = false;
+        if(strike == 3) {
+            result = true;
+        }
+        return result;
+    }
 }
