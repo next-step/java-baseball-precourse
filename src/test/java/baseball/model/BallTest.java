@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
 
-@DisplayName("공의 위치와 숫자를 가진 Ball")
+@DisplayName("Ball: 위치와 숫자를 가진 정답을 이루는 요소")
 public class BallTest {
 
     @DisplayName("공의 숫자가 1 이상 9 이하가 아니라면 Exception")

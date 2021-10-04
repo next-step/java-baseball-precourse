@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-@DisplayName("Ball 의 묶음, 숫자 리스트를 넘기면 비교해서 스트라이크/볼 갯수가 담긴 CompareResult 반환")
+@DisplayName("Balls: Ball 의 묶음, 숫자 리스트를 넘기면 비교해서 스트라이크/볼 갯수가 담긴 CompareResult 반환")
 public class BallsTest {
 
     @DisplayName("비교하려는 두 List 의 크기는 같아야 함")
