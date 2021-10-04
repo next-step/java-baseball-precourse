@@ -7,6 +7,8 @@ import java.util.Set;
 
 public class Balls {
 
+	private static final int START_INDEX = 0;
+	private static final int NOTHING_INDEX = -1;
 	private final List<Ball> balls;
 
 	private Balls(List<Ball> balls) {
@@ -36,17 +38,22 @@ public class Balls {
 	public List<BallStatus> match(Balls targets) {
 		List<BallStatus> statuses = new ArrayList<>();
 
-		for (int i = 0; i < this.balls.size(); i++) {
-			final int targetIndex = targets.balls.indexOf(this.balls.get(i));
-			if (targetIndex == i) {
-				statuses.add(BallStatus.STRIKE);
-			} else if (targetIndex == -1) {
-				statuses.add(BallStatus.NOTHING);
-			} else {
-				statuses.add(BallStatus.BALL);
-			}
+		for (int sourceIndex = START_INDEX; sourceIndex < this.balls.size(); sourceIndex++) {
+			final int targetIndex = targets.balls.indexOf(this.balls.get(sourceIndex));
+			statuses.add(matchStatus(sourceIndex, targetIndex));
 		}
 
 		return statuses;
+	}
+
+	private BallStatus matchStatus(int sourceIndex, int targetIndex) {
+		if (targetIndex == sourceIndex) {
+			return BallStatus.STRIKE;
+		}
+		if (targetIndex == NOTHING_INDEX) {
+			return BallStatus.NOTHING;
+		}
+
+		return BallStatus.BALL;
 	}
 }
