@@ -18,6 +18,15 @@ public class HintGenerator {
         this.ball = 0;
     }
 
+    public int getStrike() {
+        return strike;
+    }
+
+    public int getBall() {
+        return ball;
+    }
+
+
     /**
      * 스트라이크인지 볼인지 체크
      * @return

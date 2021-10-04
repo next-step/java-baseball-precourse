@@ -22,7 +22,7 @@ public class GameController {
     }
 
     /**
-     * 플레이어에게 3자리 숫자를 입력받고 맞출 때 까지 정답을 체크
+     * 플레이어에게 3자리 숫자를 입력받고 맞출 때 까지 힌트 제공
      * @param answer
      */
     private void startGame(List<Integer> answer) {
