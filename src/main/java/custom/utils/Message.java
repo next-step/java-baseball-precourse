@@ -11,6 +11,12 @@ public class Message {
 
     public static void printInform(String message) {
         if(isNotEmpty(message)) {
+            System.out.print(message);
+        }
+    }
+
+    public static void printlnInform(String message) {
+        if(isNotEmpty(message)) {
             System.out.println(message);
         }
     }
