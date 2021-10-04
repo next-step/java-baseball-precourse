@@ -1,6 +1,7 @@
 package baseball.domain;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -20,6 +21,7 @@ class RefereeTest {
         referee = new Referee();
     }
 
+    @DisplayName("비교 테스트")
     @ParameterizedTest
     @CsvSource({"1,2,3,0,3", "3,1,2,3,0", "1,3,2,2,1", "7,8,9,0,0"})
     public void atBat(int number1, int number2, int number3, int ball, int strike) {
