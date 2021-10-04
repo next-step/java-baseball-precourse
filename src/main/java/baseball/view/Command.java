@@ -16,10 +16,7 @@ public class Command {
             System.out.println("낫싱");
             return;
         }
-        String countMessage =
-                getStrikeMessage(strike) +
-                getBallMessage(ball);
-
+        String countMessage = getStrikeMessage(strike) + getBallMessage(ball);
         System.out.println(countMessage);
     }
 
