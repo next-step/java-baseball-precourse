@@ -7,8 +7,6 @@ import java.util.Set;
 
 public class NumberGenerator {
 
-    private static final NumberGenerator numberGenerator = new NumberGenerator();
-
     private NumberGenerator() {
     }
 
