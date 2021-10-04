@@ -6,17 +6,14 @@ public class BallCollection extends ArrayList<Ball> {
     public MATCH_RESULT match(Ball counterBall) {
         MATCH_RESULT result = MATCH_RESULT.NOTHING;
 
-        // TODO: depth가 1 이상이므로 다른 방식을 찾아야 함
         for (Ball myBall : this) {
-            result = myBall.match(counterBall);
-
-            if (result == MATCH_RESULT.NOTHING) {
-                continue;
-            }
-
-            break;
+            result = overwriteIfValid(result, myBall.match(counterBall));
         }
 
         return result;
+    }
+
+    public MATCH_RESULT overwriteIfValid(MATCH_RESULT oldValue, MATCH_RESULT newValue){
+        return oldValue == MATCH_RESULT.NOTHING ? newValue : oldValue;
     }
 }
