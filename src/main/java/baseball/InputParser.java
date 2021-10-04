@@ -3,8 +3,10 @@ package baseball;
 import java.util.ArrayList;
 
 public class InputParser {
+    public static final String INPUT_SPLIT_DELIMITER = "";
+
     public ArrayList<Integer> parse(String input) {
-        String[] splits = input.split("");
+        String[] splits = input.split(INPUT_SPLIT_DELIMITER);
 
         verifyInputLength(splits);
 
@@ -37,13 +39,13 @@ public class InputParser {
     }
 
     private void verifyInputLength(String[] splits) {
-        if (splits.length != 3) {
+        if (splits.length != GlobalVariables.MAX_BALL_CNT) {
             throw new IllegalArgumentException();
         }
     }
 
     private void verifyNumberRange(int num) {
-        if (num < 0 || num > 9) {
+        if (num < GlobalVariables.MIN_BALL_NUMBER || num > GlobalVariables.MAX_BALL_NUMBER) {
             throw new IllegalArgumentException();
         }
     }

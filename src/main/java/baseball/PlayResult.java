@@ -1,7 +1,11 @@
 package baseball;
 
 public class PlayResult {
-    public static final int MAX_BALL_CNT = 3;
+    public static final String STRIKE_STR = "스트라이크";
+    public static final String BALL_STR = "볼";
+    public static final String NOTHING_STR = "낫싱";
+    public static final String EMPTY_STR = " ";
+
     private int strikeCnt;
     private int ballCnt;
     private int nothingCnt;
@@ -60,15 +64,15 @@ public class PlayResult {
         StringBuilder builder = new StringBuilder();
 
         if (this.strikeCnt != 0) {
-            this.appendBallState(builder, this.strikeCnt + "스트라이크");
+            this.appendBallState(builder, this.strikeCnt + STRIKE_STR);
         }
 
         if (this.ballCnt != 0) {
-            this.appendBallState(builder, this.ballCnt + "볼");
+            this.appendBallState(builder, this.ballCnt + BALL_STR);
         }
 
-        if (this.nothingCnt == MAX_BALL_CNT) {
-            this.appendBallState(builder, "낫싱");
+        if (this.nothingCnt == GlobalVariables.MAX_BALL_CNT) {
+            this.appendBallState(builder, NOTHING_STR);
         }
 
         return builder.toString();
@@ -76,13 +80,13 @@ public class PlayResult {
 
     private void appendBallState(StringBuilder builder, String appendText) {
         if (builder.length() != 0) {
-            builder.append(" ");
+            builder.append(EMPTY_STR);
         }
 
         builder.append(appendText);
     }
 
     public boolean isGameEnd() {
-        return this.strikeCnt == MAX_BALL_CNT;
+        return this.strikeCnt == GlobalVariables.MAX_BALL_CNT;
     }
 }
