@@ -46,7 +46,11 @@ public class InputValidator {
     }
 
     private static String validateDuplicateNumber(String input) {
-        if (new HashSet<>(Arrays.asList(input.toCharArray())).size() != 3) {
+        final HashSet<Character> set = new HashSet<>();
+        for (char aChar : input.toCharArray()) {
+            set.add(aChar);
+        }
+        if (set.size() != 3) {
             return ErrorCode.VALIDATE_EXCEPTION_IS_DUPLICATE;
         }
         return input;
