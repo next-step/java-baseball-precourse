@@ -31,7 +31,7 @@
   - Computer
     - 컴퓨터의 `Numbers`를 지닌 일급 컬렉션
     - `NumbersGenerator` 구현체를 주입받아 인스턴스를 생성할 수 있다.
-    - getStrikeZone(Number): `Number`를 비교하여, `StrikeZone`을 반환한다.
+    - getHintFromPlayerNumbers: 플레이어의  `Number`를 비교하여, `Hint`을 반환한다.
   - NumbersGenerator
       - `Numbers`를 생성할 Functional 인터페이스
       - `Computer` 테스트 코드에서 지정된 세 자리의 숫자를 받을 수 있도록 구성 
