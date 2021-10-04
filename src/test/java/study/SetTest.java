@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("Set 클래스에 대한 학습 테스트")
@@ -46,6 +47,16 @@ public class SetTest {
         assertAll(
                 () -> assertThat(numbers).isNotEmpty(),
                 () -> assertThat(numbers.contains(number)).isTrue()
+        );
+    }
+
+    @ParameterizedTest(name = "{0}의 존재여부에 따라 기대 값을 반환하는지 확인")
+    @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
+    void checkSetValuesBoolean(int number, boolean result) {
+        // then
+        assertAll(
+                () -> assertThat(numbers).isNotEmpty(),
+                () -> assertThat(numbers.contains(number)).isEqualTo(result)
         );
     }
 }
