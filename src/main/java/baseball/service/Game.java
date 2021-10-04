@@ -22,21 +22,26 @@ public class Game {
         } while (!checkInputNumber(input, Constant.NUMBER_SIZE, Constant.NUMBER_LOW, Constant.NUMBER_HIGH) || !score.checkScore(number, input));
     }
 
+    // 게임 계속할지 여부 확인 (1이면 true 반환하여 계속 진행)
+    public boolean isEndFromInput() {
+        String input = "";
+        do {
+            input = getInputEnd();
+        } while(!checkInputNumber(input, Constant.END_MESSAGE_LENGTH, Constant.END_MESSAGE_LOW, Constant.END_MESSAGE_HIGH));
+
+        return input.charAt(0)-'0' == Constant.CONTINUE_GAME;
+    }
+
     // 사용자 input - 숫자 입력
     private String getInputNumber() {
         System.out.print("숫자를 입력해주세요: ");
         return Console.readLine();
     }
 
-    // 사용자 input - 게임 계속할지 여부 (1이면 true 반환하여 계속 진행)
-    public boolean isEndFromInput() {
+    // 사용자 input - 종료 여부 입력
+    private String getInputEnd() {
         System.out.println(String.format("게임을 새로 시작하시려면 %d, 종료하려면 %d를 입력하세요.", Constant.CONTINUE_GAME, Constant.END_GAME));
-        String input = "";
-        do {
-            input = Console.readLine();
-        } while(!checkInputNumber(input, Constant.END_MESSAGE_LENGTH, Constant.END_MESSAGE_LOW, Constant.END_MESSAGE_HIGH));
-
-        return input.charAt(0)-'0' == Constant.CONTINUE_GAME;
+        return Console.readLine();
     }
 
     // 예외 확인을 위한 함수
