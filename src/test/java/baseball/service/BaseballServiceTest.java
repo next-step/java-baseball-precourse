@@ -12,7 +12,7 @@ class BaseballServiceTest {
 
 	@Test
 	@DisplayName("정답이 세자리 양의 정수인지 테스트")
-	void createAnswer_ShouldReturnThreeDecimalDigits() {
+	void createAnswer_ShouldReturnThreeDigitNumber() {
 		int answer = baseballService.createAnswer();
 		assertEquals(true, answer > 99 && answer < 1000);
 	}
