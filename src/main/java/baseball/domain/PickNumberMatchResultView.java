@@ -25,8 +25,9 @@ public class PickNumberMatchResultView {
     @Override
     public String toString() {
         StringBuilder matchResult = new StringBuilder();
+
         if (strike > 0) {
-            matchResult.append(strike + GameMessage.STRIKE.getMsg());
+            matchResult.append(strike + GameMessage.STRIKE.getMsg() + " ");
         }
 
         if (ball > 0) {
