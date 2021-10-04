@@ -2,6 +2,7 @@ package baseball.view;
 
 import baseball.common.EndOption;
 import baseball.common.GameState;
+import baseball.common.Message;
 import baseball.common.NumberOption;
 import baseball.controller.GameRule;
 import baseball.domain.BaseballNumber;
@@ -30,7 +31,7 @@ public class Game {
 	}
 
 	private void inputPlayerNumber() {
-		System.out.print("숫자를 입력해주세요: ");
+		System.out.print(Message.INPUT.getMsg());
 		try {
 			int inputNumber = Integer.parseInt(Console.readLine());
 			player.setBaseballNumber(new BaseballNumber(inputNumber));
@@ -45,7 +46,7 @@ public class Game {
 		if (!NumberOption.MAX_SIZE.isEqualValue(gameResult.getStrike())) {
 			return;
 		}
-		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
+		System.out.println(Message.END.getMsg());
 		endGame();
 	}
 
@@ -59,25 +60,25 @@ public class Game {
 
 	private void checkStrike(GameResult gameResult) {
 		if (gameResult.getStrike() > NumberOption.ZERO.getValue()) {
-			System.out.print(gameResult.getStrike() + "스트라이크 ");
+			System.out.print(gameResult.getStrike() + Message.STRIKE.getMsg());
 		}
 	}
 
 	private void checkBall(GameResult gameResult) {
 		if (gameResult.getBall() > NumberOption.ZERO.getValue()) {
-			System.out.println(gameResult.getBall() + "볼");
+			System.out.println(gameResult.getBall() + Message.BALL.getMsg());
 		}
 	}
 
 	private void checkNothing(GameResult gameResult) {
 		if (gameResult.getStrike() == NumberOption.ZERO.getValue()
 			&& gameResult.getBall() == NumberOption.ZERO.getValue()) {
-			System.out.println("낫싱");
+			System.out.println(Message.NOTHING.getMsg());
 		}
 	}
 
 	private void endGame() {
-		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+		System.out.println(Message.END_OPTION.getMsg());
 		int endOptionInput = Integer.parseInt(Console.readLine());
 		if (EndOption.RESTART.isEqualValue(endOptionInput)) {
 			startGame();

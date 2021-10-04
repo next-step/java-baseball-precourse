@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import baseball.common.Message;
 import baseball.common.NumberOption;
 import baseball.exception.BaseballInputException;
 import baseball.exception.BaseballInputSizeException;
@@ -54,13 +55,13 @@ public class BaseballNumber {
 
 	private void checkSizeValidate() throws BaseballInputSizeException {
 		if (!NumberOption.MAX_SIZE.isEqualValue(numbers.size())) {
-			throw new BaseballInputSizeException("[ERROR]3자리가 아닙니다. 다시 입력하세요.");
+			throw new BaseballInputSizeException(Message.SIZE_ERROR.getMsg());
 		}
 	}
 
 	private void checkZeroValidate(int number) throws BaseballInputZeroException {
 		if (NumberOption.ZERO.isEqualValue(number)) {
-			throw new BaseballInputZeroException("[ERROR]입력값에 0이 있습니다. 다시 입력하세요.");
+			throw new BaseballInputZeroException(Message.ZERO_ERROR.getMsg());
 		}
 	}
 
