@@ -5,10 +5,10 @@ import nextstep.utils.Randoms;
 import java.util.*;
 
 public class BaseballNumber {
+    public static final int BASEBALL_SIZE = 3;
 
     private static final int BALL_MIN_NUMBER = 1;
     private static final int BALL_MAX_NUMBER = 9;
-    public static final int BASEBALL_SIZE = 3;
 
     private final List<Integer> ballNumbers;
 

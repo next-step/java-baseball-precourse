@@ -6,7 +6,6 @@ import baseball.view.CompareResultShowView;
 import baseball.view.InputView;
 
 public class BaseballController {
-
     private final CompareResultShowView compareResultShowView;
     private final InputView inputView;
 
