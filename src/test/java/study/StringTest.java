@@ -26,4 +26,22 @@ public class StringTest {
                 () -> assertThat(result).containsExactly("1", "2")
         );
     }
+
+    @Test
+    @DisplayName("정의한 구분자가 포함되어 있지 않은 문자열을 분리하였을 때 기대값을 가진 배열이 반환되는지 확인")
+    void checkSingleValueSplit() {
+        // given
+        String offerStr = "1";
+        String separator = ",";
+
+        // when
+        String[] result = offerStr.split(separator);
+
+        // then
+        assertAll(
+                () -> assertThat(result).isNotEmpty(),
+                () -> assertThat(result).isInstanceOf(String[].class),
+                () -> assertThat(result).containsExactly("1")
+        );
+    }
 }
