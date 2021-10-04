@@ -1,18 +1,29 @@
 package baseball.controller;
 
 import baseball.domain.GameConfig;
+import baseball.domain.GameStatus;
 import baseball.service.GameService;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.LinkedHashSet;
 
-import static baseball.AppConfig.getGameService;
-import static baseball.domain.PickNumbers.getPickNumbersSet;
-import static baseball.domain.PickNumbers.makePickNumbers;
+import static baseball.AppConfig.*;
+import static baseball.domain.PickNumbers.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class GameControllerTest {
+
+    @BeforeEach
+    void beforeEach() {
+        makePickNumbers();
+    }
+
+    @AfterEach
+    void afterEach() {
+        setGameStatusStart();
+    }
 
     @Test
     @DisplayName("싱글톤 객체 주입 확인")
@@ -20,35 +31,41 @@ class GameControllerTest {
         GameService gameService1 = getGameService();
         GameService gameService2 = getGameService();
 
-        GameController gameController1 = new GameController(gameService1);
-        GameController gameController2 = new GameController(gameService2);
+        GameController gameController1 = getGameController();
+        GameController gameController2 = getGameController();
 
         assertThat(gameService1).isSameAs(gameController2.getGameService());
         assertThat(gameService2).isSameAs(gameController1.getGameService());
     }
 
     @Test
-    @DisplayName("랜덤한 3자리 수 생성 (중복제거)")
+    @DisplayName("게임이 시작되면 게임상태는 항상 시작상태이다")
+    void newGameStatusIsStart() {
+        assertThat(getGameStatus()).isEqualTo(GameStatus.START);
+    }
+
+    @Test
+    @DisplayName("3자리 수를 생성한다")
     void makePickNumbersTest() {
-        LinkedHashSet<Integer> pickNumbersSet = new LinkedHashSet<>();
-        int pickNumber = 0;
+        LinkedHashSet<Integer> pickNumbersSet = getPickNumbersSet();
 
-        boolean isMakePickNumbers = makePickNumbers();
-        if (isMakePickNumbers) {
-            pickNumbersSet = getPickNumbersSet();
+        assertThat(pickNumbersSet.size()).isEqualTo(GameConfig.PICK_NUMBER_SIZE.getValue());
+    }
 
-            StringBuilder sb = new StringBuilder();
-            for (Integer pick : pickNumbersSet) {
-                sb.append(pick);
-            }
-            pickNumber = Integer.parseInt(sb.toString());
+    @DisplayName("게임을 새로 시작하려면 1, 종료하려면 2를 입력한다")
+    @ParameterizedTest(name = "게임상태 [{0}]")
+    @ValueSource(ints = {1, 2})
+    void choiceGameStatusResultTest(int input) {
+        GameController gameController = getGameController();
+
+        if (input == 1) {
+            gameController.choiceGameStatusResult(input);
+            assertThat(getGameStatus()).isEqualTo(GameStatus.START);
+        } else {
+            gameController.choiceGameStatusResult(input);
+            assertThat(getGameStatus()).isEqualTo(GameStatus.END);
         }
 
-        System.out.println("pickNumber = " + pickNumber);
-        assertThat(pickNumber).isGreaterThanOrEqualTo(123).isLessThanOrEqualTo(987);
-
-        System.out.println("pickNumbersSet.size() = " + pickNumbersSet.size());
-        assertThat(pickNumbersSet.size()).isEqualTo(GameConfig.PICK_NUMBER_SIZE.getValue());
     }
 
 }
