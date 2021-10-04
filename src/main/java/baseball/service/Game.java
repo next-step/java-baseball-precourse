@@ -1,5 +1,6 @@
 package baseball.service;
 
+import baseball.exception.GameException;
 import nextstep.utils.Console;
 import baseball.util.Constant;
 
@@ -13,52 +14,69 @@ public class Game {
     }
 
     // 사용자가 문제 맞추는 메소드
-    public void play(String number) {
+    public void play(String number){
         Score score = Score.getInstance();
+        String input = "";
         do {
-            // 입력 받기
-            String input = getInputNumber();
-            // 채점하기
-            score.clearScore();
-            score.checkScore(number, input);
-        }
-        while(getResult(score.getStrike(), score.getBall()));
+            input = getInputNumber();
+        } while (!checkInputNumber(input, Constant.NUMBER_SIZE, Constant.NUMBER_LOW, Constant.NUMBER_HIGH) || !score.checkScore(number, input));
     }
-
-    // 3개다 맞을 때 false 반환
-    private boolean getResult(int strike, int ball) {
-        if (strike == Constant.NUMBER_SIZE) {
-            System.out.println("3스트라이크");
-            return false;
-        }
-        if (strike == 0 && ball == 0) {
-            System.out.println("낫싱");
-            return true;
-        }
-        if (strike > 0) System.out.printf("%d스트라이크 ", strike);
-        if (ball > 0) System.out.printf("%d볼", ball);
-        System.out.println();
-        return true;
-    }
-
 
     // 사용자 input - 숫자 입력
     private String getInputNumber() {
         System.out.print("숫자를 입력해주세요: ");
-
-        String input = Console.readLine();
-        // 예외처리
-
-        return input;
+        return Console.readLine();
     }
 
     // 사용자 input - 게임 계속할지 여부 (1이면 true 반환하여 계속 진행)
     public boolean isEndFromInput() {
-        System.out.println("게임을 새로 시작하시려면 1, 종료하려면 2를 입력하세요.");
-
-        String input = Console.readLine();
-        // 예외처리 추가
+        System.out.println(String.format("게임을 새로 시작하시려면 %d, 종료하려면 %d를 입력하세요.", Constant.CONTINUE_GAME, Constant.END_GAME));
+        String input = "";
+        do {
+            input = Console.readLine();
+        } while(!checkInputNumber(input, Constant.END_MESSAGE_LENGTH, Constant.END_MESSAGE_LOW, Constant.END_MESSAGE_HIGH));
 
         return input.charAt(0)-'0' == Constant.CONTINUE_GAME;
+    }
+
+    // 예외 확인을 위한 함수
+    private boolean checkInputNumber(String input, int length, int low, int high) {
+        try {
+            isOnlyNum(input);
+            isMatchLength(input, length);
+            isInScope(input, low, high);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+
+        return true;
+    }
+
+    // 예외 확인 메소드1 - 숫자 검사
+    private void isOnlyNum(String input) throws GameException {
+        if (!input.matches("[0-9]+")) {
+            throw new GameException("[ERROR] 숫자 이외의 문자는 입력할 수 없습니다.");
+        }
+    }
+
+    // 예외 확인 메소드2 - 길이 검사
+    private void isMatchLength(String input, int length) throws GameException {
+        if (input.length() != length) {
+            throw new GameException(String.format("[ERROR] %d자리 숫자로 입력해 주십시오.", length));
+        }
+    }
+
+    // 예외 확인 메소드3 - 범위 검사
+    private void isInScope(String input, int low, int high) throws GameException {
+        for (int i = 0; i < input.length(); i++) {
+            isInScopeByChar(input.charAt(i), low, high);
+        }
+    }
+
+    private void isInScopeByChar(char c, int low, int high) throws GameException {
+        if (c-'0' < low || c-'0' > high) {
+            throw new GameException(String.format("[ERROR] %d부터 %d까지 입력 가능합니다.", low, high));
+        }
     }
 }
