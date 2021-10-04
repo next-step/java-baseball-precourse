@@ -13,19 +13,19 @@ public class BaseBallService {
         System.out.println(bbObj);
 
         if(bbObj == null){
-            System.out.println("INIT#####");
-            this.init();
+            bbObj = this.init();
         }
 
         //입력값 받기
         String inputText = this.inputText();
 
         //입력값 체크
-        Map <String,String> verifyInfo = this.verify(inputText);
+                Map <String,String> verifyInfo = this.verify(inputText);
         if(!"0".equals(verifyInfo.get("reCode"))){
             System.out.println("[SYSTEM MESSAGE] " + verifyInfo.get("eMsg"));
             running(bbObj);
         }
+        System.out.println("사용자 입력값 확인 : " +verifyInfo.get("returnStr"));
 
 
     }
@@ -33,16 +33,16 @@ public class BaseBallService {
     /**
      * 초기화
      */
-    public void init(){
+    public BassBall init(){
         int number =  nextstep.utils.Randoms.pickNumberInRange(100,999);
-        //100이상 또는 같은숫자 존재시 정답 재설정
-        if(number < 100 || !CustomUtils.chkSameNum(number)){
-            this.init();
-            return;
+
+        if(number > 99 && CustomUtils.chkSameNum(number)){
+            BassBall bbObj = new BassBall(String.valueOf(number),"N");
+            System.out.println("정답 설정 :: " + bbObj.getBaseBallNum());
+            return bbObj;
         }
 
-        BassBall bbObj = new BassBall(String.valueOf(number),"N");
-        System.out.println("정답 설정 :: " + bbObj.getBaseBallNum());
+        return this.init();
     }
 
     /**

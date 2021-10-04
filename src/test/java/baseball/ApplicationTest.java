@@ -16,6 +16,31 @@ public class ApplicationTest extends NSTest {
         super.setUp();
     }
 
+
+    @Test
+    void 초기화() {
+        try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
+            mockRandoms
+                    .when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
+                    .thenReturn(111, 474, 789);
+            running("","");
+            verify("");
+        }
+    }
+
+    @Test
+    void 입력값변경() {
+        try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
+            mockRandoms
+                    .when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
+                    .thenReturn(456);
+            running("1ㅁ4fe7","01","bdfr1zxx78");
+            verify("");
+        }
+    }
+
+
+
     @Test
     void 낫싱() {
         try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
