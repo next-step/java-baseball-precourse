@@ -6,12 +6,6 @@ public class Command {
     private static final int START_GAME_NUM = 1;
     private static final int END_GAME_NUM = 1;
 
-    private final Console console;
-
-    public Command(Console console) {
-        this.console = console;
-    }
-
     public String askPlayerNumbers(){
         System.out.print("숫자를 입력해주세요: ");
         return Console.readLine();
