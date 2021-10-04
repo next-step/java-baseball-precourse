@@ -12,20 +12,11 @@ import java.util.List;
 
 public class GameController {
 
-    public Boolean baseballGame() {
-        startGame(gameSetup());
-        return continueGame();
-    }
-
-    private boolean continueGame() {
+    public void baseballGame() {
         while (true) {
-            System.out.print(TextMessage.CONTINUE_OR_END);
-            final String kb = Console.readLine();
-            if ("1".equals(kb)) {
-                return true;
-            }
-            if ("2".equals(kb)) {
-                return false;
+            startGame(gameSetup());
+            if (endGame()) {
+                break;
             }
         }
     }
@@ -56,8 +47,7 @@ public class GameController {
     }
 
     private boolean answerCheck(List<Integer> input, List<Integer> answer) {
-        final HintGenerator hintGenerator = HintGenerator.of(input, answer);
-        return hintGenerator.getHint();
+        return HintGenerator.of(input, answer).getHint();
     }
 
 
@@ -65,6 +55,18 @@ public class GameController {
         return InputValidator.validateInput(InputGenerator.inputThreeDigits());
     }
 
+    private boolean endGame() {
+        while (true) {
+            System.out.print(TextMessage.CONTINUE_OR_END);
+            final String kb = Console.readLine();
+            if ("1".equals(kb)) {
+                return false;
+            }
+            if ("2".equals(kb)) {
+                return true;
+            }
+        }
+    }
 
 
 

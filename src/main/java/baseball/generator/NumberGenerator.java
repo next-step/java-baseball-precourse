@@ -13,10 +13,17 @@ public class NumberGenerator {
     }
 
     public static List<Integer> makeThreeDigits() {
-        Set<Integer> set = new HashSet<>();
-        while (set.size() != 3) {
-            set.add(Randoms.pickNumberInRange(1, 9));
+        List<Integer> answer = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            final int number = Randoms.pickNumberInRange(1, 9);
+            validateNumber(answer, number);
         }
-        return new ArrayList<>(set);
+        return answer;
+    }
+
+    private static void validateNumber(List<Integer> answer, int number) {
+        if (!answer.contains(number)) {
+            answer.add(number);
+        }
     }
 }
