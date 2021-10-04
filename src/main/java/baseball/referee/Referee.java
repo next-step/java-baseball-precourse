@@ -14,13 +14,13 @@ public class Referee {
 
     public String judge(Ball userBall) {
         for (int i = 0; i < computerBalls.getBallList().size(); i++) {
-                Ball computerBall = computerBalls.getBallList().get(i);
+            Ball computerBall = computerBalls.getBallList().get(i);
 
             if (computerBall.getNumber() == userBall.getNumber() && computerBall.getPosition() == userBall.getPosition()) {
                 return "STRIKE";
             }
 
-            if(computerBall.getNumber() == userBall.getNumber() && computerBall.getPosition() != userBall.getPosition()){
+            if (computerBall.getNumber() == userBall.getNumber() && computerBall.getPosition() != userBall.getPosition()) {
                 return "BALL";
             }
 
@@ -28,9 +28,6 @@ public class Referee {
 
         return "NOTHING";
     }
-
-
-
 
 
 }
