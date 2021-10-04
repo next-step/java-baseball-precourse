@@ -44,4 +44,22 @@ public class StringTest {
                 () -> assertThat(result).containsExactly("1")
         );
     }
+
+    @Test
+    @DisplayName("괄호가 제거된 문자열이 반환되는지 확인")
+    void checkRemovalBracket() {
+        //given
+        String offerStr = "(1,2)";
+
+        // when
+        String result = offerStr.substring(1, offerStr.length() - 1);
+
+        // then
+        assertAll(
+                () -> assertThat(result).isNotNull(),
+                () -> assertThat(result).isInstanceOf(String.class),
+                () -> assertThat(result).isEqualTo("1,2")
+        );
+
+    }
 }
