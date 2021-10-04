@@ -9,7 +9,10 @@
 
 ## 구현 기능 목록
 * Computer 랜덤숫자 배정
+  - 나열된 숫자 중복체크
+  - 나열된 숫자 0포함 체크
 * Player 숫자 입력 Console 제공
+  - Player입력오류 예외처리
 * Computer, Player 받은 각각 숫자 배열전환
 * (n자리 숫자) Player[0] ~ Player[n-1] ↔ Computer[0] ~ Computer[n-1] 각각 비교 
   - player[a] = Computer[a]         → Return "Strike";
