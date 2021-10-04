@@ -9,11 +9,14 @@ public class Baseball {
     private int strike = 0;
     private int ball = 0;
     boolean gameEndFlag = false;
+    List<Character> gameNumberList = new ArrayList<>();
 
     public void startGame() {
-        strike = 0; ball = 0; gameEndFlag = false;
-        List<Character> gameNumberList = generateNumber();
-        System.out.println("정답 확인 : " + gameNumberList);
+        strike = 0;
+        ball = 0;
+        gameEndFlag = false;
+        gameNumberList = generateNumber();
+
         while(!gameEndFlag){
             String result = checkNumber(gameNumberList, inputNumber() );
             System.out.println(result);
@@ -21,7 +24,6 @@ public class Baseball {
         }
         System.out.println("게임 끝");
     }
-
     //    컴퓨터는 1에서9까지 서로 다른 임의의 수 3개를 선택한다.
     public List<Character> generateNumber(){
         Set<Character> gameNumberSet = new LinkedHashSet<>();
@@ -30,6 +32,8 @@ public class Baseball {
         }
         return new ArrayList<>(gameNumberSet);
     }
+
+
 
     //    기본적으로1부터9까지서로다른수로이루어진3자리의수를맞추는게임이다.
     public List<Character> inputNumber(){
@@ -66,6 +70,7 @@ public class Baseball {
     }
 
 
+
     //    같은수가같은자리에있으면스트라이크,다른자리에있으면볼,같은수가전혀없으면포볼또는낫싱
     public String checkNumber(List<Character> gameNumberList, List<Character> inputNumberList){
         strike=0;
@@ -96,6 +101,9 @@ public class Baseball {
         if (result.equals("3스트라이크")) gameEndFlag = true;
     }
 
+
+
+
     //    게임을종료한후게임을다시시작하거나완전히종료할수있다.
     public boolean endGame(){
         boolean validInputNumberFlag = false;
@@ -109,6 +117,7 @@ public class Baseball {
     }
 
     public boolean validInputEndFlag(String endGameInput){
+
         if (!"12".contains(endGameInput)) {
             System.out.println("[ERROR] 잘못된 값을 입력하셨습니다.");
             return false;
