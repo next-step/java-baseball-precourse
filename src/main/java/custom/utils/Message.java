@@ -1,6 +1,7 @@
 package custom.utils;
 
 public class Message {
+
     public  Message(){
 
     }
