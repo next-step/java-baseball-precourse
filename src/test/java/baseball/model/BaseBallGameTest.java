@@ -36,4 +36,17 @@ public class BaseBallGameTest {
         assertThat(result.getStrikeCount()).isEqualTo(strikeCount);
         assertThat(result.getBallCount()).isEqualTo(ballCount);
     }
+
+    @DisplayName("정답을 맞추기 전에는 WRONG, 정답을 맞춘 후에는 RIGHT")
+    @Test
+    void testAnswerStatus() {
+        BaseBallGame game = new BaseBallGame(Arrays.asList(1, 2, 3));
+        assertThat(game.isWrongAnswer()).isTrue();
+        assertThat(game.isRightAnswer()).isFalse();
+
+        CompareResult result = game.tryCompare("123");
+        assertThat(result.isStrike()).isTrue();
+        assertThat(game.isWrongAnswer()).isFalse();
+        assertThat(game.isRightAnswer()).isTrue();
+    }
 }
