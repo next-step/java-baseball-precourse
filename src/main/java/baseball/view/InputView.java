@@ -10,12 +10,15 @@ public class InputView {
 	private static final int INPUT_SIZE = 3;
 	private static final int START_INDEX = 0;
 	private static final int END_INDEX = 9;
+	private static final int END_INPUT_SIZE = 1;
+	private static final int GAME_CONTINUE_NUMBER = 1;
+	private static final int GAME_END_NUMBER = 2;
 
 	public List<Integer> inputNumbers() {
 		final String input = Console.readLine();
 
 		if (input.length() != INPUT_SIZE) {
-			throw new IllegalArgumentException();
+			throw new NumberFormatException();
 		}
 
 		return stringToInteger(input);
@@ -32,7 +35,7 @@ public class InputView {
 	private int characterToInt(char c) {
 		int input = c - '0';
 		if (input < START_INDEX || input > END_INDEX) {
-			throw new IllegalArgumentException();
+			throw new NumberFormatException();
 		}
 		return input;
 	}
@@ -40,14 +43,14 @@ public class InputView {
 	public boolean inputEndNumber() {
 		final String input = Console.readLine();
 
-		if (input.length() != 1) {
-			throw new IllegalArgumentException();
+		if (input.length() != END_INPUT_SIZE) {
+			throw new NumberFormatException();
 		}
 
 		final int inputNumber = Integer.parseInt(input);
-		if (inputNumber != 1 && inputNumber != 2) {
-			throw new IllegalArgumentException();
+		if (inputNumber != GAME_CONTINUE_NUMBER && inputNumber != GAME_END_NUMBER) {
+			throw new NumberFormatException();
 		}
-		return inputNumber == 1;
+		return inputNumber == GAME_CONTINUE_NUMBER;
 	}
 }

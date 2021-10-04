@@ -15,6 +15,7 @@ public class OutputView {
 	private static final String ROUND_END_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 끝";
 	private static final String RESTART_CHECK_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
 	private static final String GAME_END_MESSAGE = "게임이 종료되었습니다.";
+	private static final String USER_INPUT_ERROR_MESSAGE = "[ERROR] 사용자 입력이 잘못되었습니다.";
 	private static final PrintStream OUTPUT = System.out;
 
 	public void printInputNumber() {
@@ -57,5 +58,9 @@ public class OutputView {
 
 	public void printGameEnd() {
 		OUTPUT.println(GAME_END_MESSAGE);
+	}
+
+	public void printUserInputError() {
+		OUTPUT.println(USER_INPUT_ERROR_MESSAGE);
 	}
 }

@@ -17,35 +17,38 @@ public class GameController {
 	}
 
 	public void play() {
-
-		boolean isContinue = true;
-		while (isContinue) {
-
-			// 게임 시작
-			// 문제 생성
-			BaseballGame game = startGame();
-			boolean isContinuedRound = true;
-			while (isContinuedRound) {
-				// 숫자를 입력해주세요:
-				this.outputView.printInputNumber();
-				// 입력받음
-				final List<Integer> inputNumbers = this.inputView.inputNumbers();
-				game = game.hit(inputNumbers);
-
-				// 결과 출력
-				this.outputView.printGameResult(game.getBallCount());
-				// 3스트라이크라면 게임종료
-				isContinuedRound = !game.isFinished();
-			}
-
-			this.outputView.printRoundEnd();
-			// 재시작 여부 확인
-			this.outputView.printRestartCheck();
-			isContinue = this.inputView.inputEndNumber();
-		}
+		boolean isContinue;
+		do {
+			isContinue = playRound();
+		} while (isContinue);
 
 		this.outputView.printGameEnd();
+	}
 
+	private boolean playRound() {
+		BaseballGame game = startGame();
+		do {
+			game = game.hit(readInputNumbers(this.outputView::printInputNumber));
+			this.outputView.printGameResult(game.getBallCount());
+		} while (!game.isFinished());
+
+		roundEndAndRestartCheck();
+		return this.inputView.inputEndNumber();
+	}
+
+	private List<Integer> readInputNumbers(Runnable outputRunner) {
+		outputRunner.run();
+		try {
+			return this.inputView.inputNumbers();
+		} catch (NumberFormatException e) {
+			this.outputView.printUserInputError();
+			return readInputNumbers(outputRunner);
+		}
+	}
+
+	private void roundEndAndRestartCheck() {
+		this.outputView.printRoundEnd();
+		this.outputView.printRestartCheck();
 	}
 
 	private BaseballGame startGame() {
