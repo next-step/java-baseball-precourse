@@ -4,9 +4,10 @@ import java.util.Objects;
 
 public class BallResult {
 
+	private final int ballCount;
+
 	private static final int MIN_BALL_COUNT = 0;
 	private static final int MAX_BALL_COUNT = 3;
-	private final int ballCount;
 
 	public BallResult() {
 		this(0);

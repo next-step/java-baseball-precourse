@@ -4,9 +4,10 @@ import java.util.Objects;
 
 public class StrikeResult {
 
+	private final int strikeCount;
+
 	private static final int MIN_STRIKE_COUNT = 0;
 	private static final int MAX_STRIKE_COUNT = 3;
-	private final int strikeCount;
 
 	public StrikeResult() {
 		this(0);

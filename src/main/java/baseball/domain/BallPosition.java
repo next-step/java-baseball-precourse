@@ -4,9 +4,10 @@ import java.util.Objects;
 
 public class BallPosition {
 
+	private final int position;
+
 	private static final int MIN_BALL_POSITION = 1;
 	private static final int MAX_BALL_POSITION = 3;
-	private final int position;
 
 	public BallPosition(int position) {
 		isValidPosition(position);
