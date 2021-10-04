@@ -22,11 +22,11 @@ public class Game {
     }
 
     public void play() {
-        generateSystemNumberIfNull();
+        generateSystemNumbersIfNull();
         boolean isContinue = true;
         while (isContinue) {
-            String inputNumber = gamePlayConsole.getInputValue();
-            gameResult.compare(systemNumbers, inputNumber);
+            String inputNumbers = gamePlayConsole.getInputValue();
+            gameResult.compare(systemNumbers, inputNumbers);
             Message.printResultMessage(gameResult.getStrikeCount(), gameResult.getBallCount());
             isContinue = !gameResult.isFinish();
         }
@@ -40,7 +40,7 @@ public class Game {
         }
     }
 
-    private void generateSystemNumberIfNull() {
+    private void generateSystemNumbersIfNull() {
         this.systemNumbers = numberGenerator.generateNumbers(GameRule.PICK_NUMBER_COUNT);
     }
 

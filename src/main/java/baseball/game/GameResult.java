@@ -40,10 +40,10 @@ public class GameResult {
     }
 
 
-    private void calculateBallCount(String systemNumber, String number) {
+    private void calculateBallCount(String systemNumbers, String number) {
         resetBallCount();
-        for (int i = 0; i < systemNumber.length(); i++) {
-            plusCountIfIsBall(systemNumber, i, number.charAt(i));
+        for (int i = 0; i < systemNumbers.length(); i++) {
+            plusCountIfIsBall(systemNumbers, i, number.charAt(i));
         }
     }
 
@@ -51,14 +51,15 @@ public class GameResult {
         this.ballCount = 0;
     }
 
-    private void plusCountIfIsBall(String systemNumber, int inputNumberIndex, char inputNumberChar) {
-        if(isBall(systemNumber, inputNumberIndex, inputNumberChar)) {
+    private void plusCountIfIsBall(String systemNumbers, int inputNumberIndex, char inputNumberChar) {
+        if(isBall(systemNumbers, inputNumberIndex, inputNumberChar)) {
             this.ballCount ++;
         }
     }
 
-    private boolean isBall(String systemNumber, int inputNumberIndex, char inputNumberChar) {
-        return systemNumber.charAt(inputNumberIndex) != inputNumberChar && systemNumber.contains(String.valueOf(inputNumberChar));
+    private boolean isBall(String systemNumbers, int inputNumberIndex, char inputNumberChar) {
+        return systemNumbers.charAt(inputNumberIndex) != inputNumberChar
+                && systemNumbers.contains(String.valueOf(inputNumberChar));
     }
 
     public int getStrikeCount() {

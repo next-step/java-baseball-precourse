@@ -109,10 +109,10 @@ class GameResultTest extends BaseTest<GameResult> {
             "123, 1, 3, true",
             "123, 1, 4, false",
     })
-    void testIsBall(String systemNumber, int inputNumberIndex, char inputNumberChar, boolean expectedResult)
+    void testIsBall(String systemNumbers, int inputNumberIndex, char inputNumberChar, boolean expectedResult)
             throws InvocationTargetException, IllegalAccessException {
         Method method = super.getPrivateMethod(gameResult, "isBall", String.class, int.class, char.class);
-        boolean isBall = (boolean) method.invoke(gameResult, systemNumber, inputNumberIndex, inputNumberChar);
+        boolean isBall = (boolean) method.invoke(gameResult, systemNumbers, inputNumberIndex, inputNumberChar);
         assertThat(isBall == expectedResult).isTrue();
     }
 
@@ -121,10 +121,10 @@ class GameResultTest extends BaseTest<GameResult> {
             "123, 1, 4, 0",
             "123, 1, 3, 1",
     })
-    void testPlusCountIfIsBall(String systemNumber, int inputNumberIndex, char inputNumberChar, int expectedBallCount)
+    void testPlusCountIfIsBall(String systemNumbers, int inputNumberIndex, char inputNumberChar, int expectedBallCount)
             throws InvocationTargetException, IllegalAccessException {
         Method method = super.getPrivateMethod(gameResult, "plusCountIfIsBall", String.class, int.class, char.class);
-        method.invoke(gameResult, systemNumber, inputNumberIndex, inputNumberChar);
+        method.invoke(gameResult, systemNumbers, inputNumberIndex, inputNumberChar);
         assertThat(expectedBallCount == gameResult.getBallCount()).isTrue();
     }
 
@@ -135,10 +135,10 @@ class GameResultTest extends BaseTest<GameResult> {
             "123, 312, 3",
             "123, 356, 1",
     })
-    void testCalculateBallCount(String systemNumber, String number, int expectedBallCount)
+    void testCalculateBallCount(String systemNumbers, String number, int expectedBallCount)
             throws InvocationTargetException, IllegalAccessException {
         Method method = super.getPrivateMethod(gameResult, "calculateBallCount", String.class, String.class);
-        method.invoke(gameResult, systemNumber, number);
+        method.invoke(gameResult, systemNumbers, number);
         assertThat(expectedBallCount == gameResult.getBallCount()).isTrue();
     }
 

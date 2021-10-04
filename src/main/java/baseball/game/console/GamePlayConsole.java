@@ -22,9 +22,9 @@ public class GamePlayConsole extends BaseConsole {
         while (doRepeat) {
             Message.printStartMessage();
             inputValue = Console.readLine();
-            boolean isValidNumber = isValidPolicy(inputValue);
-            doRepeat = !isValidNumber;
-            printErrorMessageIfNotValid(isValidNumber);
+            boolean isValidPolicy = isValidPolicy(inputValue);
+            doRepeat = !isValidPolicy;
+            printErrorMessageIfNotValid(isValidPolicy);
         }
 
         return inputValue;
