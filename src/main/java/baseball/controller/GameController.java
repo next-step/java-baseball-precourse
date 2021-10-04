@@ -27,7 +27,6 @@ public class GameController {
             System.out.println("==========[ New Game ]==========");
             gameStart(gameStatus);
         }
-
     }
 
     private void gameStart(GameStatus gameStatus) {
@@ -35,8 +34,19 @@ public class GameController {
             System.out.print("숫자를 입력해주세요 : ");
             String readPickNumber = readLine();
 
-            PickNumberMatchResultView pickNumberMatchResult = gameService.compareBallNumber(readPickNumber);
-            System.out.println(pickNumberMatchResult.toString());
+            checkPickNumber(readPickNumber);
         }
+    }
+
+    public void checkPickNumber(String readPickNumber) {
+        boolean isValidReadPickNumber = gameService.isValidReadPickNumber(readPickNumber);
+        if (isValidReadPickNumber) {
+            comparePickNumber(readPickNumber);
+        }
+    }
+
+    public void comparePickNumber(String readPickNumber) {
+        PickNumberMatchResultView pickNumberMatchResult = gameService.comparePickNumber(readPickNumber);
+        System.out.println(pickNumberMatchResult.toString());
     }
 }

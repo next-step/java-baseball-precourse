@@ -4,5 +4,7 @@ import baseball.domain.PickNumberMatchResultView;
 
 public interface GameService {
 
-    PickNumberMatchResultView compareBallNumber(String readPickNumber);
+    PickNumberMatchResultView comparePickNumber(String readPickNumber);
+
+    boolean isValidReadPickNumber(String readPickNumber);
 }
