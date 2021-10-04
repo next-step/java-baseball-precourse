@@ -27,6 +27,18 @@ public class Numbers {
 		this.values = Collections.unmodifiableList(numbers);
 	}
 
+	public boolean isContains(Number number) {
+		return values.contains(number);
+	}
+
+	public int getDigit(Number number) {
+		return values.indexOf(number) + 1;
+	}
+
+	public Number get(int index) {
+		return values.get(index);
+	}
+
 	public List<Number> getValues() {
 		return values;
 	}

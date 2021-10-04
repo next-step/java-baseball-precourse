@@ -24,7 +24,7 @@ class NumbersTest {
 
 		// then
 		assertThat(numbers.getValues())
-			.hasSize(3)
+			.hasSize(Numbers.SIZE)
 			.contains(new Number(1), new Number(2), new Number(3));
 	}
 
@@ -52,5 +52,61 @@ class NumbersTest {
 		assertThatThrownBy(() -> new Numbers(list))
 			.isInstanceOf(DuplicateNumberException.class)
 			.hasMessage("Duplicate numbers are not available.");
+	}
+
+	@Test
+	@DisplayName("지정된 Number가 존재하면 true 아니면 false")
+	void isContains() {
+		// given
+		Numbers numbers = new Numbers(Arrays.asList(1, 2, 3));
+
+		assertAll(
+			() -> {
+				// when
+				boolean isExistsNumber = numbers.isContains(new Number(1));
+
+				// then
+				assertThat(isExistsNumber).isTrue();
+			},
+			() -> {
+				// when
+				boolean isNotExistsNumber = numbers.isContains(new Number(4));
+
+				// then
+				assertThat(isNotExistsNumber).isFalse();
+			}
+		);
+	}
+
+	@Test
+	@DisplayName("지정된 Number의 자릿수를 반환한다.")
+	void getDigit() {
+		// given
+		Numbers numbers = new Numbers(Arrays.asList(2, 3, 1));
+
+		// when
+		int digitOfFirst = numbers.getDigit(new Number(2));
+		int digitOfSecond = numbers.getDigit(new Number(3));
+		int digitOfThird = numbers.getDigit(new Number(1));
+
+		// then
+		assertAll(
+			() -> assertThat(digitOfFirst).isEqualTo(1),
+			() -> assertThat(digitOfSecond).isEqualTo(2),
+			() -> assertThat(digitOfThird).isEqualTo(3)
+		);
+	}
+
+	@Test
+	@DisplayName("인덱스에 해당되는 Number를 반환한다.")
+	void get() {
+		// given
+		Numbers numbers = new Numbers(Arrays.asList(2, 3, 1));
+
+		assertAll(
+			() -> assertThat(numbers.get(0)).isEqualTo(new Number(2)),
+			() -> assertThat(numbers.get(1)).isEqualTo(new Number(3)),
+			() -> assertThat(numbers.get(2)).isEqualTo(new Number(1))
+		);
 	}
 }

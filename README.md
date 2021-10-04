@@ -8,6 +8,9 @@
       - 잘못된 숫자(1~9)를 입력하면 InvalidNumberRangeException 예외 발생
   - Numbers
       - `각기 다른 세 자리 수`를 지닌 일급 컬렉션
+      - isContains: Number가 존재하는지 여부
+      - getDigit: Number의 자릿수 반환
+      - get: Number 반환
       - 중복된 숫자가 있을 경우 DuplicateNumberException 예외 발생
       - 세 자리수가 아닐 경우 InvalidNumbersSizeException 예외 발생
   - StrikeZone
