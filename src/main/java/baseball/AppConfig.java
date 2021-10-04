@@ -6,17 +6,23 @@ import baseball.service.GameServiceImpl;
 
 public class AppConfig {
 
-    private static final GameService gameService = new GameServiceImpl();
-    private static final GameController gameController = new GameController(gameService);
+    private static GameService gameService;
+    private static GameController gameController;
 
     private AppConfig() {
     }
 
     public static GameController getGameController() {
+        if (gameController == null) {
+            gameController = new GameController(getGameService());
+        }
         return gameController;
     }
 
     public static GameService getGameService() {
+        if (gameService == null) {
+            gameService = new GameServiceImpl();
+        }
         return gameService;
     }
 
