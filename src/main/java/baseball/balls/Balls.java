@@ -1,7 +1,5 @@
 package baseball.balls;
 
-
-import baseball.balls.exceptions.BallException;
 import baseball.balls.exceptions.BallsException;
 
 import java.util.ArrayList;
@@ -25,7 +23,7 @@ public class Balls {
     }
 
     private void isDuplicated(int number) {
-        if(ballNumberList.contains(number)){
+        if (ballNumberList.contains(number)) {
             throw new BallsException("중복된 숫자는 입력할 수 없습니다.");
         }
 
@@ -35,4 +33,5 @@ public class Balls {
     public List<Ball> getBallList() {
         return ballList;
     }
+
 }
