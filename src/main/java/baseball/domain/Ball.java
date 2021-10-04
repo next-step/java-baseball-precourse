@@ -16,6 +16,24 @@ public class Ball {
         this(new BallPosition(ballPosition), new BallNumber(ballNumber));
     }
 
+    public BallResult compare(Ball ball) {
+        if(isStrike(ball)) {
+            return BallResult.STRIKE;
+        }
+        if(isBall(ball)) {
+            return BallResult.BALL;
+        }
+        return BallResult.NOTHING;
+    }
+
+    private boolean isStrike(Ball ball) {
+        return this.equals(ball);
+    }
+
+    private boolean isBall(Ball ball) {
+        return this.ballNumber.isEqualsNumber(ball.ballNumber);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
