@@ -22,7 +22,7 @@ public class BallsTest {
 
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(
                 () -> balls.compareWith(numbers)
-        ).withMessageMatching("비교하려는 두 Balls 의 크기가 다릅니다. 입력값: " + numbers.size() + ", 정답: " + ballsList.size());
+        ).withMessageMatching("비교하려는 두 Balls 의 크기가 다릅니다. 입력값:" + numbers.size() + " 정답:" + ballsList.size());
     }
 
     @DisplayName("STRIKE 와 BALL 전부 없음")
