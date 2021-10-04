@@ -12,13 +12,13 @@ import java.util.List;
 
 public class GameController {
 
+    /**
+     * 게임을 시작하고 난 후 문제를 맞추면 게임을 계속 할지 중단할지 체크
+     */
     public void baseballGame() {
-        while (true) {
-            startGame(gameSetup());
-            if (endGame()) {
-                break;
-            }
-        }
+        do {
+          startGame(gameSetup());
+        } while (!endGame());
     }
 
     private void startGame(List<Integer> answer) {
