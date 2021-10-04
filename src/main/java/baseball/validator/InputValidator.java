@@ -14,10 +14,12 @@ public class InputValidator {
     private InputValidator() {
     }
 
-    public static void validateInput(String input) {
+    public static String validateInput(String input) {
         validateIsThreeDigits(input);
         validateIsNumberWithOutZero(input);
         validateDuplicateNumber(input);
+
+        return input;
     }
 
 
