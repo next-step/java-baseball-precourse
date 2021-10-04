@@ -30,4 +30,8 @@ public class PickNumbers {
     public static LinkedHashSet<Integer> getPickNumbersSet() {
         return pickNumbersSet;
     }
+
+    public static void pickNumbersClear() {
+        pickNumbersSet.clear();
+    }
 }
