@@ -1,7 +1,6 @@
 package baseball;
 
 import nextstep.utils.Console;
-import nextstep.utils.Randoms;
 
 import java.util.ArrayList;
 
@@ -10,11 +9,12 @@ public class Application {
     public static final String SUCCESS_MSG = "3개의 숫자를 모두 맞추셨습니다!";
     public static final String REGAME_REQUEST_MSG = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
     public static final String GAME_FINISHED_MSG = "게임 끝";
-    public static final String INPUT_ERROR_MSG = "[ERROR] 입력한 값이 유효하지 않습니다. 1~9 사이의 정수값 3개를 입력해주세요...";
+    public static final String INPUT_BALL_NUBMER_ERROR_MSG = "[ERROR] 입력한 값이 유효하지 않습니다. 1~9 사이의 정수값 3개를 입력해주세요...";
     public static final String REQUEST_INPUT_MSG = "숫자를 입력해주세요: ";
     public static final String WANT_REGAME_MSG = "1";
     public static final String DO_NOT_WANT_REGAME_MSG = "2";
     public static final String NEW_LINE = "\n";
+    public static final String INPUT_REGAME_ERROR_MSG = "[ERROR] 1 또는 2를 입력해야 합니다. 다시 입력해 주세요...";
 
     private static PlayGround playGround;
 
@@ -40,7 +40,7 @@ public class Application {
         try {
             return new InputParser().parse(input);
         } catch (IllegalArgumentException e) {
-            System.out.println(INPUT_ERROR_MSG);
+            System.out.println(INPUT_BALL_NUBMER_ERROR_MSG);
 
             return new ArrayList<>();
         }
@@ -51,21 +51,46 @@ public class Application {
 
         boolean isGameEnd = playGround.run(new Trial(inputBallNumbers));
 
+        if (!isGameEnd) return true;
+
         return isGameEnd ? afterGameEnd() : true;
     }
 
     private static boolean afterGameEnd() {
         System.out.println(SUCCESS_MSG + NEW_LINE + REGAME_REQUEST_MSG);
 
-        String input = Console.readLine();
+        REGAME_FLAG regameAnswer = getRegameAnswer();
 
-        if (input.equals(WANT_REGAME_MSG)) {
+        if (regameAnswer == REGAME_FLAG.WANT) {
             System.out.println(GAME_FINISHED_MSG);
-
             standByGame();
         }
 
-        return input.equals(DO_NOT_WANT_REGAME_MSG) ? false : true;
+        return regameAnswer == REGAME_FLAG.WANT;
+    }
+
+    private static REGAME_FLAG getRegameAnswer() {
+        REGAME_FLAG regameFlag = REGAME_FLAG.NONE;
+
+        while (regameFlag == REGAME_FLAG.NONE) {
+            regameFlag = verifyRegameAnswer(Console.readLine());
+        }
+
+        return regameFlag;
+    }
+
+    private static REGAME_FLAG verifyRegameAnswer(String input) {
+        if (input.equals(WANT_REGAME_MSG)) {
+            return REGAME_FLAG.WANT;
+        }
+
+        if (input.equals(DO_NOT_WANT_REGAME_MSG)) {
+            return REGAME_FLAG.NOT_WANT;
+        }
+
+        System.out.println(INPUT_REGAME_ERROR_MSG);
+
+        return REGAME_FLAG.NONE;
     }
 
     private static void standByGame() {
@@ -73,24 +98,6 @@ public class Application {
             playGround = new PlayGround();
         }
 
-        playGround.setComputerTrial(new Trial(genRandomInts()));
-    }
-
-    private static ArrayList<Integer> genRandomInts() {
-        ArrayList<Integer> randomInts = new ArrayList<>();
-
-        while (randomInts.size() < GlobalVariables.MAX_BALL_CNT) {
-            int randomInt = Randoms.pickNumberInRange(GlobalVariables.MIN_BALL_NUMBER, GlobalVariables.MAX_BALL_NUMBER);
-
-            insertOnlyDistinct(randomInts, randomInt);
-        }
-
-        return randomInts;
-    }
-
-    private static void insertOnlyDistinct(ArrayList<Integer> into, int insertValue) {
-        if (into.contains(insertValue)) return;
-
-        into.add(insertValue);
+        playGround.setComputerTrial(new Trial(new RandomInputGenerator().genRandomInts()));
     }
 }
