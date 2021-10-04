@@ -46,10 +46,10 @@ public class GameTest {
 
 	private static Stream<Arguments> provideConvertToListValidArgs() {
 		return Stream.of(
-			Arguments.of("123", Arrays.asList(1,2,3)),
-			Arguments.of("789", Arrays.asList(7,8,9)),
-			Arguments.of("777", Arrays.asList(7,7,7)),
-			Arguments.of("-123", Arrays.asList(-1,2,3))
+			Arguments.of("123", Arrays.asList(1, 2, 3)),
+			Arguments.of("789", Arrays.asList(7, 8, 9)),
+			Arguments.of("777", Arrays.asList(7, 7, 7)),
+			Arguments.of("-123", Arrays.asList(-1, 2, 3))
 		);
 	}
 
@@ -68,7 +68,7 @@ public class GameTest {
 	}
 
 	@DisplayName("2. 입력된 값에 결과 도출")
-	@ParameterizedTest(name="{displayName} {0} -> {1}")
+	@ParameterizedTest(name = "{displayName} {0} -> {1}")
 	@CsvSource({
 		"123,		false,		낫싱",
 		"987,		true,		승리",
