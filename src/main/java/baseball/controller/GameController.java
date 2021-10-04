@@ -24,16 +24,21 @@ public class GameController {
     private void startGame(List<Integer> answer) {
         while (true) {
 
+            final List<Integer> inputList = getInput();
+            if (answerCheck(inputList, answer)) {
+                break;
+            }
+        }
+    }
+
+    private List<Integer> getInput() {
+        while (true) {
             final String input = inputNumber();
             if (isInputError(input)) {
                 System.out.println(input);
                 continue;
             }
-
-            final List<Integer> inputList = InputGenerator.convertToIntegerList(input);
-            if (answerCheck(inputList, answer)) {
-                break;
-            }
+            return InputGenerator.convertToIntegerList(input);
         }
     }
 
