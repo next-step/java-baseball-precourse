@@ -1,6 +1,5 @@
 package baseball;
 
-import static baseball.Constants.MessageConstant.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.lang.reflect.Method;
@@ -41,11 +40,9 @@ public class ValidatorTest {
 		Method method = validator.getClass()
 			.getDeclaredMethod("isMatchPattern", String.class, String.class);
 		method.setAccessible(true);
-		boolean result = (boolean)method.invoke(validator,input,pattern);
-
+		boolean result = (boolean)method.invoke(validator, input, pattern);
 		assertThat(result).isEqualTo(isPass);
 	}
-
 
 	@DisplayName("2. 중복 확인")
 	@ParameterizedTest(name = "{displayName} {index} [{0}]")
@@ -64,30 +61,23 @@ public class ValidatorTest {
 		Method method = validator.getClass()
 			.getDeclaredMethod("isDuplicated", String.class);
 		method.setAccessible(true);
-		boolean result = (boolean)method.invoke(validator,input);
-
+		boolean result = (boolean)method.invoke(validator, input);
 		assertThat(result).isEqualTo(isPass);
 	}
 
 	@DisplayName("3. 게임 입력 예외 확인")
 	@ParameterizedTest(name = "{displayName} {index} [{0}]")
-	@ValueSource(strings = {"133","가나다","^^^@#","실패테스트입니다"})
+	@ValueSource(strings = {"X13", "가나다", "^@#", "실패테스트입니다", "777"})
 	void validInGameInputTestFail(String input) {
-		assertThatThrownBy(() -> {
-			validator.validInputInGame(input);
-		}).isInstanceOf(InputMismatchException.class)
-			.hasMessage(INPUT_MISMATCH_MESSAGE);
+		assertThatThrownBy(() -> validator.validInputInGame(input)).isInstanceOf(InputMismatchException.class);
 	}
 
 	@DisplayName("4. 새 게임 입력 예외 확인")
 	@ParameterizedTest(name = "{displayName} {index} [{0}]")
-	@ValueSource(strings = {"4","23","0"})
+	@ValueSource(strings = {"4", "가나", "0"})
 	void validNewGameInputTestFail(String input) {
-		assertThatThrownBy(() -> {
-			validator.validInputNewGame(input);
-		}).isInstanceOf(InputMismatchException.class)
-			.hasMessage(INPUT_MISMATCH_MESSAGE);
-	}
+		assertThatThrownBy(() -> validator.validInputNewGame(input)).isInstanceOf(InputMismatchException.class);
 
+	}
 
 }

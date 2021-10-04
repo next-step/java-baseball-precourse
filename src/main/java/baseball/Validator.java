@@ -63,13 +63,13 @@ public class Validator {
 	 */
 	public void validInputInGame(String input) {
 		if (!isLengthCheck(input, INPUT_MAX_COUNT)) {
-			throw new InputMismatchException(INPUT_MISMATCH_MESSAGE);
+			throw new InputMismatchException(ERROR_INVALID);
 		}
 		if (!isMatchPattern(input, IN_GAME_INPUT_PATTERN)) {
-			throw new InputMismatchException(INPUT_MISMATCH_MESSAGE);
+			throw new InputMismatchException(ERROR_INVALID);
 		}
 		if (isDuplicated(input)) {
-			throw new InputMismatchException(INPUT_MISMATCH_MESSAGE);
+			throw new InputMismatchException(ERROR_DUPLICATED);
 		}
 	}
 
@@ -80,10 +80,10 @@ public class Validator {
 	 */
 	public void validInputNewGame(String input) {
 		if (!isLengthCheck(input, 1)) {
-			throw new InputMismatchException(INPUT_MISMATCH_MESSAGE);
+			throw new InputMismatchException(ERROR_INVALID);
 		}
-		if (!isMatchPattern(input,NEW_GAME_INPUT_PATTERN)) {
-			throw new InputMismatchException(INPUT_MISMATCH_MESSAGE);
+		if (!isMatchPattern(input, NEW_GAME_INPUT_PATTERN)) {
+			throw new InputMismatchException(ERROR_ONE_OR_TOW);
 		}
 	}
 }

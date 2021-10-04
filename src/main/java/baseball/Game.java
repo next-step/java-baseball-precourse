@@ -1,10 +1,14 @@
 package baseball;
 
+import static baseball.Constants.CommonConstant.*;
+
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import baseball.Constants.ResultEnum;
-import nextstep.utils.Console;
+import nextstep.utils.Randoms;
 
 /**
  * 게임 클래스
@@ -14,26 +18,27 @@ import nextstep.utils.Console;
  */
 public class Game {
 
-	static final String ENDING_MESSAGE = " 번만에 승리했습니다.";
 	List<Integer> answer;
 	List<TryResult> tryResultList;
+
+	public Game() {
+		this.answer = getAnswer();
+		this.tryResultList = new ArrayList<>();
+	}
 
 	public Game(List<Integer> answer) {
 		this.answer = answer;
 		this.tryResultList = new ArrayList<>();
 	}
 
-	/**
-	 * 게임 시작 메소드
-	 * 승리 할 때 까지 입력을 계속 받고 승리 이후 메세지 출력
-	 */
-	public void startGame() {
-		boolean isWin = false;
-		while (!isWin) {
-			String input = Console.readLine();
-			isWin = tryTyping(input);
+	public List<Integer> getAnswer() {
+		Set<Integer> numberSet = new LinkedHashSet<>();
+		while (numberSet.size() < INPUT_MAX_COUNT) {
+			numberSet.add(Randoms.pickNumberInRange(MIN_RANGE, MAX_RANGE));
 		}
-		endGame();
+		List<Integer> numbers = new ArrayList<>(numberSet);
+		System.out.println(numbers);
+		return numbers;
 	}
 
 	/**
@@ -43,25 +48,15 @@ public class Game {
 	 * @param input 타이핑되어 입력된 값
 	 * @return 승리 여부
 	 */
-	public boolean tryTyping(String input) {
+	public TryResult tryInput(String input) {
 		List<Integer> numberList = convertToList(input);
 		TryResult tryResult = new TryResult();
 		for (int i = 0; i < numberList.size(); i++) {
 			ResultEnum result = checkAnswer(numberList.get(i), i);
 			tryResult.addResultEnum(result);
 		}
-		addTryResult(tryResult);
-		return tryResult.isWin();
-	}
-
-	/**
-	 * 입력 시도 결과를 저장하고 내용을 출력
-	 *
-	 * @param tryResult 입력 시도 결과
-	 */
-	private void addTryResult(TryResult tryResult) {
 		tryResultList.add(tryResult);
-		System.out.println(tryResult);
+		return tryResult;
 	}
 
 	/**
@@ -94,10 +89,6 @@ public class Game {
 			return ResultEnum.STRIKE;
 		}
 		return ResultEnum.BALL;
-	}
-
-	public void endGame() {
-		System.out.println(tryResultList.size() + ENDING_MESSAGE);
 	}
 
 }

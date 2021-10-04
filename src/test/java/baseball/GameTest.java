@@ -3,9 +3,6 @@ package baseball;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,8 +21,6 @@ import baseball.Constants.ResultEnum;
 public class GameTest {
 
 	Game game;
-
-	OutputStream out;
 
 	private static Stream<Arguments> provideAnswerCheckArgument() {
 		return Stream.of(
@@ -56,8 +51,6 @@ public class GameTest {
 	@BeforeEach
 	void init() {
 		game = new Game(Arrays.asList(9, 8, 7));
-		out = new ByteArrayOutputStream();
-		System.setOut(new PrintStream(out));
 	}
 
 	@DisplayName("1. 값과 위치에 따라 정답 확인")
@@ -71,7 +64,7 @@ public class GameTest {
 	@ParameterizedTest(name = "{displayName} {0} -> {1}")
 	@CsvSource({
 		"123,		false,		낫싱",
-		"987,		true,		승리",
+		"987,		true,		3개의 숫자를 모두 맞추셨습니다! 게임 끝",
 		"187,		false,		2 스트라이크",
 		"978,		false,		1 스트라이크 2 볼",
 		"781,		false,		1 스트라이크 1 볼",
@@ -81,37 +74,37 @@ public class GameTest {
 		"276,		false,		1 볼"
 	})
 	void tryTypeTest(String input, boolean isWin, String msg) {
-		assertThat(game.tryTyping(input))
+		TryResult result = game.tryInput(input);
+		assertThat(result.isWin())
 			.isEqualTo(isWin);
-		assertThat(out.toString())
+		assertThat(result.toString())
 			.contains(msg);
 	}
 
 	@DisplayName("3. 입력 변환 (유효성 검사)")
-	@ParameterizedTest
+	@ParameterizedTest(name = "{displayName} {0} -> {1}")
 	@MethodSource("provideConvertToListValidArgs")
 	void validStringConvertToListTest(String input, List<Integer> list) {
-
 		List<Integer> result = game.convertToList(input);
-
 		assertEquals(input.length(), result.size());
-
 		assertThat(result)
 			.isInstanceOf(ArrayList.class)
 			.containsAll(list);
 
 	}
 
-	@DisplayName("4. 입력 변환 에러")
+	@DisplayName("4. 정답 생성")
 	@Test
-	void StringConvertToListTest() {
-		String input = "가1x";
-		List<Integer> list = game.convertToList(input);
-		assertThat(list).contains(1);
+	void getAnswerPatternTest() {
+		assertThat(game.getAnswer())
+			.isNotEmpty()
+			.isInstanceOf(ArrayList.class)
+			.hasSize(3)
+			.doesNotHaveDuplicates();
 
-		// assertThatThrownBy(()->{
-		// 	game.convertToList(input);
-		// }).isInstanceOf(ClassCastException.class)
-		// 	.hasMessageContaining("??");
+		for (int i : game.getAnswer()) {
+			assertThat(i).matches(j -> j >= 0 && j <= 9);
+		}
+
 	}
 }

@@ -1,5 +1,10 @@
 package baseball;
 
+import static baseball.Constants.MessageConstant.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import baseball.Constants.ResultEnum;
 
 /**
@@ -9,12 +14,6 @@ import baseball.Constants.ResultEnum;
  * @since 1.0
  */
 public class TryResult {
-
-	private static final String NOTHING_STR = "낫싱";
-	private static final String STRIKE_STR = "스트라이크";
-	private static final String BALL_STR = "볼";
-	private static final String WIN = "승리";
-	private static final int MAX_COUNT = 3;
 
 	private int strikeCount;
 	private int ballCount;
@@ -36,40 +35,45 @@ public class TryResult {
 	 * @param result 각 문자의 매칭여부의 결과
 	 */
 	public void addResultEnum(ResultEnum result) {
-		if(result.equals(ResultEnum.STRIKE)) {
+		if (result.equals(ResultEnum.STRIKE)) {
 			strikeCount++;
 		}
-		if(strikeCount == 3) {
+		if (strikeCount == 3) {
 			isWin = true;
 		}
-		if(result.equals(ResultEnum.BALL)) {
+		if (result.equals(ResultEnum.BALL)) {
 			ballCount++;
 		}
 	}
 
 	/**
-	*  입력된 3개의 결과를 통해 메세지 출력
+	 *  입력된 3개의 결과를 통해 메세지 출력
 	 * @return 결과에 따라 힌트 또는 승리 메세지 제공
-	* */
+	 * */
 	@Override
 	public String toString() {
-		if(strikeCount+ballCount == 0){
-			return NOTHING_STR;
+		if (isWin) {
+			return WIN_MESSAGE;
 		}
-		if(isWin) {
-			return WIN;
+		if (strikeCount > 0 || ballCount > 0) {
+			return getHint();
 		}
-		String result = "";
-		if(strikeCount > 0) {
-			result += strikeCount +" "+ STRIKE_STR;
+		return NOTHING_MESSAGE;
+	}
+
+	/**
+	 * 힌트 문구 생성
+	 * @return 힌트 문구 생성
+	 * */
+	public String getHint() {
+		List<String> list = new ArrayList<>();
+		if (strikeCount > 0) {
+			list.add(strikeCount + " " + STRIKE);
 		}
-		if(strikeCount > 0 && ballCount > 0) {
-			result += " ";
+		if (ballCount > 0) {
+			list.add(ballCount + " " + BALL);
 		}
-		if(ballCount > 0) {
-			result += ballCount +" "+ BALL_STR;
-		}
-		return result;
+		return String.join(" ", list);
 	}
 
 }
