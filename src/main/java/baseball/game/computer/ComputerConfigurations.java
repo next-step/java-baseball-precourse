@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class ComputerConfigurations {
 
-    ComputerNumber computerNumber = new ComputerNumber();
-    NumberValidate numberValidate = new NumberValidate(computerNumber.getComputerRandomNumber());
-    ArrayList<Boolean> validateResults = numberValidate.getValidateResults();
+    private ComputerNumber computerNumber = new ComputerNumber();
+    private NumberValidate numberValidate = new NumberValidate(computerNumber.getComputerRandomNumber());
+    private ArrayList<Boolean> validateResults = numberValidate.getValidateResults();
 
     private int validatedRandomNumber = configure();
 
@@ -14,13 +14,12 @@ public class ComputerConfigurations {
         return validatedRandomNumber;
     }
 
-    public int configure() {
+    private int configure() {
         while (validateResults.contains(false)) {
             computerNumber = new ComputerNumber();
             numberValidate = new NumberValidate(computerNumber.getComputerRandomNumber());
             this.validateResults = numberValidate.getValidateResults();
         }
         return computerNumber.getComputerRandomNumber();
-        //return true;
     }
 }

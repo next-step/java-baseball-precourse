@@ -7,11 +7,9 @@ public class NumberValidate {
 
     private int randomNumber;
 
-    public NumberValidate(int randomNumber) {
+    NumberValidate(int randomNumber) {
         this.randomNumber = randomNumber;
     }
-
-    //private ArrayList<Boolean> validateResults = validateOverlap();
 
     public ArrayList<Boolean> getValidateResults() {
         return validateOverlap();
@@ -27,8 +25,10 @@ public class NumberValidate {
     }
 
     private boolean validateArrayOverlap(ArrayList<Integer> intList, int compareTarget) {
-        int frequencyCnt = Collections.frequency(intList, compareTarget);
-        if(frequencyCnt > 1) {
+        int overlapFrequencyCnt = Collections.frequency(intList, compareTarget);
+        int zeroFrequencyCnt = Collections.frequency(intList, 0);
+
+        if(overlapFrequencyCnt > 1 || zeroFrequencyCnt > 0) {
             return false;
         }
         return true;
@@ -42,5 +42,4 @@ public class NumberValidate {
         }
         return intList;
     }
-
 }
