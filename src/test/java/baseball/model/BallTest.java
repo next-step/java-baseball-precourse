@@ -23,10 +23,10 @@ class BallTest {
 		assertThat(Ball.valueOf(number)).isEqualTo(Ball.valueOf(number));
 	}
 
-	@DisplayName("수가 1 ~ 9 사이여야 한다")
+	@DisplayName("공을 생성하는 수가 1 ~ 9 사이가 아니면 예외발생")
 	@ParameterizedTest
 	@ValueSource(ints = {0, 10, -1})
-	void create_invalid_number(int number) {
+	void create_invalid_number_exception(int number) {
 		assertThatThrownBy(() -> Ball.valueOf(number))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessage("공을 생성할 수 없는 번호입니다.");

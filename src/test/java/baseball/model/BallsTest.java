@@ -16,18 +16,18 @@ class BallsTest {
 		assertThat(Balls.of(1, 2, 3)).isNotNull();
 	}
 
-	@DisplayName("3개의 숫자가 중복되지 않아야 한다")
+	@DisplayName("3개의 숫자가 중복되면 예외발생")
 	@ParameterizedTest
 	@CsvSource(value = {"1,2,2", "3,4,4", "1,1,1", "2,4,2", "1,1,4"}, delimiter = ',')
-	void create_duplicate_number(int first, int second, int third) {
+	void create_duplicate_number_exception(int first, int second, int third) {
 		assertThatThrownBy(() -> Balls.of(first, second, third))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessage("중복된 숫자를 입력받을 수 없습니다.");
 	}
 
-	@DisplayName("입력된 숫자는 3자리수여야 한다")
+	@DisplayName("입력된 숫자가 3자리수가 아니면 예외발생")
 	@Test
-	void create_length_check() {
+	void create_length_check_exception() {
 		assertThatThrownBy(Balls::of)
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessage("숫자 3개를 입력 받아야 합니다.");
