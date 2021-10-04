@@ -15,29 +15,29 @@ public class Command {
     }
 
     public void printCount(int ball, int strike) {
-        StringBuilder countMessage = new StringBuilder();
-        countMessage.append(strikeCountCheck(strike));
-        countMessage.append(ballCountCheck(ball));
-        if(countMessage.length() == 0) {
+        if(strike == 0 && ball == 0) {
             System.out.println("낫싱");
+            return;
         }
+        String countMessage =
+                getStrikeMessage(strike) +
+                getBallMessage(ball);
+
         System.out.println(countMessage);
     }
 
-    private String strikeCountCheck(int strike) {
-        StringBuilder countMessage = new StringBuilder();
-        if(strike > 0) {
-            countMessage.append(strike).append("스트라이크 ");
+    private String getStrikeMessage(int strike) {
+        if(strike == 0) {
+            return "";
         }
-        return countMessage.toString();
+        return String.format("%d스트라이크 ", strike);
     }
 
-    private String ballCountCheck(int ball) {
-        StringBuilder countMessage = new StringBuilder();
-        if(ball > 0) {
-            countMessage.append(ball).append("볼");
+    private String getBallMessage(int ball) {
+        if(ball == 0) {
+            return "";
         }
-        return String.valueOf(countMessage);
+        return String.format("%d볼 ", ball);
     }
 
     public void printError() {
