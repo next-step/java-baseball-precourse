@@ -9,8 +9,8 @@ import nextstep.utils.Console;
 
 public class NumberBaseballGame {
 	private Answers answers;
-	private int strike = 0;
-	private int ball = 0;
+	private Strike strike;
+	private Ball ball;
 
 	NumberBaseballGame() {
 		this.answers = new Answers();
@@ -40,8 +40,8 @@ public class NumberBaseballGame {
 	private void checkInput(String readLine) {
 		List<String> inputs = Arrays.asList(readLine.split(""));
 
-		strike = 0;
-		ball = 0;
+		strike = Strike.init();
+		ball = Ball.init();
 
 		addResult(inputs);
 
@@ -57,7 +57,7 @@ public class NumberBaseballGame {
 	 *
 	 **/
 	private void startOrExitByResult() {
-		if (strike == 3) {
+		if (strike.isThreeStrike()) {
 			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
 			System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
 
@@ -70,7 +70,7 @@ public class NumberBaseballGame {
 			}
 		}
 
-		if (strike != 3) {
+		if (!strike.isThreeStrike()) {
 			start();
 		}
 	}
@@ -86,12 +86,12 @@ public class NumberBaseballGame {
 			if (inputs.size() != 3) break;
 
 			if (answers.isStrike(inputs, i)) {
-				strike++;
+				strike.add();
 				continue;
 			}
 
 			if (answers.isBall(inputs.get(i))) {
-				ball++;
+				ball.add();
 				continue;
 			}
 		}
@@ -106,15 +106,15 @@ public class NumberBaseballGame {
 	private void printResult() {
 		StringBuilder resultBuilder = new StringBuilder();
 
-		if (strike > 0) {
-			resultBuilder.append(String.format("%s스트라이크", strike));
+		if (strike.value() > 0) {
+			resultBuilder.append(String.format("%s스트라이크", strike.value()));
 		}
 
-		if (ball > 0) {
-			resultBuilder.append(String.format(" %s볼", ball));
+		if (ball.value() > 0) {
+			resultBuilder.append(String.format(" %s볼", ball.value()));
 		}
 
-		if (strike == 0 && ball == 0) {
+		if (strike.value() == 0 && ball.value() == 0) {
 			resultBuilder.append("낫싱");
 		}
 
