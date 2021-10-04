@@ -4,13 +4,11 @@ import baseball.model.enums.AnswerSize;
 import nextstep.utils.Randoms;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class RandomBallNumberGenerator {
-    private static final List<Integer> dummy = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
-    private static final int ZERO = 0;
-    private static final int ONE  = 1;
+    private static final int START_INCLUSIVE  = 1;
+    private static final int END_INCLUSIVE    = 9;
 
     /**
      * 랜덤한 숫자를 가진 List 를 생성한다
@@ -20,15 +18,23 @@ public class RandomBallNumberGenerator {
      * @return      랜덤하게 만들어진 숫자 List
      */
     public static List<Integer> generate(AnswerSize answerSize) {
-        List<Integer> candidate = new ArrayList<>(dummy);
         List<Integer> result = new ArrayList<>(answerSize.size());
 
-        for (int i = ZERO; i < answerSize.size(); i++) {
-            int randomIndex = Randoms.pickNumberInRange(ZERO, candidate.size() - ONE - i);
-            int pickedNumber = candidate.remove(randomIndex);
-            result.add(pickedNumber);
+        while (lessThanMaxSize(result, answerSize)) {
+            int randomNumber = Randoms.pickNumberInRange(START_INCLUSIVE, END_INCLUSIVE);
+            addIfNotContains(result, randomNumber);
         }
 
         return result;
+    }
+
+    private static boolean lessThanMaxSize(List<Integer> result, AnswerSize answerSize) {
+        return result.size() < answerSize.size();
+    }
+
+    private static void addIfNotContains(List<Integer> result, int randomNumber) {
+        if (!result.contains(randomNumber)) {
+            result.add(randomNumber);
+        }
     }
 }
