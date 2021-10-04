@@ -1,5 +1,6 @@
 package baseball.generator;
 
+import baseball.message.text.TextMessage;
 import nextstep.utils.Console;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class InputGenerator {
      * @return
      */
     public static String inputThreeDigits() {
-        System.out.print("숫자를 입력해주세요 : ");
+        System.out.print(TextMessage.START);
         return Console.readLine();
     }
 
