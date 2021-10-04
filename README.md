@@ -9,6 +9,14 @@
 
 ## 기능 목록
 
+### 구조
+
+```
+Application (View) - Player (Controller) - BaseBallGame(Model) > Balls > Ball
+```
+
+### 주요 클래스
+
 - Ball : 정답을 이루는 3자리 수 중 하나
   - 위치와 숫자를 가짐
   - 1 이상 9 이하의 숫자
