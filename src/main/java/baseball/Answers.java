@@ -16,18 +16,30 @@ public class Answers {
 
 	/**
 	 * @author : yh22953905
+	 * @Date : 2021/10/04 11:00 오후
+	 * @Description : 단위 테스트를 위한 Getter 메소드
+	 *
+	 **/
+	List<String> getAnswers() {
+		return answers;
+	}
+
+	/**
+	 * @author : yh22953905
 	 * @Date : 2021/10/03 1:20 오전
 	 * @Description : 임의의 수 선택
 	 *
 	 **/
 	void initAnswers() {
-		answers = Arrays.asList(
-			new String[] {
-				String.valueOf(Randoms.pickNumberInRange(1, 9))
-				, String.valueOf(Randoms.pickNumberInRange(1, 9))
-				, String.valueOf(Randoms.pickNumberInRange(1, 9))
+		answers.clear();
+
+		while (answers.size() < 3) {
+			String pickedNumber = String.valueOf(Randoms.pickNumberInRange(1, 9));
+
+			if (!answers.contains(pickedNumber)) {
+				answers.add(pickedNumber);
 			}
-		);
+		}
 	}
 
 	/**
@@ -36,8 +48,8 @@ public class Answers {
 	 * @Description : 스트라이크 판단
 	 *
 	 **/
-	boolean isStrike(List<String> inputs, int i) {
-		return Objects.equals(inputs.get(i), answers.get(i));
+	boolean isStrike(List<String> inputs, int index) {
+		return Objects.equals(inputs.get(index), answers.get(index));
 	}
 
 	/**
