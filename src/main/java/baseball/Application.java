@@ -23,7 +23,18 @@ public class Application {
     			game = controller.playBaseball();
 			}
 
-    		play = controller.keepGoingOrNot();
+    		game = true;
+    		while(game) {
+    			game = false;
+    			int input = controller.keepGoingOrNot();
+				if(input == -1){
+					game = true;
+				}
+    			if(input == 2){
+					play = false;
+				}
+				//play = controller.keepGoingOrNot();
+			}
     	}
     }
 }

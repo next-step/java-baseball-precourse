@@ -2,8 +2,6 @@ package baseball.controller;
 
 import baseball.model.Baseball;
 import baseball.view.BaseballView;
-import nextstep.utils.Console;
-import nextstep.utils.Randoms;
 
 public class BaseballController {
     private Baseball model;
@@ -15,7 +13,8 @@ public class BaseballController {
     }
 
     public void setComputerNum() {
-        model.setComputerNum();
+       model.setComputerNum(model.selectThreeNums());
+       //System.out.println(model.getComputerNum());
     }
 
     public void setPlayerNum() {
@@ -30,23 +29,38 @@ public class BaseballController {
         boolean game = true;
 
         this.setPlayerNum();
+        if(!model.checkPlayerNum()){
+            view.printInvalidInput();
+            return true;
+        }
+
         model.setStrikeAndBall();
         this.showResult();
 
         //3 strike
         if(model.getStrike() == 3) {
             game = false;
+            printEndGameMsg();
         }
         return game;
     }
 
-    public boolean keepGoingOrNot() {
-        boolean play = true;
+    public void printEndGameMsg() {
+        view.printEndGameMsg1();
+        view.printEndGameMsg2();
+    }
 
-        if(view.endGameOrNot().equals("2")) {
-            play = false;
+    public void printInvalidEndInput() {
+        view.printInvalidInput();
+        view.printEndGameMsg2();
+    }
+    public int keepGoingOrNot() {
+        String game = view.endGameOrNot();
+        if(!(game.equals("1") || game.equals("2"))) {
+            printInvalidEndInput();
+            return -1;
         }
 
-        return play;
+        return Integer.parseInt(game);
     }
 }

@@ -16,14 +16,8 @@ public class Baseball {
         return computerNum;
     }
 
-    public void setComputerNum() {
-        int num1 = Randoms.pickNumberInRange(1, 9);
-        int num2 = 0;
-        int num3 = 0;
-        while((num2 = Randoms.pickNumberInRange(1, 9)) == num1) ;
-        while((num3 = Randoms.pickNumberInRange(1, 9)) == num1 || num3 == num2) ;
-
-        this.computerNum = String.valueOf(num1 * 100 + num2 * 10 + num3);
+    public void setComputerNum(String computerNum) {
+        this.computerNum = computerNum;
     }
 
     public String getPlayerNum() {
@@ -57,6 +51,16 @@ public class Baseball {
         this.ball = ballCnt;
     }
 
+    public String selectThreeNums() {
+        int num1 = Randoms.pickNumberInRange(1, 9);
+        int num2 = 0;
+        int num3 = 0;
+        while((num2 = Randoms.pickNumberInRange(1, 9)) == num1) ;
+        while((num3 = Randoms.pickNumberInRange(1, 9)) == num1 || num3 == num2) ;
+
+        return String.valueOf(num1 * 100 + num2 * 10 + num3);
+    }
+
     public String returnResult() {
         String result = "";
         if(this.strike == 0 && this.ball == 0) result = NOTHING;
@@ -65,5 +69,17 @@ public class Baseball {
         }
 
         return result;
+    }
+
+    public boolean checkPlayerNum() {
+        if(playerNum.length() != 3) {
+            return false;
+        }
+        for(char c : playerNum.toCharArray()) {
+            if(!Character.isDigit(c)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
