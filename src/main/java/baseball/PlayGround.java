@@ -9,12 +9,6 @@ public class PlayGround {
         this.recentPlayResult = null;
     }
 
-    public void setComputerTrialIfEmpty(Trial newComputerTrial) {
-        if (this.computerTrial != null) return;
-
-        this.setComputerTrial(newComputerTrial);
-    }
-
     public boolean run(Trial userTrial) {
         this.recentPlayResult = this.computerTrial.play(userTrial);
 
