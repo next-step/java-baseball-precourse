@@ -1,6 +1,7 @@
 package baseball;
 
 import baseball.controller.GameController;
+import baseball.domain.GameStatus;
 import baseball.service.GameService;
 import baseball.service.GameServiceImpl;
 
@@ -8,6 +9,7 @@ public class AppConfig {
 
     private static GameService gameService;
     private static GameController gameController;
+    private static GameStatus gameStatus;
 
     private AppConfig() {
     }
@@ -26,4 +28,18 @@ public class AppConfig {
         return gameService;
     }
 
+    public static GameStatus getGameStatus() {
+        if (gameStatus == null) {
+            gameStatus = GameStatus.START;
+        }
+        return gameStatus;
+    }
+
+    public static void gameStatusEnd() {
+        gameStatus = GameStatus.END;
+    }
+
+    public static void gameStatusStart() {
+        gameStatus = GameStatus.START;
+    }
 }
