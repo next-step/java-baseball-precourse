@@ -1,7 +1,5 @@
 package baseball.view;
 
-import java.io.PrintStream;
-
 import baseball.model.BallCount;
 
 public class OutputView {
@@ -16,15 +14,14 @@ public class OutputView {
 	private static final String RESTART_CHECK_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
 	private static final String GAME_END_MESSAGE = "게임이 종료되었습니다.";
 	private static final String USER_INPUT_ERROR_MESSAGE = "[ERROR] 사용자 입력이 잘못되었습니다.";
-	private static final PrintStream OUTPUT = System.out;
 
 	public void printInputNumber() {
-		OUTPUT.print(INPUT_NUMBER_MESSAGE);
+		System.out.print(INPUT_NUMBER_MESSAGE);
 	}
 
 	public void printGameResult(BallCount ballCount) {
 		String resultMessage = appendStrikeMessage(ballCount) + appendBallMessage(ballCount) + appendNothingMessage(ballCount);
-		OUTPUT.println(resultMessage.trim());
+		System.out.println(resultMessage.trim());
 	}
 
 	private String appendNothingMessage(BallCount ballCount) {
@@ -49,18 +46,18 @@ public class OutputView {
 	}
 
 	public void printRoundEnd() {
-		OUTPUT.println(ROUND_END_MESSAGE);
+		System.out.println(ROUND_END_MESSAGE);
 	}
 
 	public void printRestartCheck() {
-		OUTPUT.println(RESTART_CHECK_MESSAGE);
+		System.out.println(RESTART_CHECK_MESSAGE);
 	}
 
 	public void printGameEnd() {
-		OUTPUT.println(GAME_END_MESSAGE);
+		System.out.println(GAME_END_MESSAGE);
 	}
 
 	public void printUserInputError() {
-		OUTPUT.println(USER_INPUT_ERROR_MESSAGE);
+		System.out.println(USER_INPUT_ERROR_MESSAGE);
 	}
 }
