@@ -2,10 +2,6 @@ package nextstep.utils;
 
 import org.junit.jupiter.api.Test;
 
-import java.lang.annotation.Repeatable;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 class RandomsTest {
 
     private final int START_INCLUSIVE = 0;
