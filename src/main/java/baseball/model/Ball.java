@@ -1,6 +1,7 @@
 package baseball.model;
 
 import baseball.model.enums.BallStatus;
+import baseball.model.utils.ErrorMessage;
 
 public class Ball {
     private static final int MIN_NUMBER = 1;
@@ -17,7 +18,8 @@ public class Ball {
 
     private void validateNumberRange(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw new IllegalArgumentException("공의 숫자는 1 이상 9 이하여야 합니다.");
+            String message = ErrorMessage.numberRange();
+            throw new IllegalArgumentException(message);
         }
     }
 

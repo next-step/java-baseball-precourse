@@ -17,7 +17,7 @@ public class BaseBallGameTest {
     void validateDuplicateNumber() {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(
                 () -> new BaseBallGame(Arrays.asList(1, 1, 2))
-        ).withMessageMatching("숫자 야구의 정답은 중복되지 않은 서로 다른 수로 이루어져야 합니다");
+        ).withMessage("숫자 야구의 정답은 중복되지 않은 서로 다른 수로 이루어져야 합니다");
     }
 
     @DisplayName("사용자의 입력값 (String) 을 받아 스트라이크/볼 결과를 내려줌")

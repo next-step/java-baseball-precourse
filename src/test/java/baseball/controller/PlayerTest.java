@@ -40,7 +40,7 @@ public class PlayerTest {
             "124, 2스트라이크",
             "321, 1스트라이크 2볼",
             "312, 3볼",
-            "1242, 비교하려는 두 Balls 의 크기가 다릅니다. 입력값:4 정답:3"
+            "1242, [ERROR] 비교하려는 두 숫자의 길이가 다릅니다. 입력값:4 정답:3"
     })
     void testGuessAnswer(String input, String message) {
         Player player = new Player();

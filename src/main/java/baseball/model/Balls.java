@@ -1,6 +1,7 @@
 package baseball.model;
 
 import baseball.model.enums.BallStatus;
+import baseball.model.utils.ErrorMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,8 @@ public class Balls {
         int ballsSize = balls.size();
 
         if (numberSize != ballsSize) {
-            throw new IllegalArgumentException("비교하려는 두 Balls 의 크기가 다릅니다. 입력값:" + numberSize + " 정답:" + ballsSize);
+            String message = ErrorMessage.compareLength(numberSize, ballsSize);
+            throw new IllegalArgumentException(message);
         }
     }
 

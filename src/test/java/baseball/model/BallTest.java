@@ -18,7 +18,7 @@ public class BallTest {
     void testValidate(int invalidNumber) {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(
                 () -> new Ball(0, invalidNumber)
-        ).withMessageMatching("공의 숫자는 1 이상 9 이하여야 합니다.");
+        ).withMessage("[ERROR] 공의 숫자는 1 이상 9 이하여야 합니다.");
     }
 
     @DisplayName("STRIKE: 공의 위치와 숫자가 모두 같음")

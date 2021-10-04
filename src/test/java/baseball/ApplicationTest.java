@@ -38,6 +38,26 @@ public class ApplicationTest extends NSTest {
         }
     }
 
+    @Test
+    void 잘못된_자릿수를_입력하면_에러() {
+        try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
+            mockRandoms.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
+                    .thenReturn(1, 2, 3);
+            running("2464");
+            verify("[ERROR] 비교하려는 두 숫자의 길이가 다릅니다. 입력값:4 정답:3");
+        }
+    }
+
+    @Test
+    void 숫자가_아닌_문자를_입력하면_에러() {
+        try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
+            mockRandoms.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
+                    .thenReturn(1, 2, 3);
+            running("abc");
+            verify("[ERROR] 공의 숫자는 1 이상 9 이하여야 합니다.");
+        }
+    }
+
     @AfterEach
     void tearDown() {
         outputStandard();
