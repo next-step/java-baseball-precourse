@@ -1,7 +1,14 @@
 package baseball;
 
+
+import service.BaseBallService;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO 숫자 야구 게임 구현
+
+        System.out.println("##### 야구게임을 시작합니다 #####");
+        BaseBallService bbService = new BaseBallService();
+        bbService.running();
+
     }
 }
