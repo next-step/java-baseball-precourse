@@ -5,6 +5,15 @@ public class Ball {
     private int pos;
     private int number;
 
+    public Ball() {
+
+    }
+
+    public Ball(int pos, int number) {
+        this.pos = pos;
+        this.number = number;
+    }
+
     public static boolean isBetween1And(int num) {
         if (1 <= num && num <= 9) {
             return true;
@@ -18,7 +27,7 @@ public class Ball {
         return pos;
     }
 
-    public int getNumber() {
+    public  int getNumber() {
         return number;
     }
 }
