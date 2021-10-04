@@ -32,12 +32,11 @@ public class BullsAndCows {
         }
     }
 
-    public void progressGame() {
+    private void progressGame() {
         boolean roundStatus = true;
         while (roundStatus) {
-            String receiveInput = inputView.receiveUserInput();
-            initCallUser(receiveInput);
-            match();
+            initUserNumber();
+            judge();
             outputView.printRoundResult(strike, ball);
             roundStatus = isRoundOver();
             resetStrikeAndBall();
@@ -49,8 +48,9 @@ public class BullsAndCows {
         return user.isGameStop(receiveUserRestart);
     }
 
-    private void initCallUser(String receiveInput) {
+    private void initUserNumber() {
         try {
+            String receiveInput = inputView.receiveUserInput();
             user.initNumber(receiveInput);
         } catch (InvalidUserInputException e) {
             System.out.println(e.getMessage());
@@ -66,7 +66,7 @@ public class BullsAndCows {
         return true;
     }
 
-    public void match() {
+    private void judge() {
         for (int i = 0; i < Const.GENERATE_NUMBER_SIZE; i++) {
             isStrike(i);
             isBall(i);
