@@ -19,15 +19,22 @@ public class Facilitator {
         return numbers;
     }
 
-    public List<Integer> splitNumbers(String numbersStr) throws NumberFormatException, IndexOutOfBoundsException {
+    public List<Integer> splitNumbers(String numbersStr) {
+        validation(numbersStr);
         List<Integer> numbers = new ArrayList<>();
         for(String numStr : numbersStr.split("")) {
             numbers.add(Integer.valueOf(numStr));
         }
-        if(numbers.size() > 3) {
+        return numbers;
+    }
+
+    private void validation(String numbersStr) {
+        if(!numbersStr.matches("[+-]?\\d*(\\.\\d+)?")) {
+            throw new NumberFormatException();
+        }
+        if(numbersStr.length() != 3) {
             throw new IndexOutOfBoundsException();
         }
-        return numbers;
     }
 
     public boolean isContinueGame(int select) {
