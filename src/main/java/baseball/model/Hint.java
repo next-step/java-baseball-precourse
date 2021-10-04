@@ -1,0 +1,53 @@
+package baseball.model;
+
+import java.util.Collections;
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.Objects;
+
+public class Hint {
+	public static final int DEFAULT_COUNT = 0;
+
+	private final Map<StrikeZone, Integer> values;
+
+	public Hint(Map<StrikeZone, Integer> values) {
+		this.values = Collections.unmodifiableMap(values);
+	}
+
+	public static Hint create() {
+		return new Hint(createDefaultStrikeZoneMap());
+	}
+
+	private static Map<StrikeZone, Integer> createDefaultStrikeZoneMap() {
+		Map<StrikeZone, Integer> values = new EnumMap<>(StrikeZone.class);
+		for (StrikeZone strikeZone : StrikeZone.values()) {
+			values.put(strikeZone, DEFAULT_COUNT);
+		}
+		return values;
+	}
+
+	public Hint hit(StrikeZone strikeZone) {
+		int count = values.getOrDefault(strikeZone, DEFAULT_COUNT);
+
+		Map<StrikeZone, Integer> copiedMap = new EnumMap<>(values);
+		copiedMap.put(strikeZone, ++count);
+		return new Hint(copiedMap);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		Hint hint = (Hint)o;
+		return Objects.equals(values, hint.values);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(values);
+	}
+}
