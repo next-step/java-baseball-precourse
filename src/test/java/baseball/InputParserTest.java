@@ -19,8 +19,8 @@ public class InputParserTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"5457", "796554645645", "-467562309", "abcj9hf", "abc", "99999"})
-    void 유효하지_않은_문자열이_전달될_경우_IllegalArgumentException이_발생한다(String input) {
-        Assertions.assertThatIllegalArgumentException().isThrownBy(() -> new InputParser().parse(input));
+    void 유효하지_않은_문자열이_전달될_경우_빈_정수형_리스트를_반환한다(String input) {
+        Assertions.assertThat(new InputParser().parse(input).size()).isEqualTo(0);
     }
 
     @ParameterizedTest
