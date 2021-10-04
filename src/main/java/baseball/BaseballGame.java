@@ -22,10 +22,10 @@ public class BaseballGame {
 		System.out.println("숫자를 입력해주세요.");
 		String swing = "";
 		boolean isSwingValid = false;
-		while (!isSwingValid == false) {
+		while (isSwingValid == false) {
 			swing = Console.readLine();
 			isSwingValid = swingValid(swing);
-			if (!isSwingValid == false) {
+			if (isSwingValid == false) {
 				System.out.println("[ERROR] 올바른 숫자를 다시 입력해주세요.");
 			}
 		}
