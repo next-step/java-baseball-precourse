@@ -6,4 +6,5 @@ public class Const {
     public static final int GENERATE_NUMBER_SIZE = 3;
     public static final String NUMBER_REGEX = "^[0-9]*$";
     public static final int RESTART_FLAG = 1;
+    public static final int ROUND_OVER_STRIKE_CONDITION = 3;
 }

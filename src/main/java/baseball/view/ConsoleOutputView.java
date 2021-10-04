@@ -10,6 +10,10 @@ public class ConsoleOutputView extends PrintView{
         printNothing(strike, ball);
     }
 
+    public void printRoundOver() {
+        super.printMessage(MessageEnum.ROUND_OVER_MESSAGE.getMessage());
+    }
+
     private void printStrike(int strike) {
         if (strike != 0) {
             super.printMessage(strike + MessageEnum.STRIKE.getMessage());
