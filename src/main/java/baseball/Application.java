@@ -27,7 +27,7 @@ public class Application {
                     if(isStruckOut) {
                         command.printGameClear();
                     }
-                } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                } catch (IllegalArgumentException e) {
                     System.out.println("[ERROR]");
                 }
             }

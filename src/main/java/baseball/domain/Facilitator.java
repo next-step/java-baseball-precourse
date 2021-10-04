@@ -29,11 +29,8 @@ public class Facilitator {
     }
 
     private void validation(String numbersStr) {
-        if(!numbersStr.matches("[+-]?\\d*(\\.\\d+)?")) {
-            throw new NumberFormatException();
-        }
-        if(numbersStr.length() != 3) {
-            throw new IndexOutOfBoundsException();
+        if(!numbersStr.matches("[+-]?\\d*(\\.\\d+)?") || numbersStr.length() != 3) {
+            throw new IllegalArgumentException();
         }
     }
 
