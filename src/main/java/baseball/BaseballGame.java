@@ -42,4 +42,46 @@ public class BaseballGame {
 		}
 		return true;
 	}
+
+	//게임 실행
+	public BaseBall run(List<Integer> ballList, List<Integer> swingList) {
+		BaseBall baseBall = new BaseBall();
+		for (int i = 0; i < ballList.size(); i++) {
+			int ball = ballList.get(i);
+			int swing = swingList.get(i);
+			if (ball == swing) {
+				baseBall.setStrike(baseBall.getStrike() + 1);
+				continue;
+			}
+			for (int j = 0; j < swingList.size(); j++) {
+				if (i != j) {
+					swing = swingList.get(j);
+					if (ball == swing) {
+						baseBall.setBall(baseBall.getBall() + 1);
+						break;
+					}
+				}
+			}
+		}
+		return baseBall;
+	}
+
+	public boolean result(BaseBall baseBall) {
+		String resultStr = "";
+		if (baseBall.getStrike() > 0) {
+			resultStr = String.format("%s스트라이크 ", baseBall.getStrike());
+		}
+		if (baseBall.getBall() > 0) {
+			resultStr += String.format("%s볼", baseBall.getBall());
+		}
+		if (baseBall.getBall() == 0 && baseBall.getStrike() == 0) {
+			resultStr = "낫싱";
+		}
+		System.out.println(resultStr);
+		if (baseBall.getStrike() == 3) {
+			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
+			return true;
+		}
+		return false;
+	}
 }
