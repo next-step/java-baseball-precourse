@@ -12,10 +12,10 @@ public class Baseball {
 
     public void startGame() {
         strike = 0; ball = 0; gameEndFlag = false;
-        List<Character> gameNumberList = new ArrayList<>(generateNumber());        System.out.println(gameNumberList);
+        List<Character> gameNumberList = generateNumber();
+        System.out.println("정답 확인 : " + gameNumberList);
         while(!gameEndFlag){
-            List<Character> inputNumberSet = new ArrayList<>(inputNumber());
-            String result = checkNumber(gameNumberList, inputNumberSet );
+            String result = checkNumber(gameNumberList, inputNumber() );
             System.out.println(result);
             endThisGame(result);
         }
@@ -23,28 +23,29 @@ public class Baseball {
     }
 
     //    컴퓨터는 1에서9까지 서로 다른 임의의 수 3개를 선택한다.
-    public Set<Character> generateNumber(){
+    public List<Character> generateNumber(){
         Set<Character> gameNumberSet = new LinkedHashSet<>();
         while(gameNumberSet.size() < 3) {
             gameNumberSet.add( Integer.toString(pickNumberInRange(1, 9)).charAt(0));
         }
-        return gameNumberSet;
+        return new ArrayList<>(gameNumberSet);
     }
 
     //    기본적으로1부터9까지서로다른수로이루어진3자리의수를맞추는게임이다.
     public List<Character> inputNumber(){
         boolean validInputNumberFlag = false;
-        List<Character> inputNumberList = null;
+        List<Character> inputNumberList = new ArrayList<>();
         while(!validInputNumberFlag){
             System.out.println("숫자를 입력해주세요 : ");
             String inputNumberString  = readLine();
 
-            inputNumberList = convertStringToSet(inputNumberString);
+            inputNumberList = convertStringToList(inputNumberString);
             validInputNumberFlag = validInputNumber(inputNumberString, inputNumberList);
         }
         return inputNumberList;
     }
-    public List<Character> convertStringToSet(String inputNumberString){
+
+    public List<Character> convertStringToList(String inputNumberString){
         List<Character> inputNumberList = new ArrayList<>();
         for (char ch :inputNumberString.toCharArray()) {
             inputNumberList.add(ch);

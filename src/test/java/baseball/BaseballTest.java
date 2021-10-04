@@ -7,6 +7,7 @@ import org.mockito.MockedStatic;
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -31,7 +32,7 @@ class BaseballTest {
                     .when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
                     .thenReturn(1, 3, 5);
             Set<Character> sourceNumberSet = new LinkedHashSet<Character>(Arrays.asList('1','3','5'));
-            Set<Character> gameNumberSet= baseball.generateNumber();
+            List<Character> gameNumberSet= baseball.generateNumber();
             assertEquals(sourceNumberSet, gameNumberSet);
         }
     }
