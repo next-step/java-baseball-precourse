@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Balls {
@@ -13,8 +14,15 @@ public class Balls {
         this.balls = balls;
     }
 
-    public static boolean composeOfDifferentNumbers() {
-        return true;
+    public boolean composeOfDifferentNumbers() {
+        HashMap<Integer, Integer> hashMap = new HashMap<>();
+        for(int i = 0 ; i < balls.size() ; i++) {
+            hashMap.put(balls.get(i).getNumber(),i);
+        }
+        if ( hashMap.size() == balls.size()) {
+            return  true;
+        }
+        return false;
     }
 
 
