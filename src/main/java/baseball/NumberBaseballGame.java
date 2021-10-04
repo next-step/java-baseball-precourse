@@ -6,14 +6,15 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 
 import nextstep.utils.Console;
-import nextstep.utils.Randoms;
 
 public class NumberBaseballGame {
-	private List<String> answers;
+	private Answers answers;
 	private int strike = 0;
 	private int ball = 0;
 
 	NumberBaseballGame() {
+		this.answers = new Answers();
+		answers.initAnswers();
 	}
 
 	/**
@@ -28,23 +29,6 @@ public class NumberBaseballGame {
 		String readLine = getInput();
 
 		checkInput(readLine);
-	}
-
-	/**
-	 * @author : yh22953905
-	 * @Date : 2021/10/03 1:20 오전
-	 * @Description : 임의의 수 선택
-	 * @History :
-	 *
-	 **/
-	void initAnswers() {
-		answers = Arrays.asList(
-			new String[] {
-				String.valueOf(Randoms.pickNumberInRange(1, 9))
-				, String.valueOf(Randoms.pickNumberInRange(1, 9))
-				, String.valueOf(Randoms.pickNumberInRange(1, 9))
-			}
-		);
 	}
 
 	/**
@@ -80,7 +64,7 @@ public class NumberBaseballGame {
 			String input = getInput();
 
 			if (Objects.equals(input, "1")) {
-				initAnswers();
+				answers.initAnswers();
 
 				start();
 			}
@@ -101,12 +85,12 @@ public class NumberBaseballGame {
 		for (int i = 0; i < inputs.size(); i++) {
 			if (inputs.size() != 3) break;
 
-			if (Objects.equals(inputs.get(i), answers.get(i))) {
+			if (answers.isStrike(inputs, i)) {
 				strike++;
 				continue;
 			}
 
-			if (answers.contains(inputs.get(i))) {
+			if (answers.isBall(inputs.get(i))) {
 				ball++;
 				continue;
 			}
