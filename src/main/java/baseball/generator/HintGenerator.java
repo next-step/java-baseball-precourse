@@ -18,6 +18,11 @@ public class HintGenerator {
         this.ball = 0;
     }
 
+    /**
+     * 스트라이크인지 볼인지 체크
+     * @return
+     */
+
     public boolean getHint() {
         for (int i = 0; i < 3; i++) {
             if (answer.contains(input.get(i))) {
@@ -31,6 +36,12 @@ public class HintGenerator {
         return printHint(strike, ball);
     }
 
+    /**
+     * 스트라이크인지 볼인지 정답인지 알려주기
+     * @param strike
+     * @param ball
+     * @return
+     */
     private boolean printHint(int strike, int ball) {
         if (strike == 3) {
             System.out.println(HintMessage.OnlyStrike(strike));

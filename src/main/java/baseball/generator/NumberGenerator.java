@@ -12,6 +12,10 @@ public class NumberGenerator {
     private NumberGenerator() {
     }
 
+    /**
+     * 랜덤으로 3자리 숫자 만들기
+     * @return
+     */
     public static List<Integer> makeThreeDigits() {
         List<Integer> answer = new ArrayList<>();
         while(answer.size() != 3) {
@@ -21,6 +25,11 @@ public class NumberGenerator {
         return answer;
     }
 
+    /**
+     * 리스트안에 숫자가 중복되는지 체크
+     * @param answer
+     * @param number
+     */
     private static void validateNumber(List<Integer> answer, int number) {
         if (!answer.contains(number)) {
             answer.add(number);
