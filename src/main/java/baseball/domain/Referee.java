@@ -5,6 +5,12 @@ import java.util.Objects;
 
 public class Referee {
 
+    public Count atBat(List<Integer> comNumbers, List<Integer> playerNumbers) {
+        int strike = getStrike(comNumbers, playerNumbers);
+        int ball = correctCount(comNumbers, playerNumbers) - strike;
+        return new Count(ball, strike);
+    }
+
     public int correctCount(List<Integer> comNumbers, List<Integer> playerNumbers) {
         int count = 0;
         for(Integer playerNum : playerNumbers) {
