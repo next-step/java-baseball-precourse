@@ -9,6 +9,9 @@
 ## 구현할 기능 목록
 ### 1. 컴퓨터 숫자 생성
 * 1부터 9까지의 서로 다른 3자리의 수로 이루어진 랜덤 값 추출 (nextstep.utils.Randoms의 pickNumberInRange() 활용)
+  * 1~9까지의 숫자 : 벗어날 경우 IllegalArgumentException
+  * 서로 다른 값 : 중복 허용하지 않는 Set 사용
+  * 3자리 : Set Size 3으로 지정
 
 ### 2. 플레이어 입력 값
 * 숫자 입력 요청 (nextstep.utils.Console의 readLine() 활용)

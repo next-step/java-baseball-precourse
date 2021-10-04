@@ -11,7 +11,7 @@ public class BallNumber {
 		this.number = number;
 	}
 
-	public static boolean validNo(int number){
+	private static boolean validNo(int number){
 		return number >= MIN_NUMBER && number <= MAX_NUMBER;
 	}
 
