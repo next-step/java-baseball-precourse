@@ -17,6 +17,14 @@ public class Player {
 		return new Player(new Numbers(values));
 	}
 
+	public boolean isContainsNumber(Number number) {
+		return values.isContains(number);
+	}
+
+	public int getNumberDigit(Number number) {
+		return values.getDigit(number);
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) {

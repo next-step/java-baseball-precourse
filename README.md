@@ -26,6 +26,8 @@
   - Player
     - 플레이어의 `Numbers`를 지닌 일급 클래스
     - 입력된 문자열을 통해 `Numbers`를 생성한다.
+    - isContainsNumber: 지정된 숫자가 존재하는지 확인한다.
+    - getNumberDigit: 지정된 숫자 자릿 수를 반환한다.
   - Computer
     - 컴퓨터의 `Numbers`를 지닌 일급 컬렉션
     - `NumbersGenerator` 구현체를 주입받아 인스턴스를 생성할 수 있다.
