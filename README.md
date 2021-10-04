@@ -13,12 +13,13 @@
   - 위치와 숫자를 가짐
   - 1 이상 9 이하의 숫자
   - 위치는 0 부터 시작
-- BallSatus : Ball 끼리 비교한 결과 상태
+- BallStatus : Ball 끼리 비교한 결과 상태
   - STRIKE: 위치와 숫자가 모두 같음
   - BALL: 위치는 다르지만 숫자는 같음
   - NONE: 위치도 숫자도 모두 다름
 - Balls : 정답을 의미하는 Ball 묶음
   - 사용자가 입력한 값과 비교해서 결과 (CompareResult) 를 반환
+  - 공 하나로 비교가능 (정답의 길이만큼 반복하면 전체 비교가 됨)
 - CompareResult
   - 결과는 스트라이크, 볼 갯수를 포함
 - BaseBallGame
