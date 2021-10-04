@@ -19,7 +19,7 @@ class NumberGeneratorTest {
     }
 
     @Test
-    public void testGenerateNumbers() {
+    void testGenerateNumbers() {
         int count = GameRule.PICK_NUMBER_COUNT;
         String numbers = numberGenerator.generateNumbers(count);
         assertThat(numbers.length() == count).isTrue();
