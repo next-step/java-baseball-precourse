@@ -11,7 +11,7 @@ public class Referee {
         return new Count(ball, strike);
     }
 
-    public int correctCount(List<Integer> comNumbers, List<Integer> playerNumbers) {
+    private int correctCount(List<Integer> comNumbers, List<Integer> playerNumbers) {
         int count = 0;
         for(Integer playerNum : playerNumbers) {
             if(comNumbers.contains(playerNum)) {
@@ -21,7 +21,7 @@ public class Referee {
         return count;
     }
 
-    public int getStrike(List<Integer> comNumbers, List<Integer> playerNumbers) {
+    private int getStrike(List<Integer> comNumbers, List<Integer> playerNumbers) {
         int count = 0;
         for(int i=0; i<3; i++) {
             if(Objects.equals(comNumbers.get(i), playerNumbers.get(i))) {
