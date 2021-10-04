@@ -27,7 +27,7 @@ public class BaseBallService {
 
         //야구 로직
         bbObj =  this.chkData(bbObj, verifyInfo.get("returnStr"));
-        System.out.println("[SYSTEM MESSAGE]  -  " + bbObj.getMsg());
+        System.out.println("[SYSTEM MESSAGE] ( 입력값: " + verifyInfo.get("returnStr")+" ) -"+ bbObj.getMsg());
 
         if("3".equals(bbObj.getStrike())){
             this.exit();
@@ -57,9 +57,8 @@ public class BaseBallService {
      */
     public String inputText(){
         //사용자 값 입력 받기
-        System.out.println("3자리 숫자를 입력하세요.");
+        System.out.println("3자리 숫자를 입력하세요.(모든 입력값에 대하여 숫자만 대상이됩니다)");
         String inputText = nextstep.utils.Console.readLine();
-        System.out.println("사용자 입력값 : " + inputText);
         return inputText;
     }
 
@@ -88,7 +87,7 @@ public class BaseBallService {
         inputStr = CustomUtils.extractNumber(inputStr);
         if(inputStr.length() != 3){
             result.put("reCode","1");
-            result.put("eMsg","세자리에 숫자를 입력하여 주세요.");
+            result.put("eMsg"," 올바른 유효 값이 아닙니다. 세자리에 숫자를 입력하여 주세요.");
             return result;
         }
 
@@ -131,7 +130,6 @@ public class BaseBallService {
 
         bbObj.setStrike(String.valueOf(strike));
         bbObj.setBall(String.valueOf(ball));
-
 
         String msg = strike+"스트라이크 "+ball +"볼";
         if(0 == strike && 0 == ball){
