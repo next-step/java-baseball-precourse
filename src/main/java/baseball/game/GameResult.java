@@ -23,13 +23,13 @@ public class GameResult {
     }
 
     private void calculateStrikeCount(String systemNumbers, String numbers) {
-        clearStrikeCount();
+        resetStrikeCount();
         for (int i = 0; i < systemNumbers.length(); i++) {
             plusCountIfIsStrike(systemNumbers.charAt(i), numbers.charAt(i));
         }
     }
 
-    private void clearStrikeCount() {
+    private void resetStrikeCount() {
         this.strikeCount = 0;
     }
 
@@ -41,13 +41,13 @@ public class GameResult {
 
 
     private void calculateBallCount(String systemNumber, String number) {
-        clearBallCount();
+        resetBallCount();
         for (int i = 0; i < systemNumber.length(); i++) {
             plusCountIfIsBall(systemNumber, i, number.charAt(i));
         }
     }
 
-    private void clearBallCount() {
+    private void resetBallCount() {
         this.ballCount = 0;
     }
 

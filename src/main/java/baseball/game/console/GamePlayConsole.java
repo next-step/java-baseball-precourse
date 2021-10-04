@@ -32,7 +32,7 @@ public class GamePlayConsole extends BaseConsole {
 
     @Override
     protected boolean isValidPolicy(String inputValue) {
-        return isNumber(inputValue) && inputValue.length() == inputLength && !containSameNumber(inputValue);
+        return isNumber(inputValue) && inputValue.length() == this.inputLength && !containSameNumber(inputValue);
     }
 
     @Override
@@ -49,13 +49,8 @@ public class GamePlayConsole extends BaseConsole {
             String number = String.valueOf(numbers.charAt(i));
             numberSet.add(number);
         }
-        return numberSet.size() != 3;
+        return numberSet.size() != this.inputLength;
     }
-
-    private boolean contain(String text, String value) {
-        return text.contains(value);
-    }
-
 
     private boolean isNumber(String value) {
         if(super.isBlank(value)) {

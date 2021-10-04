@@ -2,18 +2,11 @@ package baseball.game;
 
 import baseball.game.console.GameOverConsole;
 import baseball.game.console.GamePlayConsole;
+import baseball.game.constant.GameRule;
 import baseball.utils.Message;
 import baseball.utils.NumberGenerator;
 
 public class Game {
-    private static final int START_INCLUSIVE = 0;
-    private static final int END_INCLUSIVE = 9;
-
-    private static final int PICK_NUMBER_COUNT = 3;
-
-    private static final int PLAY_INPUT_NUMBER_LENGTH = 3;
-    private static final int OVER_INPUT_NUMBER_LENGTH = 1;
-
     private final NumberGenerator numberGenerator;
     private final GameResult gameResult;
 
@@ -23,10 +16,10 @@ public class Game {
     private String systemNumbers;
 
     public Game() {
-        numberGenerator = new NumberGenerator(START_INCLUSIVE, END_INCLUSIVE);
-        gameResult = new GameResult(PICK_NUMBER_COUNT);
-        gamePlayConsole = new GamePlayConsole(PLAY_INPUT_NUMBER_LENGTH);
-        gameOverConsole = new GameOverConsole(OVER_INPUT_NUMBER_LENGTH);
+        numberGenerator = new NumberGenerator(GameRule.START_INCLUSIVE, GameRule.END_INCLUSIVE);
+        gameResult = new GameResult(GameRule.PICK_NUMBER_COUNT);
+        gamePlayConsole = new GamePlayConsole(GameRule.PLAY_INPUT_NUMBER_LENGTH);
+        gameOverConsole = new GameOverConsole(GameRule.OVER_INPUT_NUMBER_LENGTH);
     }
 
     public void play() {
@@ -50,7 +43,7 @@ public class Game {
     }
 
     private void generateSystemNumberIfNull() {
-        this.systemNumbers = numberGenerator.generateNumbers(PICK_NUMBER_COUNT);
+        this.systemNumbers = numberGenerator.generateNumbers(GameRule.PICK_NUMBER_COUNT);
     }
 
 }

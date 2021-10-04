@@ -28,7 +28,7 @@ public class GameOverConsole extends BaseConsole {
 
     @Override
     protected boolean isValidPolicy(String inputValue) {
-        return isKey(inputValue) && inputValue.length() == inputLength;
+        return isKey(inputValue) && inputValue.length() == this.inputLength;
     }
 
     @Override
