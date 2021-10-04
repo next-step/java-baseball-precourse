@@ -36,7 +36,7 @@ public class Balls {
         return result;
     }
 
-    public BallStatus compareWith(Ball otherBall) {
+    private BallStatus compareWith(Ball otherBall) {
         BallStatus resultStatus = BallStatus.NONE;
 
         for (Ball ball : balls) {
