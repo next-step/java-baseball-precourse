@@ -25,3 +25,8 @@
 - BaseBallGame
   - 정답을 갖고 있는 상대방, Computer 와 같은 느낌
   - 사용자의 입력값을 정답과 비교해서 결과를 반환
+- RandomBallNumberGenerator
+  - 중복되지 않는 수로 만들어진 List 를 리턴하는 Util 클래스
+  - 단순하게 랜덤함수를 계속 써서 뽑으면 이론상 무한히 돌 수도 있기 때문에 별도로 만듬
+  - `AnswerSize` Enum 클래스를 사용해서 List 의 크기를 제한함
+    - 숫자 야구 게임은 보통 3개 또는 4개의 숫자로 함 
