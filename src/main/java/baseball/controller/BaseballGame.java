@@ -1,12 +1,20 @@
 package baseball.controller;
 
+import java.util.List;
+
+import baseball.util.RandomUtils;
 import baseball.util.ValidationUtils;
 import baseball.view.BaseBallView;
 
 public class BaseballGame {
 
 	public void play() {
+		final List<Integer> computerBalls = createComputerBalls(1, 9, 3);
 		final String input = solveInput();
+	}
+
+	private List<Integer> createComputerBalls(final int startInclusive, final int endInclusive, final int resultSize) {
+		return RandomUtils.generateNoDuplicateNumbers(startInclusive, endInclusive, resultSize);
 	}
 
 	private String solveInput() {
