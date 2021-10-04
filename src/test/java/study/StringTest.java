@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 @DisplayName("String 클래스에 대한 학습 테스트")
 public class StringTest {
@@ -61,5 +63,18 @@ public class StringTest {
                 () -> assertThat(result).isEqualTo("1,2")
         );
 
+    }
+
+    @ParameterizedTest(name = "위치 값이 {0} 일때, 기대한 문자 {1} 가 올바르게 반환되는지 확인")
+    @CsvSource(value = {"0:a", "1:b", "2:c"}, delimiter = ':')
+    void checkSpecificPositionalCharacter(Integer index, Character expectChar) {
+        // given // when
+        String offerStr = "abc";
+
+        // then
+        assertAll(
+                () -> assertThat(offerStr).isInstanceOf(String.class),
+                () -> assertThat(offerStr.charAt(index)).isEqualTo(expectChar)
+        );
     }
 }
