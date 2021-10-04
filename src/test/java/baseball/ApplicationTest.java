@@ -11,12 +11,12 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mockStatic;
 
 public class ApplicationTest extends NSTest {
-    @BeforeEach
+    //@BeforeEach
     void beforeEach() {
         super.setUp();
     }
 
-    @Test
+    //@Test
     void 낫싱() {
         try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
             mockRandoms
@@ -27,7 +27,7 @@ public class ApplicationTest extends NSTest {
         }
     }
 
-    @Test
+    //@Test
     void 게임종료_후_재시작() {
         try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
             mockRandoms.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
@@ -38,12 +38,12 @@ public class ApplicationTest extends NSTest {
         }
     }
 
-    @AfterEach
+    //@AfterEach
     void tearDown() {
         outputStandard();
     }
 
-    @Override
+    //@Override
     public void runMain() {
         Application.main(new String[]{});
     }

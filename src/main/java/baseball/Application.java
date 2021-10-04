@@ -1,8 +1,11 @@
 package baseball;
 
+import java.util.Scanner;
+
 public class Application {
     public static void main(String[] args) {
-Scanner sc=new Scanner(System.in);
+
+    	Scanner sc=new Scanner(System.in);
 	
 		int key_num=0;
 		int comp_value[]= {0,0,0};
@@ -77,5 +80,8 @@ Scanner sc=new Scanner(System.in);
 				}break;
 			}
 		}
+
+		
     }
+    
 }
