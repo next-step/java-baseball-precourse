@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import baseball.common.NumberOption;
 import baseball.exception.BaseballInputException;
 import baseball.exception.BaseballInputSizeException;
 import baseball.exception.BaseballInputZeroException;
@@ -9,22 +10,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseballNumber {
-    private static final int MAX_SIZE = 3;
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 9;
-    private static final int ZERO = 0;
-
-    private List<Integer> numbers;
+    private static List<Integer> numbers;
 
     public BaseballNumber() {
-        this.numbers = new ArrayList<>();
-        while (numbers.size() != MAX_SIZE) {
+        numbers = new ArrayList<>();
+        while (!NumberOption.MAX_SIZE.isEqualValue(numbers.size())) {
             pickRandomNumber();
         }
     }
 
     private void pickRandomNumber() {
-        int randomNumber = Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
+        int randomNumber = Randoms.pickNumberInRange(NumberOption.MIN_NUMBER.getValue(), NumberOption.MAX_NUMBER.getValue());
         if (numbers.contains(randomNumber)) {
             return;
         }
@@ -36,7 +32,7 @@ public class BaseballNumber {
     }
 
     public BaseballNumber(int inputNumber) throws BaseballInputException {
-        this.numbers = new ArrayList<>();
+        numbers = new ArrayList<>();
         inputBaseballNumber(inputNumber);
         checkValidate();
     }
@@ -56,13 +52,13 @@ public class BaseballNumber {
     }
 
     private void checkSizeValidate() throws BaseballInputSizeException {
-        if (numbers.size() != MAX_SIZE) {
+        if (!NumberOption.MAX_SIZE.isEqualValue(numbers.size())) {
             throw new BaseballInputSizeException("[ERROR]3자리가 아닙니다. 다시 입력하세요.");
         }
     }
 
     private void checkZeroValidate(int number) throws BaseballInputZeroException {
-        if (number == ZERO) {
+        if (NumberOption.ZERO.isEqualValue(number)) {
             throw new BaseballInputZeroException("[ERROR]입력값에 0이 있습니다. 다시 입력하세요.");
         }
     }
