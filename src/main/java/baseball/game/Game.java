@@ -34,9 +34,8 @@ public class Game {
     }
 
     private void over() {
-        final String RESTART_KEY = "1";
         String inputKey = gameOverConsole.getInputValue();
-        if(RESTART_KEY.equals(inputKey)) {
+        if(GameRule.RESTART_INPUT_KEY.equals(inputKey)) {
             play();
         }
     }
