@@ -1,7 +1,12 @@
 package baseball;
 
+import baseball.service.BullsAndCows;
+
 public class Application {
+
     public static void main(String[] args) {
-        // TODO 숫자 야구 게임 구현
+        BullsAndCows bullsAndCows = new BullsAndCows();
+        bullsAndCows.start();
     }
+
 }
