@@ -19,12 +19,16 @@ public class Application {
             List<Integer> comNumbers = facilitator.numbersGenerator();
             boolean isStruckOut = false;
             while(!isStruckOut) {
-                List<Integer> playerNumbers = facilitator.splitNumbers(command.askPlayerNumbers());
-                Count count = referee.atBat(comNumbers, playerNumbers);
-                command.printCount(count.getBall(), count.getStrike());
-                isStruckOut = referee.isStruckOut(count.getStrike());
-                if(isStruckOut) {
-                    command.printGameClear();
+                try {
+                    List<Integer> playerNumbers = facilitator.splitNumbers(command.askPlayerNumbers());
+                    Count count = referee.atBat(comNumbers, playerNumbers);
+                    command.printCount(count.getBall(), count.getStrike());
+                    isStruckOut = referee.isStruckOut(count.getStrike());
+                    if(isStruckOut) {
+                        command.printGameClear();
+                    }
+                } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                    System.out.println("[ERROR]");
                 }
             }
             gameContinue = facilitator.isContinueGame(command.askContinueGame());

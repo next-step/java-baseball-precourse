@@ -3,8 +3,6 @@ package baseball.view;
 import nextstep.utils.Console;
 
 public class Command {
-    private static final int START_GAME_NUM = 1;
-    private static final int END_GAME_NUM = 1;
 
     public String askPlayerNumbers(){
         System.out.print("숫자를 입력해주세요: ");

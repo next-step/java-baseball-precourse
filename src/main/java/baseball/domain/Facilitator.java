@@ -19,10 +19,13 @@ public class Facilitator {
         return numbers;
     }
 
-    public List<Integer> splitNumbers(String numbersStr) {
+    public List<Integer> splitNumbers(String numbersStr) throws NumberFormatException, IndexOutOfBoundsException {
         List<Integer> numbers = new ArrayList<>();
         for(String numStr : numbersStr.split("")) {
             numbers.add(Integer.valueOf(numStr));
+        }
+        if(numbers.size() > 3) {
+            throw new IndexOutOfBoundsException();
         }
         return numbers;
     }
