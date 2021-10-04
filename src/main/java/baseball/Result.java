@@ -3,9 +3,9 @@ package baseball;
 import nextstep.utils.Console;
 
 public class Result {
-    public static String noticeFinishMsg = "3개의 숫자를 모두 맞히셨습니다! 게임 끝";
+    public static String noticeFinishMsg = "3스트라이크\n3개의 숫자를 모두 맞히셨습니다! 게임 끝";
     public static String oneMoreGameMsg = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
-    public static String nothingMsg = "낫싱입니다.";
+    public static String nothingMsg = "낫싱";
     public static String gameFinishMsg = "게임이 종료되었습니다.";
     public String resultMsg = "";
 
