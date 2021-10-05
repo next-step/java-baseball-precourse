@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import nextstep.utils.Console;
 import nextstep.utils.Randoms;
 
 import java.util.HashSet;
@@ -16,6 +17,24 @@ public class Game {
     // 게임 시작
     public void start() {
         this.computerBalls = createThreeRandomBalls();
+
+        String input = getBalls();
+        System.out.println(input);
+    }
+
+    // 사용자 볼 입력받기
+    public String getBalls() {
+        System.out.print("숫자를 입력해주세요 : ");
+        return readNumber();
+    }
+
+    // 숫자만 입력받기
+    public String readNumber() {
+        String numbers = "init";
+        while(!ValidationUtils.checkIsNumber(numbers)) {
+            numbers = Console.readLine();
+        }
+        return numbers;
     }
 
     // 랜덤한 3개의 숫자 생성
