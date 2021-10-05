@@ -2,14 +2,14 @@ package baseball;
 
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 class RandomBaseBallGeneratorTest {
 
     @Test
-    void GeneratorTest() {
+    void GeneratorDuplicateTest() {
         BallNumberGenerator ballNumberGenerator = new RandomBaseBallGenerator();
-        for (int i = 0; i < 3; i++) {
-            System.out.print(ballNumberGenerator.generate().get(i));
-        }
 
+        assertThat(ballNumberGenerator.generate().size()).isEqualTo(ballNumberGenerator.generate().stream().distinct().count());
     }
 }
