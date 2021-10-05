@@ -1,7 +1,14 @@
 package baseball;
 
+import baseball.controller.BaseballGameFlowController;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO 숫자 야구 게임 구현
+        BaseballGameFlowController baseBallGameFlowController = new BaseballGameFlowController();
+
+        while(!baseBallGameFlowController.isFinished()){
+            baseBallGameFlowController.start();
+            baseBallGameFlowController.checkRestart();
+        }
     }
 }
