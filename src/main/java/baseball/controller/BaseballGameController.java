@@ -1,24 +1,27 @@
-package baseball;
+package baseball.controller;
 
-import baseball.controller.CountingController;
 import baseball.domain.Counting;
+import baseball.service.CountingService;
 import baseball.view.UserView;
 
-public class NumberBaseballGame {
+/*
+    숫자야구 게임 Controller
+ */
+public class BaseballGameController {
     private Boolean gameFinish;
     private Boolean newGame;
     private String userInput;
     private Counting counting;
 
-    private CountingController countingController;
+    private CountingService countingService;
     private UserView userView;
 
-    public void NumberBaseBallGame() {
+    public BaseballGameController() {
         this.gameFinish = false;
         this.newGame = true;
         this.userInput = "";
 
-        this.countingController = new CountingController();
+        this.countingService = new CountingService();
         this.counting = new Counting();
         this.userView = new UserView();
     }
@@ -36,7 +39,7 @@ public class NumberBaseballGame {
     }
 
     public void setAndCounting() {
-        if (userInput != "") {
+         if (!userInput.equals("")) {
             setCountingParams();
             countingStart();
             setAndPrintResult();
@@ -45,22 +48,22 @@ public class NumberBaseballGame {
 
     public void setCountingParams() {
         if (newGame) {
-            countingController.clearAnswerNumList();
-            countingController.makeAnswerNumList();
-            countingController.answerNumListToInt();
+            countingService.clearAnswerNumList();
+            countingService.makeAnswerNumList();
+            countingService.answerNumListToInt();
             setNewGame(false);
         }
-        countingController.clearInputNumList();
-        countingController.makeInputNumList(userInput);
+        countingService.clearInputNumList();
+        countingService.makeInputNumList(userInput);
     }
 
     public void countingStart() {
-        if (counting.isCorrectAnswer(userInput, countingController.answerNum)) {
+        if (counting.isCorrectAnswer(userInput, countingService.answerNum)) {
             askGameFinish();
         }
         counting.clearCnt();
-        counting.strikeCounting(countingController.answerNumList, countingController.inputNumList);
-        counting.ballCounting(countingController.answerNumList, countingController.inputNumList);
+        counting.strikeCounting(countingService.answerNumList, countingService.inputNumList);
+        counting.ballCounting(countingService.answerNumList, countingService.inputNumList);
     }
 
     public void setAndPrintResult() {
@@ -71,7 +74,7 @@ public class NumberBaseballGame {
     }
 
     public void askGameFinish() {
-        if (gameFinish = !userView.askOneMoreGame()) {
+        if (gameFinish = (!userView.askOneMoreGame())) {
             setNewGame(true);
             setGameFinish(true);
             return;

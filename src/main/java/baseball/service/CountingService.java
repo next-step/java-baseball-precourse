@@ -1,23 +1,23 @@
-package baseball.controller;
+package baseball.service;
 
 import nextstep.utils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CountingController {
+public class CountingService {
     public List<Integer> answerNumList;
     public List<Integer> inputNumList;
     public int answerNum;
 
-    public CountingController() {
+    public CountingService() {
         this.answerNumList = new ArrayList<>();
         this.inputNumList = new ArrayList<>();
         this.answerNum = 0;
     }
 
     public void makeAnswerNumList() {
-        int resultRandom = 0;
+        int resultRandom;
         while(answerNumList.size() < 3) {
             resultRandom = Randoms.pickNumberInRange(1, 9);
             addAnswerNumList(resultRandom);
