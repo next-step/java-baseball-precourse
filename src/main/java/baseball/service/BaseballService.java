@@ -14,9 +14,9 @@ public class BaseballService {
 	}
 
 	public int createAnswer() {
-		answer = Randoms.pickNumberInRange(100, 999);
+		answer = getRandomNumber();
 		while (NumberForBaseball.hasDuplicateDigits(answer)) {
-			answer = Randoms.pickNumberInRange(100, 999);
+			answer = getRandomNumber();
 		}
 		return answer;
 	}
@@ -39,6 +39,13 @@ public class BaseballService {
 		result = new HashMap<>();
 		result.put("ball", 0);
 		result.put("strike", 0);
+	}
+
+	private int getRandomNumber() {
+		int first = Randoms.pickNumberInRange(1, 9) * 100;
+		int second = Randoms.pickNumberInRange(0, 9) * 10;
+		int third = Randoms.pickNumberInRange(0, 9);
+		return first + second + third;
 	}
 
 	private void checkNumber(char inputNumber, int inputNumberIndex, int answerNumberIndex, char[] answerNumbers) {

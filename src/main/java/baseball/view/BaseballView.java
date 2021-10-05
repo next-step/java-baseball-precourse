@@ -19,7 +19,7 @@ public class BaseballView {
 			resultMessage += " ";
 		}
 		resultMessage += getBallMessage(result);
-		System.out.println(resultMessage.length() > 0 ? resultMessage : "4볼");
+		System.out.println(resultMessage.length() > 0 ? resultMessage : "낫싱");
 	}
 
 	public void showGameOverMessage() {
