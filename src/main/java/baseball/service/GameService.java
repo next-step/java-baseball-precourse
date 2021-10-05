@@ -1,30 +1,31 @@
 package baseball.service;
 
-import baseball.controller.InputController;
 import baseball.model.GameStatus;
-import baseball.model.RandomNumber;
-
-import java.util.List;
+import baseball.model.Numbers;
+import baseball.view.OutputView;
 
 public class GameService {
-
-    private final RandomNumber randomNumber;
-    private final GameStatus gameStatus;
-
-    public GameService(RandomNumber randomNumber, GameStatus gameStatus) {
-        this.randomNumber = randomNumber;
-        this.gameStatus = gameStatus;
-    }
+    private OutputView outputView;
+    private boolean isInning = true;
 
     public void playGame() {
-        List<Integer> baseballNumber = randomNumber.getGenerateNumber();
+        Numbers numbers = new Numbers();
+        while (isInning) {
+            numbers.generateNumber();
+            numbers.inputNumber();
+            isJudge(new GameStatus().isGameStatus(numbers));
+        }
+    }
 
-        while (true) {
-            List<Integer> inputNumber = new InputController().InputNumberFromUser();
-//            if (gameStatus.isGameStatus(baseballNumber, inputNumber)) {
-            if (false) {
-                break;
-            }
+    public void isJudge(GameStatus gameStatus) {
+        if (gameStatus.isWin()) {
+            outputView.displayWin();
+            isInning = false;
+        }
+
+        if (!gameStatus.isWin()) {
+            String gameResult = gameStatus.getResult();
+            outputView.displayResults(gameResult);
         }
     }
 

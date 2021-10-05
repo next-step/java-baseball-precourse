@@ -5,8 +5,7 @@ import nextstep.utils.Console;
 import java.util.Arrays;
 import java.util.List;
 
-public class Input {
-
+public class InputView {
     public List InputNumberFromUser() {
         System.out.println("숫자를 입력해주세요 : ");
         return Arrays.asList(Console.readLine().split(""));
