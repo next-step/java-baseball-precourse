@@ -32,16 +32,18 @@ class BallCountTest {
 	@DisplayName("볼 카운트의 개수가 3개가 아니면 예외발생")
 	@Test
 	void ball_count_size_exception() {
+		final String ERROR_MESSAGE = "볼 카운트의 개수는 3개여야 합니다.";
+
 		assertThatThrownBy(() -> BallCount.from(Collections.singletonList(STRIKE)))
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage("볼 카운트의 개수는 3개여야 합니다.");
+			.hasMessage(ERROR_MESSAGE);
 
 		assertThatThrownBy(() -> BallCount.from(Arrays.asList(STRIKE, STRIKE)))
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage("볼 카운트의 개수는 3개여야 합니다.");
+			.hasMessage(ERROR_MESSAGE);
 
 		assertThatThrownBy(() -> BallCount.from(Arrays.asList(STRIKE, STRIKE, BALL, NOTHING)))
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage("볼 카운트의 개수는 3개여야 합니다.");
+			.hasMessage(ERROR_MESSAGE);
 	}
 }
