@@ -1,8 +1,8 @@
-package baseball.model;
+package baseball.domain;
 
 import java.util.Objects;
 
-import baseball.functional.NumbersGenerator;
+import baseball.generator.NumbersGenerator;
 
 public class Computer {
 	private final Numbers values;

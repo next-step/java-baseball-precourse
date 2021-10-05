@@ -1,9 +1,9 @@
 package baseball.view;
 
+import baseball.domain.Player;
 import baseball.exception.DuplicateNumberException;
 import baseball.exception.InvalidNumberRangeException;
 import baseball.exception.InvalidNumbersSizeException;
-import baseball.model.Player;
 import nextstep.utils.Console;
 
 public final class InputView {

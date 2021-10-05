@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
-import baseball.model.Hint;
-import baseball.model.StrikeZone;
+import baseball.domain.Hint;
+import baseball.domain.StrikeZone;
 import baseball.utils.CollectionUtils;
 
 public final class ResultView {

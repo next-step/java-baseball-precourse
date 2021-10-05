@@ -1,10 +1,10 @@
-package baseball.functional;
+package baseball.generator;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 
-import baseball.model.Number;
-import baseball.model.Numbers;
+import baseball.domain.Number;
+import baseball.domain.Numbers;
 import nextstep.utils.Randoms;
 
 public class RandomNumbersGenerator implements NumbersGenerator {

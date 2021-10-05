@@ -1,9 +1,9 @@
 package baseball.service;
 
-import baseball.functional.NumbersGenerator;
-import baseball.model.Computer;
-import baseball.model.Hint;
-import baseball.model.Player;
+import baseball.domain.Computer;
+import baseball.domain.Hint;
+import baseball.domain.Player;
+import baseball.generator.NumbersGenerator;
 import baseball.view.InputView;
 import baseball.view.ResultView;
 

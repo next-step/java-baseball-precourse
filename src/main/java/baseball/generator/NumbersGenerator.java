@@ -1,6 +1,6 @@
-package baseball.functional;
+package baseball.generator;
 
-import baseball.model.Numbers;
+import baseball.domain.Numbers;
 
 public interface NumbersGenerator {
 	Numbers createNumbers();

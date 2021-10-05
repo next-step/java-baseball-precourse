@@ -9,8 +9,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
-import baseball.model.Numbers;
-import baseball.model.Player;
+import baseball.domain.Numbers;
+import baseball.domain.Player;
 import nextstep.utils.Console;
 
 class InputViewTest {

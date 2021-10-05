@@ -1,8 +1,8 @@
 package baseball;
 
-import baseball.functional.NumbersGenerator;
-import baseball.functional.RandomNumbersGenerator;
-import baseball.model.Computer;
+import baseball.domain.Computer;
+import baseball.generator.NumbersGenerator;
+import baseball.generator.RandomNumbersGenerator;
 import baseball.service.BaseBallGameService;
 
 public class Application {
