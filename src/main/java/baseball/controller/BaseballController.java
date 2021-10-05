@@ -1,9 +1,13 @@
 package baseball.controller;
 
+import java.util.List;
+
 import baseball.model.Baseball;
+import baseball.view.View;
 
 public class BaseballController {
 	private final Baseball model = Baseball.getInstance();
+	private final View view = View.getInstance();
 
 	private BaseballController() {
 	}
@@ -27,7 +31,11 @@ public class BaseballController {
 	}
 
 	private void process() {
+		List<Integer> input = requestInputNumbers();
+	}
 
+	private List<Integer> requestInputNumbers() {
+		return view.inputThreeNumbers();
 	}
 
 	private void end() {
