@@ -10,14 +10,15 @@ import baseball.domain.Strike;
 import baseball.domain.User;
 
 public class Checker {
-	private static final String INPUT_DELIMITER = "";
-	private static final int INPUT_MIN_SIZE = 3;
+	public static final String INPUT_DELIMITER = "";
+	public static final int INPUT_MIN_SIZE = 3;
+	public static final String RESTART_TRUE = "1";
+	public static final String RESTART_FALSE = "2";
 	private static final String STRIKE_MESSAGE = "%s스트라이크";
 	private static final String BALL_MESSAGE = " %s볼";
 	private static final String NOTHING_MESSAGE = "낫싱";
 	private static final String END_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 끝";
 	private static final String RESTART_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
-	private static final String RESTART_TRUE = "1";
 	private static Answers answers;
 	private Strike strike;
 	private Ball ball;
