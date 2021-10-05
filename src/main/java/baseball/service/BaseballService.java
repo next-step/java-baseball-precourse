@@ -10,11 +10,11 @@ public class BaseballService {
 	private HashMap<String, Integer> result;
 
 	public BaseballService() {
-		answer = Randoms.pickNumberInRange(100, 999);
 		initiateResult();
 	}
 
 	public int createAnswer() {
+		answer = Randoms.pickNumberInRange(100, 999);
 		while (NumberForBaseball.hasDuplicateDigits(answer)) {
 			answer = Randoms.pickNumberInRange(100, 999);
 		}
