@@ -22,16 +22,4 @@ public class InputParserTest {
     void 유효하지_않은_문자열이_전달될_경우_빈_정수형_리스트를_반환한다(String input) {
         Assertions.assertThat(new InputParser().parse(input).size()).isEqualTo(0);
     }
-
-    @ParameterizedTest
-    @CsvSource(value = {"1,1", "2,2", "3,3", "9,9"}, delimiter = ',')
-    void 유효한_문자가_전달될_경우_문자를_정수형으로_변환한다(String input, int expected){
-        Assertions.assertThat(new InputParser().parseInteger(input)).isEqualTo(expected);
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"abv", "d98", "0-9", "#df"})
-    void 유효한_문자가_전달될_경우_문자를_정수형으로_변환한다(String input){
-        Assertions.assertThatIllegalArgumentException().isThrownBy(() -> new InputParser().parseInteger(input));
-    }
 }

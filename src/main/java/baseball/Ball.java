@@ -1,16 +1,10 @@
 package baseball;
 
 public class Ball {
-    public static final String INVALID_BALL_NUMBER_MSG = "공의 번호는 " + GlobalVariables.MIN_BALL_NUMBER + "과 " + GlobalVariables.MAX_BALL_NUMBER + " 범위 내의 정수값이어야 합니다.";
-
     private int ballNumber;
     private int location;
 
     public Ball(int ballNumber, int location) {
-        if (ballNumber < GlobalVariables.MIN_BALL_NUMBER || ballNumber > GlobalVariables.MAX_BALL_NUMBER) {
-            throw new IllegalArgumentException(INVALID_BALL_NUMBER_MSG);
-        }
-
         this.ballNumber = ballNumber;
         this.location = location;
     }
