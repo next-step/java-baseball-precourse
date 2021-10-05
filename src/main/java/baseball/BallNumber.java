@@ -2,9 +2,11 @@ package baseball;
 
 import java.util.Objects;
 
+import static baseball.commonConstants.MAX_NUMBER;
+import static baseball.commonConstants.MIN_NUMBER;
+
 public class BallNumber {
-    private static final int MAX_NUMBER = 9;
-    private static final int MIN_NUMBER = 1;
+
     private int ballNumber;
 
     public BallNumber(int ballNumber) {

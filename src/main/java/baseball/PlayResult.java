@@ -32,21 +32,16 @@ public class PlayResult {
         return statusMap.get(Status.BALL);
     }
 
-    public int nothingCount() {
-        return statusMap.get(Status.NOTHING);
-    }
-
     public Map<Status, Integer> resultGame() {
         removeNothing();
         return Collections.unmodifiableMap(statusMap);
     }
 
     private void removeNothing() {
-        if (statusMap.get(Status.NOTHING) != 3) {
+        if (statusMap.get(Status.NOTHING) != null && statusMap.get(Status.NOTHING) != 3 ){
             statusMap.remove(Status.NOTHING);
         }
     }
-
 }
 
 

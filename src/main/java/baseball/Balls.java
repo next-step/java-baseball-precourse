@@ -9,10 +9,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static baseball.commonConstants.*;
+
 public class Balls {
 
-    public static final int COMMON_ZERO = 0;
-    public static final int COMMON_THREE = 3;
+
 
     private List<Ball> computerBalls = new ArrayList<>();
 
@@ -65,15 +66,15 @@ public class Balls {
     }
 
     private static void validBallNumber(String playerBallNumber) {
-        if (playerBallNumber.length() != 3) {
+        if (playerBallNumber.length() != COMMON_THREE) {
             throw new IllegalArgumentException("입력하신숫자는 3자리여야 됩니다.");
         }
     }
 
     private static LinkedHashSet<Integer> checkDuplicateNumber() {
         LinkedHashSet<Integer> ballNumbers = new LinkedHashSet<>();
-        while (ballNumbers.size() < 3) {
-            ballNumbers.add(Randoms.pickNumberInRange(1, 9));
+        while (ballNumbers.size() < COMMON_THREE) {
+            ballNumbers.add(Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER));
         }
         return ballNumbers;
     }
