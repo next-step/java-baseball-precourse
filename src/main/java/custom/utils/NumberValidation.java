@@ -18,7 +18,7 @@ public class NumberValidation {
 
     public static boolean containOnlyNumber(String numStr){
         if(!numStr.matches("^[1-9]+$")){
-            Message.printError("숫자가 아닌 문자가 포함되었습니다.");
+            Message.printError("0 또는 숫자가 아닌 문자가 포함되었습니다.");
             return false;
         }
         return true;
