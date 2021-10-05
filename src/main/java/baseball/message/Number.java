@@ -10,5 +10,8 @@ public interface Number {
     String RESTART_NUMBER = "1";
     String END_NUMBER = "2";
 
+    int MAX_COUNT = 3;
+    int MIN_COUNT = 0;
+
 
 }

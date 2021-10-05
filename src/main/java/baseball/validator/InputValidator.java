@@ -26,12 +26,12 @@ public class InputValidator {
      * @param input
      * @return
      */
-    public static String validateInput(String input) {
+    public static boolean validateInput(String input) {
         validateIsThreeDigits(input);
         validateIsNumberWithOutZero(input);
         validateDuplicateNumber(input);
 
-        return input;
+        return true;
     }
 
 

@@ -7,5 +7,4 @@ public interface TextMessage {
 
     String STRIKE = "스트라이크";
     String BALL = "볼";
-    String NOTHING = "낫싱";
 }

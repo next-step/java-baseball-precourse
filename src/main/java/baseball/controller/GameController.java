@@ -4,7 +4,6 @@ import baseball.generator.HintGenerator;
 import baseball.generator.InputGenerator;
 import baseball.generator.NumberGenerator;
 import baseball.message.Number;
-import baseball.message.error.ErrorCode;
 import baseball.message.text.TextMessage;
 import baseball.validator.InputValidator;
 import nextstep.utils.Console;
@@ -27,12 +26,29 @@ public class GameController {
      * @param answer
      */
     private void startGame(List<Integer> answer) {
-        while (true) {
-            final List<Integer> inputList = getInputNumber();
-            if (answerCheck(inputList, answer)) {
+        System.out.println(answer);
+        while(true){
+            final List<Integer> input = getInputNumber();
+            if (answerCheck(answer, input)){
                 break;
             }
         }
+    }
+
+
+    private List<Integer> getInputNumber() {
+        while (true) {
+            final String input = InputGenerator.inputThreeDigits();
+            if (!validateInputNumber(input)) {
+                continue;
+            }
+            return InputGenerator.convertToIntegerList(input);
+        }
+    }
+
+    private boolean answerCheck(List<Integer> answer, List<Integer> input) {
+        final HintGenerator hint = getHint(input, answer);
+        return hint.printHint();
     }
 
     /**
@@ -41,14 +57,13 @@ public class GameController {
      * 검증에 성공했을 시 문자열로 받은 3자리 숫자를 정수 리스트로 변환해서 반환
      * @return
      */
-    private List<Integer> getInputNumber() {
-        while (true) {
-            final String input = inputNumber();
-            if (isInputError(input)) {
-                System.out.println(input);
-                continue;
-            }
-            return InputGenerator.convertToIntegerList(input);
+    private boolean validateInputNumber(String input) {
+        try {
+            InputValidator.validateInput(input);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
         }
     }
 
@@ -60,14 +75,7 @@ public class GameController {
         return NumberGenerator.makeThreeDigits();
     }
 
-    /**
-     * 플레이어가 입력한 3자리수가 에러인지 체크
-     * @param input
-     * @return
-     */
-    private boolean isInputError(String input) {
-        return input.startsWith(ErrorCode.ERROR);
-    }
+
 
     /**
      * 플레이어가 입력한 3자리수가 정답인지 체크
@@ -75,16 +83,8 @@ public class GameController {
      * @param answer
      * @return
      */
-    private boolean answerCheck(List<Integer> input, List<Integer> answer) {
-        return HintGenerator.of(input, answer).getHint();
-    }
-
-    /**
-     * 플레이어가 3자리수를 입력한 후 검증하기
-     * @return
-     */
-    private String inputNumber() {
-        return InputValidator.validateInput(InputGenerator.inputThreeDigits());
+    private HintGenerator getHint(List<Integer> input, List<Integer> answer) {
+        return HintGenerator.getHint(input, answer);
     }
 
     /**
