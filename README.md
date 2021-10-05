@@ -8,6 +8,8 @@
   - `Number`는 1에서 9까지의 숫자만 가진다
 - Numbers
   - `Numbers`는 3자리의 서로 다른 `Number`를 가진다
+- Rule
+  - `Rule`은 `STRIKE`,`BALL`,`NOTHING`을 가진다
 - RandomGenerator
   - `RandomGenerator`는 서로 다른 3자리 숫자를 생성한다
 - Player
