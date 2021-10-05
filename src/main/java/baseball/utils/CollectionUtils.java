@@ -31,5 +31,15 @@ public final class CollectionUtils {
 	public static <T> List<T> listOf(T[] arrays) {
 		return new ArrayList<>(Arrays.asList(arrays));
 	}
+
+	public static String joining(List<String> list, String separator) {
+		StringBuilder sb = new StringBuilder();
+		for (String str : list) {
+			sb.append(str).append(separator);
+		}
+		int firstIndex = 0;
+		return sb.length() == firstIndex ? sb.toString()
+			: sb.substring(firstIndex, sb.length() - separator.length());
+	}
 }
 

@@ -77,4 +77,18 @@ class CollectionUtilsTest {
 			.hasSize(3)
 			.containsExactly(1, 2, 3);
 	}
+
+	@Test
+	@DisplayName("문자열 합치기 테스트")
+	void joining() {
+		// given
+		String separator = ", ";
+		List<String> list = Arrays.asList("hello", "java");
+
+		// when
+		String actual = CollectionUtils.joining(list, separator);
+
+		// then
+		assertThat(actual).isEqualTo("hello, java");
+	}
 }
