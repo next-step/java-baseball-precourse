@@ -2,10 +2,10 @@ package baseball;
 
 import java.util.List;
 
-public class Trial {
+public class PlayerState {
     private BallCollection ballCollection;
 
-    public Trial(List<Integer> ballNumbers) {
+    public PlayerState(List<Integer> ballNumbers) {
         this.ballCollection = new BallCollection();
 
         for (int i = 0; i < ballNumbers.size(); i++) {
@@ -13,11 +13,11 @@ public class Trial {
         }
     }
 
-    public PlayResult play(Trial trial) {
+    public PlayResult play(PlayerState playerState) {
         PlayResult playResult = new PlayResult();
 
         for (Ball myBall : this.ballCollection) {
-            playResult.add(trial.play(myBall));
+            playResult.add(playerState.play(myBall));
         }
 
         return playResult;

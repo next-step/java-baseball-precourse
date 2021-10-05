@@ -16,7 +16,7 @@ public class PlayGroundManager {
             playGround = new PlayGround();
         }
 
-        playGround.setComputerTrial(new Trial(new RandomInputGenerator().genRandomInts()));
+        playGround.setComputerTrial(new PlayerState(new RandomInputGenerator().genRandomInts()));
     }
 
     public static boolean proceedGame(String userInput) {
@@ -35,7 +35,7 @@ public class PlayGroundManager {
     private static boolean proceedGameInternal(ArrayList<Integer> inputBallNumbers) {
         if (inputBallNumbers.size() == 0) return true;
 
-        boolean isGameEnd = playGround.run(new Trial(inputBallNumbers));
+        boolean isGameEnd = playGround.run(new PlayerState(inputBallNumbers));
 
         return isGameEnd ? afterGameEnd() : true;
     }

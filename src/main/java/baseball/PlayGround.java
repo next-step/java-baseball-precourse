@@ -1,16 +1,16 @@
 package baseball;
 
 public class PlayGround {
-    private Trial computerTrial;
+    private PlayerState computerPlayerState;
     private PlayResult recentPlayResult;
 
-    public void setComputerTrial(Trial newComputerTrial) {
-        this.computerTrial = newComputerTrial;
+    public void setComputerTrial(PlayerState newComputerPlayerState) {
+        this.computerPlayerState = newComputerPlayerState;
         this.recentPlayResult = null;
     }
 
-    public boolean run(Trial userTrial) {
-        this.recentPlayResult = this.computerTrial.play(userTrial);
+    public boolean run(PlayerState userPlayerState) {
+        this.recentPlayResult = this.computerPlayerState.play(userPlayerState);
 
         System.out.println(this.recentPlayResult.toString());
 

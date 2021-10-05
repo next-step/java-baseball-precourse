@@ -7,12 +7,12 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
 
-public class TrialTest {
-    private Trial trial;
+public class PlayerStateTest {
+    private PlayerState playerState;
 
     @BeforeEach
     void setup() {
-        trial = new Trial(Arrays.asList(1, 2, 3));
+        playerState = new PlayerState(Arrays.asList(1, 2, 3));
     }
 
     @ParameterizedTest
@@ -21,7 +21,7 @@ public class TrialTest {
             int firstBallNum, int secondBallNum, int thirdBallNum,
             int expectStrikeCnt, int expectBallCnt, int expectNothingCnt) {
         Assertions
-                .assertThat(trial.play(new Trial(Arrays.asList(firstBallNum, secondBallNum, thirdBallNum))))
+                .assertThat(playerState.play(new PlayerState(Arrays.asList(firstBallNum, secondBallNum, thirdBallNum))))
                 .isEqualTo(new PlayResult(expectStrikeCnt, expectBallCnt, expectNothingCnt));
     }
 }
