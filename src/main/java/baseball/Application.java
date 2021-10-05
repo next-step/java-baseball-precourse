@@ -1,7 +1,10 @@
 package baseball;
 
+import baseball.view.BaseballGameView;
+
 public class Application {
-    public static void main(String[] args) {
-        // TODO 숫자 야구 게임 구현
-    }
+	public static void main(String[] args) {
+		BaseballGameView baseballGameView = new BaseballGameView();
+		baseballGameView.play();
+	}
 }
