@@ -1,8 +1,8 @@
 package baseball.controller;
 
-import baseball.domain.GameResult;
-import baseball.util.RandomUtils;
-import baseball.util.ValidationUtils;
+import baseball.model.GameResult;
+import baseball.utils.RandomUtils;
+import baseball.utils.ValidationUtils;
 import baseball.view.BaseBallView;
 
 public class BaseballGame {

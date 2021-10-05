@@ -8,8 +8,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import baseball.domain.Balls;
-import baseball.domain.GameResult;
+import baseball.model.Balls;
+import baseball.model.GameResult;
 
 class ComputerTest {
 

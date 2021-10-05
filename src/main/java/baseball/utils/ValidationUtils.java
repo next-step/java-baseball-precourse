@@ -1,4 +1,4 @@
-package baseball.util;
+package baseball.utils;
 
 /**
  * 숫자야구게임의 input이 되는 숫자로 된 String 을 검증하기 위한 Util 클래스이다.

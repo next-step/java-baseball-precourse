@@ -1,4 +1,4 @@
-package baseball.util;
+package baseball.utils;
 
 public class ConvertUtils {
 

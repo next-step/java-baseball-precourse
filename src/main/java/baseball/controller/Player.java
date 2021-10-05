@@ -1,8 +1,8 @@
 package baseball.controller;
 
-import baseball.domain.Balls;
-import baseball.domain.GameResult;
-import baseball.util.ParseUtils;
+import baseball.model.Balls;
+import baseball.model.GameResult;
+import baseball.utils.ParseUtils;
 
 public class Player {
 

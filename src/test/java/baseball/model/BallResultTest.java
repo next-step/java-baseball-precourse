@@ -1,4 +1,4 @@
-package baseball.domain;
+package baseball.model;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;

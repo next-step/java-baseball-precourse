@@ -2,8 +2,8 @@ package baseball.controller;
 
 import java.util.List;
 
-import baseball.domain.Balls;
-import baseball.domain.GameResult;
+import baseball.model.Balls;
+import baseball.model.GameResult;
 
 public class Computer {
 
