@@ -22,12 +22,20 @@ public class PickNumberMatchResultView {
         return strike;
     }
 
+    public int getBall() {
+        return ball;
+    }
+
     @Override
     public String toString() {
         StringBuilder matchResult = new StringBuilder();
 
         if (strike > 0) {
-            matchResult.append(strike + GameMessage.STRIKE.getMsg() + " ");
+            matchResult.append(strike + GameMessage.STRIKE.getMsg());
+        }
+
+        if (strike > 0 && ball > 0) {
+            matchResult.append(" ");
         }
 
         if (ball > 0) {
