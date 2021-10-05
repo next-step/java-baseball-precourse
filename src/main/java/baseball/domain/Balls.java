@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Balls {
 
-    private List<Ball> balls ;
+    private List<Ball> balls;
 
     public Balls() {
         balls = new ArrayList<>();
@@ -16,13 +16,20 @@ public class Balls {
         this.balls = balls;
     }
 
+    public void setBalls(List<Integer> ballsNumber) {
+        balls = new ArrayList<>();
+        for (int i = 0; i < ballsNumber.size(); i++) {
+            balls.add(new Ball(i + 1, ballsNumber.get(i)));
+        }
+    }
+
     public boolean composeOfDifferentNumbers() {
         HashMap<Integer, Integer> hashMap = new HashMap<>();
-        for(int i = 0 ; i < balls.size() ; i++) {
-            hashMap.put(balls.get(i).getNumber(),i);
+        for (int i = 0; i < balls.size(); i++) {
+            hashMap.put(balls.get(i).getNumber(), i);
         }
-        if ( hashMap.size() == balls.size()) {
-            return  true;
+        if (hashMap.size() == balls.size()) {
+            return true;
         }
         return false;
     }
@@ -35,8 +42,8 @@ public class Balls {
     @Override
     public String toString() {
         StringBuffer buf = new StringBuffer();
-        for(int i = 0 ; i < balls.size(); i++ ) {
-           buf.append(balls.get(i).getNumber());
+        for (int i = 0; i < balls.size(); i++) {
+            buf.append(balls.get(i).getNumber());
         }
         return buf.toString();
     }
