@@ -17,12 +17,21 @@ public class BaseballModel implements Model{
     }
 
     /**
-     * 랜덤한 번호를 생성한다
+     * 중복되지 않는 랜덤한 번호를 생성한다
      */
     public void generateRandomNumber(){
         this.randomNumber = new ArrayList<>(size);
-        for(int i=0; i<size; i++)
-            randomNumber.add(Randoms.pickNumberInRange(0, 9));
+        while (randomNumber.size() < size){
+            pickNumber();
+        }
+    }
+
+    private void pickNumber() {
+        int number = Randoms.pickNumberInRange(0, 9);
+        if( randomNumber.contains(number)){
+            return;
+        }
+        randomNumber.add(number);
     }
 
     public String getRandomNumber() {
