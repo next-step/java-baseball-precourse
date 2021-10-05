@@ -8,10 +8,14 @@ public class GameService {
     private OutputView outputView;
     private boolean isInning = true;
 
+    public GameService() {
+        this.outputView = new OutputView();
+    }
+
     public void playGame() {
         Numbers numbers = new Numbers();
+        numbers.generateNumber();
         while (isInning) {
-            numbers.generateNumber();
             numbers.inputNumber();
             isJudge(new GameStatus().isGameStatus(numbers));
         }

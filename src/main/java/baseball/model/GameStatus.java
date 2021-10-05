@@ -27,22 +27,22 @@ public class GameStatus {
         return this.strike == 0 && this.ball == 0;
     }
 
-    private void isCompare(Numbers numbers, int i, int value) {
+    private void isCompare(Numbers numbers, int i, Integer value) {
         if (isStrike(numbers.getUserInputNumber(), i, value)) {
-            isBall(value, numbers.getUserInputNumber());
+            isBall(numbers.getUserInputNumber(), value);
         }
     }
 
-    private boolean isStrike(List<Integer> inputNumber, int i, int value) {
-        if (inputNumber.get(i) == value) {
+    private boolean isStrike(List<Integer> userNumber, int i, Integer value) {
+        if (userNumber.get(i) == value) {
             strike++;
             return false;
         }
         return true;
     }
 
-    private void isBall(int value, List<Integer> inputNumber) {
-        if (inputNumber.contains(value)) {
+    private void isBall(List<Integer> userNumber, int value) {
+        if (userNumber.contains(value)) {
             ball++;
         }
     }

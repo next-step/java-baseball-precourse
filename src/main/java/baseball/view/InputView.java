@@ -6,9 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
-    public List InputNumberFromUser() {
-        System.out.println("숫자를 입력해주세요 : ");
-        return Arrays.asList(Console.readLine().split(""));
+    public String[] InputNumberFromUser() {
+        System.out.print("숫자를 입력해주세요 : ");
+        return Console.readLine().split("");
     }
 
     public String restartGameByPrompt() {

@@ -30,7 +30,11 @@ public class Numbers {
     }
 
     public void inputNumber() {
-        this.userInputNumber = new InputView().InputNumberFromUser();
+        String[] inputArr = new InputView().InputNumberFromUser();
+        userInputNumber = new ArrayList<>();
+        for (String s: inputArr) {
+            userInputNumber.add(Integer.valueOf(s));
+        }
     }
 
 }
