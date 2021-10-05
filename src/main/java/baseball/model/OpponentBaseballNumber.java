@@ -9,8 +9,6 @@ import baseball.model.ConstValue;
 
 public class OpponentBaseballNumber {
 
-	private static final int BASE_BALL_SIZE = 3;
-
 	private List<Integer> baseballNumbers;
 
 	public OpponentBaseballNumber(List<Integer> baseballNumbers) {
