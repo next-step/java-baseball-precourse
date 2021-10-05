@@ -18,7 +18,6 @@ public class BaseballService {
 		while (NumberForBaseball.hasDuplicateDigits(answer)) {
 			answer = Randoms.pickNumberInRange(100, 999);
 		}
-		System.out.println("정답: " + answer);
 		return answer;
 	}
 

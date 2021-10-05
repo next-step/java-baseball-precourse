@@ -8,49 +8,66 @@ import baseball.view.BaseballView;
 import nextstep.utils.Console;
 
 public class BaseballController {
-	private BaseballService baseballService;
-	private BaseballView baseballView;
-	private boolean gameOverFlag;
+	private BaseballService baseballService = new BaseballService();
+	private BaseballView baseballView = new BaseballView();
+	private boolean gameOverFlag = false;
 
 	public BaseballController() {
-		this.baseballService = new BaseballService();
-		this.baseballView = new BaseballView();
-		this.gameOverFlag = false;
 	}
 
 	public void startGame() {
-		while (this.gameOverFlag == false) {
-			String input = this.getValidInput(getThreeDigitNumberInput());
+		baseballService.createAnswer();
+		while (gameOverFlag == false) {
+			String input = getInputWithoutDuplicateDigits(getThreeDigitNumberInput());
 			HashMap<String, Integer> result = baseballService.returnResult(input);
 			baseballView.showResultMessage(result);
 			checkGameOver(result);
 		}
+		quitGame();
 	}
 
-	private String getValidInput(String input) {
+	private String getInputWithoutDuplicateDigits(String input) {
 		while (!baseballService.isValidInput(input)) {
-			this.baseballView.showErrorMessage();
-			input = this.getThreeDigitNumberInput();
+			baseballView.showNumberInputErrorMessage();
+			input = getThreeDigitNumberInput();
 		}
 		return input;
 	}
 
 	private String getThreeDigitNumberInput() {
-		this.baseballView.showRequestInputMessage();
+		baseballView.showRequestInputMessage();
 		String input = Console.readLine();
 		try {
-			this.baseballService.isValidInput(input);
+			baseballService.isValidInput(input);
 			return input;
 		} catch (NumberFormatException | NotThreeDigitNumberException e) {
-			this.baseballView.showErrorMessage();
-			return this.getThreeDigitNumberInput();
+			baseballView.showNumberInputErrorMessage();
+			return getThreeDigitNumberInput();
 		}
 	}
 
 	private void checkGameOver(HashMap<String, Integer> result) {
 		if (result.get("strike") == 3) {
-			this.baseballView.showGameOverMessage();
-			this.gameOverFlag = true;
+			baseballView.showGameOverMessage();
+			gameOverFlag = true;
 		}
+	}
+
+	private void quitGame() {
+		this.gameOverFlag = false;
+		String input = getValidGameOverInput();
+		if (input.equals("1")) {
+			startGame();
+		}
+		return;
+	}
+
+	private String getValidGameOverInput() {
+		String input = Console.readLine();
+		while (!input.equals("1") && !input.equals("2")) {
+			baseballView.showGameOverInputErrorMessage();
+			input = Console.readLine();
+		}
+		return input;
 	}
 }
