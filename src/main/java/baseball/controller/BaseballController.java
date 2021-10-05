@@ -55,10 +55,11 @@ public class BaseballController {
 	}
 
 	private void end() {
-
+		view.outputEnd();
 	}
 
 	private boolean isRestart() {
-		return false;
+		int input = view.inputRestartOrEndNumber();
+		return input == 1;
 	}
 }
