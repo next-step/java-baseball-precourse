@@ -6,6 +6,10 @@ import java.util.List;
 public class ValidateValue {
     public static final String ERROR_MSG = "[ERROR] 서로 다른 세 자리의 자를 입력해주세요 :)";
 
+    public ValidateValue() {
+
+    }
+
     public Boolean isNum(String input) {
         try {
             Integer.parseInt(input);
@@ -29,6 +33,7 @@ public class ValidateValue {
         tempNum = makeTmpNum(input, tempNum);
         if (tempNum.size() != 3) {
             makeException();
+            return false;
         }
         return true;
     }

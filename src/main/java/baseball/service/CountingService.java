@@ -1,19 +1,50 @@
 package baseball.service;
 
+import baseball.domain.Counting;
+import baseball.vo.GameResultVO;
 import nextstep.utils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class CountingService {
     public List<Integer> answerNumList;
     public List<Integer> inputNumList;
     public int answerNum;
 
+    private Counting counting;
+    private GameResultVO gameResultVO;
+
     public CountingService() {
         this.answerNumList = new ArrayList<>();
         this.inputNumList = new ArrayList<>();
         this.answerNum = 0;
+
+        this.counting = new Counting();
+        this.gameResultVO = new GameResultVO();
+    }
+
+    public Boolean setCountingParams(Boolean newGame, String userInput) {
+        if (newGame) {
+            clearAnswerNumList();
+            makeAnswerNumList();
+            answerNumListToInt();
+        }
+        clearInputNumList();
+        makeInputNumList(userInput);
+        return false;
+    }
+
+    public Boolean isCorrectAnswer(String userInput) {
+        return counting.isCorrectAnswer(userInput, answerNum);
+    }
+
+    public GameResultVO countingStart(String userInput) {
+        counting.clearCnt();
+        gameResultVO.setStrikeCnt(counting.strikeCounting(answerNumList, inputNumList));
+        gameResultVO.setBallCnt(counting.ballCounting(answerNumList, inputNumList));
+        return gameResultVO;
     }
 
     public void makeAnswerNumList() {

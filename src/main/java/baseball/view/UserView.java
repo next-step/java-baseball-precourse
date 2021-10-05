@@ -17,6 +17,13 @@ public class UserView {
         this.validationService = new ValidationService();
     }
 
+    public void setAndPrintResult(Boolean newGame, Integer ballCnt, Integer strikeCnt) {
+        if (!newGame) {
+            makeResultMsg(ballCnt, strikeCnt);
+            printResultMsg();
+        }
+    }
+
     public String askUser() {
         System.out.print(ASK_NUMBER_INPUT_MSG);
         String inputVal = Console.readLine();

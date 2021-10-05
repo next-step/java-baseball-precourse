@@ -3,6 +3,7 @@ package baseball.controller;
 import baseball.domain.Counting;
 import baseball.service.CountingService;
 import baseball.view.UserView;
+import baseball.vo.GameResultVO;
 
 /*
     숫자야구 게임 Controller
@@ -11,10 +12,11 @@ public class BaseballGameController {
     private Boolean gameFinish;
     private Boolean newGame;
     private String userInput;
-    private Counting counting;
 
     private CountingService countingService;
     private UserView userView;
+
+    private GameResultVO gameResultVO;
 
     public BaseballGameController() {
         this.gameFinish = false;
@@ -22,7 +24,6 @@ public class BaseballGameController {
         this.userInput = "";
 
         this.countingService = new CountingService();
-        this.counting = new Counting();
         this.userView = new UserView();
     }
 
@@ -40,37 +41,19 @@ public class BaseballGameController {
 
     public void setAndCounting() {
          if (!userInput.equals("")) {
-            setCountingParams();
-            countingStart();
-            setAndPrintResult();
+             boolean newGameResult = countingService.setCountingParams(newGame, userInput);
+             setNewGame(newGameResult);
+             countingStart();
+             userView.setAndPrintResult(newGame, gameResultVO.getBallCnt(), gameResultVO.getStrikeCnt());
         }
-    }
-
-    public void setCountingParams() {
-        if (newGame) {
-            countingService.clearAnswerNumList();
-            countingService.makeAnswerNumList();
-            countingService.answerNumListToInt();
-            setNewGame(false);
-        }
-        countingService.clearInputNumList();
-        countingService.makeInputNumList(userInput);
     }
 
     public void countingStart() {
-        if (counting.isCorrectAnswer(userInput, countingService.answerNum)) {
+        boolean isAnswer = countingService.isCorrectAnswer(userInput);
+        if (isAnswer) {
             askGameFinish();
         }
-        counting.clearCnt();
-        counting.strikeCounting(countingService.answerNumList, countingService.inputNumList);
-        counting.ballCounting(countingService.answerNumList, countingService.inputNumList);
-    }
-
-    public void setAndPrintResult() {
-        if (!newGame) {
-            userView.makeResultMsg(counting.ballCnt, counting.strikeCnt);
-            userView.printResultMsg();
-        }
+        gameResultVO = countingService.countingStart(userInput);
     }
 
     public void askGameFinish() {
