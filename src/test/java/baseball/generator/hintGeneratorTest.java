@@ -1,6 +1,5 @@
 package baseball.generator;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +18,7 @@ class HintGeneratorTest {
         List<Integer> input = 세자리수만들기(1,3,5);
         //when
         final HintGenerator hint = HintGenerator.of(input, answer);
-        hint.getHint();
+        hint.isAnswer();
         //then
         assertThat(hint.getStrike()).isEqualTo(3);
         assertThat(hint.getBall()).isEqualTo(0);
@@ -33,7 +32,7 @@ class HintGeneratorTest {
         List<Integer> input = 세자리수만들기(1,3,5);
         //when
         final HintGenerator hint = HintGenerator.of(input, answer);
-        hint.getHint();
+        hint.isAnswer();
         //then
         assertThat(hint.getStrike()).isEqualTo(1);
         assertThat(hint.getBall()).isEqualTo(2);
@@ -47,7 +46,7 @@ class HintGeneratorTest {
         List<Integer> input = 세자리수만들기(1,3,5);
         //when
         final HintGenerator hint = HintGenerator.of(input, answer);
-        hint.getHint();
+        hint.isAnswer();
         //then
         assertThat(hint.getStrike()).isEqualTo(0);
         assertThat(hint.getBall()).isEqualTo(3);
@@ -61,7 +60,7 @@ class HintGeneratorTest {
         List<Integer> input = 세자리수만들기(2,4,6);
         //when
         final HintGenerator hint = HintGenerator.of(input, answer);
-        hint.getHint();
+        hint.isAnswer();
         //then
         assertThat(hint.getStrike()).isEqualTo(0);
         assertThat(hint.getBall()).isEqualTo(0);

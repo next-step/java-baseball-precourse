@@ -32,7 +32,7 @@ public class HintGenerator {
      * @return
      */
 
-    public boolean getHint() {
+    public boolean isAnswer() {
         for (int i = 0; i < 3; i++) {
             if (answer.contains(input.get(i))) {
                 ball++;

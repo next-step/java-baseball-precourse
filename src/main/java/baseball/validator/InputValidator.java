@@ -1,5 +1,6 @@
 package baseball.validator;
 
+import baseball.exception.ValidationException;
 import baseball.message.error.ErrorCode;
 
 import java.util.HashSet;
@@ -25,15 +26,9 @@ public class InputValidator {
      * @return
      */
     public static String validateInput(String input) {
-        if (validateIsThreeDigits(input).startsWith("[ERROR]")) {
-            return validateIsThreeDigits(input);
-        }
-        if (validateIsNumberWithOutZero(input).startsWith("[ERROR]")) {
-            return validateIsNumberWithOutZero(input);
-        }
-        if (validateDuplicateNumber(input).startsWith("[ERROR]")) {
-            return validateDuplicateNumber(input);
-        }
+        validateIsThreeDigits(input);
+        validateIsNumberWithOutZero(input);
+        validateDuplicateNumber(input);
 
         return input;
     }
@@ -44,11 +39,10 @@ public class InputValidator {
      * @param input
      * @return
      */
-    private static String validateIsThreeDigits(String input) {
+    private static void validateIsThreeDigits(String input) {
         if (input.toCharArray().length != 3) {
-            return ErrorCode.VALIDATE_EXCEPTION_IS_NOT_THREE_DIGITS;
+            throw new ValidationException(ErrorCode.VALIDATE_EXCEPTION_IS_NOT_THREE_DIGITS);
         }
-        return input;
     }
 
     /**
@@ -56,11 +50,10 @@ public class InputValidator {
      * @param input
      * @return
      */
-    private static String validateIsNumberWithOutZero(String input) {
+    private static void validateIsNumberWithOutZero(String input) {
         if (!isNumber.matcher(input).matches()) {
-            return ErrorCode.VALIDATE_EXCEPTION_IS_NOT_NUMBER_OR_CONTAIN_ZERO;
+            throw new ValidationException(ErrorCode.VALIDATE_EXCEPTION_IS_NOT_NUMBER_OR_CONTAIN_ZERO);
         }
-        return input;
     }
 
     /**
@@ -68,15 +61,14 @@ public class InputValidator {
      * @param input
      * @return
      */
-    private static String validateDuplicateNumber(String input) {
+    private static void validateDuplicateNumber(String input) {
         final HashSet<Character> set = new HashSet<>();
         for (char aChar : input.toCharArray()) {
             set.add(aChar);
         }
         if (set.size() != 3) {
-            return ErrorCode.VALIDATE_EXCEPTION_IS_DUPLICATE;
+            throw new ValidationException(ErrorCode.VALIDATE_EXCEPTION_IS_DUPLICATE);
         }
-        return input;
     }
 
 
