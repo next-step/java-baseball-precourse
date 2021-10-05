@@ -21,4 +21,8 @@ public class OutputView {
         return NOTHING_MSG;
     }
 
+    public static void getOutPut(String str) {
+        System.out.println(str);
+    }
+
 }

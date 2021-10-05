@@ -7,9 +7,12 @@ import java.util.List;
 public class Balls {
 
     private List<Ball> balls;
+    private Result result;
+
 
     public Balls() {
         balls = new ArrayList<>();
+        result = new Result();
     }
 
     public Balls(List<Ball> balls) {
@@ -30,10 +33,14 @@ public class Balls {
 
 
     public String calculate(Balls targetBalls) {
-        Result result = new Result();
+        result = new Result();
         result = calculateStrike(result, targetBalls);
 
         return result.toString();
+    }
+
+    public Result getResult() {
+        return result;
     }
 
     private Result calculateBall(Result result, Ball targetBall) {
@@ -54,16 +61,7 @@ public class Balls {
 
 
 
-    public boolean composeOfDifferentNumbers() {
-        HashMap<Integer, Integer> hashMap = new HashMap<>();
-        for (int i = 0; i < balls.size(); i++) {
-            hashMap.put(balls.get(i).getNumber(), i);
-        }
-        if (hashMap.size() == balls.size()) {
-            return true;
-        }
-        return false;
-    }
+
 
 
     public int size() {
@@ -82,4 +80,5 @@ public class Balls {
     public int toInteger() {
         return Integer.parseInt(toString());
     }
+
 }

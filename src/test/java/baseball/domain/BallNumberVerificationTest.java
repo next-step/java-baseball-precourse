@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 
+import static baseball.common.varificatedNumber.composeOfDifferentNumbers;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 
@@ -41,8 +42,8 @@ public class BallNumberVerificationTest {
     @Test
     @DisplayName("지정한 3자리 숫자가 서로 다른 숫자인지 테스트")
     void composeOfDifferentNumbersTest() {
-        assertThat(testBalls.composeOfDifferentNumbers()).isTrue();
-        assertThat(errorBalls.composeOfDifferentNumbers()).isFalse();
+        assertThat(composeOfDifferentNumbers(testBalls)).isTrue();
+        assertThat(composeOfDifferentNumbers(errorBalls)).isFalse();
     }
 
 

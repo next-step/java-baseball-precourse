@@ -22,6 +22,10 @@ public class Computer {
         return answer.toInteger();
     }
 
+    public Balls getAnswer() {
+        return answer;
+    }
+
     public void generateBaseballNumber() {
         List<Integer> numbers = NumberGenerator.numberGenerate();
         answer = new Balls(settingAnswer(numbers));
