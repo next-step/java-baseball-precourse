@@ -63,4 +63,11 @@ public class BaseBallGameNumberComparator {
     private boolean isBall(String randomGenerated, String input, int index) {
         return (checkStrike(randomGenerated.charAt(index), input.charAt(index)) == 0) && randomGenerated.contains(String.valueOf(input.charAt(index)));
     }
+
+    public int[] getBaseBallGameResult(String randomGenerated, String input) {
+        int strikeCount = getStrikesCount(randomGenerated, input);
+        int ballCount = getBallsCount(randomGenerated, input);
+
+        return new int[]{strikeCount, ballCount};
+    }
 }

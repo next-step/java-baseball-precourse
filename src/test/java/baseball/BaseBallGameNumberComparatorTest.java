@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BaseBallGameNumberComparatorTest {
@@ -16,6 +17,18 @@ public class BaseBallGameNumberComparatorTest {
     void setUp() {
         baseBallGameNumberComparator = new BaseBallGameNumberComparator(BaseBallGame.DEFAULT_LENGTH);
     }
+
+    @Test
+    public void 결과_반환() {
+        assertArrayEquals(baseBallGameNumberComparator.getBaseBallGameResult("123", "123"), new int[]{3, 0});
+        assertArrayEquals(baseBallGameNumberComparator.getBaseBallGameResult("123", "132"), new int[]{1, 2});
+        assertArrayEquals(baseBallGameNumberComparator.getBaseBallGameResult("123", "159"), new int[]{1, 0});
+        assertArrayEquals(baseBallGameNumberComparator.getBaseBallGameResult("829", "129"), new int[]{2, 0});
+        assertArrayEquals(baseBallGameNumberComparator.getBaseBallGameResult("789", "897"), new int[]{0, 3});
+        assertArrayEquals(baseBallGameNumberComparator.getBaseBallGameResult("789", "197"), new int[]{0, 2});
+        assertArrayEquals(baseBallGameNumberComparator.getBaseBallGameResult("123", "456"), new int[]{0, 0});
+    }
+
 
     @Test
     public void 볼_3개() {
