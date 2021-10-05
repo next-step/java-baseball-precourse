@@ -15,10 +15,26 @@ public class BaseballController {
 	}
 
 	public void execute() {
-		start();
+		do {
+			start();
+			process();
+			end();
+		} while (isRestart());
 	}
 
 	private void start() {
 		model.initialize();
+	}
+
+	private void process() {
+
+	}
+
+	private void end() {
+
+	}
+
+	private boolean isRestart() {
+		return false;
 	}
 }
