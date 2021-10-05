@@ -11,7 +11,7 @@ public class Application {
 
         do{
             baseballGame.startGame();
-        }while (baseballGame.isEnd());
+        }while (!baseballGame.isEnd());
 
     }
 }
