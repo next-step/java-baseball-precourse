@@ -41,7 +41,6 @@ public class Game {
 			numberSet.add(Randoms.pickNumberInRange(MIN_RANGE, MAX_RANGE));
 		}
 		List<Integer> numbers = new ArrayList<>(numberSet);
-		System.out.println(numbers);
 		return numbers;
 	}
 
