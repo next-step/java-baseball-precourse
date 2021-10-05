@@ -1,6 +1,6 @@
 package baseball.utils;
 
-public class PickNumber {
+public class BaseballGameNumber {
 	public static final String SPACE = " ";
 	public static final String STRIKE = "스트라이크";
 	public static final String BALL = "볼";
@@ -72,7 +72,8 @@ public class PickNumber {
 
 		// 각 자리수의 숫자가 같은지 확인
 		for (int index = 1; index < 4; index++) {
-			if (PickNumber.getDigitNumber(pickNumber, index) == PickNumber.getDigitNumber(playerNumber, index)) {
+			if (BaseballGameNumber.getDigitNumber(pickNumber, index) == BaseballGameNumber.getDigitNumber(playerNumber,
+					index)) {
 				count++;
 			}
 		}
@@ -81,7 +82,7 @@ public class PickNumber {
 	}
 
 	public static Boolean checkBall(int pickNumber, int playerNumber, int pickDigit) {
-		int pickDigitNumber = PickNumber.getDigitNumber(pickNumber, pickDigit);
+		int pickDigitNumber = BaseballGameNumber.getDigitNumber(pickNumber, pickDigit);
 
 		for (int index = 0; index < 3; index++) {
 			int tempPlayerDigit = (index % 3) + 1;
@@ -90,7 +91,7 @@ public class PickNumber {
 				continue;
 			}
 
-			if (pickDigitNumber == PickNumber.getDigitNumber(playerNumber, tempPlayerDigit)) {
+			if (pickDigitNumber == BaseballGameNumber.getDigitNumber(playerNumber, tempPlayerDigit)) {
 				return true;
 			}
 		}
