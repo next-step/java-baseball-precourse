@@ -1,4 +1,4 @@
-package baseball;
+package baseball.domain;
 
 public class Ball implements Check {
 	private int ball;

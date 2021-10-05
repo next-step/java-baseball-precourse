@@ -1,4 +1,4 @@
-package baseball;
+package baseball.domain;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
@@ -20,13 +20,12 @@ class AnswersTest {
 	/**
 	 * @author : yh22953905
 	 * @Date : 2021/10/05 12:09 오전
-	 * @Description : {@link Answers#initAnswers()} 테스트
+	 * @Description : {@link Answers#init()} 테스트
 	 *
 	 **/
 	@Test
 	void 임의의_수_선택했을_때_사이즈는_3() {
-		Answers answers = new Answers();
-		answers.initAnswers();
+		Answers answers = Answers.init();
 
 		assertEquals(answers.getAnswers().size(), 3);
 	}
@@ -34,7 +33,7 @@ class AnswersTest {
 	/**
 	 * @author : yh22953905
 	 * @Date : 2021/10/05 12:09 오전
-	 * @Description : {@link Answers#initAnswers()} 테스트
+	 * @Description : {@link Answers#init()} 테스트
 	 *
 	 **/
 	@Test
@@ -43,8 +42,7 @@ class AnswersTest {
 			mockRandoms.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
 				.thenReturn(1, 1, 2, 2, 3);
 
-			Answers answers = new Answers();
-			answers.initAnswers();
+			Answers answers = Answers.init();
 
 			Set<String> answerSet = new HashSet<>(answers.getAnswers());
 			assertEquals(answerSet.size(), 3);
@@ -64,8 +62,7 @@ class AnswersTest {
 			mockRandoms.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
 				.thenReturn(1, 4, 5);
 
-			Answers answers = new Answers();
-			answers.initAnswers();
+			Answers answers = Answers.init();
 
 			assertEquals(answers.isStrike(Arrays.asList("1", "2", "3"), index), bool);
 		}
@@ -84,8 +81,7 @@ class AnswersTest {
 			mockRandoms.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
 				.thenReturn(1, 4, 5);
 
-			Answers answers = new Answers();
-			answers.initAnswers();
+			Answers answers = Answers.init();
 
 			assertEquals(answers.isBall(input), bool);
 		}

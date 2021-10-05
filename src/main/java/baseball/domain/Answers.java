@@ -1,17 +1,15 @@
-package baseball;
+package baseball.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 import nextstep.utils.Randoms;
 
 public class Answers {
-	private List<String> answers;
+	private static List<String> answers;
 
-	Answers() {
-		this.answers = new ArrayList<>();
+	private Answers() {
 	}
 
 	/**
@@ -20,7 +18,7 @@ public class Answers {
 	 * @Description : 단위 테스트를 위한 Getter 메소드
 	 *
 	 **/
-	List<String> getAnswers() {
+	public List<String> getAnswers() {
 		return answers;
 	}
 
@@ -30,8 +28,8 @@ public class Answers {
 	 * @Description : 임의의 수 선택
 	 *
 	 **/
-	void initAnswers() {
-		answers.clear();
+	public static Answers init() {
+		answers = new ArrayList<>();
 
 		while (answers.size() < 3) {
 			String pickedNumber = String.valueOf(Randoms.pickNumberInRange(1, 9));
@@ -40,6 +38,8 @@ public class Answers {
 				answers.add(pickedNumber);
 			}
 		}
+
+		return new Answers();
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class Answers {
 	 * @Description : 스트라이크 판단
 	 *
 	 **/
-	boolean isStrike(List<String> inputs, int index) {
+	public boolean isStrike(List<String> inputs, int index) {
 		return Objects.equals(inputs.get(index), answers.get(index));
 	}
 
@@ -58,7 +58,7 @@ public class Answers {
 	 * @Description : 볼 판단
 	 *
 	 **/
-	boolean isBall(String input) {
+	public boolean isBall(String input) {
 		return answers.contains(input);
 	}
 }

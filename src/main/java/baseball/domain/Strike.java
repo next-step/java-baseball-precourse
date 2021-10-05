@@ -1,4 +1,4 @@
-package baseball;
+package baseball.domain;
 
 public class Strike implements Check {
 	private static int strike;
