@@ -25,7 +25,7 @@ public class NumberBaseballGame {
 	public boolean start() {
 		System.out.print(ENTER_NUMBERS_MESSAGE);
 
-		String readLine = User.getInput();
+		String readLine = User.getNumberInput();
 
 		return checker.checkInput(readLine);
 	}

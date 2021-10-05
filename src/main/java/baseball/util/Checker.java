@@ -106,7 +106,7 @@ public class Checker {
 			System.out.println(END_MESSAGE);
 			System.out.println(RESTART_MESSAGE);
 
-			String input = User.getInput();
+			String input = User.getRestartInput();
 
 			if (Objects.equals(input, RESTART_TRUE)) {
 				answers.init();
