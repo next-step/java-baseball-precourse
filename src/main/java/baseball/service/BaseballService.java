@@ -10,15 +10,16 @@ public class BaseballService {
 	private HashMap<String, Integer> result;
 
 	public BaseballService() {
-		this.answer = Randoms.pickNumberInRange(100, 999);
+		answer = Randoms.pickNumberInRange(100, 999);
 		initiateResult();
 	}
 
 	public int createAnswer() {
-		while (NumberForBaseball.hasDuplicateDigits(this.answer)) {
-			this.answer = Randoms.pickNumberInRange(100, 999);
+		while (NumberForBaseball.hasDuplicateDigits(answer)) {
+			answer = Randoms.pickNumberInRange(100, 999);
 		}
-		return this.answer;
+		System.out.println("정답: " + answer);
+		return answer;
 	}
 
 	public boolean isValidInput(String input) {
@@ -28,17 +29,17 @@ public class BaseballService {
 	public HashMap<String, Integer> returnResult(String input) {
 		initiateResult();
 		char[] inputNumbers = NumberForBaseball.getDigitsArray(Integer.parseInt(input));
-		char[] answerNumbers = NumberForBaseball.getDigitsArray(this.answer);
+		char[] answerNumbers = NumberForBaseball.getDigitsArray(answer);
 		for (int i = 0; i < NumberForBaseball.NUMBER_OF_DIGITS_FOR_BASEBALL; i++) {
 			checkNumber(inputNumbers[i], i, 0, answerNumbers);
 		}
-		return this.result;
+		return result;
 	}
 
 	private void initiateResult() {
-		this.result = new HashMap<>();
-		this.result.put("ball", 0);
-		this.result.put("strike", 0);
+		result = new HashMap<>();
+		result.put("ball", 0);
+		result.put("strike", 0);
 	}
 
 	private void checkNumber(char inputNumber, int inputNumberIndex, int answerNumberIndex, char[] answerNumbers) {
@@ -54,9 +55,9 @@ public class BaseballService {
 
 	private void checkBallOrStrike(char inputNumber, int index, char[] answerNumbers) {
 		if (inputNumber == answerNumbers[index]) {
-			this.result.put("strike", this.result.get("strike") + 1);
+			result.put("strike", result.get("strike") + 1);
 			return;
 		}
-		this.result.put("ball", this.result.get("ball") + 1);
+		result.put("ball", result.get("ball") + 1);
 	}
 }
