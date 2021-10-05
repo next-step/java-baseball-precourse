@@ -28,4 +28,11 @@ public class BallPosition {
     public int hashCode() {
         return Objects.hash(ballPosition);
     }
+
+    @Override
+    public String toString() {
+        return "BallPosition{" +
+                "ballPosition=" + ballPosition +
+                '}';
+    }
 }

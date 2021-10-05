@@ -46,4 +46,12 @@ public class Ball {
     public int hashCode() {
         return Objects.hash(ballPosition, ballNumber);
     }
+
+    @Override
+    public String toString() {
+        return "Ball{" +
+                "ballPosition=" + ballPosition +
+                ", ballNumber=" + ballNumber +
+                '}';
+    }
 }
