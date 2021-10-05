@@ -34,17 +34,20 @@
     - getHintFromPlayerNumbers: 플레이어의  `Number`를 비교하여, `Hint`을 반환한다.
   - NumbersGenerator
       - `Numbers`를 생성할 Functional 인터페이스
-      - `Computer` 테스트 코드에서 지정된 세 자리의 숫자를 받을 수 있도록 구성 
+      - `Computer` 테스트 코드에서 지정된 세 자리의 숫자를 받을 수 있도록 구성
 - Service
   - GameService
     - 게임 플레이어의 숫자를 판별하여 Hit를 반환하는 서비스 클래스
     - `nextstep.utils.Randoms.pickNumberInRange()`를 통해 `Computer`를 생성한다.
     - getHintOf(Player) 플레이어의 값을 비교하여 `Hint`를 반환한다.
 - View
-  - InputView: 게임 입력 입력 값 클래스
-    - `nextstep.utils.Console.readLine()`를 통해 값을 입력 받는다.
-  - ResultView: 게임 결과 값 클래스
-    - `Hint`의 `StrikeZone`의 count 값을 통해 결과 값을 출력한다.
+    - InputView: 게임 입력 입력 값 클래스
+        - `nextstep.utils.Console.readLine()`를 통해 값을 입력 받는다.
+    - ResultView: 게임 결과 값 클래스
+        - `Hint`의 `StrikeZone`의 count 값을 통해 결과 값을 출력한다.
+        - GameConsoleCommand: 숫자 야구 게임의 새로운 게임을 시작할지, 게임을 종료시킬지의 커멘드를 정의한 이넘 클래스
+            - RESTART_GAME("1"): 새로운 게임 시작
+            - END_GAME("2"): 게임 종료
 
 ## 2. 게임 방식
 
