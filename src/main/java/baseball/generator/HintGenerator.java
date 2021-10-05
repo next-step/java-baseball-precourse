@@ -1,5 +1,6 @@
 package baseball.generator;
 
+import baseball.message.Message;
 import baseball.message.Number;
 import baseball.message.hint.HintMessage;
 
@@ -7,8 +8,8 @@ import java.util.List;
 
 public class HintGenerator {
 
-    private int strike;
-    private int ball;
+    private final int strike;
+    private final int ball;
 
     public HintGenerator(int strike, int ball) {
         this.strike = strike;
@@ -42,23 +43,23 @@ public class HintGenerator {
      */
     public boolean printHint() {
         if (strike == Number.MAX_COUNT) {
-            System.out.println(HintMessage.OnlyStrike(strike));
-            System.out.println(HintMessage.ANSWER);
+            Message.Print(HintMessage.OnlyStrike(strike));
+            Message.Print(HintMessage.ANSWER);
             return true;
         }
         if (strike == Number.MIN_COUNT && ball == Number.MIN_COUNT) {
-            System.out.println(HintMessage.NOTHING);
+            Message.Print(HintMessage.NOTHING);
             return false;
         }
         if (strike != Number.MIN_COUNT && ball == Number.MIN_COUNT) {
-            System.out.println(HintMessage.OnlyStrike(strike));
+            Message.Print(HintMessage.OnlyStrike(strike));
             return false;
         }
         if (strike == Number.MIN_COUNT) {
-            System.out.println(HintMessage.OnlyBall(ball));
+            Message.Print(HintMessage.OnlyBall(ball));
             return false;
         }
-        System.out.println(HintMessage.StrikeAndBall(strike, ball));
+        Message.Print(HintMessage.StrikeAndBall(strike, ball));
         return false;
     }
 
@@ -66,6 +67,5 @@ public class HintGenerator {
     public static HintGenerator of(int strike, int ball) {
         return new HintGenerator(strike, ball);
     }
-
 
 }

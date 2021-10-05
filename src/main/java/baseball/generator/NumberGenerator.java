@@ -1,5 +1,6 @@
 package baseball.generator;
 
+import baseball.message.Number;
 import nextstep.utils.Randoms;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class NumberGenerator {
     public static List<Integer> makeThreeDigits() {
         List<Integer> answer = new ArrayList<>();
         while(answer.size() != 3) {
-            final int number = Randoms.pickNumberInRange(1, 9);
+            final int number = Randoms.pickNumberInRange(Number.RANDOM_MIN_VALUE, Number.RANDOM_MAX_VALUE);
             validateNumber(answer, number);
         }
         return answer;

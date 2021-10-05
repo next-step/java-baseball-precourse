@@ -1,5 +1,6 @@
 package baseball.generator;
 
+import baseball.message.Message;
 import baseball.message.text.TextMessage;
 import nextstep.utils.Console;
 
@@ -16,7 +17,7 @@ public class InputGenerator {
      * @return
      */
     public static String inputThreeDigits() {
-        System.out.print(TextMessage.START);
+        Message.Print(TextMessage.START);
         return Console.readLine();
     }
 

@@ -3,6 +3,7 @@ package baseball.controller;
 import baseball.generator.HintGenerator;
 import baseball.generator.InputGenerator;
 import baseball.generator.NumberGenerator;
+import baseball.message.Message;
 import baseball.message.Number;
 import baseball.message.text.TextMessage;
 import baseball.validator.InputValidator;
@@ -35,7 +36,12 @@ public class GameController {
         }
     }
 
-
+    /**
+     * 플레이어에게 3자리 숫자를 입력받고 검증한다음
+     * 검증에 성공하면
+     * 입력받은 문자열을 정수 리스트로 반환
+     * @return
+     */
     private List<Integer> getInputNumber() {
         while (true) {
             final String input = InputGenerator.inputThreeDigits();
@@ -46,6 +52,12 @@ public class GameController {
         }
     }
 
+    /**
+     * 플레이어가 입력한 3자리 숫자가 정답인지 체크
+     * @param answer
+     * @param input
+     * @return
+     */
     private boolean answerCheck(List<Integer> answer, List<Integer> input) {
         final HintGenerator hint = getHint(input, answer);
         return hint.printHint();
@@ -62,7 +74,7 @@ public class GameController {
             InputValidator.validateInput(input);
             return true;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            Message.Print(e.getMessage());
             return false;
         }
     }
@@ -93,7 +105,7 @@ public class GameController {
      */
     private boolean endGame() {
         while (true) {
-            System.out.print(TextMessage.CONTINUE_OR_END);
+            Message.Print(TextMessage.CONTINUE_OR_END);
             final String kb = Console.readLine();
             if (Number.RESTART_NUMBER.equals(kb)) {
                 return false;

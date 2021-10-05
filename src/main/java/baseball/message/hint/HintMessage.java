@@ -19,4 +19,6 @@ public class HintMessage {
     public static String StrikeAndBall(int strike, int ball) {
         return strike + TextMessage.STRIKE + " " + ball + TextMessage.BALL;
     }
+
+
 }
