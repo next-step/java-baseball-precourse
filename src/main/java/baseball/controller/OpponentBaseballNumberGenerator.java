@@ -9,7 +9,7 @@ import nextstep.utils.Randoms;
 
 public class OpponentBaseballNumberGenerator {
 
-	public List<Integer> generateOpponentBaseBallNumber() {
+	public static List<Integer> generateOpponentBaseBallNumber() {
 		HashSet<Integer> opponentBaseballNumbers = new HashSet<>();
 
 		while(opponentBaseballNumbers.size() < ConstValue.BASEBALL_SIZE) {
