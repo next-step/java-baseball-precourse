@@ -127,6 +127,6 @@ public class PickNumber {
 			resultValue = NOTING;
 		}
 
-		return resultValue;
+		return resultValue.trim();
 	}
 }
