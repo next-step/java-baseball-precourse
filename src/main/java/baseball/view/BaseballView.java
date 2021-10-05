@@ -22,7 +22,7 @@ public class BaseballView {
 			resultMessage += " ";
 		}
 		resultMessage += getBallMessage(result);
-		System.out.println(resultMessage);
+		System.out.println(resultMessage.length() > 0 ? resultMessage : "4볼");
 	}
 
 	public void showGameOverMessage() {
