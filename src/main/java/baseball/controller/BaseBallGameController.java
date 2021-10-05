@@ -1,4 +1,4 @@
-package baseball.service;
+package baseball.controller;
 
 import baseball.domain.Computer;
 import baseball.domain.Hint;
@@ -7,35 +7,40 @@ import baseball.generator.NumbersGenerator;
 import baseball.view.InputView;
 import baseball.view.ResultView;
 
-public class BaseBallGameService {
+public class BaseBallGameController {
 	private final NumbersGenerator numbersGenerator;
 
-	public BaseBallGameService(NumbersGenerator numbersGenerator) {
+	private BaseBallGameController(NumbersGenerator numbersGenerator) {
 		this.numbersGenerator = numbersGenerator;
 	}
 
-	public void startGame(Computer computer) {
-		Hint hint = Hint.create();
+	public static BaseBallGameController create(NumbersGenerator numbersGenerator) {
+		return new BaseBallGameController(numbersGenerator);
+	}
 
-		while (!isEndGame(hint)) {
+	public void start() {
+		Computer computer = Computer.create(numbersGenerator);
+		Hint hint;
+		do {
 			Player player = InputView.getPlayer();
 			hint = computer.getHintFromPlayerNumbers(player);
 
 			ResultView.print(hint);
-		}
+		} while (!isEndGame(hint));
+
 		attemptRestartGame();
-	}
-
-	private void attemptRestartGame() {
-		if (InputView.isRestartGame()) {
-			startGame(Computer.create(numbersGenerator));
-			return;
-		}
-
-		ResultView.printGameOverMessage();
 	}
 
 	private boolean isEndGame(Hint hint) {
 		return hint.isStrikeOut();
+	}
+
+	private void attemptRestartGame() {
+		if (InputView.isRestartGame()) {
+			start();
+			return;
+		}
+
+		ResultView.printGameOverMessage();
 	}
 }
