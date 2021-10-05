@@ -6,7 +6,6 @@ public class Referee {
 
     public void setRandomNumber(String randomNumber) {
         answer = randomNumber;
-        System.out.println("answer is: " + answer);
     }
     public int checkStrike(String in) {
         int result = 0;

@@ -6,13 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RefereeTest extends NSTest {
+public class RefereeTest {
     Referee referee = new Referee();
-
-    @BeforeEach
-    void beforeEach() {
-        super.setUp();
-    }
 
     @Test
     void 스트라이크() {
@@ -40,8 +35,4 @@ public class RefereeTest extends NSTest {
         assertThat(referee.checkBall("231")).isEqualTo(3);
     }
 
-    @Override
-    public void runMain() {
-        Application.main(new String[]{});
-    }
 }

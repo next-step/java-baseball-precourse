@@ -8,7 +8,6 @@ import java.util.Map;
 public class Controller {
     private Map<Enum<GameState>, Runnable> map;
     GameEvent event;
-    Console console;
     Referee referee;
     PrintGame out;
     UserInput in;
