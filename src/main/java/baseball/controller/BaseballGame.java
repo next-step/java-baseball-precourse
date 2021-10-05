@@ -55,4 +55,22 @@ public class BaseballGame {
 	private void writeOutput(String resultMsg) {
 		BaseBallView.printResult(resultMsg);
 	}
+
+	/**
+	 * 게임을 새로 시작할지에 대한 여부를 판단한다.
+	 *
+	 * @return 게임 재시작여부
+	 */
+	public boolean replay() {
+		final ExitStatus exitStatus = ExitStatus.from(BaseBallView.replay());
+
+		if (exitStatus.isReplay()) {
+			return true;
+		}
+		if (exitStatus.isExit()) {
+			return false;
+		}
+
+		throw new IllegalArgumentException("[ERROR] 게임을 재시작하거나 종료하기위해서는 1(재시작) 혹은 2(종료) 를 눌러주세요");
+	}
 }
