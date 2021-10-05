@@ -20,14 +20,14 @@ public class GameServiceImpl implements GameService {
         return pickNumberMatchResultView;
     }
 
-    public PickNumberMatchResultView getPickNumberMatchResult(String[] ballNumberArr) {
+    private PickNumberMatchResultView getPickNumberMatchResult(String[] ballNumberArr) {
         LinkedHashSet<Integer> set = getPickNumbersSet();
         PickNumberMatchResultView pickNumberMatchResultView = matchResultCounter(set, ballNumberArr);
 
         return pickNumberMatchResultView;
     }
 
-    public PickNumberMatchResultView matchResultCounter(LinkedHashSet<Integer> set, String[] ballNumberArr) {
+    private PickNumberMatchResultView matchResultCounter(LinkedHashSet<Integer> set, String[] ballNumberArr) {
         int idx = 0;
         PickNumberMatchResultView pickNumberMatchResult = new PickNumberMatchResultView();
         for (int computerPickNumber : set) {
@@ -38,7 +38,7 @@ public class GameServiceImpl implements GameService {
         return pickNumberMatchResult;
     }
 
-    public PickNumberMatchResultView addCount(PickNumberMatchResultView pickNumberMatchResult, LinkedHashSet<Integer> set, int computerPickNumber, int ballNumber) {
+    private PickNumberMatchResultView addCount(PickNumberMatchResultView pickNumberMatchResult, LinkedHashSet<Integer> set, int computerPickNumber, int ballNumber) {
         if (computerPickNumber == ballNumber) {
             pickNumberMatchResult.addStrikeCount();
         } else if (set.contains(ballNumber)) {
@@ -55,7 +55,7 @@ public class GameServiceImpl implements GameService {
         return false;
     }
 
-    public boolean isValidOnlyNumber(String readPickNumber) {
+    private boolean isValidOnlyNumber(String readPickNumber) {
         Pattern pattern = Pattern.compile("^[1-9]*$");
         Matcher matcher = pattern.matcher(readPickNumber);
         boolean isFind = matcher.find();
@@ -66,7 +66,7 @@ public class GameServiceImpl implements GameService {
         return true;
     }
 
-    public boolean isValidPickNumberSize(String readPickNumber) {
+    private boolean isValidPickNumberSize(String readPickNumber) {
         try {
             if (readPickNumber.split("").length != GameConfig.PICK_NUMBER_SIZE.getValue()) {
                 throw new NotMatchPickNumberSizeException("입력한 값의 사이즈가 일치하지 않습니다");
@@ -78,7 +78,7 @@ public class GameServiceImpl implements GameService {
         return true;
     }
 
-    public void printErrorMessage() {
+    private void printErrorMessage() {
         System.out.printf("[ERROR] : %d~%d까지의 %d자리 숫자를 입력해주세요 %n"
                 , GameConfig.MIN_NUMBER.getValue()
                 , GameConfig.MAX_NUMBER.getValue()
