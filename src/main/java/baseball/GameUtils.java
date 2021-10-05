@@ -15,25 +15,19 @@ public class GameUtils {
         return new ArrayList<>(numbers);
     }
 
-    public static Record match(List<Integer> answer, String input) {
-        Record record = new Record(answer,input);
-        for(int i=0; i < input.length();i++){
+    public static void match(Record record) {
+        for(int i=0; i < record.input.size();i++){
             calculate(record,i);
         }
-        System.out.println(record.strike+"스트라이크"+record.ball+"볼");
-        return record;
     }
 
-    private static int calculate(Record record, int i) {
+    private static void calculate(Record record, int i) {
         if(Objects.equals(record.input.get(i), record.answer.get(i))){
             record.plusOneStrike();
-            return 0;
+            return;
         }
         if(record.answer.contains(record.input.get(i))){
             record.plusOneBall();
-            return 0;
         }
-        return 1;
-
     }
 }

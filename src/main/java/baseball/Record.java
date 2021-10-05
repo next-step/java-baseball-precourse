@@ -25,7 +25,7 @@ public class Record {
         return newInput;
     }
 
-    public boolean isCorrect() {
+    public boolean checkFinished() {
         return strike == 3;
     }
 
