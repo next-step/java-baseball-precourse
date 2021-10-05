@@ -13,7 +13,8 @@ class UserTest extends NSTest {
 	}
 
 	@ParameterizedTest
-	@CsvSource(value = {"abc:1 ~ 9 까지의 숫자만 입력해주세요.:123", "123456:세 자리를 입력해주세요:123", "112:입력값 중 중복된 값이 있습니다. 서로 다른 숫자를 입력해주세요.:123"}, delimiter = ':')
+	@CsvSource(value = {"abc:1 ~ 9 까지의 숫자만 입력해주세요.:123", "123456:세 자리를 입력해주세요:123",
+		"112:입력값 중 중복된 값이 있습니다. 서로 다른 숫자를 입력해주세요.:123"}, delimiter = ':')
 	void 숫자_입력_테스트(String wrongInput, String message, String correctInput) {
 		run(wrongInput, correctInput);
 		User.getNumberInput();

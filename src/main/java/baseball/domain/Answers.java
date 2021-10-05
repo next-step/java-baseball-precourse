@@ -17,16 +17,6 @@ public class Answers {
 
 	/**
 	 * @author : yh22953905
-	 * @Date : 2021/10/04 11:00 오후
-	 * @Description : 단위 테스트를 위한 Getter 메소드
-	 *
-	 **/
-	public List<String> getAnswers() {
-		return answers;
-	}
-
-	/**
-	 * @author : yh22953905
 	 * @Date : 2021/10/03 1:20 오전
 	 * @Description : 임의의 수 선택
 	 *
@@ -43,6 +33,16 @@ public class Answers {
 		}
 
 		return new Answers();
+	}
+
+	/**
+	 * @author : yh22953905
+	 * @Date : 2021/10/04 11:00 오후
+	 * @Description : 단위 테스트를 위한 Getter 메소드
+	 *
+	 **/
+	public List<String> getAnswers() {
+		return answers;
 	}
 
 	/**

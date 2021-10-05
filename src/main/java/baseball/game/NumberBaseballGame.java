@@ -1,7 +1,7 @@
 package baseball.game;
 
-import baseball.util.Checker;
 import baseball.domain.User;
+import baseball.util.Checker;
 
 public class NumberBaseballGame {
 	private Checker checker;
@@ -15,7 +15,7 @@ public class NumberBaseballGame {
 	}
 
 	/**
-	 * @author : yh.kim
+	 * @author : yh22953905
 	 * @Date : 2021/10/03 1:47 오전
 	 * @Description : 게임 시작
 	 *

@@ -32,7 +32,7 @@ public class Checker {
 	}
 
 	/**
-	 * @author : yh.kim
+	 * @author : yh22953905
 	 * @Date : 2021/10/03 1:50 오전
 	 * @Description : 스트라이크, 볼, 낫싱 판단
 	 *
@@ -58,7 +58,8 @@ public class Checker {
 	 **/
 	private void addResult(List<String> inputs) {
 		for (int i = 0; i < inputs.size(); i++) {
-			if (inputs.size() != INPUT_MIN_SIZE) break;
+			if (inputs.size() != INPUT_MIN_SIZE)
+				break;
 
 			if (answers.isStrike(inputs, i)) {
 				strike.add();
@@ -81,17 +82,14 @@ public class Checker {
 	private void printResult() {
 		StringBuilder resultBuilder = new StringBuilder();
 
-		if (strike.value() > 0) {
+		if (strike.value() > 0)
 			resultBuilder.append(String.format(STRIKE_MESSAGE, strike.value()));
-		}
 
-		if (ball.value() > 0) {
+		if (ball.value() > 0)
 			resultBuilder.append(String.format(BALL_MESSAGE, ball.value()));
-		}
 
-		if (strike.value() == 0 && ball.value() == 0) {
+		if (strike.value() == 0 && ball.value() == 0)
 			resultBuilder.append(NOTHING_MESSAGE);
-		}
 
 		System.out.println(resultBuilder.toString().trim());
 	}
@@ -107,15 +105,12 @@ public class Checker {
 			System.out.println(END_MESSAGE);
 			System.out.println(RESTART_MESSAGE);
 
-			String input = User.getRestartInput();
-
-			if (Objects.equals(input, RESTART_TRUE)) {
+			if (Objects.equals(User.getRestartInput(), RESTART_TRUE)) {
 				answers.init();
 				return true;
 			}
 			return false;
 		}
-
 		return true;
 	}
 }

@@ -34,11 +34,7 @@ public class User {
 
 		String input = Console.readLine();
 
-		if (
-			!isOneToNine(input)
-				|| !isThreeNumber(input)
-				|| !isDuplicateNumber(input)
-		)
+		if (!isOneToNine(input) || !isThreeNumber(input) || !isDuplicateNumber(input))
 			return getNumberInput();
 
 		return input;
@@ -56,7 +52,8 @@ public class User {
 	public static String getRestartInput() throws NoSuchElementException, IllegalStateException {
 		String input = Console.readLine();
 
-		if (!isRestartNumber(input)) return getRestartInput();
+		if (!isRestartNumber(input))
+			return getRestartInput();
 
 		return input;
 	}
