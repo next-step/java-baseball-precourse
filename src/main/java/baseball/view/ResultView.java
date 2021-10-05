@@ -12,9 +12,6 @@ public final class ResultView {
 	private static final String JOINING_SEPARATOR = " ";
 	private static final String ALL_STRIKE_OUT_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임종료";
 	private static final String GAME_OVER_MESSAGE = "게임 끝";
-	private static final String VIEW_NAME_OF_STRIKE = "스트라이크";
-	private static final String VIEW_NAME_OF_BALL = "볼";
-	private static final String VIEW_NAME_OF_NOTHING = "낫싱";
 
 	private ResultView() {
 	}
@@ -38,7 +35,7 @@ public final class ResultView {
 		}
 
 		if (CollectionUtils.isEmpty(list)) {
-			list.add(VIEW_NAME_OF_NOTHING);
+			list.add(StrikeZone.NOTHING.getName());
 		}
 		return joining(list);
 	}
@@ -50,7 +47,7 @@ public final class ResultView {
 			return;
 		}
 
-		list.add(count + getStrikeZoneName(strikeZone));
+		list.add(count + strikeZone.getName());
 	}
 
 	private static String joining(List<String> list) {
@@ -60,16 +57,5 @@ public final class ResultView {
 		}
 		return sb.length() == 0 ? sb.toString()
 			: sb.substring(0, sb.length() - JOINING_SEPARATOR.length());
-	}
-
-	private static String getStrikeZoneName(StrikeZone strikeZone) {
-		if (StrikeZone.STRIKE == strikeZone) {
-			return VIEW_NAME_OF_STRIKE;
-		}
-
-		if (StrikeZone.BALL == strikeZone) {
-			return VIEW_NAME_OF_BALL;
-		}
-		return VIEW_NAME_OF_NOTHING;
 	}
 }
