@@ -2,27 +2,29 @@
 
 ## 1. 기능 목록
 
-- Model
-  - Number
-      - 1~9 범위의 int 변수를 지닌 일급 클래스
-      - 잘못된 숫자(1~9)를 입력하면 InvalidNumberRangeException 예외 발생
-  - Numbers
-      - `각기 다른 세 자리 수`를 지닌 일급 컬렉션
-      - isContains: Number가 존재하는지 여부
-      - getDigit: Number의 자릿수 반환
-      - get: Number 반환
-      - 중복된 숫자가 있을 경우 DuplicateNumberException 예외 발생
-      - 세 자리수가 아닐 경우 InvalidNumbersSizeException 예외 발생
-  - StrikeZone
-    - 타자가 공을 칠 수 있는 범위, 즉 플레이어의 입력 값에 대한 결과 이넘 클래스
-    - STRIKE, BALL, NOTHING
-    - boolean 타입의 두 가지 지역 변수가 존재한다.
-      - existsNumber: 같은 숫자가 존재하는지
-      - sameDigit: 같은 자릿수인지
-    - valueOf(boolean sameNumber, boolean sameDigit) 
-  - Hint
-    - 플레이어의 StrikeZone 결과를 관리하는 일급 컬렉션(EnumMap<StrikeZone, Integer>)
-    - hit(StrikeZone): `StrikeZone`에 대해 count를 증가한다.
+![domain-class-diagram](./images/domain-class-diagram.png)
+
+- Domain
+    - Number
+        - 1~9 범위의 int 변수를 지닌 일급 클래스
+        - 잘못된 숫자(1~9)를 입력하면 InvalidNumberRangeException 예외 발생
+    - Numbers
+        - `각기 다른 세 자리 수`를 지닌 일급 컬렉션
+        - isContains: Number가 존재하는지 여부
+        - getDigit: Number의 자릿수 반환
+        - get: Number 반환
+        - 중복된 숫자가 있을 경우 DuplicateNumberException 예외 발생
+        - 세 자리수가 아닐 경우 InvalidNumbersSizeException 예외 발생
+    - StrikeZone
+        - 타자가 공을 칠 수 있는 범위, 즉 플레이어의 입력 값에 대한 결과 이넘 클래스
+        - STRIKE, BALL, NOTHING
+        - boolean 타입의 두 가지 지역 변수가 존재한다.
+            - existsNumber: 같은 숫자가 존재하는지
+            - sameDigit: 같은 자릿수인지
+        - valueOf(boolean sameNumber, boolean sameDigit)
+    - Hint
+        - 플레이어의 StrikeZone 결과를 관리하는 일급 컬렉션(EnumMap<StrikeZone, Integer>)
+        - hit(StrikeZone): `StrikeZone`에 대해 count를 증가한다.
   - Player
       - 플레이어의 `Numbers`를 지닌 일급 클래스
       - 입력된 문자열을 통해 `Numbers`를 생성한다.
@@ -69,23 +71,4 @@
 
 #### 프로그램 실행 결과
 
-```text
-숫자를 입력해주세요 : 123
-1스트라이크 1볼
-숫자를 입력해주세요 : 222
-[ERROR] 잘못된 값을 입력했습니다.
-숫자를 입력해주세요 : 145
-1볼
-숫자를 입력해주세요 : 671
-2볼
-숫자를 입력해주세요 : 216
-1스트라이크
-숫자를 입력해주세요 : 713
-3스트라이크
-3개의 숫자를 모두 맞히셨습니다! 게임 끝
-게임을 새로 시작하려면 1,종료하려면 2를 입력하세요.
-1
-숫자를 입력해주세요 : 123
-1볼
-...
-```
+![console-result](./images/console-output.png)
