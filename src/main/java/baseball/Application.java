@@ -35,14 +35,14 @@ public class Application {
         String comNumbers = "";
         boolean[] drawnNums  = new boolean[9];
         for(int i =0; i<3; i++){
-            int drawnNum = drawRandomNumber(drawnNums);
+            int drawnNum = drawNonDuplicateRandomNumber(drawnNums);
             comNumbers+=drawnNum;
             drawnNums[drawnNum-1] = true;
         }
         return comNumbers;
     }
 
-    public static int drawRandomNumber(boolean[] drawnNums){
+    public static int drawNonDuplicateRandomNumber(boolean[] drawnNums){
         int rand = 0;
         boolean isDrawn= true;
         while(isDrawn){
