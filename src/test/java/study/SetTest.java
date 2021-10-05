@@ -3,7 +3,9 @@ package study;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -53,6 +55,24 @@ class SetTest {
 
 		// when then
 		assertThat(numbers.contains(input)).isEqualTo(result);
+	}
+
+	@DisplayName("Set을 List로 재할당하는 경우, Sort 가 되는 현상을 확인하기 위한 테스트")
+	@Test
+	void set_to_list() {
+		// given
+		Set<Integer> set = new HashSet<>();
+		set.add(1);
+		set.add(7);
+		set.add(4);
+
+		// when
+		List<Integer> list = new ArrayList<>(set);
+
+		// then
+		assertEquals(1, list.get(0));
+		assertEquals(4, list.get(1));
+		assertEquals(7, list.get(2));
 	}
 
 }

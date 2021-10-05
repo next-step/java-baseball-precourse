@@ -1,9 +1,7 @@
 package baseball.util;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import nextstep.utils.Randoms;
 
@@ -15,12 +13,20 @@ public class RandomUtils {
 	 * @return 지정한 범위 내의 숫자들이 겹치지 않은 상태로 들어있는 List
 	 */
 	public static List<Integer> generateNoDuplicateThreeBaseball() {
-		final Set<Integer> numbers = new HashSet<>();
+		final List<Integer> numbers = new ArrayList<>();
 
 		while (numbers.size() < 3) {
-			numbers.add(Randoms.pickNumberInRange(1, 9));
+			addIfNotDuplicated(numbers);
 		}
 
-		return new ArrayList<>(numbers);
+		return numbers;
+	}
+
+	private static void addIfNotDuplicated(List<Integer> numbers) {
+		final int random = Randoms.pickNumberInRange(1, 9);
+
+		if (!numbers.contains(random)) {
+			numbers.add(random);
+		}
 	}
 }
