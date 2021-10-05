@@ -34,7 +34,7 @@ public class GameController {
         }
     }
 
-    public void readPickNumer() {
+    private void readPickNumer() {
         while (GameStatus.START.equals(getGameStatus())) {
             System.out.print("숫자를 입력해주세요 : ");
             String readPickNumber = readLine();
@@ -43,7 +43,7 @@ public class GameController {
         }
     }
 
-    public void comparePickNumber(String readPickNumber) {
+    private void comparePickNumber(String readPickNumber) {
         boolean isValidReadPickNumber = gameService.isValidReadPickNumber(readPickNumber);
         if (isValidReadPickNumber) {
             PickNumberMatchResultView pickNumberMatchResult = gameService.comparePickNumber(readPickNumber);
@@ -53,7 +53,7 @@ public class GameController {
         }
     }
 
-    public void gameResult(PickNumberMatchResultView pickNumberMatchResult) {
+    private void gameResult(PickNumberMatchResultView pickNumberMatchResult) {
         if (pickNumberMatchResult.getStrike() == GameConfig.PICK_NUMBER_SIZE.getValue()) {
             pickNumbersClear();
             System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
@@ -63,7 +63,7 @@ public class GameController {
         }
     }
 
-    public int choiceGameStatus() {
+    private int choiceGameStatus() {
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
         String readGameStatus = readLine();
         System.out.println(readGameStatus);
@@ -71,7 +71,7 @@ public class GameController {
         return Integer.parseInt(readGameStatus);
     }
 
-    public void choiceGameStatusResult(int choiceGameStatus) {
+    private void choiceGameStatusResult(int choiceGameStatus) {
         if (GameStatus.START.getGameStatus() == choiceGameStatus) {
             makePickNumbers();
             return;

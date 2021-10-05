@@ -2,11 +2,14 @@ package baseball.controller;
 
 import baseball.domain.GameConfig;
 import baseball.domain.GameStatus;
+import baseball.domain.PickNumberMatchResultView;
 import baseball.service.GameService;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.LinkedHashSet;
 
 import static baseball.AppConfig.*;
@@ -55,14 +58,17 @@ class GameControllerTest {
     @DisplayName("게임을 새로 시작하려면 1, 종료하려면 2를 입력한다")
     @ParameterizedTest(name = "게임상태 [{0}]")
     @ValueSource(ints = {1, 2})
-    void choiceGameStatusResultTest(int input) {
+    void choiceGameStatusResultTest(int input) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         GameController gameController = getGameController();
 
+        Method method = gameController.getClass().getDeclaredMethod("choiceGameStatusResult", int.class);
+        method.setAccessible(true);
+
         if (input == 1) {
-            gameController.choiceGameStatusResult(input);
+            method.invoke(gameController, input);
             assertThat(getGameStatus()).isEqualTo(GameStatus.START);
         } else {
-            gameController.choiceGameStatusResult(input);
+            method.invoke(gameController, input);
             assertThat(getGameStatus()).isEqualTo(GameStatus.END);
         }
 
