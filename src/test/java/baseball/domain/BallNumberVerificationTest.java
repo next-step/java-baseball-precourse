@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 
-import static baseball.common.varificatedNumber.composeOfDifferentNumbers;
+import static baseball.common.ValidNumber.composeOfDifferentNumbers;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 
@@ -34,8 +34,8 @@ public class BallNumberVerificationTest {
     @Test
     @DisplayName("1 ~ 9까지 숫자인지 테스트")
     void isBetween1AndTest() {
-        assertThat(Ball.isBetween1And(4)).isTrue();
-        assertThat(Ball.isBetween1And(0)).isFalse();
+        assertThat(Ball.isBetween1And9(4)).isTrue();
+        assertThat(Ball.isBetween1And9(0)).isFalse();
     }
 
 

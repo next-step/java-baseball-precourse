@@ -1,4 +1,4 @@
-# bG숫자 야구 게임
+# 숫자 야구 게임
 ## 진행 방법
 * 숫자 야구 게임 요구사항을 파악한다.
 * 요구사항에 대한 구현을 완료한 후 자신의 github 아이디에 해당하는 브랜치에 Pull Request(이하 PR)를 통해 과제를 제출한다.
@@ -68,11 +68,11 @@
 
 **메시지 정의**
 
-* 게임 결과 메시지(GameResultMessage) : "3개의 숫자를 모두 맞히셨습니다! 게임 끝"
+* 게임 결과 메시지(GameResultMessage) : ""
 * 종료 확인 메시지(ExitConfirmationMessage) : "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요"
 * 종료 확인 에러 메시지(ExitConfirmationErrorMessage) :  "[ERROR] 1과 2 둘 중 하나만 입력 가능합니다"
 * 입력 숫자 길이 에러 메시지 (InputNumberLengthErrorMessage) : "[ERROR] 3자리 숫자를 입력하십시오."
-* 입력 값 에러 메시지(InputValueErrorMessage) : "[ERROR] 숫자를 입력하십시오"
+* 입력 값 에러 메시지(InputValueErrorMessage) : "[ERROR] 0-9 숫자를 입력하십시오"
 * 입력 값 범위 에러 메시지(InputRangeValueErrorMessage) : "[ERROR] 서로 다른 숫자를 입력하십시오
 
 

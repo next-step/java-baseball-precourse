@@ -35,7 +35,7 @@ public class Ball {
         return BallStatus.NOTHING;
     }
 
-    public static boolean isBetween1And(int num) {
+    public static boolean isBetween1And9(int num) {
         if (BALL_MIN <= num && num <= BALL_MAX) {
             return true;
         } else {
