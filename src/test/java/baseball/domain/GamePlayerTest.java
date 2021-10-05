@@ -74,6 +74,23 @@ public class GamePlayerTest {
     }
 
 
+    @ParameterizedTest
+    @DisplayName("낫싱 테스트")
+    @ValueSource(strings = {"789"})
+    void notingTest(String str) {
+
+        gamePlayer.settingPlayerBalls(str);
+
+        assertThat(testBalls.calculate(gamePlayer.getBalls())).isEqualTo("낫싱");
+
+    }
+
+
+
+
+
+
+
 
 
 
