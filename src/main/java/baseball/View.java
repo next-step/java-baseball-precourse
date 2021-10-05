@@ -9,8 +9,18 @@ public class View {
         do {
             System.out.println("숫자를 입력해주세요 : ");
             input = Console.readLine();
-        }while (!Validator.confirmInput(input));
+        }while (!confirmInput(input));
         return input;
+    }
+
+    private static boolean confirmInput(String input) {
+        try {
+            Validator.validateEnterNumber(input);
+            return true;
+        }catch (Exception e){
+            System.out.println("[ERROR]: "+e.getMessage());
+            return false;
+        }
     }
 
     public static void printScore(Record record) {
