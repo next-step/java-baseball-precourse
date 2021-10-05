@@ -18,21 +18,44 @@ public class BaseBallGameNumberComparatorTest {
     }
 
     @Test
-    public void 스트라이크_3개() {
-        List<String> inputs = Arrays.asList("123");
-        assertStrikesEquals("123", inputs, 3);
+    public void 볼_3개() {
+        List<String> inputs = Arrays.asList("312", "231");
+        assertBallEquals("123", inputs, 3);
     }
 
     @Test
-    public void 스트라이크_1개() {
-        List<String> inputs = Arrays.asList("145", "729", "683");
-        assertStrikesEquals("123", inputs, 1);
+    public void 볼_2개() {
+        List<String> inputs = Arrays.asList("912", "234", "531", "251", "912", "318");
+        assertBallEquals("123", inputs, 2);
     }
 
     @Test
-    public void 스트라이크_2개() {
-        List<String> inputs = Arrays.asList("125", "623", "193");
-        assertStrikesEquals("123", inputs, 2);
+    public void 볼_1개() {
+        List<String> inputs = Arrays.asList("917", "264", "539", "451", "962", "378");
+        assertBallEquals("123", inputs, 1);
+    }
+
+    @Test
+    public void 볼_0개() {
+        List<String> inputs = Arrays.asList("456");
+        assertBallEquals("123", inputs, 0);
+    }
+
+    @Test
+    public void 볼_전체테스트() {
+        assertEquals(baseBallGameNumberComparator.getBallsCount("123", "456"), 0);
+        assertEquals(baseBallGameNumberComparator.getBallsCount("567", "689"), 1);
+        assertEquals(baseBallGameNumberComparator.getBallsCount("154", "563"), 1);
+        assertEquals(baseBallGameNumberComparator.getBallsCount("687", "865"), 2);
+        assertEquals(baseBallGameNumberComparator.getBallsCount("145", "459"), 2);
+        assertEquals(baseBallGameNumberComparator.getBallsCount("256", "621"), 2);
+        assertEquals(baseBallGameNumberComparator.getBallsCount("987", "798"), 3);
+    }
+
+
+    private void assertBallEquals(String randomGenerated, List<String> inputs, int ballsCount) {
+        for ( String input : inputs )
+            assertEquals(baseBallGameNumberComparator.getBallsCount(randomGenerated, input), ballsCount);
     }
 
     @Test
@@ -44,6 +67,24 @@ public class BaseBallGameNumberComparatorTest {
         assertEquals(baseBallGameNumberComparator.getStrikesCount("369", "469"), 2);
         assertEquals(baseBallGameNumberComparator.getStrikesCount("854", "853"), 2);
         assertEquals(baseBallGameNumberComparator.getStrikesCount("456", "456"), 3);
+    }
+
+    @Test
+    public void 스트라이크_2개() {
+        List<String> inputs = Arrays.asList("125", "623", "193");
+        assertStrikesEquals("123", inputs, 2);
+    }
+
+    @Test
+    public void 스트라이크_1개() {
+        List<String> inputs = Arrays.asList("145", "729", "683");
+        assertStrikesEquals("123", inputs, 1);
+    }
+
+    @Test
+    public void 스트라이크_3개() {
+        List<String> inputs = Arrays.asList("123");
+        assertStrikesEquals("123", inputs, 3);
     }
 
     private void assertStrikesEquals(String randomGenerated, List<String> inputs, int i) {
