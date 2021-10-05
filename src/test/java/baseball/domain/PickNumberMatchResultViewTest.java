@@ -48,4 +48,15 @@ class PickNumberMatchResultViewTest {
         assertThat(resultView.getBall()).isEqualTo(ball);
         assertThat(resultView.toString()).isEqualTo(result);
     }
+
+    @Test
+    @DisplayName("매치되는 값이 없을경우 - 낫싱")
+    void noMatchResultTest() {
+        PickNumberMatchResultView resultView = new PickNumberMatchResultView();
+        if (resultView.getBall() == 0 && resultView.getStrike() == 0) {
+            assertThat(resultView.toString()).isEqualTo(GameMessage.NOTHING.getMsg());
+        }
+        resultView.addBallCount();
+        assertThat(resultView.toString()).isNotEqualTo(GameMessage.NOTHING.getMsg());
+    }
 }
