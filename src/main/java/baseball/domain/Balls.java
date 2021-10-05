@@ -16,12 +16,26 @@ public class Balls {
         this.balls = balls;
     }
 
+
+    public Ball getBall(int i) {
+        return balls.get(i);
+    }
+
     public void setBalls(List<Integer> ballsNumber) {
         balls = new ArrayList<>();
         for (int i = 0; i < ballsNumber.size(); i++) {
             balls.add(new Ball(i + 1, ballsNumber.get(i)));
         }
     }
+
+    public String calculate(Balls targetBalls) {
+        Result result = new Result();
+        for (int i = 0; i < balls.size(); i++) {
+            result.compareStatus(balls.get(i).compareBall(targetBalls.getBall(i)));
+        }
+        return result.toString();
+    }
+
 
     public boolean composeOfDifferentNumbers() {
         HashMap<Integer, Integer> hashMap = new HashMap<>();

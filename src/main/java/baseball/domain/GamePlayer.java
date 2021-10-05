@@ -30,5 +30,8 @@ public class GamePlayer {
         return input.toString();
     }
 
+    public Balls getBalls() {
+        return input;
+    }
 
 }
