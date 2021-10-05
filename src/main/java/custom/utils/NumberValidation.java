@@ -27,11 +27,12 @@ public class NumberValidation {
     public static boolean haveNoDuplicateNumbers(String userNum){
         boolean[] numSet = new boolean[9];
         for(int i =0; i<3; i++){
-            if(numSet[userNum.charAt(i) - '0']){
+            boolean haveNum = numSet[userNum.charAt(i) - '0'];
+            if(haveNum){
                 Message.printError("중복된 숫자가 입력되었습니다.");
                 return false;
             }
-            numSet[userNum.charAt(0) - '0'] = true;
+            haveNum = true;
         }
         return true;
     }
