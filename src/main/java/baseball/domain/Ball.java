@@ -4,7 +4,7 @@ public class Ball implements Check {
 	private int ball;
 
 	private Ball() {
-		ball = 0;
+		ball = Check.INIT_VALUE;
 	}
 
 	public static Ball init() {

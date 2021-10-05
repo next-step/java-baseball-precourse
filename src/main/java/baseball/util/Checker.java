@@ -10,6 +10,14 @@ import baseball.domain.Strike;
 import baseball.domain.User;
 
 public class Checker {
+	private static final String INPUT_DELIMITER = "";
+	private static final int INPUT_MIN_SIZE = 3;
+	private static final String STRIKE_MESSAGE = "%s스트라이크";
+	private static final String BALL_MESSAGE = " %s볼";
+	private static final String NOTHING_MESSAGE = "낫싱";
+	private static final String END_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 끝";
+	private static final String RESTART_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
+	private static final String RESTART_TRUE = "1";
 	private static Answers answers;
 	private Strike strike;
 	private Ball ball;
@@ -29,7 +37,7 @@ public class Checker {
 	 *
 	 **/
 	public boolean checkInput(String readLine) {
-		List<String> inputs = Arrays.asList(readLine.split(""));
+		List<String> inputs = Arrays.asList(readLine.split(INPUT_DELIMITER));
 
 		strike = Strike.init();
 		ball = Ball.init();
@@ -49,7 +57,7 @@ public class Checker {
 	 **/
 	private void addResult(List<String> inputs) {
 		for (int i = 0; i < inputs.size(); i++) {
-			if (inputs.size() != 3) break;
+			if (inputs.size() != INPUT_MIN_SIZE) break;
 
 			if (answers.isStrike(inputs, i)) {
 				strike.add();
@@ -73,15 +81,15 @@ public class Checker {
 		StringBuilder resultBuilder = new StringBuilder();
 
 		if (strike.value() > 0) {
-			resultBuilder.append(String.format("%s스트라이크", strike.value()));
+			resultBuilder.append(String.format(STRIKE_MESSAGE, strike.value()));
 		}
 
 		if (ball.value() > 0) {
-			resultBuilder.append(String.format(" %s볼", ball.value()));
+			resultBuilder.append(String.format(BALL_MESSAGE, ball.value()));
 		}
 
 		if (strike.value() == 0 && ball.value() == 0) {
-			resultBuilder.append("낫싱");
+			resultBuilder.append(NOTHING_MESSAGE);
 		}
 
 		System.out.println(resultBuilder.toString().trim());
@@ -95,12 +103,12 @@ public class Checker {
 	 **/
 	private boolean startOrExitByResult() {
 		if (strike.isThreeStrike()) {
-			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
-			System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+			System.out.println(END_MESSAGE);
+			System.out.println(RESTART_MESSAGE);
 
 			String input = User.getInput();
 
-			if (Objects.equals(input, "1")) {
+			if (Objects.equals(input, RESTART_TRUE)) {
 				answers.init();
 				return true;
 			}

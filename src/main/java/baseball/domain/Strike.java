@@ -4,7 +4,7 @@ public class Strike implements Check {
 	private static int strike;
 
 	private Strike() {
-		strike = 0;
+		strike = INIT_VALUE;
 	}
 
 	public static Strike init() {

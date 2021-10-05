@@ -7,6 +7,9 @@ import java.util.Objects;
 import nextstep.utils.Randoms;
 
 public class Answers {
+	private static final int ANSWER_SIZE = 3;
+	private static final int RANGE_MIN = 1;
+	private static final int RANGE_MAX = 9;
 	private static List<String> answers;
 
 	private Answers() {
@@ -31,8 +34,8 @@ public class Answers {
 	public static Answers init() {
 		answers = new ArrayList<>();
 
-		while (answers.size() < 3) {
-			String pickedNumber = String.valueOf(Randoms.pickNumberInRange(1, 9));
+		while (answers.size() < ANSWER_SIZE) {
+			String pickedNumber = String.valueOf(Randoms.pickNumberInRange(RANGE_MIN, RANGE_MAX));
 
 			if (!answers.contains(pickedNumber)) {
 				answers.add(pickedNumber);

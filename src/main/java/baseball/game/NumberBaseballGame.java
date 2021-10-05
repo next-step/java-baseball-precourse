@@ -4,6 +4,8 @@ import baseball.util.Checker;
 import baseball.domain.User;
 
 public class NumberBaseballGame {
+	private static final String ENTER_NUMBERS_MESSAGE = "숫자를 입력해주세요 : ";
+
 	private Checker checker;
 
 	private NumberBaseballGame() {
@@ -21,7 +23,7 @@ public class NumberBaseballGame {
 	 *
 	 **/
 	public boolean start() {
-		System.out.print("숫자를 입력해주세요 : ");
+		System.out.print(ENTER_NUMBERS_MESSAGE);
 
 		String readLine = User.getInput();
 
