@@ -5,7 +5,7 @@ import java.util.HashSet;
 import baseball.exception.NotThreeDigitNumberException;
 
 public class NumberForBaseball {
-	private static final int NUMBER_OF_DIGITS_FOR_BASEBALL = 3;
+	public static final int NUMBER_OF_DIGITS_FOR_BASEBALL = 3;
 
 	private static void isThreeDigitsNumber(int number) {
 		if (number < 0 || String.valueOf(number).length() != NUMBER_OF_DIGITS_FOR_BASEBALL) {
