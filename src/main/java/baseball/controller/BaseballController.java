@@ -1,6 +1,9 @@
 package baseball.controller;
 
+import baseball.model.Baseball;
+
 public class BaseballController {
+	private final Baseball model = Baseball.getInstance();
 
 	private BaseballController() {
 	}
@@ -12,6 +15,10 @@ public class BaseballController {
 	}
 
 	public void execute() {
+		start();
+	}
 
+	private void start() {
+		model.initialize();
 	}
 }
