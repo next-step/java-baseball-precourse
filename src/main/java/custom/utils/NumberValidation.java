@@ -24,7 +24,7 @@ public class NumberValidation {
         return true;
     }
 
-    public static boolean haveDuplicateNumbers(String userNum){
+    public static boolean haveNoDuplicateNumbers(String userNum){
         boolean[] numSet = new boolean[9];
         for(int i =0; i<3; i++){
             if(numSet[userNum.charAt(i) - '0']){
