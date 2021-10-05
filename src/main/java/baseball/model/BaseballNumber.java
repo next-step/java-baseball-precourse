@@ -31,6 +31,4 @@ public class BaseballNumber {
         }
         return pickedNumber;
     }
-
-
 }
