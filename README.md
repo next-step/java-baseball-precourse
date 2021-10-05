@@ -69,14 +69,11 @@
 **메시지 정의**
 
 * 게임 결과 메시지(GameResultMessage) : "3개의 숫자를 모두 맞히셨습니다! 게임 끝"
-
 * 종료 확인 메시지(ExitConfirmationMessage) : "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요"
-
 * 종료 확인 에러 메시지(ExitConfirmationErrorMessage) :  "[ERROR] 1과 2 둘 중 하나만 입력 가능합니다"
-
 * 입력 숫자 길이 에러 메시지 (InputNumberLengthErrorMessage) : "[ERROR] 3자리 숫자를 입력하십시오."
-
 * 입력 값 에러 메시지(InputValueErrorMessage) : "[ERROR] 숫자를 입력하십시오"
+* 입력 값 범위 에러 메시지(InputRangeValueErrorMessage) : "[ERROR] 서로 다른 숫자를 입력하십시오
 
 
 
