@@ -8,14 +8,10 @@ public class HintGenerator {
 
     private int strike;
     private int ball;
-    private final List<Integer> input;
-    private final List<Integer> answer;
 
-    public HintGenerator(List<Integer> input, List<Integer> answer) {
-        this.input = input;
-        this.answer = answer;
-        this.strike = 0;
-        this.ball = 0;
+    public HintGenerator(int strike, int ball) {
+        this.strike = strike;
+        this.ball = ball;
     }
 
     public int getStrike() {
@@ -32,7 +28,9 @@ public class HintGenerator {
      * @return
      */
 
-    public boolean isAnswer() {
+    public static HintGenerator getHint(List<Integer> input, List<Integer> answer) {
+        int strike = 0;
+        int ball = 0;
         for (int i = 0; i < 3; i++) {
             if (answer.contains(input.get(i))) {
                 ball++;
@@ -42,16 +40,14 @@ public class HintGenerator {
                 strike++;
             }
         }
-        return printHint(strike, ball);
+        return HintGenerator.of(strike, ball);
     }
 
     /**
      * 스트라이크인지 볼인지 정답인지 알려주기
-     * @param strike
-     * @param ball
      * @return
      */
-    private boolean printHint(int strike, int ball) {
+    public boolean printHint() {
         if (strike == 3) {
             System.out.println(HintMessage.OnlyStrike(strike));
             System.out.println(HintMessage.ANSWER);
@@ -74,8 +70,8 @@ public class HintGenerator {
     }
 
 
-    public static HintGenerator of(List<Integer> input, List<Integer> answer) {
-        return new HintGenerator(input, answer);
+    public static HintGenerator of(int strike, int ball) {
+        return new HintGenerator(strike, ball);
     }
 
 

@@ -1,6 +1,7 @@
 package baseball.validator;
 
 import baseball.exception.ValidationException;
+import baseball.message.Number;
 import baseball.message.error.ErrorCode;
 
 import java.util.HashSet;
@@ -40,7 +41,7 @@ public class InputValidator {
      * @return
      */
     private static void validateIsThreeDigits(String input) {
-        if (input.toCharArray().length != 3) {
+        if (input.toCharArray().length != Number.INPUT_MAX_VALUE) {
             throw new ValidationException(ErrorCode.VALIDATE_EXCEPTION_IS_NOT_THREE_DIGITS);
         }
     }
@@ -66,7 +67,7 @@ public class InputValidator {
         for (char aChar : input.toCharArray()) {
             set.add(aChar);
         }
-        if (set.size() != 3) {
+        if (set.size() != Number.INPUT_MAX_VALUE) {
             throw new ValidationException(ErrorCode.VALIDATE_EXCEPTION_IS_DUPLICATE);
         }
     }
