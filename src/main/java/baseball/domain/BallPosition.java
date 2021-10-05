@@ -4,16 +4,20 @@ import java.util.Objects;
 
 public class BallPosition {
 
-    public static final int MIN_INT = 0;
-    public static final int MAX_INT = 2;
+    public static final int POSITION_MIN_INT = 0;
+    public static final int POSITION_MAX_INT = 2;
 
     private final int ballPosition;
 
     public BallPosition(int ballPosition) {
-        if(ballPosition < MIN_INT || ballPosition > MAX_INT) {
+        if(rangeCheck(ballPosition)) {
             throw new IllegalArgumentException("3자리 까지만 가능"); // todo custom class로 변경
         }
         this.ballPosition = ballPosition;
+    }
+
+    private boolean rangeCheck(int ballPosition) {
+        return ballPosition < POSITION_MIN_INT || ballPosition > POSITION_MAX_INT;
     }
 
     @Override

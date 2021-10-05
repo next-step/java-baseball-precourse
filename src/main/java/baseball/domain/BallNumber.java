@@ -4,16 +4,20 @@ import java.util.Objects;
 
 public class BallNumber {
 
-    public static final int MIN_INT = 1;
-    public static final int MAX_INT = 9;
+    public static final int NUMBER_MIN_INT = 1;
+    public static final int NUMBER_MAX_INT = 9;
 
     private final int ballNumber;
 
     public BallNumber(final int ballNumber) {
-        if(ballNumber < MIN_INT || ballNumber > MAX_INT) {
+        if(rangeCheck(ballNumber)) {
             throw new IllegalArgumentException("1~9까지만 허용"); // todo custom class로 변경
         }
         this.ballNumber = ballNumber;
+    }
+
+    private boolean rangeCheck(int ballNumber) {
+        return ballNumber < NUMBER_MIN_INT || ballNumber > NUMBER_MAX_INT;
     }
 
     public boolean isEqualsNumber(BallNumber ballNumber) {
