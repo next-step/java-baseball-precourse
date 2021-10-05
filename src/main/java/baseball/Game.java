@@ -1,13 +1,10 @@
 package baseball;
 
-import java.util.List;
-
 public class Game {
 
-	public String judgment(List<Integer> playerNumbers, List<Integer> computerNumbers) {
-		ScoreJudgment judgment = new ScoreJudgment();
-		int countOfSameNumber = judgment.countSameNumber(playerNumbers, computerNumbers);
-		int countOfStrike = judgment.countSameNumberAndLocation(playerNumbers, computerNumbers);
+	public String judgment(BaseballNumbers player, BaseballNumbers computer) {
+		int countOfSameNumber = player.countSameNumber(computer);
+		int countOfStrike = player.countSameNumberAndLocation(computer);
 		int countOfBall = countOfSameNumber - countOfStrike;
 
 		if(countOfSameNumber == 0)
