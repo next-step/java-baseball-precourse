@@ -26,7 +26,7 @@ public class GameController {
      * 플레이어에게 3자리 숫자를 입력받고 맞출 때 까지 힌트 제공
      * @param answer
      */
-    private void startGame(List<Integer> answer) {
+    public void startGame(List<Integer> answer) {
         System.out.println(answer);
         while(true){
             final List<Integer> input = getInputNumber();
@@ -42,7 +42,7 @@ public class GameController {
      * 입력받은 문자열을 정수 리스트로 반환
      * @return
      */
-    private List<Integer> getInputNumber() {
+    public List<Integer> getInputNumber() {
         while (true) {
             final String input = InputGenerator.inputThreeDigits();
             if (!validateInputNumber(input)) {
@@ -58,9 +58,9 @@ public class GameController {
      * @param input
      * @return
      */
-    private boolean answerCheck(List<Integer> answer, List<Integer> input) {
+    public boolean answerCheck(List<Integer> answer, List<Integer> input) {
         final HintGenerator hint = getHint(input, answer);
-        return hint.printHint();
+        return hint.isAnswer();
     }
 
     /**
@@ -69,7 +69,7 @@ public class GameController {
      * 검증에 성공했을 시 문자열로 받은 3자리 숫자를 정수 리스트로 변환해서 반환
      * @return
      */
-    private boolean validateInputNumber(String input) {
+    public boolean validateInputNumber(String input) {
         try {
             InputValidator.validateInput(input);
             return true;
@@ -83,7 +83,7 @@ public class GameController {
      * 컴퓨터가 랜덤으로 3자리 숫자 만들기
      * @return
      */
-    private List<Integer> gameSetup() {
+    public List<Integer> gameSetup() {
         return NumberGenerator.makeThreeDigits();
     }
 
@@ -95,7 +95,7 @@ public class GameController {
      * @param answer
      * @return
      */
-    private HintGenerator getHint(List<Integer> input, List<Integer> answer) {
+    public HintGenerator getHint(List<Integer> input, List<Integer> answer) {
         return HintGenerator.getHint(input, answer);
     }
 
@@ -103,7 +103,7 @@ public class GameController {
      * 1를 입력하면 게임 새로 시작, 2를 입력하면 게임 종료
      * @return
      */
-    private boolean endGame() {
+    public boolean endGame() {
         while (true) {
             Message.Print(TextMessage.CONTINUE_OR_END);
             final String kb = Console.readLine();

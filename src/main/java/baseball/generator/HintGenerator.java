@@ -16,6 +16,13 @@ public class HintGenerator {
         this.ball = ball;
     }
 
+    public int getStrike() {
+        return strike;
+    }
+
+    public int getBall() {
+        return ball;
+    }
 
     /**
      * 스트라이크인지 볼인지 체크
@@ -41,7 +48,7 @@ public class HintGenerator {
      * 스트라이크인지 볼인지 정답인지 알려주기
      * @return
      */
-    public boolean printHint() {
+    public boolean isAnswer() {
         if (strike == Number.MAX_COUNT) {
             Message.Print(HintMessage.OnlyStrike(strike));
             Message.Print(HintMessage.ANSWER);
