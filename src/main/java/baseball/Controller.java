@@ -1,7 +1,5 @@
 package baseball;
 
-import nextstep.utils.Console;
-
 import java.util.HashMap;
 import java.util.Map;
 

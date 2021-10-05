@@ -58,8 +58,8 @@ public class UserInput {
         if (input.length() != 1) {
             throw new Exception("한글자를 입력해야 합니다.");
         }
-        if (!isNumber(input)) {
-            throw new Exception("숫자를 입력해야합니다.");
+        if (!input.equals("1") && !input.equals("2")) {
+            throw new Exception("1또는 2를 입력해야합니다.");
         }
         return input;
     }
