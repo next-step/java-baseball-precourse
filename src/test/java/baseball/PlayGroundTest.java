@@ -22,11 +22,4 @@ public class PlayGroundTest {
     void 공_번호_3개가_주어졌을_때_컴퓨터가_선택한_수와_비교_후_결과를_리턴한다(int firstBallNum, int secondBallNum, int thirdBallNum, boolean expected){
         Assertions.assertThat(this.playGround.run(new PlayerState(Arrays.asList(firstBallNum, secondBallNum, thirdBallNum)))).isEqualTo(expected);
     }
-
-    @ParameterizedTest
-    @CsvSource(value = {"-1,4,9", "100,0,30"}, delimiter = ',')
-    void 공_번호가_게임이_요구하는_범위를_충족하지_않으면_IllegalArgumentException을_발생시킨다(int firstBallNum, int secondBallNum, int thirdBallNum){
-        Assertions.assertThatIllegalArgumentException().isThrownBy(() ->
-                this.playGround.run(new PlayerState(Arrays.asList(firstBallNum, secondBallNum, thirdBallNum))));
-    }
 }

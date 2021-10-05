@@ -26,10 +26,4 @@ public class BallTest {
     void 공의_번호가_1_에서_9_사이의_값이면_Ball_객체_생성시_예외가_발생하지_않는다(int ballNumber){
         Assertions.assertThatNoException().isThrownBy(() -> new Ball(ballNumber, 0));
     }
-
-    @ParameterizedTest
-    @ValueSource(ints = {-1, 0, 10, 987654321})
-    void 공의_번호가_1_보다_작거나_9보다_크면_Ball_객체_생성시_IllegalArgumentException_예외가_발생한다(int ballNumber){
-        Assertions.assertThatIllegalArgumentException().isThrownBy(() -> new Ball(ballNumber, 0));
-    }
 }
