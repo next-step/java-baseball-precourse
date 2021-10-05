@@ -23,27 +23,47 @@ public class Baseball {
     }
 
     private void ballSizeCheck(List<Integer> numbers) {
-        if(numbers.size() != BALLSIZE) {
+        if(sizeCheck(numbers)) {
             throw new IllegalArgumentException("3자리 까지만 가능"); // todo custom class로 변경
         }
     }
 
+    private boolean sizeCheck(List<Integer> numbers) {
+        return numbers.size() != BALLSIZE;
+    }
+
     private void ballDuplicationCheck(List<Integer> numbers) {
-        Set<Integer> set = new HashSet<>(numbers);
-        if(set.size() != numbers.size()) {
+        if(duplicationCheck(numbers)) {
             throw new IllegalArgumentException("중복 불가"); // todo custom class로 변경
         }
     }
 
-    // todo depth 2 리팩토링
+    private boolean duplicationCheck(List<Integer> numbers) {
+        return new HashSet<>(numbers).size() != numbers.size();
+    }
+
     public BaseballResult compare(Baseball target) {
         BaseballResult baseballResult = new BaseballResult();
         for (Ball ball : balls) {
-            for (Ball targetBall : target.balls) {
-                baseballResult.save(ball.compare(targetBall));
-            }
+            baseballResult.save(compareTarget(ball, target.balls));
         }
         return baseballResult;
+    }
+
+    public static BallHint compareTarget(Ball ball, List<Ball> targets) {
+        BallHint ballHint = BallHint.NOTHING;
+        for (Ball target : targets) {
+            ballHint = strikeAndBallCheck(ball, target, ballHint);
+        }
+        return ballHint;
+    }
+
+    private static BallHint strikeAndBallCheck (Ball ball, Ball target, BallHint hint) {
+        BallHint ballHint = ball.compare(target);
+        if(!ball.compare(target).isNothing()) {
+            hint = ballHint;
+        }
+        return hint;
     }
 
     @Override
@@ -65,4 +85,5 @@ public class Baseball {
                 "balls=" + balls +
                 '}';
     }
+
 }
