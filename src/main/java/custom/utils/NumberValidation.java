@@ -8,9 +8,9 @@ public class NumberValidation {
 
     }
 
-    public static boolean is3digitsOfLength(String numStr){
-        if(numStr.length() != 3){
-            Message.printError("입력한 자릿수가 3자리가 아닙니다.");
+    public static boolean isdigitsOfLength(String numStr, int length){
+        if(numStr.length() != length){
+            Message.printError("입력한 자릿수가 "+length+"자리가 아닙니다.");
             return false;
         }
         return true;
