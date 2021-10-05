@@ -58,4 +58,8 @@ public class View {
 
 		return result;
 	}
+
+	public void outputResult(String message) {
+		System.out.println(message);
+	}
 }

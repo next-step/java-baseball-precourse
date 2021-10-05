@@ -32,8 +32,14 @@ public class BaseballController {
 	}
 
 	private void process() {
-		List<Integer> input = requestInputNumbers();
-		Result result = matchNumbers(input);
+		Result result = null;
+
+		while (isRetry(result)) {
+			List<Integer> input = requestInputNumbers();
+			result = matchNumbers(input);
+
+			view.outputResult(result.getMessage());
+		}
 	}
 
 	private List<Integer> requestInputNumbers() {
@@ -42,6 +48,10 @@ public class BaseballController {
 
 	private Result matchNumbers(List<Integer> inputNumbers) {
 		return model.checkIfTheAnswerIsCorrect(inputNumbers);
+	}
+
+	private boolean isRetry(Result result) {
+		return result == null || !result.isSuccessful();
 	}
 
 	private void end() {
