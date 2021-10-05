@@ -13,10 +13,8 @@ class PlayResultTest {
 
         playResult.reulstCount(Status.STRIKE);
         playResult.reulstCount(Status.BALL);
-        playResult.reulstCount(Status.NOTHING);
 
         assertThat(playResult.strikeCount()).isEqualTo(1);
         assertThat(playResult.ballCount()).isEqualTo(1);
-        assertThat(playResult.nothingCount()).isEqualTo(1);
     }
 }

@@ -1,6 +1,10 @@
 package baseball;
 
+import nextstep.utils.Randoms;
+
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -8,7 +12,6 @@ import java.util.stream.IntStream;
 public class Balls {
 
     public static final int COMMON_ZERO = 0;
-    public static final int COMMON_ONE = 1;
     public static final int COMMON_THREE = 3;
 
     private List<Ball> computerBalls = new ArrayList<>();
@@ -19,8 +22,12 @@ public class Balls {
     }
 
     private void initComputerBalls() {
-        for (int i = COMMON_ZERO; i < COMMON_THREE; i++) {
-            computerBalls.add(Ball.of(i + COMMON_ONE, i));
+        int i = COMMON_ZERO;
+
+        Iterator<Integer> ballNumbers = checkDuplicateNumber().iterator();
+
+        while (ballNumbers.hasNext()) {
+            computerBalls.add(Ball.of(ballNumbers.next(), i++));
         }
     }
 
@@ -28,7 +35,7 @@ public class Balls {
 
         validBallNumber(playerBallNumber);
 
-        return IntStream.range(0, 3)
+        return IntStream.range(COMMON_ZERO, COMMON_THREE)
                 .mapToObj(index -> Ball.of(playerBallNumber.charAt(index) - '0', index))
                 .collect(Collectors.toList());
     }
@@ -61,5 +68,13 @@ public class Balls {
         if (playerBallNumber.length() != 3) {
             throw new IllegalArgumentException("입력하신숫자는 3자리여야 됩니다.");
         }
+    }
+
+    private static LinkedHashSet<Integer> checkDuplicateNumber() {
+        LinkedHashSet<Integer> ballNumbers = new LinkedHashSet<>();
+        while (ballNumbers.size() < 3) {
+            ballNumbers.add(Randoms.pickNumberInRange(1, 9));
+        }
+        return ballNumbers;
     }
 }

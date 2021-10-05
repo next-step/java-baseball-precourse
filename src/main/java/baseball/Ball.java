@@ -16,8 +16,8 @@ public class Ball {
         return new Ball(ballNumber, position);
     }
 
-    public Boolean isBallNumber(int ballNumber) {
-        return this.ballNumber.isBallNumber(ballNumber);
+    public Boolean matchBallNumber(int ballNumber) {
+        return this.ballNumber.matchBallNumber(ballNumber);
     }
 
     @Override

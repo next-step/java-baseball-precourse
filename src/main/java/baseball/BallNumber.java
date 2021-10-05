@@ -30,7 +30,7 @@ public class BallNumber {
         }
     }
 
-    public Boolean isBallNumber(int ballNumber) {
+    public Boolean matchBallNumber(int ballNumber) {
         return this.ballNumber == ballNumber;
     }
 

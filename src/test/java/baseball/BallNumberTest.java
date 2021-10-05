@@ -17,7 +17,7 @@ class BallNumberTest {
     @Test
     void ballNumberMinPassTest() {
         BallNumber ballNumber = BallNumber.of(1);
-        assertThat(ballNumber.isBallNumber(1)).isTrue();
+        assertThat(ballNumber.matchBallNumber(1)).isTrue();
     }
 
     @Test
@@ -30,7 +30,7 @@ class BallNumberTest {
     @Test
     void ballNumberMaxPassTest() {
         BallNumber ballNumber = BallNumber.of(9);
-        assertThat(ballNumber.isBallNumber(9)).isTrue();
+        assertThat(ballNumber.matchBallNumber(9)).isTrue();
     }
 
     @Test

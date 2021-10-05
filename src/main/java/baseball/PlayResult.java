@@ -1,12 +1,12 @@
 package baseball;
 
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class PlayResult {
 
-    private static Map<Status, Integer> statusMap = new HashMap<>();
+    private static LinkedHashMap<Status, Integer> statusMap = new LinkedHashMap<>();
 
     public PlayResult() {
         statusMap.clear();
@@ -37,7 +37,14 @@ public class PlayResult {
     }
 
     public Map<Status, Integer> resultGame() {
+        removeNothing();
         return Collections.unmodifiableMap(statusMap);
+    }
+
+    private void removeNothing() {
+        if (statusMap.get(Status.NOTHING) != 3) {
+            statusMap.remove(Status.NOTHING);
+        }
     }
 
 }

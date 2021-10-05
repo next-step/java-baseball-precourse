@@ -11,4 +11,13 @@ public class ResultView {
             System.out.print(entry.getValue() + "" + entry.getKey().statusName + " ");
         }
     }
+
+    public static void printThreeStrike() {
+        System.out.println("3스트라이크");
+        System.out.println("3개의숫자를모두맞히셨습니다!게임 끝");
+    }
+
+    public static void answerContinuePlay() {
+        System.out.println("게임을새로시작하려면1,종료하려면2를입력하세요.");
+    }
 }
