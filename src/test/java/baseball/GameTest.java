@@ -16,7 +16,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import baseball.Constants.ResultEnum;
+import baseball.constants.ResultEnum;
 
 public class GameTest {
 

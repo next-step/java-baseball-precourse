@@ -1,11 +1,11 @@
 package baseball;
 
-import static baseball.Constants.MessageConstant.*;
+import static baseball.constants.MessageConstant.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import baseball.Constants.ResultEnum;
+import baseball.constants.ResultEnum;
 
 /**
  * 입력 시도 결과 클래스

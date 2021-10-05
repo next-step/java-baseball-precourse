@@ -1,7 +1,7 @@
 package baseball;
 
-import static baseball.Constants.CommonConstant.*;
-import static baseball.Constants.MessageConstant.*;
+import static baseball.constants.CommonConstant.*;
+import static baseball.constants.MessageConstant.*;
 
 import java.util.HashSet;
 import java.util.InputMismatchException;
@@ -16,8 +16,8 @@ import java.util.regex.Pattern;
  */
 public class Validator {
 
-	private final String IN_GAME_INPUT_PATTERN = "^([0-9])([0-9])([0-9])$";
-	private final String NEW_GAME_INPUT_PATTERN = "^([1-2])$";
+	private final String inGamePattern = "^([0-9])([0-9])([0-9])$";
+	private final String newGamePattern = "^([1-2])$";
 
 	/**
 	 * 입력된 인풋안에 중복되는 값 여부 확인
@@ -65,7 +65,7 @@ public class Validator {
 		if (!isLengthCheck(input, INPUT_MAX_COUNT)) {
 			throw new InputMismatchException(ERROR_INVALID);
 		}
-		if (!isMatchPattern(input, IN_GAME_INPUT_PATTERN)) {
+		if (!isMatchPattern(input, inGamePattern)) {
 			throw new InputMismatchException(ERROR_INVALID);
 		}
 		if (isDuplicated(input)) {
@@ -82,7 +82,7 @@ public class Validator {
 		if (!isLengthCheck(input, 1)) {
 			throw new InputMismatchException(ERROR_INVALID);
 		}
-		if (!isMatchPattern(input, NEW_GAME_INPUT_PATTERN)) {
+		if (!isMatchPattern(input, newGamePattern)) {
 			throw new InputMismatchException(ERROR_ONE_OR_TOW);
 		}
 	}

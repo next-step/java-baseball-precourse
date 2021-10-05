@@ -1,4 +1,4 @@
-package baseball.Constants;
+package baseball.constants;
 
 public enum ResultEnum {
 	STRIKE,

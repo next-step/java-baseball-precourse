@@ -1,6 +1,6 @@
 package baseball;
 
-import static baseball.Constants.MessageConstant.*;
+import static baseball.constants.MessageConstant.*;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -16,10 +16,10 @@ import nextstep.utils.Console;
  */
 public class Computer {
 
-	private final String YES = "1";
-	private final String NO = "2";
-	List<Game> gameList;
-	Validator validator;
+	private final String yes = "1";
+	private final String no = "2";
+	private final List<Game> gameList;
+	private final Validator validator;
 
 	public Computer() {
 		gameList = new ArrayList<>();
@@ -59,10 +59,10 @@ public class Computer {
 	 * @param input 입력받은 내용
 	 */
 	public void selectNewGame(String input) {
-		if (YES.equals(input)) {
+		if (yes.equals(input)) {
 			startGame();
 		}
-		if (NO.equals(input)) {
+		if (no.equals(input)) {
 			exitProgram();
 		}
 	}
@@ -78,8 +78,7 @@ public class Computer {
 			System.out.print(INPUT_MESSAGE);
 			String input = Console.readLine();
 			result = validAndTry(game, input);
-		}
-		while (!result);
+		} while (!result);
 	}
 
 	/**
@@ -109,7 +108,7 @@ public class Computer {
 	private void exitProgram() {
 		int trySize = 0;
 		for (Game game : gameList) {
-			trySize += game.tryResultList.size();
+			trySize += game.getTryResultList().size();
 		}
 		String rate = ((float)gameList.size() / (float)trySize * 100f) + "%";
 		System.out.printf((ENDING_MESSAGE_FORMAT) + "%n", gameList.size(), rate);

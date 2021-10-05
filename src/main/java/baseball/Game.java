@@ -1,13 +1,13 @@
 package baseball;
 
-import static baseball.Constants.CommonConstant.*;
+import static baseball.constants.CommonConstant.*;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import baseball.Constants.ResultEnum;
+import baseball.constants.ResultEnum;
 import nextstep.utils.Randoms;
 
 /**
@@ -18,8 +18,8 @@ import nextstep.utils.Randoms;
  */
 public class Game {
 
-	List<Integer> answer;
-	List<TryResult> tryResultList;
+	private final List<Integer> answer;
+	private final List<TryResult> tryResultList;
 
 	public Game() {
 		this.answer = getAnswer();
@@ -29,6 +29,10 @@ public class Game {
 	public Game(List<Integer> answer) {
 		this.answer = answer;
 		this.tryResultList = new ArrayList<>();
+	}
+
+	public List<TryResult> getTryResultList() {
+		return tryResultList;
 	}
 
 	public List<Integer> getAnswer() {
