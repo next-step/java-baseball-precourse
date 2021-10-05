@@ -27,11 +27,19 @@ public class Hint {
 	}
 
 	public Hint hit(StrikeZone strikeZone) {
-		int count = values.getOrDefault(strikeZone, DEFAULT_COUNT);
+		int count = getCount(strikeZone);
 
 		Map<StrikeZone, Integer> copiedMap = new EnumMap<>(values);
 		copiedMap.put(strikeZone, ++count);
 		return new Hint(copiedMap);
+	}
+
+	public int getCount(StrikeZone strikeZone) {
+		return values.getOrDefault(strikeZone, DEFAULT_COUNT);
+	}
+
+	public boolean isStrikeOut() {
+		return values.get(StrikeZone.STRIKE) == Numbers.SIZE;
 	}
 
 	@Override
