@@ -3,6 +3,7 @@ package baseball.controller;
 import java.util.List;
 
 import baseball.model.Baseball;
+import baseball.model.result.Result;
 import baseball.view.View;
 
 public class BaseballController {
@@ -32,10 +33,15 @@ public class BaseballController {
 
 	private void process() {
 		List<Integer> input = requestInputNumbers();
+		Result result = matchNumbers(input);
 	}
 
 	private List<Integer> requestInputNumbers() {
 		return view.inputThreeNumbers();
+	}
+
+	private Result matchNumbers(List<Integer> inputNumbers) {
+		return model.checkIfTheAnswerIsCorrect(inputNumbers);
 	}
 
 	private void end() {
