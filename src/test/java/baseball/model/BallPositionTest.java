@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class BallPositionTest {
 
 	@DisplayName("BallPosition 객체를 생성한다.")
-	@ParameterizedTest
+	@ParameterizedTest(name = "{displayName} / input = {0}")
 	@ValueSource(ints = {1, 3})
 	void create(int input) {
 		// given
@@ -21,7 +21,7 @@ public class BallPositionTest {
 	}
 
 	@DisplayName("올바르지 않은 input을 가진 BallPosition 객체를 생성한다.")
-	@ParameterizedTest
+	@ParameterizedTest(name = "{displayName} / input = {0}")
 	@ValueSource(ints = {0, 4})
 	void create_with_invalid_number(int input) {
 		// given: none

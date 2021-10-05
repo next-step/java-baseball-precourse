@@ -28,7 +28,7 @@ public class BallsTest {
 		final List<Integer> ballList = Arrays.asList(1, 2, 3);
 
 		// when then
-		final Balls balls = new Balls(ballList);
+		assertDoesNotThrow(() -> new Balls(ballList));
 	}
 
 	@DisplayName("balls 객체를 생성한다. 정확하게 3개의 공을 갖고있어야 한다, 테스트에서는 2개만 갖고있에 예외를 발생시킨다.")
@@ -43,8 +43,8 @@ public class BallsTest {
 			.hasMessageContaining("[ERROR] 숫자야구 게임을 하기위해서는 3개의 공이 필요합니다.");
 	}
 
-	@DisplayName("컴퓨터의 숫자야구(123) 과 한개의 Ball 을 테스트하여 nothing 을 반환하는 케이스를 테스트한다.")
-	@ParameterizedTest(name = "{displayName} {0}:{1}")
+	@DisplayName("3개의 ball과 한개의 공을 테스트한다.")
+	@ParameterizedTest(name = "{displayName} / 컴퓨터: 123 vs 플레이어 공 숫자: {0} 위치: {1} / 결과: Nothing")
 	@CsvSource(value = {"4:1", "5:2", "6:3"}, delimiter = ':')
 	void nothing(int number, int position) {
 		// given
@@ -54,8 +54,8 @@ public class BallsTest {
 		assertEquals(GameStatus.NOTHING, computerBalls.play(playerBall));
 	}
 
-	@DisplayName("컴퓨터의 숫자야구(123) 과 과 한개의 Ball 을 테스트하여 ball 을 반환하는 케이스를 테스트한다.")
-	@ParameterizedTest(name = "{displayName} {0}:{1}")
+	@DisplayName("3개의 ball과 한개의 공을 테스트한다.")
+	@ParameterizedTest(name = "{displayName} / 컴퓨터: 123 vs 플레이어 공 숫자: {0} 위치: {1} / 결과: Ball")
 	@CsvSource(value = {"1:2", "2:3", "3:1"}, delimiter = ':')
 	void ball(int number, int position) {
 		// given
@@ -65,8 +65,8 @@ public class BallsTest {
 		assertEquals(GameStatus.BALL, computerBalls.play(playerBall));
 	}
 
-	@DisplayName("컴퓨터의 숫자야구(123) 과 과 한개의 Ball 을 테스트하여 strike 를 반환하는 케이스를 테스트한다.")
-	@ParameterizedTest(name = "{displayName} {0}:{1}")
+	@DisplayName("3개의 ball과 한개의 공을 테스트한다.")
+	@ParameterizedTest(name = "{displayName} / 컴퓨터: 123 vs 플레이어 공 숫자: {0} 위치: {1} / 결과: Strike")
 	@CsvSource(value = {"1:1", "2:2", "3:3"}, delimiter = ':')
 	void strike(int number, int position) {
 		// given
@@ -89,8 +89,8 @@ public class BallsTest {
 		assertEquals(new GameResult(0, 0), play);
 	}
 
-	@DisplayName("컴퓨터의 숫자야구(123) 과 3개의 Ball(Balls) 테스트하여 1strike 1ball 을 반환하는 케이스를 테스트한다.")
-	@ParameterizedTest(name = "{displayName} Balls : {0}{1}{2}")
+	@DisplayName("3개의 ball과 3개의 ball을 테스트한다.")
+	@ParameterizedTest(name = "{displayName} / 컴퓨터: 123 vs 플레이어 공 숫자: {0}{1}{2} / 결과: 1스트라이크 1볼")
 	@CsvSource(value = {"1:3:5", "3:2:5", "9:2:1", "2:5:3"}, delimiter = ':')
 	void strike1_and_ball1(int first, int second, int third) {
 		// given

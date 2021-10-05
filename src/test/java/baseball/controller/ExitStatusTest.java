@@ -8,8 +8,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class ExitStatusTest {
 
-	@DisplayName("1을 입력할 경우, Exitstatus.REPLAY, 2를 입력한경우 Exitstatus.EXIT, 그 이외의 경우 ExitStatus.INVALID 반환 테스트")
-	@ParameterizedTest(name = "{displayName} : {0}")
+	@DisplayName("입력에 대한 ExitStatus 반환 테스트")
+	@ParameterizedTest(name = "{displayName} / 입력 = {0} / ExitStatus = {1}")
 	@CsvSource(value = {"1:REPLAY", "2:EXIT", "3:INVALID", "invalid:INVALID"}, delimiter = ':')
 	void from(String input, ExitStatus expected) {
 		// given: none

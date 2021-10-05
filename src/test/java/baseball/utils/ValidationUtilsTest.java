@@ -21,7 +21,7 @@ public class ValidationUtilsTest {
 	}
 
 	@DisplayName("isValidLength() / input 의 길이가 3이 아닌 경우 IllegalArgumentException 을 던지도록 한다.")
-	@ParameterizedTest
+	@ParameterizedTest(name = "{displayName} / input = {0}")
 	@ValueSource(strings = {"ab", "abcd"})
 	void isValidLength_fail_case(String input) {
 		// given:none
@@ -43,7 +43,7 @@ public class ValidationUtilsTest {
 	}
 
 	@DisplayName("containsBetweenOneToNine() / input String 1-9 사이의 문자가 아닌경우 IllegalArgumentException 을 던진다.")
-	@ParameterizedTest
+	@ParameterizedTest(name = "{displayName} / input = {0}")
 	@ValueSource(strings = {"012", "abc", "1ac", "0"})
 	void containsBetweenOneToNine_fail_test(String input) {
 		// given: none
@@ -65,7 +65,7 @@ public class ValidationUtilsTest {
 	}
 
 	@DisplayName("hasNoDuplicateNumber() / 숫자로 된 문자열이 중복된 경우, IllegalArgumentException 을 던진다.")
-	@ParameterizedTest
+	@ParameterizedTest(name = "{displayName} / input = {0}")
 	@ValueSource(strings = {"1233", "44", "1123", "1223"})
 	void hasNoDuplicateNumber_fail_test(String input) {
 		// given: none

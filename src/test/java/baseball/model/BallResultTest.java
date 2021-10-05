@@ -21,7 +21,7 @@ class BallResultTest {
 	}
 
 	@DisplayName("올바르지 않은 input 을 가진 BallResult 객체를 생성한다.")
-	@ParameterizedTest(name = "{displayName} : {0}")
+	@ParameterizedTest(name = "{displayName} / input = {0}")
 	@ValueSource(ints = {-1, 4})
 	void create_fail_test(int input) {
 		// given:none
