@@ -3,10 +3,7 @@ package baseball.model;
 import baseball.view.InputView;
 import nextstep.utils.Randoms;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Numbers {
     private List<Integer> userInputNumber;
@@ -21,8 +18,8 @@ public class Numbers {
     }
 
     public void generateNumber() {
-        Set<Integer> numberSet = new HashSet<>();
-
+//        순서보장를 보장해주는 Set = LinkedHashSet
+        Set<Integer> numberSet = new LinkedHashSet<>();
         while (numberSet.size() < 3) {
             numberSet.add(Randoms.pickNumberInRange(1, 9));
         }

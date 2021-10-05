@@ -16,20 +16,26 @@ public class GameService {
         Numbers numbers = new Numbers();
         numbers.generateNumber();
         while (isInning) {
-            numbers.inputNumber();
+            isInputNumber(numbers);
             isJudge(new GameStatus().isGameStatus(numbers));
         }
     }
 
+    private void isInputNumber(Numbers numbers) {
+        numbers.inputNumber();
+        while(numbers.getUserInputNumber().size() != 3) {
+            outputView.displayErrorMessage();
+            numbers.inputNumber();
+        }
+    }
+
     public void isJudge(GameStatus gameStatus) {
+        String gameResult = gameStatus.getResult();
+        outputView.displayResults(gameResult);
+
         if (gameStatus.isWin()) {
             outputView.displayWin();
             isInning = false;
-        }
-
-        if (!gameStatus.isWin()) {
-            String gameResult = gameStatus.getResult();
-            outputView.displayResults(gameResult);
         }
     }
 
