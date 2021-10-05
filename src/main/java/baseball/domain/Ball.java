@@ -16,14 +16,14 @@ public class Ball {
         this(new BallPosition(ballPosition), new BallNumber(ballNumber));
     }
 
-    public BallResult compare(Ball ball) {
+    public BallHint compare(Ball ball) {
         if(isStrike(ball)) {
-            return BallResult.STRIKE;
+            return BallHint.STRIKE;
         }
         if(isBall(ball)) {
-            return BallResult.BALL;
+            return BallHint.BALL;
         }
-        return BallResult.NOTHING;
+        return BallHint.NOTHING;
     }
 
     private boolean isStrike(Ball ball) {

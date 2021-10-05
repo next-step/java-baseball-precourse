@@ -16,11 +16,11 @@ public class BaseballResult {
         this.ball = ball;
     }
 
-    public void save(BallResult ballResult) {
-        if(ballResult.isStrike()) {
+    public void save(BallHint ballHint) {
+        if(ballHint.isStrike()) {
             strike++;
         }
-        if(ballResult.isBall()) {
+        if(ballHint.isBall()) {
             ball++;
         }
     }

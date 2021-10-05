@@ -24,18 +24,18 @@ class BallTest {
     @Test
     @DisplayName("두개의 Ball을 비교하여 스트라이크인지 확인한다")
     void 스트라이크() {
-        assertThat(ball.compare(new Ball(0, 1))).isEqualTo(BallResult.STRIKE);
+        assertThat(ball.compare(new Ball(0, 1))).isEqualTo(BallHint.STRIKE);
     }
 
     @Test
     @DisplayName("두개의 Ball을 비교하여 볼인지 확인한다")
     void 볼() {
-        assertThat(ball.compare(new Ball(1, 1))).isEqualTo(BallResult.BALL);
+        assertThat(ball.compare(new Ball(1, 1))).isEqualTo(BallHint.BALL);
     }
 
     @Test
     @DisplayName("두개의 Ball을 비교하여 낫싱인지 확인한다")
     void 낫싱() {
-        assertThat(ball.compare(new Ball(1, 2))).isEqualTo(BallResult.NOTHING);
+        assertThat(ball.compare(new Ball(1, 2))).isEqualTo(BallHint.NOTHING);
     }
 }
