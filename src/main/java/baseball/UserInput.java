@@ -43,13 +43,6 @@ public class UserInput {
         return true;
     }
 
-    private boolean isNumber(String input) {
-        if (input.charAt(0) < 49 || input.charAt(0) > 57 ) {
-            return false;
-        }
-        return true;
-    }
-
     public String restartGame() throws Exception {
         String input = Console.readLine();
         if (input == null || input.equals("")) {
