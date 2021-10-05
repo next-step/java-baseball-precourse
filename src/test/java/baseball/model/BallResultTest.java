@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class BallResultTest {
@@ -52,5 +53,16 @@ class BallResultTest {
 		assertThatThrownBy(ballResult::increase)
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining("[ERROR] ball 이 될 수 있는 값은 0-3 범위 내여야 합니다.");
+	}
+
+	@DisplayName("toString 테스트")
+	@ParameterizedTest(name = "{displayName} / input = {0} / 예상 = {1}")
+	@CsvSource(value = {"0:''", "1:1볼", "2:2볼", "3:3볼"}, delimiter = ':')
+	void toString(int input, String expected) {
+		// given
+		final BallResult ballResult = new BallResult(input);
+
+		// when then
+		assertEquals(expected, ballResult.toString());
 	}
 }
