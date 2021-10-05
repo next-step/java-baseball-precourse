@@ -1,16 +1,27 @@
 package baseball.view.request;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class NumberRequest {
 	private static final String PATTERN = "^[1-9]{3}";
-	private final String numbers;
+	private final List<Integer> numbers;
 
 	public NumberRequest(final String numbers) throws IllegalArgumentException {
-		this.numbers = validation(numbers);
+		this.numbers = convertNumbers(validation(numbers));
 	}
 
-	public String getNumbers() {
+	public List<Integer> getNumbers() {
+		return numbers;
+	}
+
+	private List<Integer> convertNumbers(final String input) {
+		String[] inputArr = input.split("");
+		List<Integer> numbers = new ArrayList<>();
+		for (String s : inputArr) {
+			numbers.add(Integer.valueOf(s));
+		}
 		return numbers;
 	}
 

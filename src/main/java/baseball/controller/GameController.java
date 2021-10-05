@@ -10,6 +10,7 @@ public class GameController {
 	public void play() {
 		Game game = new Game(new Computer());
 		NumberRequest request = getInputRequest();
+		printScore(game.getScoreResponse(request.getNumbers()));
 	}
 
 	private NumberRequest getInputRequest() {
