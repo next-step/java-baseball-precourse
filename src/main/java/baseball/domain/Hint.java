@@ -18,14 +18,6 @@ public class Hint {
 		return new Hint(createDefaultStrikeZoneMap());
 	}
 
-	private static Map<StrikeZone, Integer> createDefaultStrikeZoneMap() {
-		Map<StrikeZone, Integer> values = new EnumMap<>(StrikeZone.class);
-		for (StrikeZone strikeZone : StrikeZone.values()) {
-			values.put(strikeZone, DEFAULT_COUNT);
-		}
-		return values;
-	}
-
 	public Hint hit(StrikeZone strikeZone) {
 		int count = getCount(strikeZone);
 
@@ -57,5 +49,13 @@ public class Hint {
 	@Override
 	public int hashCode() {
 		return Objects.hash(values);
+	}
+
+	private static Map<StrikeZone, Integer> createDefaultStrikeZoneMap() {
+		Map<StrikeZone, Integer> values = new EnumMap<>(StrikeZone.class);
+		for (StrikeZone strikeZone : StrikeZone.values()) {
+			values.put(strikeZone, DEFAULT_COUNT);
+		}
+		return values;
 	}
 }
