@@ -6,8 +6,7 @@ import view.ResultView;
 public class BaseBallGame {
 
 
-    private static PlayResult playResult;
-    private static Balls computerBalls = Balls.of();
+    private static Balls computerBalls = Balls.of(new RandomBaseBallGenerator());
     private static Boolean gameContinue = true;
 
     public static void playBallsBallGame() {
@@ -26,7 +25,7 @@ public class BaseBallGame {
     }
 
     private static void countHit(String playerBall) {
-        playResult = computerBalls.playBalls(Balls.playerBallInit(playerBall));
+        PlayResult playResult = computerBalls.playBalls(Balls.playerBallInit(playerBall));
         if (playResult.strikeCount() == 3) {
             selectGamePlay();
             return;
@@ -38,7 +37,7 @@ public class BaseBallGame {
     private static void selectGamePlay() {
         ResultView.answerContinuePlay();
         if (InputView.insertSelectGameContinue() == 1) {
-            computerBalls = Balls.of();
+            computerBalls = Balls.of(new RandomBaseBallGenerator());
             playBallsBallGame();
         }
         gameEnd();
@@ -48,3 +47,7 @@ public class BaseBallGame {
         gameContinue = false;
     }
 }
+
+
+
+

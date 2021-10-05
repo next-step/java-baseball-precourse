@@ -38,7 +38,7 @@ public class PlayResult {
     }
 
     private void removeNothing() {
-        if (statusMap.get(Status.NOTHING) != null && statusMap.get(Status.NOTHING) != 3 ){
+        if (statusMap.get(Status.NOTHING) != null && statusMap.get(Status.NOTHING) != 3) {
             statusMap.remove(Status.NOTHING);
         }
     }

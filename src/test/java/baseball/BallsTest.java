@@ -1,6 +1,5 @@
 package baseball;
 
-import nextstep.utils.Randoms;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,12 +11,14 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 class BallsTest {
 
     private Balls balls;
-    private Randoms randoms;
-
+    private List<Integer> ballList = new ArrayList<>();
 
     @BeforeEach
     void setUp() {
-        balls = Balls.of();
+        for (int i = 0; i < 3; i++) {
+            ballList.add(i + 1);
+        }
+        balls = Balls.of(() -> ballList);
     }
 
     @Test
@@ -42,7 +43,7 @@ class BallsTest {
     }
 
     @Test
-    void playerBalseBallInit() {
+    void playerBallInitTest() {
         List<Ball> ballPlayer = Balls.playerBallInit("123");
         for (int i = 0; i < ballPlayer.size(); i++) {
             assertThat(ballPlayer.get(i).matchBallNumber(i + 1)).isTrue();
@@ -50,8 +51,9 @@ class BallsTest {
     }
 
     @Test
-    void playerBalseBallInit2() {
+    void computerVsPlayerPlayBallsTest() {
         List<Ball> ballPlayer = Balls.playerBallInit("123");
-        System.out.println(ballPlayer.get(0).matchBallNumber(1));
+        assertThat(balls.playBalls(ballPlayer).strikeCount()).isEqualTo(3);
     }
+
 }
