@@ -37,7 +37,7 @@ public final class ResultView {
 		if (CollectionUtils.isEmpty(list)) {
 			list.add(StrikeZone.NOTHING.getName());
 		}
-		return joining(list);
+		return CollectionUtils.joining(list, JOINING_SEPARATOR);
 	}
 
 	private static void addHitStrikeZoneCountString(List<String> list, Hint hint, StrikeZone strikeZone) {
@@ -48,14 +48,5 @@ public final class ResultView {
 		}
 
 		list.add(count + strikeZone.getName());
-	}
-
-	private static String joining(List<String> list) {
-		StringBuilder sb = new StringBuilder();
-		for (String str : list) {
-			sb.append(str).append(JOINING_SEPARATOR);
-		}
-		return sb.length() == 0 ? sb.toString()
-			: sb.substring(0, sb.length() - JOINING_SEPARATOR.length());
 	}
 }
