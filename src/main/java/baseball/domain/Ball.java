@@ -20,23 +20,19 @@ public class Ball {
     }
 
 
-
-    public BallStatus compareBall(Ball targetBall) {
+    public BallStatus compareStrike(Ball targetBall) {
         if (this.equals(targetBall)) {
             return BallStatus.STRIKE;
         }
 
-        if (checkNumber(targetBall.number)) {
-            return BallStatus.BALL;
-        }
         return BallStatus.NOTHING;
     }
 
-    public boolean checkNumber(int targetNo) {
-        if (targetNo == this.number) {
-            return true;
+    public BallStatus compareBall(Ball targetBall) {
+        if (targetBall.number == this.number && targetBall.pos != this.pos) {
+            return BallStatus.BALL;
         }
-        return false;
+        return BallStatus.NOTHING;
     }
 
     public static boolean isBetween1And(int num) {

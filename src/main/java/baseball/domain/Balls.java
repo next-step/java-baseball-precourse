@@ -28,13 +28,30 @@ public class Balls {
         }
     }
 
+
     public String calculate(Balls targetBalls) {
         Result result = new Result();
-        for (int i = 0; i < balls.size(); i++) {
-            result.compareStatus(balls.get(i).compareBall(targetBalls.getBall(i)));
-        }
+        result = calculateStrike(result, targetBalls);
+
         return result.toString();
     }
+
+    private Result calculateBall(Result result, Ball targetBall) {
+        for (int i = 0; i < balls.size(); i++) {
+            result.compareStatus(balls.get(i).compareBall(targetBall));
+        }
+        return result;
+    }
+
+    public Result calculateStrike(Result result, Balls targetBalls) {
+        for (int i = 0; i < balls.size(); i++) {
+            result.compareStatus(balls.get(i).compareStrike(targetBalls.getBall(i)));
+            result = calculateBall(result, targetBalls.getBall(i));
+        }
+        return result;
+    }
+
+
 
 
     public boolean composeOfDifferentNumbers() {

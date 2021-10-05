@@ -50,6 +50,21 @@ public class GamePlayerTest {
 
     }
 
+    @ParameterizedTest
+    @DisplayName("1스트라이크 2볼 테스트")
+    @ValueSource(strings = {"321"})
+    void strike1ball2Test(String str) {
+
+        gamePlayer.settingPlayerBalls(str);
+
+        assertThat(testBalls.calculate(gamePlayer.getBalls())).isEqualTo("1스트라이크 2볼 ");
+
+    }
+
+
+
+
+
 
 
 
