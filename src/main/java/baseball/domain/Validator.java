@@ -1,4 +1,4 @@
-package baseball;
+package baseball.domain;
 
 import baseball.exceptions.InvalidInputLengthException;
 import baseball.exceptions.DuplicateNumberException;

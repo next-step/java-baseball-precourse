@@ -1,5 +1,6 @@
 package baseball;
 
+import baseball.domain.Validator;
 import baseball.exceptions.DuplicateNumberException;
 import baseball.exceptions.InvalidInputLengthException;
 import baseball.exceptions.NoNumericException;

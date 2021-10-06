@@ -1,4 +1,7 @@
-package baseball;
+package baseball.domain;
+
+import baseball.utils.GameUtils;
+import baseball.view.ViewConsole;
 
 import java.util.List;
 

@@ -1,5 +1,6 @@
-package baseball;
+package baseball.utils;
 
+import baseball.domain.Record;
 import nextstep.utils.Randoms;
 
 import java.util.*;
@@ -17,7 +18,7 @@ public class GameUtils {
         return new ArrayList<>(numbers);
     }
 
-    public static Record match(List<Integer> answer,List<Integer> input) {
+    public static Record match(List<Integer> answer, List<Integer> input) {
         Record record = new Record(answer,input);
         for(int i=0; i < input.size();i++){
             calculate(record,i);
@@ -26,11 +27,11 @@ public class GameUtils {
     }
 
     private static void calculate(Record record, int i) {
-        if(Objects.equals(record.input.get(i), record.answer.get(i))){
+        if(Objects.equals(record.getInput().get(i), record.getAnswer().get(i))){
             record.plusOneStrike();
             return;
         }
-        if(record.answer.contains(record.input.get(i))){
+        if(record.getAnswer().contains(record.getInput().get(i))){
             record.plusOneBall();
         }
     }

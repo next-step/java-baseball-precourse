@@ -1,8 +1,9 @@
-package baseball;
+package baseball.view;
 
+import baseball.utils.Utils;
+import baseball.domain.Validator;
 import nextstep.utils.Console;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ViewConsole {

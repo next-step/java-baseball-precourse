@@ -1,4 +1,4 @@
-package baseball;
+package baseball.domain;
 
 import java.util.List;
 
@@ -43,5 +43,13 @@ public class Record {
             stringBuilder.append(this.ball).append("볼");
         }
         return stringBuilder.toString();
+    }
+
+    public List<Integer> getInput() {
+        return input;
+    }
+
+    public List<Integer> getAnswer() {
+        return answer;
     }
 }
