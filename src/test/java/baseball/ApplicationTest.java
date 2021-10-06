@@ -1,10 +1,13 @@
 package baseball;
 
+import baseball.domain.GameMessage;
 import nextstep.test.NSTest;
 import nextstep.utils.Randoms;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.MockedStatic;
 
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -38,6 +41,25 @@ public class ApplicationTest extends NSTest {
         }
     }
 
+    @ParameterizedTest
+    @ValueSource(
+      strings = {
+        "aaa", "11a", "ab0",      // with letters
+        "  ", "      ",              // empty
+        "112", "121", "211", "111",      // with repeats
+        "012", "102", "120",             // with zero
+        "1", "12", "1234", "123457896" // shorter/longer then three
+      }
+    )
+    void 단일게임_진행_중_올바르지_않은_입력(String input) {
+        try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
+            mockRandoms
+              .when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
+              .thenReturn(1,2,3);
+            running(input);
+            verify(GameMessage.ERR_PUT_ONLY_THREE_NUMBERS.getMessage());
+        }
+    }
     @AfterEach
     void tearDown() {
         outputStandard();
