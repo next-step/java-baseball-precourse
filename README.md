@@ -36,20 +36,30 @@
 
 
 ## 구현할 기능 목록
-* NumberBaseBallGame.java
-  <br>`숫자 야구 게임을 시작하는 부분`
-  
-* AskUser.java
-  <br>`사용자에게 입력분 값을 받는 부분`
-  
-* ValidateValue.java
-  <br>`사용자가 입력한 값이 올바른지 판별하는 부분`
-  
-* BeforeCounting.java
-  <br>`사용자가 입력한 값을 토대로 카운팅에 필요한 파라미터를 생성하는 부분`
-  
-* Counting.java
-  <br>`입력과 관련하여 볼, 스트라이크, 낫싱을 판별해주는 부분` 
-  
-* Result.java
-  <br>`결과 메시지를 생성하고 프린트하는 부분` 
+### src/main/java/baseball/controller
+  * BaseballGameController.java
+    * 숫자 야구 게임을 시작하는 부분
+    * 사용자에게 input 값을 받도록 요청
+    * input value가 유효한지 ValidationService에 요청
+    * 카운팅에 필요한 파라미터를 세팅하도록 CountingService에 요청
+
+### src/main/java/baseball/view
+* UserView.java
+  * 사용자에게 input값을 요청하는 메시지를 프린트하고 결과 메시지를 생성하고 프린트하는 부분
+
+### src/main/java/baseball/service
+  * ValidationService.java
+    * 사용자가 입력한 값이 올바른지 판별 요청하는 부분
+  * CountingService.java
+    * 사용자가 입력한 값을 토대로 카운팅에 필요한 파라미터를 생성하는 부분
+    * Counting에 strike, ball 카운트를 요청
+
+### src/main/java/baseball/domain
+  * Validation.java
+    * 입력 값이 유효한 값인지 판별
+  * Counting.java
+    * 입력과 관련하여 볼, 스트라이크를 카운팅, 낫싱을 판별해주는 부분
+
+### src/main/java/baseball/vo
+  * GameResult.java
+    * strike와 ball의 count를 갖고있음
