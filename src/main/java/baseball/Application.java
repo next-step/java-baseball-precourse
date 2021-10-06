@@ -1,7 +1,11 @@
 package baseball;
 
+
 public class Application {
     public static void main(String[] args) {
-        // TODO 숫자 야구 게임 구현
+        GameTemplate baseball = new BaseBallGame();
+        while(baseball.run()){
+            baseball = new BaseBallGame();
+        }
     }
 }
