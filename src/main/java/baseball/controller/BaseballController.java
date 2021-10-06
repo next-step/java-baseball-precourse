@@ -1,10 +1,11 @@
 package baseball.controller;
 
-import baseball.Game;
-import baseball.Player;
+import baseball.domain.Game;
+import baseball.domain.Player;
 import baseball.domain.Computer;
 import baseball.domain.Baseball;
 import baseball.domain.BaseballResult;
+import baseball.veiw.PlayerResponse;
 
 public class BaseballController {
 
@@ -19,9 +20,14 @@ public class BaseballController {
     private boolean baseballGamePlay(Baseball baseball) {
         boolean playCheck = true;
         while(playCheck) {
-            BaseballResult baseballResult = baseball.compare(new Baseball(Player.createPlayerBall()));
-            baseballResult.playResultPrint();
-            playCheck = isPlayCheck(playCheck, baseballResult);
+            PlayerResponse response = Player.createPlayerBall();
+            if(response.isSuccess()){
+                BaseballResult baseballResult = baseball.compare(new Baseball(response));
+                baseballResult.playResultPrint();
+                playCheck = isPlayCheck(playCheck, baseballResult);
+            } else {
+                response.errorPrint();
+            }
         }
         return Game.restart();
     }

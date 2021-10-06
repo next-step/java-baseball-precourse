@@ -11,7 +11,7 @@ public class BallPosition {
 
     public BallPosition(int ballPosition) {
         if(rangeCheck(ballPosition)) {
-            throw new IllegalArgumentException("3자리 까지만 가능"); // todo custom class로 변경
+            throw new IllegalArgumentException("3자리 까지만 가능");
         }
         this.ballPosition = ballPosition;
     }

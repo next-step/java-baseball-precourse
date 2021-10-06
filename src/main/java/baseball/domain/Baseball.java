@@ -1,6 +1,7 @@
 package baseball.domain;
 
 import baseball.util.NumberGenerator;
+import baseball.veiw.PlayerResponse;
 
 import java.util.*;
 
@@ -10,9 +11,14 @@ public class Baseball {
 
     List<Ball> balls;
 
+    public Baseball(PlayerResponse playerResponse) {
+        this(playerResponse.getValue());
+    }
+
     public Baseball(int number) {
         this(NumberGenerator.intToList(number));
     }
+
     public Baseball(List<Integer> numbers) {
         ballSizeCheck(numbers);
         ballDuplicationCheck(numbers);
@@ -29,7 +35,7 @@ public class Baseball {
 
     private void ballSizeCheck(List<Integer> numbers) {
         if(sizeCheck(numbers)) {
-            throw new IllegalArgumentException("3자리 까지만 가능"); // todo custom class로 변경
+            throw new IllegalArgumentException("3자리 까지만 가능");
         }
     }
 
@@ -39,7 +45,7 @@ public class Baseball {
 
     private void ballDuplicationCheck(List<Integer> numbers) {
         if(duplicationCheck(numbers)) {
-            throw new IllegalArgumentException("중복 불가"); // todo custom class로 변경
+            throw new IllegalArgumentException("중복 불가"); 
         }
     }
 

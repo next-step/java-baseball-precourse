@@ -11,7 +11,7 @@ public class BallNumber {
 
     public BallNumber(final int ballNumber) {
         if(rangeCheck(ballNumber)) {
-            throw new IllegalArgumentException("1~9까지만 허용"); // todo custom class로 변경
+            throw new IllegalArgumentException("1~9까지만 허용");
         }
         this.ballNumber = ballNumber;
     }

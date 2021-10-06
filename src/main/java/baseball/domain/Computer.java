@@ -18,7 +18,6 @@ public class Computer {
         while (number.size() < MAX_COUNT) {
             number.add(Randoms.pickNumberInRange(START_NUM, END_NUM));
         }
-        System.out.println("computer: " + number.toString());
         return new ArrayList<>(number);
     }
 
