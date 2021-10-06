@@ -13,7 +13,10 @@ public class BaseballHint {
     }
 
     public void showHint(){
-        System.out.println(strike + this.strikes +  " " + ball + this.balls);
+        if (strikes!=0 && balls!=0) {
+            System.out.println(strike + this.strikes + " " + ball + this.balls);
+        }
+        System.out.println(nothing);
     }
 
 }
