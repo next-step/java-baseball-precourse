@@ -14,6 +14,7 @@ import baseball.domain.exception.NumberRangeInvalidException;
 class NumbersTest {
 
 	@Test
+	@DisplayName("중복안됨_보장")
 	void 중복안됨_보장() {
 
 		assertThatThrownBy(() -> {
@@ -28,10 +29,10 @@ class NumbersTest {
 	@ParameterizedTest
 	@ValueSource(strings = {"11", "1111", "1"})
 	@DisplayName("자릿수_체크")
-	void 자릿수_체크(){
+	void 자릿수_체크(String value){
 
 		assertThatThrownBy(() -> {
-			Numbers numbers = new Numbers("1111");
+			Numbers numbers = new Numbers(value);
 		})
 			.isInstanceOf(NumberRangeInvalidException.class)
 			.hasMessage(ErrorMessage.NUMBER_RANGE_INVALID_EXCEPTION.getMessage())
