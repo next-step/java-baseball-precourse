@@ -38,6 +38,14 @@ public class UserNum {
         return MIN_NUMBER <= this.num && this.num <= MAX_NUMBER;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserNum userNum = (UserNum) o;
+        return num == userNum.num;
+    }
+
     public String getErrorMsg() {
         return errorMsg;
     }
