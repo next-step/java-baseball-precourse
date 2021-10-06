@@ -21,4 +21,5 @@ public class BaseballGameTest {
         baseballGame.endGame();
         assertThat(baseballGame.getGamestatus()=="end");
     }
+    //리셋
 }
