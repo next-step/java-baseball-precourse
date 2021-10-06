@@ -23,10 +23,6 @@ public class RandomBaseBallGenerator implements BallNumberGenerator {
         return ballNumberList;
     }
 
-    public static RandomBaseBallGenerator of() {
-        return new RandomBaseBallGenerator();
-    }
-
     private void removeDuflicate() {
         ballNumberList = ballNumberList.stream()
                 .distinct()
