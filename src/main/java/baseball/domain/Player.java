@@ -1,8 +1,8 @@
 package baseball.domain;
 
+import baseball.enums.GameMessage;
 import baseball.util.NumberGenerator;
 import baseball.veiw.ConsoleResponse;
-import baseball.enums.GameMessage;
 import baseball.veiw.PlayerResponse;
 
 import java.util.HashSet;
@@ -17,16 +17,16 @@ public class Player {
         return stringValidationCheck(ConsoleResponse.responseMessage(GameMessage.PLAYER_INPUT_MESSAGE));
     }
 
-    private static PlayerResponse stringValidationCheck(String response){
-        try{
+    private static PlayerResponse stringValidationCheck(String response) {
+        try {
             return sizeValidationCheck(response);
-        }catch (Exception e) {
+        } catch (Exception e) {
             return new PlayerResponse(GameMessage.ERROR_INT);
         }
     }
 
     private static PlayerResponse sizeValidationCheck(String response) {
-        if(response.length() == BALLSIZE) {
+        if (response.length() == BALLSIZE) {
             return ballDuplicationCheck(response);
         }
         return new PlayerResponse(GameMessage.ERROR_SIZE);
@@ -34,7 +34,7 @@ public class Player {
 
 
     private static PlayerResponse ballDuplicationCheck(String response) {
-        if(duplicationCheck(NumberGenerator.intToList(Integer.parseInt(response)))) {
+        if (duplicationCheck(NumberGenerator.intToList(Integer.parseInt(response)))) {
             return new PlayerResponse(Integer.parseInt(response), GameMessage.SUCCESS_RESPONSE);
         }
         return new PlayerResponse(GameMessage.ERROR_DUPLICATION);

@@ -8,7 +8,7 @@ public class ConsoleResponse {
     public static final int ZERO = 0;
 
     public static String responseMessage(GameMessage gameMessage) {
-        System.out.println(gameMessage.getMessage());
+        System.out.print(gameMessage.getMessage());
         return Console.readLine();
     }
 
@@ -17,9 +17,14 @@ public class ConsoleResponse {
     }
 
     public static void printMessage(int count, GameMessage gameMessage) {
-        if(count > ZERO) {
+        if (count > ZERO) {
             System.out.print(count + gameMessage.getMessage() + " ");
         }
+    }
+
+    public static String responseMessageNext(GameMessage gameMessage) {
+        System.out.println(gameMessage.getMessage());
+        return Console.readLine();
     }
 
     public static void printMessage() {

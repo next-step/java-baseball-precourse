@@ -17,10 +17,10 @@ public class Ball {
     }
 
     public BallHint compare(Ball ball) {
-        if(isStrike(ball)) {
+        if (isStrike(ball)) {
             return BallHint.STRIKE;
         }
-        if(isBall(ball)) {
+        if (isBall(ball)) {
             return BallHint.BALL;
         }
         return BallHint.NOTHING;

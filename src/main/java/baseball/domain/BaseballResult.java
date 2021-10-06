@@ -20,10 +20,10 @@ public class BaseballResult {
     }
 
     public void save(BallHint ballHint) {
-        if(ballHint.isStrike()) {
+        if (ballHint.isStrike()) {
             strike++;
         }
-        if(ballHint.isBall()) {
+        if (ballHint.isBall()) {
             ball++;
         }
     }

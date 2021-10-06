@@ -10,7 +10,7 @@ public class BallPosition {
     private final int ballPosition;
 
     public BallPosition(int ballPosition) {
-        if(rangeCheck(ballPosition)) {
+        if (rangeCheck(ballPosition)) {
             throw new IllegalArgumentException("3자리 까지만 가능");
         }
         this.ballPosition = ballPosition;

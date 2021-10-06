@@ -10,7 +10,7 @@ public class BallNumber {
     private final int ballNumber;
 
     public BallNumber(final int ballNumber) {
-        if(rangeCheck(ballNumber)) {
+        if (rangeCheck(ballNumber)) {
             throw new IllegalArgumentException("1~9까지만 허용");
         }
         this.ballNumber = ballNumber;

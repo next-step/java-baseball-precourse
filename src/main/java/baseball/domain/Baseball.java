@@ -3,7 +3,10 @@ package baseball.domain;
 import baseball.util.NumberGenerator;
 import baseball.veiw.PlayerResponse;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
 
 public class Baseball {
 
@@ -28,13 +31,13 @@ public class Baseball {
     private List<Ball> createBall(List<Integer> numbers) {
         List<Ball> resultBalls = new ArrayList<>();
         for (int i = 0; i < BALLSIZE; i++) {
-            resultBalls.add(new Ball(i , numbers.get(i)));
+            resultBalls.add(new Ball(i, numbers.get(i)));
         }
         return resultBalls;
     }
 
     private void ballSizeCheck(List<Integer> numbers) {
-        if(sizeCheck(numbers)) {
+        if (sizeCheck(numbers)) {
             throw new IllegalArgumentException("3자리 까지만 가능");
         }
     }
@@ -44,8 +47,8 @@ public class Baseball {
     }
 
     private void ballDuplicationCheck(List<Integer> numbers) {
-        if(duplicationCheck(numbers)) {
-            throw new IllegalArgumentException("중복 불가"); 
+        if (duplicationCheck(numbers)) {
+            throw new IllegalArgumentException("중복 불가");
         }
     }
 
@@ -69,9 +72,9 @@ public class Baseball {
         return ballHint;
     }
 
-    private static BallHint strikeAndBallCheck (Ball ball, Ball target, BallHint hint) {
+    private static BallHint strikeAndBallCheck(Ball ball, Ball target, BallHint hint) {
         BallHint ballHint = ball.compare(target);
-        if(!ball.compare(target).isNothing()) {
+        if (!ball.compare(target).isNothing()) {
             hint = ballHint;
         }
         return hint;
