@@ -28,6 +28,10 @@ public class BaseballVO {
         this.userAnswer = "";
     }
 
+    /**
+     * 사용자 출력 메세지 생성메소드
+     * @return
+     */
     public String resultMessage() {
         if (this.isError) {
             return this.getMessage() == null ? ERROR_MESSAGE_LENGTH : this.getMessage();
