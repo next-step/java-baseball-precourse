@@ -17,7 +17,6 @@ public class GameConsole {
      */
     public void playScreen(){
         boolean isAnswer = false;
-        // answer 를 넘긴다
         do {
             isAnswer = tryPitch();
             this.answerCheck.resetCount();
@@ -77,7 +76,6 @@ public class GameConsole {
         else if(res.equals("2")){
             return false;
         }
-
         throw new IllegalArgumentException("[ERROR] : 1 또는 2를 입력하세요");
     }
 
