@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Validation {
-    public static final String ERROR_MSG = "[ERROR] 서로 다른 세 자리의 자를 입력해주세요 :)";
+    public static final String ERROR_MSG = "[ERROR] 서로 다른 세 자리의 숫자를 입력해주세요 :)";
 
     public Validation() {}
 

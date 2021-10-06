@@ -94,5 +94,33 @@ class ValidationTest {
 		}
 	}
 
+	@Nested
+	@DisplayName("isCorrectRange method는")
+	class Describe_isCorrectRange {
+		private Validation validation = new Validation();
+		private String crtInput = "123";
+		private String errInput = "101";
+
+		@Nested
+		@DisplayName("입력 값으로 1~9까지 세 자리 다른 숫자가 주어진다면")
+		class Context_with_in_range_num {
+			@DisplayName("True를 반환한다.")
+			@Test
+			void it_returns_true() {
+				assertThat(validation.isDiffNum(crtInput)).isTrue();
+			}
+		}
+
+		@Nested
+		@DisplayName("입력 값으로 1~9까지가 아닌 숫자가 주어진다면")
+		class Context_with_not_in_range_num {
+			@DisplayName("False를 반환한다.")
+			@Test
+			void it_return_false() {
+				assertThat(validation.isDiffNum(errInput)).isFalse();
+			}
+		}
+	}
+
 
 }
