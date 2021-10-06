@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 class ComputerTest {
 	@Test
 	void create_three_random_number() {
-
 		Computer computer = new Computer();
 		BaseballNumbers baseballNumbers = computer.createBaseballNumbers();
 
