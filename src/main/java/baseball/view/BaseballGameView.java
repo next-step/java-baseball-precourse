@@ -11,7 +11,10 @@ public class BaseballGameView {
 	}
 
 	public void play() {
+		String result;
 		baseballGameConrtoller.initGame();
-		baseballGameConrtoller.submitBallNumberStr(Console.readLine());
+		do {
+			result = baseballGameConrtoller.submitBallNumberStr(Console.readLine());
+		} while (result.equals("InvalidBallNumberException"));
 	}
 }

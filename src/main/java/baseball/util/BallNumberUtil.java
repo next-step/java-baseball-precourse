@@ -1,8 +1,11 @@
 package baseball.util;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import baseball.exception.InvalidBallNumberException;
 import baseball.vo.BallNumberVo;
 import nextstep.utils.Randoms;
 
@@ -11,17 +14,17 @@ public class BallNumberUtil {
 	private final static int SELECTED_NUMBER_MIN = 1;
 	private final static int SELECTED_NUMBER_MAX = 9;
 
-	public static BallNumberVo createSelectedNumberList() {
-		BallNumberVo selectedNumber = new BallNumberVo();
+	public static BallNumberVo createBallNumber() {
+		BallNumberVo ballNumber = new BallNumberVo();
 		do {
-			selectedNumber.setNumbers(createNumbers());
-		} while (!checkSelectedNumber(selectedNumber));
+			ballNumber.setNumbers(createNumbers());
+		} while (!checkBallNumber(ballNumber));
 
-		return selectedNumber;
+		return ballNumber;
 	}
 
-	public static Boolean checkSelectedNumber(BallNumberVo selectedNumber) {
-		List<Integer> numbers = selectedNumber.getNumbers();
+	public static Boolean checkBallNumber(BallNumberVo ballNumber) {
+		List<Integer> numbers = ballNumber.getNumbers();
 		if (numbers == null) {
 			return false;
 		}
@@ -37,13 +40,22 @@ public class BallNumberUtil {
 				return false;
 			}
 		}
+
+		Set<Integer> set = new HashSet<Integer>(numbers);
+		if (set.size() < numbers.size()) {
+			return false;
+		}
+
 		return true;
 	}
 
-	public static BallNumberVo stringToBallNumber(String str) {
+	public static BallNumberVo stringToBallNumber(String str) throws InvalidBallNumberException {
 		BallNumberVo ballNumber = new BallNumberVo();
 		List<Integer> numbers = stringToNumbers(str);
 		ballNumber.setNumbers(numbers);
+		if (!checkBallNumber(ballNumber)) {
+			throw new InvalidBallNumberException();
+		}
 		return ballNumber;
 	}
 
