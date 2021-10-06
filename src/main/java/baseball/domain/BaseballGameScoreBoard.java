@@ -37,8 +37,12 @@ public class BaseballGameScoreBoard {
         return this;
     }
 
-    private boolean isThreeStrikes() {
+    public boolean isThreeStrikes() {
         return strikeCount == 3;
+    }
+
+    public boolean isNothing() {
+        return getStrikeCount() == 0 && getBallCount() == 0;
     }
 
     public int getStrikeCount() {
