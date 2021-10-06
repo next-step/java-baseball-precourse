@@ -3,12 +3,13 @@ package baseball.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class RefereeTest {
     @Test
     void 입력값_룰체크_확인(){
-        Referee referee = new Referee(3);
+        Referee referee = new Referee(3, Arrays.asList(1,2,3));
         //중복값
         referee.ruleCheck("111");
         List<Integer> inputList = referee.getInputList();

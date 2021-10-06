@@ -10,9 +10,11 @@ public class Referee {
     private int gameNumberDigits;
     private boolean isEndGame = false;
     private List<Integer> inputList = new ArrayList<>();
+    private List<Integer> quizList;
 
-    public Referee(int gameNumberDigits) {
+    public Referee(int gameNumberDigits, List<Integer> quizList) {
         this.gameNumberDigits = gameNumberDigits;
+        this.quizList = quizList;
     }
 
     public boolean isEndGame(){
