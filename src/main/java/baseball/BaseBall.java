@@ -8,16 +8,28 @@ public class BaseBall {
 
 	public void run() {
 		String generate = RandomNumberGenerator.generate();
+		strikeCount = 0;
+		ballCount = 0;
+
 		while (strikeCount != 3) {
 			computed(inNumber(), generate);
 			outputPrint();
 		}
+		restart();
+	}
+
+	private void restart() {
+		String trigger = restartQuestion();
+		if (trigger.equals("1")) {
+			new BaseBall().run();
+		}
+		if (trigger.equals("2")) {
+			System.out.println("게임을 종료합니다");
+			System.exit(0);
+		}
 	}
 
 	private void computed(String inputs, String generate) {
-		strikeCount = 0;
-		ballCount = 0;
-
 		for (int i = 0; i < inputs.length(); i++) {
 			isBall(inputs, generate, i);
 			isStrike(inputs, generate, i);
@@ -37,7 +49,7 @@ public class BaseBall {
 	}
 
 	private String inNumber() {
-		System.out.print("\n숫자를 입력해 주세요 : ");
+		System.out.print("숫자를 입력해 주세요 : ");
 		return Console.readLine();
 	}
 
