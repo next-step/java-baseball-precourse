@@ -1,13 +1,12 @@
 package baseball.domain;
 
-public class Nothing {
-
-    private final Rule rule;
+public class Nothing extends GameRule {
 
     public Nothing() {
-        this.rule = Rule.NOTHING;
+        super(Rule.NOTHING);
     }
 
+    @Override
     public String getText() {
         return rule.getName();
     }

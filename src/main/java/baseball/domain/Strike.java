@@ -1,18 +1,15 @@
 package baseball.domain;
 
-public class Strike {
+public class Strike extends GameRule {
 
-    private static final int ZERO = 0;
-    private static final String EMPTY = "";
-
-    private final Rule rule;
     private final int count;
 
     public Strike(int count) {
-        this.rule = Rule.STRIKE;
+        super(Rule.STRIKE);
         this.count = count;
     }
 
+    @Override
     public String getText() {
         if (count == ZERO) {
             return EMPTY;

@@ -10,6 +10,12 @@
   - `Numbers`는 3자리의 서로 다른 `Number`를 가진다
 - Rule
   - `Rule`은 `STRIKE`,`BALL`,`NOTHING`을 가진다
+- Strike
+  - `Strike`는 `Rule`과 개수를 가진다
+- Ball
+  - `Ball`는 `Rule`과 개수를 가진다
+- Nothing
+  - `Nothing`는 `Rule`을 가진다
 - Score
   - `Score`은 3가지의 `Rule`을 가진다.
 - RandomGenerator
