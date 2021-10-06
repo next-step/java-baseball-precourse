@@ -19,12 +19,16 @@ public class BaseballNumbersGenerator {
 		List<Integer> randomNumbers = new ArrayList<>();
 
 		while (randomNumbers.size() < NUMBER_SIZE) {
-			int number = Randoms.pickNumberInRange(NUMBER_RANGE_MIN, NUMBER_RANGE_MAX);
-			if (!randomNumbers.contains(number)) {
-				randomNumbers.add(number);
-			}
+			initializeWithoutDuplication(randomNumbers);
 		}
 		return new BaseballNumbers(randomNumbers);
+	}
+
+	private static void initializeWithoutDuplication(List<Integer> randomNumbers) {
+		int number = Randoms.pickNumberInRange(NUMBER_RANGE_MIN, NUMBER_RANGE_MAX);
+		if (!randomNumbers.contains(number)) {
+			randomNumbers.add(number);
+		}
 	}
 
 	public static BaseballNumbers createBaseballNumbers(String inputValue) {
@@ -47,11 +51,11 @@ public class BaseballNumbersGenerator {
 		return numbers;
 	}
 
-	private static void checkDuplicate(List<Integer> baseballNumbers){
+	private static void checkDuplicate(List<Integer> baseballNumbers) {
 		int inputSize = baseballNumbers.size();
 		int deduplicatedSize = new HashSet<>(baseballNumbers).size();
 
-		if(deduplicatedSize != inputSize){
+		if (deduplicatedSize != inputSize) {
 			throw new IllegalArgumentException("입력 된 숫자에 중복이 있으면 안됩니다.");
 		}
 	}

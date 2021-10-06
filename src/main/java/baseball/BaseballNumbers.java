@@ -17,10 +17,7 @@ public class BaseballNumbers {
 		List<Integer> computerNumbers = computer.getBaseballNumbers();
 		int count = 0;
 		for (int index = 0; index < baseballNumbers.size(); index++) {
-			int number = baseballNumbers.get(index);
-			if (computerNumbers.contains(number)) {
-				count++;
-			}
+			count += countSameNumber(computerNumbers, index);
 		}
 		return count;
 	}
@@ -29,12 +26,25 @@ public class BaseballNumbers {
 		List<Integer> computerNumbers = computer.getBaseballNumbers();
 		int count = 0;
 		for (int index = 0; index < baseballNumbers.size(); index++) {
-			int number = baseballNumbers.get(index);
-			if (computerNumbers.get(index) == number) {
-				count++;
-			}
+			count += countSameNumberAndLocation(computerNumbers, index);
 		}
 		return count;
+	}
+
+	private int countSameNumber(List<Integer> computerNumbers, int index) {
+		int number = baseballNumbers.get(index);
+		if (computerNumbers.contains(number)) {
+			return 1;
+		}
+		return 0;
+	}
+
+	private int countSameNumberAndLocation(List<Integer> computerNumbers, int index) {
+		int number = baseballNumbers.get(index);
+		if (computerNumbers.get(index) == number) {
+			return 1;
+		}
+		return 0;
 	}
 
 	@Override
@@ -44,14 +54,10 @@ public class BaseballNumbers {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		BaseballNumbers other = (BaseballNumbers)o;
-		List<Integer> otherBaseballNumbers = other.getBaseballNumbers();
-
-		for (int index = 0; index < this.baseballNumbers.size(); index++) {
-			int number = this.baseballNumbers.get(index);
-			if (otherBaseballNumbers.get(index) != number) {
-				return false;
-			}
+		int count = countSameNumberAndLocation(other);
+		if(count == 3){
+			return true;
 		}
-		return true;
+		return false;
 	}
 }
