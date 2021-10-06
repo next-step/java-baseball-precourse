@@ -11,13 +11,6 @@ public class BaseballResult {
     E : 에러
      */
 
-
-    public BaseballResult() {
-        this.strike = 0;
-        this.ball = 0;
-        this.resultCode = "F";
-    }
-
     public BaseballResult(int strike, int ball, String resultCode) {
         this.strike = strike;
         this.ball = ball;

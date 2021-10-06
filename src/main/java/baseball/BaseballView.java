@@ -19,24 +19,20 @@ public class BaseballView {
         String resultCode = "F";
         baseballController.initComputerNumber();
 
-//        while(!"S".equals(resultCode)){
-//            String inputNumber = InputNumber();
-//            BaseballResult baseballResult = baseballController.countStrikeBall(inputNumber);
-//
-//            // 에러 발생 시
-//            if("E".equals(baseballResult.getResultCode())){
-//                System.out.println(inputErrorMessage);
-//                continue;
-//            }
-//
-//            // printResult
-//
-//            resultCode = baseballResult.getResultCode();
-//
-//            // 입력값 출력 테스트
-//            //System.out.println(inputNumber);
-//
-//        }
+        while(!"S".equals(resultCode)){
+            String inputNumber = InputNumber();
+            BaseballResult baseballResult = baseballController.countStrikeBall(inputNumber);
+
+            // 에러 발생 시
+            if("E".equals(baseballResult.getResultCode())){
+                System.out.println(inputErrorMessage);
+                continue;
+            }
+
+            printBaseballResult(baseballResult);
+            resultCode = baseballResult.getResultCode();
+
+        }
 
 
     }
