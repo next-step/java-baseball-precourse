@@ -1,12 +1,20 @@
 package baseball;
 
 public class Referee {
-
+    /**
+     * 세자리 숫자를 정답과 비교하여 결과를 알려주는 클래스
+     */
     private String answer;
 
     public void setRandomNumber(String randomNumber) {
         answer = randomNumber;
     }
+
+    /**
+     * 스트라이크를 찾기위한 메소드
+     * @param in
+     * @return int
+     */
     public int checkStrike(String in) {
         int result = 0;
         for (int i = 0; i < 3; i++) {
@@ -22,6 +30,11 @@ public class Referee {
         return 0;
     }
 
+    /**
+     * 볼을 찾기위한 메소드
+     * @param in
+     * @return int
+     */
     public int checkBall(String in) {
         int result = 0;
         for (int i = 0; i < 3; i++) {
@@ -45,6 +58,11 @@ public class Referee {
         return 0;
     }
 
+    /**
+     * 사용자 입력값의 결과를 반환하는 메소드
+     * @param in
+     * @return BallState
+     */
     public BallState checkBallState(String in) {
         BallState ball = new BallState();
         ball.setStrike(checkStrike(in));

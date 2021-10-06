@@ -1,6 +1,9 @@
 package baseball;
 
 public class PrintGame {
+    /**
+     * 사용자에게 게임 진행에 관련한 안내를 하기위한 클래스
+     */
 
     public void printUserInput() {
         System.out.print("숫자를 입력해 주세요: ");

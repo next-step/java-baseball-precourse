@@ -3,7 +3,11 @@ package baseball;
 import nextstep.utils.Console;
 
 public class UserInput {
-
+    /**
+     * 사용자로부터 숫자 3개를 입력 받아 유효성 확인하는 메소드
+     * @return
+     * @throws Exception
+     */
     public String ball() throws Exception {
         String input = Console.readLine();
         if (input == null || input.equals("")) {
@@ -39,6 +43,11 @@ public class UserInput {
         return true;
     }
 
+    /**
+     * 사용자로부터 게임 재시작을 위한 입력을 받고 유효성을 확인하는 메소드
+     * @return
+     * @throws Exception
+     */
     public String restartGame() throws Exception {
         String input = Console.readLine();
         if (input == null || input.equals("")) {

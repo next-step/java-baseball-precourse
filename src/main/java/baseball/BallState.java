@@ -1,6 +1,9 @@
 package baseball;
 
 public class BallState {
+    /**
+     * 사용자가 입력한 숫자와 정답을 비교한 결과를 저장하기 위한 클래스
+     */
     int strike;
     int ball;
 

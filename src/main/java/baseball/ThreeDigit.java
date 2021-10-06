@@ -4,6 +4,10 @@ import nextstep.utils.Randoms;
 
 public class ThreeDigit {
 
+    /**
+     * 중복하지 않는 세자리 숫자를 얻기 위한 메소드
+     * @return string 중복하지 않는 세자리 숫자
+     */
     public static String get() {
         StringBuilder sb = new StringBuilder();
         while(sb.length() < 3) {
