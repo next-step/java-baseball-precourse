@@ -14,12 +14,6 @@ public class PlayerBaseballNumber {
 	private int strikeCount;
 	private int ballCount;
 
-	public PlayerBaseballNumber(List<Integer> baseballNumbers, int strikeCount, int ballCount) {
-		this.baseballNumbers = baseballNumbers;
-		this.strikeCount = strikeCount;
-		this.ballCount = ballCount;
-	}
-
 	public PlayerBaseballNumber(List<Integer> playerBaseballNumber) {
 		this.baseballNumbers = playerBaseballNumber;
 		strikeCount=0;

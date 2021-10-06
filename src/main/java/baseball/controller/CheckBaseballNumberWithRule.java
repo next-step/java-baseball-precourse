@@ -8,7 +8,7 @@ import baseball.model.PlayerBaseballNumber;
 
 public class CheckBaseballNumberWithRule {
 
-	public void checkBaseballNumber(OpponentBaseballNumber opponentBaseballNumber,
+	public static void checkBaseballNumber(OpponentBaseballNumber opponentBaseballNumber,
 		PlayerBaseballNumber playerBaseballNumber) {
 
 		for(int i=0; i< ConstValue.BASEBALL_SIZE; i++) {
@@ -17,7 +17,7 @@ public class CheckBaseballNumberWithRule {
 		}
 	};
 
-	private void checkStrike(OpponentBaseballNumber opponentBaseballNumber,
+	private static void checkStrike(OpponentBaseballNumber opponentBaseballNumber,
 		PlayerBaseballNumber playerBaseballNumber, int index) {
 		List<Integer> playerNumberList = playerBaseballNumber.getBaseballNumbers();
 		List<Integer> opponentNumberList = opponentBaseballNumber.getBaseballNumbers();
@@ -27,7 +27,7 @@ public class CheckBaseballNumberWithRule {
 
 	};
 
-	private void checkBall(OpponentBaseballNumber opponentBaseballNumber,
+	private static void checkBall(OpponentBaseballNumber opponentBaseballNumber,
 		PlayerBaseballNumber playerBaseballNumber, int index) {
 		List<Integer> playerNumberList = playerBaseballNumber.getBaseballNumbers();
 		List<Integer> opponentNumberList = opponentBaseballNumber.getBaseballNumbers();
