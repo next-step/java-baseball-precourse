@@ -13,12 +13,12 @@ public class Ball {
 		this.number = number;
 	}
 
-	private static boolean isValidNo(int number){
+	private static boolean isValidNo(int number) {
 		return number >= MIN_NUMBER && number <= MAX_NUMBER;
 	}
 
 	public static Ball of(int number) {
-		if(!isValidNo(number)) {
+		if (!isValidNo(number)) {
 			throw new IllegalArgumentException("1~9까지의 숫자만 입력 가능합니다.");
 		}
 		return new Ball(number);

@@ -33,7 +33,7 @@ public class GameController {
 			BallNumbers userNumbers = isValidInput(inputView.inputMessage());
 			judge.countContainNumbers(computerNumbers, userNumbers);
 			printNothing(judge);
-		} while(judge.strikeCount() != 3);
+		} while (judge.strikeCount() != 3);
 		outputView.print(GAME_END.getHint());
 	}
 

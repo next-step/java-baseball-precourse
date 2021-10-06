@@ -14,7 +14,7 @@ public class BallNumbers {
 		this.ballNumbers = ballNumbers;
 	}
 
-	private static boolean isValidSize(Set<Ball> ballNumbers){
+	private static boolean isValidSize(Set<Ball> ballNumbers) {
 		return ballNumbers.size() == SIZE;
 	}
 
@@ -45,14 +45,14 @@ public class BallNumbers {
 		List<Ball> ballNumbers = stringToList(isValidNo(numbers));
 		Set<Ball> ballNumberSet = new LinkedHashSet<>(ballNumbers);
 
-		if(!isValidSize(ballNumberSet)) {
+		if (!isValidSize(ballNumberSet)) {
 			throw new IllegalArgumentException("중복되지 않는 3자리 수를 입력해야 합니다.");
 		}
 
 		return new BallNumbers(ballNumbers);
 	}
 
-	public List<Ball> getBallNumbers(){
+	public List<Ball> getBallNumbers() {
 		return this.ballNumbers;
 	}
 

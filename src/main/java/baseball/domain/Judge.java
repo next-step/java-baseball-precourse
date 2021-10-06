@@ -9,7 +9,7 @@ public class Judge {
 
 	public void countContainNumbers(BallNumbers computerNumber, BallNumbers userNumber) {
 		List<Ball> numbers = userNumber.getBallNumbers();
-		for (int i=0; i<numbers.size(); i++) {
+		for (int i = 0; i < numbers.size(); i++) {
 			plusContains(computerNumber, numbers.get(i));
 			plusStrikes(computerNumber, numbers.get(i), i);
 		}
