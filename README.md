@@ -7,11 +7,9 @@
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
 
 ## 구현할 기능 목록
-### 1. 컴퓨터 숫자 생성
-* 1부터 9까지의 서로 다른 3자리의 수로 이루어진 랜덤 값 추출 (nextstep.utils.Randoms의 pickNumberInRange() 활용)
-  * 1~9까지의 숫자 : 벗어날 경우 IllegalArgumentException
-  * 서로 다른 값 : 중복 허용하지 않는 Set 사용
-  * 3자리 : Set Size 3으로 지정
+### 1. 숫자
+* 1부터 9까지의 숫자로 이루어짐
+* 범위를 벗어날 경우 IllegalArgumentException
 
 ### 2. 플레이어 입력 값
 * 숫자 입력 요청 (nextstep.utils.Console의 readLine() 활용)
@@ -20,17 +18,23 @@
   * 서로 다른 값
   * 3자리
 * 잘못된 값 입력 시 [ERROR]로 시작하는 에러 메시지 출력 후 게임을 계속해서 진행할 수 있어야 함
+
+### 3. 컴퓨터 숫자 생성
+* 1부터 9까지의 서로 다른 3자리의 수로 이루어진 랜덤 값 추출 (nextstep.utils.Randoms의 pickNumberInRange() 활용)
+  * 1~9까지의 숫자 : 벗어날 경우 IllegalArgumentException
+  * 서로 다른 값 : 중복 허용하지 않는 Set 사용
+  * 3자리 : Set Size 3으로 지정
   
-### 3. 스트라이크 판정
+### 4. 스트라이크 판정
 * 같은 위치에 같은 숫자인지 확인
 
-### 4. 볼 판정
+### 5. 볼 판정
 * 다른 위치에 같은 숫자인지 확인
 
-### 5. 낫싱 판정
+### 6. 낫싱 판정
 * 같은 수가 전혀 없는지 확인
 
-### 6. 힌트 / 결과 반환
+### 7. 힌트 / 결과 반환
 * 플레이어 입력 값이 유효성 체크를 통과한 경우에는 판정에 따라 힌트 반환
 * 플레이어 입력 값이 컴퓨터의 랜덤 값과 동일한 경우에만 
   * 정답 문구 출력
