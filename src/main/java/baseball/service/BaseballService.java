@@ -2,12 +2,10 @@ package baseball.service;
 
 import static baseball.util.BallListGenerator.*;
 
-import java.util.List;
-
-import baseball.code.BallCount;
 import baseball.code.ErrorMessage;
 import baseball.code.GameStatus;
 import baseball.exception.BaseballException;
+import baseball.model.BallCount;
 import baseball.model.BallList;
 import baseball.util.BallListGenerator;
 import baseball.view.InputView;
@@ -30,13 +28,13 @@ public class BaseballService {
 
     }
 
-    public static List<Integer> ballCount(BallList computerBallList, BallList userBallList) {
+    public static BallCount ballCount(BallList computerBallList, BallList userBallList) {
         return computerBallList.ballCount(userBallList);
     }
 
-    public static GameStatus checkBallCount(List<Integer> ballCount) {
-        OutputView.ballCount(BallCount.toString(ballCount));
-        if (ballCount.get(0).equals(3)) {
+    public static GameStatus checkBallCount(BallCount ballCount) {
+        OutputView.ballCount(ballCount.generateBallCountString());
+        if (ballCount.getStrike() == 3) {
             OutputView.endGame();
             return toBeContinue();
         }

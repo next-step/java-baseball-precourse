@@ -59,10 +59,10 @@ public class BallList {
         return ballBall;
     }
 
-    public List<Integer> ballCount(BallList ballList) {
-        List<Integer> count = new ArrayList<>();
-        count.add(strikeBallCount(ballList));
-        count.add(ballBallCount(ballList));
-        return count;
+    public BallCount ballCount(BallList ballList) {
+        return new BallCount.Builder()
+                .strike(strikeBallCount(ballList))
+                .ball(ballBallCount(ballList))
+                .build();
     }
 }

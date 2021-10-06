@@ -1,8 +1,7 @@
 package baseball.controller;
 
-import java.util.List;
-
 import baseball.code.GameStatus;
+import baseball.model.BallCount;
 import baseball.model.BallList;
 import baseball.service.BaseballService;
 
@@ -14,7 +13,7 @@ public class BaseballController {
 
         do {
             BallList inputUserBallList = BaseballService.inputUserBall();
-            List<Integer> ballCount = BaseballService.ballCount(computerBallList, inputUserBallList);
+            BallCount ballCount = BaseballService.ballCount(computerBallList, inputUserBallList);
             gameStatus = BaseballService.checkBallCount(ballCount);
             computerBallList = generateNewComputerBallList(gameStatus, computerBallList);
         } while (!gameStatus.equals(GameStatus.END_GAME));

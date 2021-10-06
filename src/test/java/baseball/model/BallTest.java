@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import baseball.code.BallCount;
+import baseball.code.BallCountType;
 
 @DisplayName("Ball 테스트")
 class BallTest {
@@ -80,9 +80,9 @@ class BallTest {
     void checkBallCountType() {
         // then
         assertAll(
-                () -> assertThat(computerBall.checkBallCountType(strikeBall)).isEqualTo(BallCount.STRIKE),
-                () -> assertThat(computerBall.checkBallCountType(ballBall)).isEqualTo(BallCount.BALL),
-                () -> assertThat(computerBall.checkBallCountType(nothingBall)).isEqualTo(BallCount.NOTHING)
+                () -> assertThat(computerBall.checkBallCountType(strikeBall)).isEqualTo(BallCountType.STRIKE),
+                () -> assertThat(computerBall.checkBallCountType(ballBall)).isEqualTo(BallCountType.BALL),
+                () -> assertThat(computerBall.checkBallCountType(nothingBall)).isEqualTo(BallCountType.NOTHING)
         );
     }
 }

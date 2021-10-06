@@ -1,6 +1,6 @@
 package baseball.model;
 
-import baseball.code.BallCount;
+import baseball.code.BallCountType;
 
 public class Ball {
     private final int position;
@@ -27,14 +27,14 @@ public class Ball {
         return this.position != ball.getPosition() && this.value == ball.getValue();
     }
 
-    public BallCount checkBallCountType(Ball ball) {
+    public BallCountType checkBallCountType(Ball ball) {
         if (this.isStrike(ball)) {
-            return BallCount.STRIKE;
+            return BallCountType.STRIKE;
         }
         if (this.isBall(ball)) {
-            return BallCount.BALL;
+            return BallCountType.BALL;
         }
-        return BallCount.NOTHING;
+        return BallCountType.NOTHING;
     }
 
     public static class Builder {
