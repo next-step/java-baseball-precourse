@@ -33,6 +33,10 @@ public class Count {
         }
     }
 
+    public boolean isStrikeOut() {
+        return this.numberOfStrikes == UPPER_BOUND;
+    }
+
     @Override
     public String toString() {
         final List<String> logs = new ArrayList<>();
