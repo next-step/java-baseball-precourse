@@ -27,6 +27,7 @@ class BallGeneratorTest {
         int[] numbers = ballNumbersToIntArray(ballNumbers);
         int uniqueCount = getUniqueCount(numbers);
 
+        assertThat(numbers.length).isEqualTo(3);
         assertThat(numbers.length).isEqualTo(uniqueCount);
     }
 
