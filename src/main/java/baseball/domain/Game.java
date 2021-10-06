@@ -11,46 +11,36 @@ public class Game {
     public static final int BALL_MAX_COUNT = 3; // 입력 볼 최대 개수
 
     List<Integer> computerBalls; // 컴퓨터 볼
+    boolean isFinished = false;
 
     public Game() {}
 
     // 게임 시작
     public void start() {
+        init();
+        gameStart();
+        gameEnd();
+    }
+
+    public void init() {
         this.computerBalls = createThreeRandomBalls();
-        System.out.println(computerBalls);
+        System.out.println(computerBalls); // 테스트용 정답 보여주기.
+        isFinished = false;
+    }
 
-        boolean isFinished = false;
-
+    public void gameStart() {
         while(!isFinished) {
             List<Integer> userBalls = getBalls();
             PlayResult result = play(userBalls);
             isFinished = result.isGameEnd();
             displayPlayResult(result);
-        }
-
-        int isRestart = getIsRestart();
-        if (isRestart == 1) {
-            reStart();
         }
     }
 
-    // 게임 재시작
-    public void reStart() {
-        this.computerBalls = createThreeRandomBalls();
-        System.out.println(computerBalls);
-
-        boolean isFinished = false;
-
-        while(!isFinished) {
-            List<Integer> userBalls = getBalls();
-            PlayResult result = play(userBalls);
-            isFinished = result.isGameEnd();
-            displayPlayResult(result);
-        }
-
+    public void gameEnd() {
         int isRestart = getIsRestart();
         if (isRestart == 1) {
-            reStart();
+            start();
         }
     }
 
@@ -68,13 +58,14 @@ public class Game {
             System.out.println("낫싱");
             return;
         }
+        String message = "";
         if (strike > 0) {
-            System.out.print(strike + "스트라이크 ");
+            message += strike + "스트라이크 ";
         }
         if (ball > 0) {
-            System.out.print(ball + "볼 ");
+            message += ball + "볼 ";
         }
-        System.out.println("");
+        System.out.println(message);
     }
 
     //== 게임 결과 리턴 ==//
@@ -90,10 +81,9 @@ public class Game {
     }
 
     /** 볼 체크하기!
-     * @param userBall          볼의 값
+     * @param userBallNo          볼의 값
      * @param index             볼의 위치
      * @param computerBalls     컴퓨터 볼들
-     * @return
      */
     public BallStatus checkBalls(int userBallNo, int index, List<Integer> computerBalls) {
         if (computerBalls.get(index) == userBallNo) {
