@@ -1,8 +1,10 @@
 package baseball;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class Score {
@@ -37,6 +39,25 @@ public class Score {
     private boolean isDupl() {
         Set<UserNum> userNumsSet = new HashSet<>(userNums);
         return userNums.size() != userNumsSet.size();
+    }
+
+    private Map<String, Integer> countResult() {
+        int num;
+        Map<String, Integer> cntMap = new HashMap<>();
+        cntMap.put("strikeCnt", 0);
+        cntMap.put("ballCnt", 0);
+
+        for (int idx=0; idx < userNums.size(); idx++) {
+            num = userNums.get(idx).getNum();
+            if (randomNums.indexOf(num) == idx) {
+                cntMap.replace("strikeCnt", cntMap.get("strikeCnt")+1);
+                continue;
+            }
+            if (randomNums.contains(num)) {
+                cntMap.replace("ballCnt", cntMap.get("ballCnt")+1);
+            }
+        }
+        return cntMap;
     }
 
     public void printErrorMsgs() {
