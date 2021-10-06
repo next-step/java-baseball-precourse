@@ -33,7 +33,7 @@ public class CheckBaseballNumberWithRule {
 		List<Integer> opponentNumberList = opponentBaseballNumber.getBaseballNumbers();
 
 		if (opponentNumberList.contains(playerNumberList.get(index))
-			&& !opponentNumberList.get(index).equals(playerNumberList.get(index))) {
+			&& !(opponentNumberList.get(index).equals(playerNumberList.get(index)))) {
 			playerBaseballNumber.setBallCount(playerBaseballNumber.getBallCount()+1);
 		}
 

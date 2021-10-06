@@ -2,6 +2,7 @@ package baseball.controller;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import baseball.model.ConstValue;
@@ -10,7 +11,7 @@ import nextstep.utils.Randoms;
 public class OpponentBaseballNumberGenerator {
 
 	public static List<Integer> generateOpponentBaseBallNumber() {
-		HashSet<Integer> opponentBaseballNumbers = new HashSet<>();
+		LinkedHashSet<Integer> opponentBaseballNumbers = new LinkedHashSet<>();
 
 		while(opponentBaseballNumbers.size() < ConstValue.BASEBALL_SIZE) {
 			opponentBaseballNumbers.add(
