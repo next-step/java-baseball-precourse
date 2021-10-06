@@ -44,20 +44,6 @@ public class Balls {
         return BallStatus.NOTHING;
     }
 
-    // 사용자 볼 입력받기
-    public List<Integer> getBalls() {
-        String numbers = GameUI.getBallsValue();
-
-        // 최소 3자리 이상 입력 받아야 됨
-        // 숫자만 입력받아야 한다.
-        while(!ValidationUtils.checkIsNumber(numbers)
-                || !ValidationUtils.checkLength(numbers, 3)) {
-            numbers = GameUI.getBallsValue();
-        }
-
-        return convertToListOfInteger(numbers);
-    }
-
     // 랜덤한 3개의 숫자 생성
     public List<Integer> createThreeRandomBalls() {
         Set<Integer> balls = new HashSet<>();
@@ -65,14 +51,5 @@ public class Balls {
             balls.add(Randoms.pickNumberInRange(Game.MIN_NO, Game.MAX_NO));
         }
         return new ArrayList<>(balls);
-    }
-
-    // 문자열을 Int 배열로 변환
-    public List<Integer> convertToListOfInteger(String numbers) {
-        List<Integer> result = new ArrayList<>();
-        for (int i = 0; i < numbers.length(); i++) {
-            result.add(Character.getNumericValue(numbers.charAt(i)));
-        }
-        return result;
     }
 }

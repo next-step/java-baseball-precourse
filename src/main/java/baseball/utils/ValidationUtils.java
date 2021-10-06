@@ -13,9 +13,6 @@ public class ValidationUtils {
      */
     public static boolean checkIsNumber(String numbers) {
         boolean isNumber = numbers.chars().allMatch(Character::isDigit);
-        if (!isNumber) {
-            GameUI.displayErrorMessage("숫자만 입력해주세요.");
-        }
         return isNumber;
     }
 
@@ -26,7 +23,6 @@ public class ValidationUtils {
      */
     public static boolean checkLength(String numbers, int length) {
         if (numbers.trim().length() < length) {
-            GameUI.displayErrorMessage(String.format("공백을 제외한 최소 %d자리 이상의 숫자를 입력해주세요.", length));
             return false;
         }
         return true;
@@ -34,7 +30,6 @@ public class ValidationUtils {
 
     public static boolean containsZero(String numbers) {
         if (numbers.contains("0")) {
-            GameUI.displayErrorMessage("숫자는 1~9사이의 숫자를 입력해주세요.");
             return true;
         }
         return false;
