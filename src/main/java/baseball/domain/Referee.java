@@ -21,9 +21,9 @@ public class Referee {
         return isEndGame;
     }
 
-    public void ruleCheck(String readLine) {
+    public void ruleCheck(String readLine, int minNumber, int maxNumber) {
         try{
-            List<Integer> inputList = CommonUtils.stringToIntegerList(readLine);
+            List<Integer> inputList = CommonUtils.stringToIntegerList(readLine, minNumber, maxNumber);
             ValidateUtils.lengthCheck(inputList, gameNumberDigits);
             ValidateUtils.duplicateNumberCheck(inputList);
             this.inputList = inputList;

@@ -15,7 +15,7 @@ public class GameController {
         while (!referee.isEndGame()){
             System.out.print("숫자를 입력해주세요 : ");
             String readLine = Console.readLine();
-            referee.ruleCheck(readLine);
+            referee.ruleCheck(readLine, minNumber, maxNumber);
             user.challenge(referee.getInputList());
         }
     }
