@@ -21,7 +21,7 @@
   - (commit) 같은 숫자가 다른 자리에 있으면 '볼'
   - (commit) 같은 숫자가 전혀 없으면 '낫싱'
 - (commit) 모든 숫자를 맞추면 게임이 졸료된다.
-- 게임이 종료된 후에는 다시 시작하거나, 완전히 종료할 수 있다.
+- (commit) 게임이 종료된 후에는 다시 시작하거나, 완전히 종료할 수 있다.
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
