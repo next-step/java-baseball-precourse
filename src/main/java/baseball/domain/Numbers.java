@@ -1,37 +1,30 @@
 package baseball.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
-import baseball.exception.ErrorMessage;
 import baseball.exception.DuplicationNumberException;
+import baseball.exception.ErrorMessage;
 import baseball.exception.NumberRangeInvalidException;
-import baseball.exception.NumberSizeInvalidException;
 
 public class Numbers {
-
-	private static final int MIN_NUMBER = 1;
-
-	private static final int MAX_NUMBER = 9;
-
 	private static final int RANGE_SIZE = 3;
 
-	private final List<Integer> digits = new ArrayList<>();
+	private final List<Number> number = new ArrayList<>();
 
 	public Numbers(final String numbers) {
 		validateRange(numbers);
-		this.digits.addAll(parse(numbers));
+		this.number.addAll(parse(numbers));
 	}
 
-	private List<Integer> parse(final String numbers) {
-		List<Integer> tempDigits = new ArrayList<>();
+	private List<Number> parse(final String numbers) {
+		List<Number> tempDigits = new ArrayList<>();
 
 		for (String numberStr : numbers.split("")) {
-			int number = Integer.parseInt(numberStr);
-			validateSize(number);
-			validateDuplicate(tempDigits, number);
-			tempDigits.add(number);
+			Number numberValue = new Number(Integer.parseInt(numberStr));
+			validateDuplicate(tempDigits, numberValue);
+			tempDigits.add(numberValue);
 		}
 
 		return tempDigits;
@@ -43,19 +36,24 @@ public class Numbers {
 		}
 	}
 
-	private void validateDuplicate(final List<Integer> tempDigits, int number) {
+	private void validateDuplicate(final List<Number> tempDigits, Number number) {
 		if (tempDigits.contains(number)) {
 			throw new DuplicationNumberException(ErrorMessage.DUPLICATION_NUMBER_EXCEPTION.getMessage());
 		}
 	}
 
-	private void validateSize(int number) {
-		if(number < MIN_NUMBER || number > MAX_NUMBER) {
-			throw new NumberSizeInvalidException(ErrorMessage.NUMBER_SIZE_INVALID_EXCEPTION.getMessage());
-		}
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Numbers numbers = (Numbers)o;
+		return Objects.equals(number, numbers.number);
 	}
 
-	public List<Integer> getDigits() {
-		return Collections.unmodifiableList(this.digits);
+	@Override
+	public int hashCode() {
+		return Objects.hash(number);
 	}
 }
