@@ -6,46 +6,93 @@ import baseball.gameresult.GameResult;
 import nextstep.utils.Console;
 import nextstep.utils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
-public class InputView {
+public class Game {
 
-    final static String INPUT_NUMBER_MESSAGE = "숫자를 입력해주세요 : ";
+    private final static String INPUT_NUMBER_MESSAGE = "숫자를 입력해주세요 : ";
+    private final static String GAME_END_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 끝";
+    private final static String GAME_RESTART_QUESTION_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
 
+    private final static String RESTART_GAME_NUMBER = "1";
+    private final static String END_GAME_NUMBER = "2";
 
-    public static void gameStart() {
+    public static int start() {
         Balls computerBalls = createComputerBalls();
 
-        System.out.printf(INPUT_NUMBER_MESSAGE);
+        boolean isEnd = false;
 
-        String userInputValue = Console.readLine();
+        while (!isEnd) {
+            Balls userBalls = inputUserBall();
 
-        Balls userBalls = createUserBalls(userInputValue);
+            GameResult gameResult = new GameResult(computerBalls, userBalls);
 
-        GameResult gameResult = new GameResult(computerBalls, userBalls);
+            String resultMessage = gameResult.getResultMessage();
 
-        gameResult.playGame();
+            isEnd = gameResult.isEnd();
 
-        System.out.println("gameResult.playGame()" + gameResult.playGame());
+            System.out.print(resultMessage + "\n");
+        }
+
+        return gameEnd();
     }
 
-    private static Balls createComputerBalls() {
+    private static int gameEnd() {
+        System.out.print(GAME_END_MESSAGE + "\n");
 
+        System.out.print(GAME_RESTART_QUESTION_MESSAGE);
+
+        String restartNumber = Console.readLine();
+
+        if (restartNumber.equals(RESTART_GAME_NUMBER)) {
+            start();
+            return Integer.parseInt(RESTART_GAME_NUMBER);
+        }
+
+        if (restartNumber.equals(END_GAME_NUMBER)) {
+            return Integer.parseInt(END_GAME_NUMBER);
+        }
+
+        return Integer.parseInt(RESTART_GAME_NUMBER);
+    }
+
+
+    private static Balls createComputerBalls() {
         List<Ball> ballList = new ArrayList<>();
+        List<Integer> ballNumberList = new ArrayList<>();
 
         for (int i = 1; i <= 3; i++) {
-            int randomNumber = Randoms.pickNumberInRange(1, 9);
-            System.out.println("randomNumber" + randomNumber);
-
-            ballList.add(new Ball(i, randomNumber));
+            notDuplicateBallCreate(ballList, ballNumberList, i);
         }
 
         Balls computerBalls = new Balls(ballList);
 
         return computerBalls;
     }
+
+    private static void notDuplicateBallCreate(List<Ball> ballList, List<Integer> ballNumberList, int index) {
+        int randomNumber = Randoms.pickNumberInRange(1, 9);
+
+        while (!ballNumberList.contains(randomNumber)) {
+            ballNumberList.add(randomNumber);
+            createBall(ballList, index, randomNumber);
+        }
+    }
+
+    private static void createBall(List<Ball> ballList, int index, int randomNumber) {
+        ballList.add(new Ball(index, randomNumber));
+    }
+
+    public static Balls inputUserBall() {
+        System.out.print(INPUT_NUMBER_MESSAGE);
+
+        String userInputValue = Console.readLine();
+
+        Balls userBalls = createUserBalls(userInputValue);
+
+        return userBalls;
+    }
+
 
     private static Balls createUserBalls(String inputNumber) {
         List<Ball> ballList = new ArrayList<>();
@@ -57,9 +104,7 @@ public class InputView {
             ballList.add(new Ball(i + 1, parsingNumber));
         }
 
-        Balls userBalls = new Balls(ballList);
-
-        return userBalls;
+        return new Balls(ballList);
     }
 
 

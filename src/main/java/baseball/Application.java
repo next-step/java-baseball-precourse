@@ -1,7 +1,17 @@
 package baseball;
 
+import baseball.ui.Game;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO 숫자 야구 게임 구현
+        int startNumber = 1;
+
+        while (startNumber == 1){
+            startNumber = Game.start();
+        }
+
+        if(startNumber == 2){
+            return;
+        }
     }
 }
