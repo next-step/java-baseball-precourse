@@ -1,6 +1,5 @@
 package utils;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class BaseballUtils {
@@ -9,7 +8,12 @@ public class BaseballUtils {
     }
 
     public static int[] userInputToIntArray(String userInput) {
-        return Arrays.stream(userInput.split("")).mapToInt(Integer::parseInt).toArray();
+        int[] numbers = new int[userInput.length()];
+        String[] split = userInput.split("");
+
+        for (int i = 0; i < split.length; i++) numbers[i] = Integer.parseInt(split[i]);
+
+        return numbers;
     }
 
     public static int[] toIntArray(List<Integer> list) {

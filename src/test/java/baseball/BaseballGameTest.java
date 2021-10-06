@@ -1,10 +1,9 @@
 package baseball;
 
 import org.junit.jupiter.api.Test;
+import utils.TestUtils;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -25,7 +24,7 @@ class BaseballGameTest {
     void generateGameAnswer_consist_of_distinct_number() {
         for (int i = 0; i < TEST_SIZE; i++) {
             int[] result = BaseballGame.generateGameAnswer();
-            List<Integer> numberList = Arrays.stream(result).boxed().collect(Collectors.toList());
+            List<Integer> numberList = TestUtils.arrayToList(result);
             assertThat(numberList).doesNotHaveDuplicates();
         }
     }
@@ -140,7 +139,7 @@ class BaseballGameTest {
     }
 
     @Test
-    void 답이_169_인경우() {
+    void 답이_169_인경우_2스트라이크() {
         //given
         int[] customAnswer = new int[]{1, 6, 9};
         int[] userInput = new int[]{1, 7, 9};

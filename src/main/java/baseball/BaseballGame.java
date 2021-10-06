@@ -3,13 +3,8 @@ package baseball;
 import nextstep.utils.Randoms;
 import utils.BaseballUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 class BaseballGame {
     private static final int ANSWER_DIGIT = 3;
@@ -30,10 +25,14 @@ class BaseballGame {
         List<Integer> numbers = new ArrayList<>();
         while (numbers.size() < ANSWER_DIGIT) {
             int picked = Randoms.pickNumberInRange(1, 9);
-            if (!numbers.contains(picked)) numbers.add(picked);
+            addNumberOnlyDistinct(numbers, picked);
         }
 
         return BaseballUtils.toIntArray(numbers);
+    }
+
+    private static void addNumberOnlyDistinct(List<Integer> numbers, int picked) {
+        if (!numbers.contains(picked)) numbers.add(picked);
     }
 
     static boolean isValid(String userInput) {
@@ -47,7 +46,13 @@ class BaseballGame {
     }
 
     private static boolean consistOfDistinctValue(String input) {
-        return Arrays.stream(input.split("")).collect(Collectors.toSet()).size() == ANSWER_DIGIT;
+        Set<String> inputNumberSet = new HashSet<>(Arrays.asList(input.split("")));
+        return inputNumberSet.size() == ANSWER_DIGIT;
+    }
+
+    private static int addCountOnlyContained(int[] userInput, List<Integer> answerNumbers, int count, int i) {
+        if (answerNumbers.contains(userInput[i])) count++;
+        return count;
     }
 
     void grade(int[] userInput) {
@@ -57,14 +62,30 @@ class BaseballGame {
     }
 
     private int containCount(int[] userInput) {
-        Set<Integer> answerNumberSet = Arrays.stream(answer).boxed().collect(Collectors.toSet());
-        return (int) Arrays.stream(userInput).boxed().filter(answerNumberSet::contains).count();
+        List<Integer> answerNumbers = getAnswerNumberList();
+
+        int count = 0;
+        for (int i = 0; i < ANSWER_DIGIT; i++) count = addCountOnlyContained(userInput, answerNumbers, count, i);
+
+        return count;
+    }
+
+    private List<Integer> getAnswerNumberList() {
+        List<Integer> answerNumbers = new ArrayList<>(answer.length);
+        for (int i : answer) answerNumbers.add(i);
+
+        return answerNumbers;
     }
 
     private int calculateStrikeCount(int[] userInput) {
-        return (int) IntStream.range(0, answer.length)
-                .filter(i -> answer[i] == userInput[i])
-                .count();
+        int count = 0;
+        for (int i = 0; i < ANSWER_DIGIT; i++) count = addCountPositionAndValueMatched(userInput, count, i);
+        return count;
+    }
+
+    private int addCountPositionAndValueMatched(int[] userInput, int count, int i) {
+        if (answer[i] == userInput[i]) count++;
+        return count;
     }
 
     boolean nonMatch() {
