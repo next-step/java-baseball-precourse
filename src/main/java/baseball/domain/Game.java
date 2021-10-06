@@ -32,4 +32,30 @@ public class Game {
             }
         }
     }
+
+    public boolean guess(final String guess) {
+        try {
+            Integer.parseInt(guess);
+        } catch (NumberFormatException nfe) {
+            throw new IllegalArgumentException("[ERROR] 숫자 외 문자는 입력할 수 없습니다.");
+        }
+
+        if (guess.length() != 3) {
+            throw new IllegalArgumentException("[ERROR] 3자리 외 숫자는 입력할 수 없습니다.");
+        }
+
+        if (guess.contains("0")) {
+            throw new IllegalArgumentException("[ERROR] 각 자리에 1부터 9까지 외 다른 숫자는 입력할 수 없습니다.");
+        }
+
+        for (int i = 0; i < guess.length() - 1; i++) {
+            for (int j = i + 1; j < guess.length(); j++) {
+                if (guess.charAt(i) == guess.charAt(j)) {
+                    throw new IllegalArgumentException("[ERROR] 서로 같은 수로 이루어진 숫자를 입력할 수 없습니다.");
+                }
+            }
+        }
+
+        return this.answer.equals(guess);
+    }
 }
