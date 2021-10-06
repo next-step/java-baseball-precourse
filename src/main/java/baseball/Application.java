@@ -3,7 +3,6 @@ package baseball;
 import nextstep.utils.Console;
 import nextstep.utils.Randoms;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
