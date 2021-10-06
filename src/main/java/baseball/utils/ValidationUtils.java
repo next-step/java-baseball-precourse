@@ -10,15 +10,30 @@ public class ValidationUtils {
 
     private static final int BALL_MAX_LENGTH = 3;
 
-    public static boolean isValidBallInput(String input) {
-        if (input.length() != BALL_MAX_LENGTH
-        || hasDuplicatedNumbers(input)
-        || !isNumber(input)
-        || containsZero(input)) {
-            return false;
+    public static ValidationResult isValidBallInput(String input) {
+        if(input.length() != BALL_MAX_LENGTH) {
+            return ValidationResult.BALL_INVALID_LENGTH;
+        }
+        if(hasDuplicatedNumbers(input)) {
+            return ValidationResult.BALL_DUPLICATED_NUMBER;
+        }
+        if(!(isNumber(input) || containsZero(input))) {
+            return ValidationResult.BALL_IS_NOT_NUMBER;
+        }
+        return ValidationResult.SUCCESS;
+    }
+
+    public static ValidationResult isValidRestartInput(String input) {
+        if(!isNumber(input)) {
+            return ValidationResult.RESTART_INVALID;
         }
 
-        return true;
+        int inputNumber = Integer.parseInt(input);
+        if(!(inputNumber == 1 || inputNumber == 2)) {
+            return ValidationResult.RESTART_INVALID;
+        }
+
+        return ValidationResult.SUCCESS;
     }
 
     private static boolean hasDuplicatedNumbers(String input) {
@@ -42,15 +57,5 @@ public class ValidationUtils {
         } catch (NumberFormatException e) {
             return false;
         }
-    }
-
-    public static boolean isValidRestartInput(String input) {
-        if(!isNumber(input)) {
-            return false;
-        }
-
-        int inputNumber = Integer.parseInt(input);
-
-        return inputNumber == 1 || inputNumber == 2;
     }
 }

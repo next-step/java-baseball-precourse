@@ -1,5 +1,6 @@
 package baseball.input;
 
+import baseball.utils.ValidationResult;
 import baseball.utils.ValidationUtils;
 import nextstep.utils.Console;
 
@@ -10,37 +11,36 @@ public class InputService {
 
     private static final String READ_BALL_MESSAGE = "숫자를 입력해주세요 : ";
     private static final String READ_RESTART_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
-    private static final String ERROR_MESSAGE = "[ERROR] 잘못된 입력입니다. 다시 입력해주세요.";
 
     public int[] readBallValue()  {
-        boolean isValid = false;
+        ValidationResult result = null;
         String input = null;
 
-        while(!isValid) {
+        while(result != ValidationResult.SUCCESS) {
             System.out.print(READ_BALL_MESSAGE);
             input = Console.readLine();
-            isValid = ValidationUtils.isValidBallInput(input);
-            printErrorMessage(isValid);
+            result = ValidationUtils.isValidBallInput(input);
+            printErrorMessage(result);
         }
         return stringToIntArray(input);
     }
 
     public boolean readRestartValue() {
-        boolean isValid = false;
+        ValidationResult result = null;
         String input = null;
 
-        while(!isValid) {
+        while(result != ValidationResult.SUCCESS) {
             System.out.println(READ_RESTART_MESSAGE);
             input = Console.readLine();
-            isValid = ValidationUtils.isValidRestartInput(input);
-            printErrorMessage(isValid);
+            result = ValidationUtils.isValidRestartInput(input);
+            printErrorMessage(result);
         }
         return Integer.parseInt(input) == 1;
     }
 
-    private static void printErrorMessage(boolean isValid) {
-        if (!isValid) {
-            System.out.println(ERROR_MESSAGE);
+    private static void printErrorMessage(ValidationResult result) {
+        if (result != ValidationResult.SUCCESS) {
+            System.out.println(result.getMessage());
         }
     }
 
