@@ -12,6 +12,10 @@ public class ScoreFactory {
         this.nothing = nothing;
     }
 
+    public static ScoreFactory of() {
+        return new ScoreFactory(new Strike(0), new Ball(0), new Nothing());
+    }
+
     public Score getScore(Numbers randomNumbers, Numbers numbers) {
         for (int i = 0; i < 3; i++) {
             Number number1 = randomNumbers.getNumber(i);
