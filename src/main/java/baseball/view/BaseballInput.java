@@ -3,11 +3,10 @@ package baseball.view;
 import baseball.domain.Message;
 import nextstep.utils.Console;
 
-public class BaseballView {
+public class BaseballInput {
 
-    public static String view(Message message) {
+    public static String input(Message message) {
         BaseballPrint.println(message.getMessage());
-        String input = Console.readLine();
-        return input;
+        return Console.readLine();
     }
 }

@@ -3,7 +3,7 @@ package baseball.controller;
 import baseball.domain.*;
 import baseball.exception.BaseballException;
 import baseball.view.BaseballPrint;
-import baseball.view.BaseballView;
+import baseball.view.BaseballInput;
 
 import java.util.List;
 
@@ -31,14 +31,14 @@ public class BaseballGame {
             playResult = userBalls.play(computerBalls);
             BaseballPrint.println(playResult.resultMessage().trim());
         }
-        String restartInput = BaseballView.view(Message.RESTART_OR_END_GAME);
+        String restartInput = BaseballInput.input(Message.RESTART_OR_END_GAME);
         this.gameStatus = restartOrEndGame(restartInput);
     }
 
     public List<Integer> inputNumber() {
         List<Integer> userNumbers;
         try {
-            UserBaseballNumber number = new UserBaseballNumber(BaseballView.view(Message.INPUT_NUMBER));
+            UserBaseballNumber number = new UserBaseballNumber(BaseballInput.input(Message.INPUT_NUMBER));
             number.validate();
             userNumbers = number.createNumbers();
         } catch (BaseballException e) {
