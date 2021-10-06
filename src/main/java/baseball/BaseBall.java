@@ -11,7 +11,6 @@ public class BaseBall {
 		strikeCount = 0;
 		ballCount = 0;
 
-		System.out.println("generate : " + generate);
 		while (strikeCount != 3) {
 			try {
 				computed(inputNumber(), generate);
@@ -81,6 +80,28 @@ public class BaseBall {
 		return true;
 	}
 
+	private boolean inputStatus(String sNum) {
+		// 숫자 여부 확인
+		if (isNumeric(sNum) == false) {
+			System.out.println("\n[ERROR] 숫자만 입력해주세요.");
+			return false;
+		}
+
+		// 정수 1자리 여부 확인
+		if (isNumeric(sNum) == true && sNum.length() > 1) {
+			System.out.println("\n[ERROR] 정수 1자리만 입력해주세요.");
+			return false;
+		}
+
+		// 상태값 1, 2가 아닌 다른 정수 입력 여부
+		if (isNumeric(sNum) == true && (Integer.parseInt(sNum) > 2 || Integer.parseInt(sNum) < 1)) {
+			System.out.println("\n[ERROR] 상태값 1 또는 2를 입력해주세요.");
+			return false;
+		}
+
+		return true;
+	}
+
 	private String inputNumber() {
 		String sNum;
 		boolean chkNum;
@@ -95,8 +116,16 @@ public class BaseBall {
 	}
 
 	private String restartQuestion() {
-		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
-		return Console.readLine();
+		String status;
+		boolean chkSts;
+
+		do {
+			System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
+			status = Console.readLine();
+			chkSts = inputStatus(status);
+		} while (chkSts == false);
+
+		return status;
 	}
 
 	private void outputPrint() {
