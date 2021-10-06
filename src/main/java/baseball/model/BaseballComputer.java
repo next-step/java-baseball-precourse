@@ -3,10 +3,10 @@ import nextstep.utils.Randoms;
 
 import java.util.HashSet;
 
-public class BaseballNumber {
-    public static int number;
+public class BaseballComputer {
+    private static int number;
 
-    public BaseballNumber(){
+    public BaseballComputer(){
         this.number = setNumber();
     }
 

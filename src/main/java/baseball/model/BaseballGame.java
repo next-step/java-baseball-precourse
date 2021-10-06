@@ -1,21 +1,31 @@
 package baseball.model;
-import baseball.model.BaseballNumber;
+import nextstep.utils.Console;
 
 public class BaseballGame {
     private String GAMESTATUS = "start";
-    private final BaseballNumber numberOfComputer;
+    private final BaseballComputer numberOfComputer;
 
-    private BaseballGame(BaseballNumber computerNumber) {
+    private BaseballGame(BaseballComputer computerNumber) {
         this.numberOfComputer = computerNumber;
     }
 
     public static BaseballGame createGame(){
-        BaseballNumber randomNumber = new BaseballNumber();
+        BaseballComputer randomNumber = new BaseballComputer();
         return new BaseballGame(randomNumber);
     }
 
-    public BaseballNumber getComputer(){
+    public BaseballComputer getComputer(){
         return this.numberOfComputer;
+    }
+
+    public void startGame(){
+        while(this.GAMESTATUS == "start"){
+            System.out.println("숫자를 입력하세요: ");
+            String userInput = Console.readLine();
+            BaseballPlayer baseballPlayerNumber = new BaseballPlayer(userInput);
+            baseballPlayerNumber.verifyNumber(baseballPlayerNumber.getNumber());
+
+        }
     }
 
     public void setStatusEnd(){
