@@ -1,10 +1,6 @@
 package baseball.controller;
 
-import baseball.domain.Game;
-import baseball.domain.Player;
-import baseball.domain.Computer;
-import baseball.domain.Baseball;
-import baseball.domain.BaseballResult;
+import baseball.domain.*;
 import baseball.veiw.PlayerResponse;
 
 public class BaseballController {
@@ -19,17 +15,21 @@ public class BaseballController {
 
     private boolean baseballGamePlay(Baseball baseball) {
         boolean playCheck = true;
-        while(playCheck) {
+        while (playCheck) {
             PlayerResponse response = Player.createPlayerBall();
-            if(response.isSuccess()){
-                BaseballResult baseballResult = baseball.compare(new Baseball(response));
-                baseballResult.playResultPrint();
-                playCheck = isPlayCheck(playCheck, baseballResult);
-            } else {
-                response.errorPrint();
-            }
+            playCheck = isPlayCheck(baseball, playCheck, response);
         }
         return Game.restart();
+    }
+
+    private boolean isPlayCheck(Baseball baseball, boolean playCheck, PlayerResponse response) {
+        if (response.isSuccess()) {
+            BaseballResult baseballResult = baseball.compare(new Baseball(response));
+            baseballResult.playResultPrint();
+            return isPlayCheck(playCheck, baseballResult);
+        }
+        response.errorPrint();
+        return playCheck;
     }
 
     private boolean isPlayCheck(boolean playCheck, BaseballResult baseballResult) {
