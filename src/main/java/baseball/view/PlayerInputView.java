@@ -10,6 +10,6 @@ public class PlayerInputView {
 		System.out.println(ConstValue.PLAYER_INPUT_NUMBER);
 		String playerNumbers = Console.readLine();
 
-		return new PlayerBaseballNumber(playerNumbers);
+		return PlayerBaseballNumber.createPlayerBaseballNumber(playerNumbers);
 	};
 }

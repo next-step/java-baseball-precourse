@@ -12,18 +12,24 @@ public class PlayerBaseballNumber {
 
 	private List<Integer> baseballNumbers;
 
-	public PlayerBaseballNumber(String playerInputNumber) {
-		validateNumberFigures(playerInputNumber);
-		validateOnlyNumber(playerInputNumber);
-		convertInputTypeToBaseballType(playerInputNumber);
+	public PlayerBaseballNumber(List<Integer> playerBaseballNumber) {
+		this.baseballNumbers = playerBaseballNumber;
 	}
 
-	private void validateNumberFigures(String inputNumbers) {
+	public static PlayerBaseballNumber createPlayerBaseballNumber(String playerInputNumber) {
+		validateNumberFigures(playerInputNumber);
+		validateOnlyNumber(playerInputNumber);
+		List<Integer> inputNumberList = convertInputTypeToBaseballType(playerInputNumber);
+
+		return new PlayerBaseballNumber(inputNumberList);
+	}
+
+	private static void validateNumberFigures(String inputNumbers) {
 		if(inputNumbers.length() != ConstValue.BASEBALL_SIZE)
 			throw new InvalidFiguresNumberException();
 	}
 
-	private void validateOnlyNumber(String inputNumbers) {
+	private static void validateOnlyNumber(String inputNumbers) {
 		for(int i=0; i<inputNumbers.length(); i++) {
 			char currentNumber = inputNumbers.charAt(i);
 
@@ -33,7 +39,7 @@ public class PlayerBaseballNumber {
 		}
 	}
 
-	private List<Integer> convertInputTypeToBaseballType(String inputNumbers) {
+	private static List<Integer> convertInputTypeToBaseballType(String inputNumbers) {
 		List<Integer> playerBaseballNumbers = new ArrayList<>();
 
 		for(int i=0; i<inputNumbers.length(); i++) {
