@@ -19,7 +19,7 @@ public class GameView {
 		do {
 			System.out.println(MENU_MESSAGE);
 			input = Console.readLine();
-		} while (isValidMenu(input));
+		} while (!isValidMenu(input));
 		return input;
 	}
 
@@ -28,7 +28,7 @@ public class GameView {
 		do {
 			System.out.println(INPUT_MESSAGE);
 			input = Console.readLine();
-		} while (isValid(input));
+		} while (!isValid(input));
 		return input;
 	}
 

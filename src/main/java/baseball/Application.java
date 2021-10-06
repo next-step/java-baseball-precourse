@@ -3,8 +3,6 @@ package baseball;
 import baseball.controller.GameController;
 import baseball.service.GameService;
 import baseball.view.GameView;
-import nextstep.utils.Console;
-import nextstep.utils.Randoms;
 
 public class Application {
 	public static void main(String[] args) {

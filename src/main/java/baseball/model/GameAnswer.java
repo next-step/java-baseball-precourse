@@ -42,6 +42,7 @@ public class GameAnswer {
 		do {
 			i = Randoms.pickNumberInRange(1, 9) - 1;
 		} while (generated[i]);
+		generated[i] = true;
 		return i + 1;
 	}
 }
