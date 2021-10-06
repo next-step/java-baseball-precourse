@@ -32,32 +32,38 @@ public class GameConsole {
         String inputNumber = Console.readLine();
         if(!InputValidator.checkPipeLine(inputNumber))
             return false;
-
         this.answerCheck.setUserInput(inputNumber);
         this.answerCheck.checkPipeLine();
-
-        return refereeSpeak(this.answerCheck.getStrike(), this.answerCheck.getBall());
+        refereeSpeak(this.answerCheck.getStrike(), this.answerCheck.getBall());
+        return isFinish();
     }
 
     /**
      * 스트라이크 볼 개수에 따른 결과 선언
      */
-    private boolean refereeSpeak(int strikeCnt, int ballCnt){
-        if(strikeCnt == 3){
-            System.out.println("3스트라이크");
-            System.out.println(CONSOLE_REPLY.SUCCESS_REPLY);
-            return true;
+    private void refereeSpeak(int strikeCnt, int ballCnt){
+        if(strikeCnt != 0 && ballCnt == 0){
+            System.out.println(strikeCnt + "스트라이크");
         } else if(strikeCnt != 0 && ballCnt != 0){
             System.out.println(strikeCnt + "스트라이크 " + ballCnt + "볼");
         } else if(strikeCnt == 0 && ballCnt != 0){
             System.out.println(ballCnt + "볼");
-        } else if(strikeCnt != 0 && ballCnt == 0){
-            System.out.println(strikeCnt + "스트라이크");
         } else if(strikeCnt == 0 && ballCnt == 0){
             System.out.println("낫싱");
         }
+    }
+
+    /**
+     * 3 스트라이크인지 확인
+     */
+    private boolean isFinish(){
+        if(this.answerCheck.getStrike() == 3){
+            System.out.println(CONSOLE_REPLY.SUCCESS_REPLY);
+            return true;
+        }
         return false;
     }
+
 
     /**
      * End view : 시스템 종료 의사를 물어봄
