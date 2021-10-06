@@ -52,11 +52,11 @@ public class GameController {
     private boolean isResume() {
         view.showResumeMessage();
         String number = view.getResume();
-        if (number == RESUME) {
+        if (number.equals(RESUME)) {
             game.update();
             return true;
         }
-        if (number == QUIT) {
+        if (number.equals(QUIT)) {
             return false;
         }
         view.showResumeError();
