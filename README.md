@@ -12,3 +12,4 @@
 * BaseballUi.java : 사용자에 대한 입출력을 담당
 
 ## 테스트 케이스 구현
+* BaseballLogicTest.java : BaseballLogic.java의 기능 테스트를 담당
