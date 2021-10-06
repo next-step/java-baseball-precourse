@@ -71,7 +71,7 @@ public class BaseballGameTest {
       "915 : 243" + NO_STRIKE_NO_BALL,        // NNN
     }
     , delimiterString = " : ")
-    void test_3_strike_case(String answer, String input, int expectedStrikeCount, int expectedBallCount) {
+    void test_all_possible_cases(String answer, String input, int expectedStrikeCount, int expectedBallCount) {
         //TODO parameter 부분 각 결과별 answer, input 생성기 구현하여 간소화 가능
         BaseballGame game = new BaseballGame(answer);
         BaseballGameScoreBoard board = game.deal(input);
