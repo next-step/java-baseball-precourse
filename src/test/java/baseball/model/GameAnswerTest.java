@@ -17,14 +17,14 @@ public class GameAnswerTest {
 			mockRandoms
 				.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
 				.thenReturn(1, 3, 5);
-			//given
+			// given
 			gameAnswer.generateAnswer();
 
-			//when
+			// when
 			CompareResult result = gameAnswer.compare(new int[] {1, 3, 5});
 			boolean isAnswer = result.isAnswer();
 
-			//then
+			// then
 			Assertions.assertThat(isAnswer).isTrue();
 		}
 	}
