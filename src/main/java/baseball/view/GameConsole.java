@@ -38,7 +38,7 @@ public class GameConsole {
      */
     private boolean refereeSpeak(int strikeCnt, int ballCnt){
         if(strikeCnt == 3){
-            System.out.println("3 스트라이크");
+            System.out.println("3스트라이크");
             System.out.println(CONSOLE_REPLY.SUCCESS_REPLY);
             return true;
         } else if(strikeCnt != 0 && ballCnt != 0){
@@ -71,7 +71,7 @@ public class GameConsole {
 
     static class CONSOLE_REPLY{
         private static final String INSERT_REPLY = "숫자를 입력해주세요 : ";
-        private static final String SUCCESS_REPLY = "3개의 숫자를 모두 맞히셨습니다! 게임끝";
+        private static final String SUCCESS_REPLY = "3개의 숫자를 모두 맞히셨습니다! 게임 끝";
         private static final String REGAME_REPLY = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
     }
 }
