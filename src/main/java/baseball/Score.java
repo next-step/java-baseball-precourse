@@ -82,6 +82,11 @@ public class Score {
         return resultMsg.toString();
     }
 
+    public void printResult() {
+        Map<String, Integer> cntMap = countResult();
+        System.out.println(getResult(cntMap.get("strikeCnt"), cntMap.get("ballCnt")));
+    }
+
     public void printErrorMsgs() {
         for (String errorMsg : errorMsgs) {
             System.out.println(errorMsg);
