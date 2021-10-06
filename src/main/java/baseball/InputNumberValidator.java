@@ -42,6 +42,11 @@ public class InputNumberValidator {
         for(char data : inputArray) {
             sameNumberCount = getSameNumberCount(input, sameNumberCount, data);
         }
+        return isDuplicationNumber(sameNumberCount);
+    }
+
+    private boolean isDuplicationNumber(int sameNumberCount) {
+        if(sameNumberCount > 1) printErrorMessage("[ERROR] 중복되는 숫자가 있습니다.(ex, 112, 223, 333, 121...)\n중복되지 않는 숫자를 입력하세요.");
         return sameNumberCount > 1;
     }
 
@@ -71,6 +76,7 @@ public class InputNumberValidator {
      */
     private boolean checkNumberOneToNine(int number) {
         if(!(number >= 1 && number <= 9)) {
+            printErrorMessage("[ERROR] 1~9까지 숫자를 입력해 주세요.");
             return true;
         }
         return false;
@@ -80,15 +86,19 @@ public class InputNumberValidator {
      * 길이 체크
      */
     private boolean lengthCheck(String input) {
+        if(input.length() != BaseBallGame.DEFAULT_LENGTH) printErrorMessage("[ERROR] 숫자 3자리를 입력해 주세요.");
         return input.length() != BaseBallGame.DEFAULT_LENGTH;
     }
 
     /**
      * null 체크
-     * @param input
-     * @return
      */
     private boolean isNull(String input) {
+        if(input == null) printErrorMessage("[ERROR] NULL 값은 입력할 수 없습니다.");
         return input == null;
+    }
+
+    private void printErrorMessage(String msg) {
+        System.out.printf("%s\n", msg);
     }
 }
