@@ -13,9 +13,9 @@ public class GameResultView {
 	}
 
 	private static String generateGameMessage(PlayerBaseballNumber playerBaseballNumber) {
-		return generateStrikeCountMessgae(playerBaseballNumber) +
+		return generateStrikeCountMessage(playerBaseballNumber) +
 			generateBallCountMessage(playerBaseballNumber) +
-			generateNothingMessgae(playerBaseballNumber);
+			generateNothingMessage(playerBaseballNumber);
 	};
 
 	private static String generateBallCountMessage(PlayerBaseballNumber playerBaseballNumber) {
@@ -26,7 +26,7 @@ public class GameResultView {
 		return "";
 	};
 
-	private static String generateStrikeCountMessgae(PlayerBaseballNumber playerBaseballNumber) {
+	private static String generateStrikeCountMessage(PlayerBaseballNumber playerBaseballNumber) {
 		if(playerBaseballNumber.getStrikeCount() > 0)
 			return Integer.toString(playerBaseballNumber.getStrikeCount()) +
 				ConstValue.GAME_RULE_STRIKE;
@@ -34,7 +34,7 @@ public class GameResultView {
 		return "";
 	};
 
-	private static String generateNothingMessgae(PlayerBaseballNumber playerBaseballNumber) {
+	private static String generateNothingMessage(PlayerBaseballNumber playerBaseballNumber) {
 		if(playerBaseballNumber.getStrikeCount() == 0 &&
 		playerBaseballNumber.getBallCount() == 0)
 			return ConstValue.GAME_RULE_NOTHING;
