@@ -23,6 +23,8 @@ public class Monitor {
 
         if (!validateResult(answer)) {
             createAnswer();
+
+            return;
         }
 
         Arrays.sort(answer);
@@ -34,6 +36,12 @@ public class Monitor {
             && answer[1] != answer[2];
     }
 
+    private boolean validateResult(char[] answer) {
+        return answer[0] != answer[1]
+                && answer[0] != answer[2]
+                && answer[1] != answer[2];
+    }
+
     public void gameStart() {
         createAnswer();
 
@@ -41,10 +49,36 @@ public class Monitor {
     }
 
     public void gameStart(String choice) {
-        if (choice.startsWith("1")) {
-            System.out.print(showGameMessage(choice));
+        if (choice.equals("0")) {
+            System.out.print(KorGamePlayMsg.GAME_STAY_MSG);
+
+            gameStart(Console.readLine());
+
+            return;
+        }
+
+        if (choice.equals("1")) {
+            System.out.print(KorGamePlayMsg.PRESS_NUMBER_MSG);
 
             String tryStr = Console.readLine();
+
+            if (tryStr == null || tryStr.length() != 3 || !validateResult(tryStr.toCharArray())) {
+                System.out.println(KorErrorMsg.NUMBER_ERROR_MSG);
+
+                gameStart("1");
+
+                return;
+            }
+
+            for (int i = 0; i < 3; i++) {
+                if (!Character.isDigit(tryStr.charAt(i))) {
+                    System.out.println(KorErrorMsg.NUMBER_ERROR_MSG);
+
+                    gameStart("1");
+
+                    return;
+                }
+            }
 
             char[] ch = tryStr.toCharArray();
 
@@ -70,48 +104,49 @@ public class Monitor {
                 System.out.print(strike_cnt + KorGamePlayMsg.STRIKE_MSG);
             }
 
-            if(strike_cnt + ball_cnt > 0) {
-                System.out.print(" ");
-            }
-
             if(ball_cnt > 0) {
                 System.out.print(ball_cnt + KorGamePlayMsg.BALL_MSG);
             }
 
+            if(strike_cnt + ball_cnt == 0) {
+                System.out.print(KorGamePlayMsg.NOTHING_MSG);
+            }
+
+            System.out.println();
+
             if(strike_cnt == 3) {
-                gameStart();
+                System.out.print(KorGamePlayMsg.GAME_OVER_MSG);
+
+                tryStr = Console.readLine();
+
+                if (tryStr.equals("1")) {
+                    gameStart();
+
+                    return;
+                }
+
+                gameStart(tryStr);
 
                 return;
             }
 
-            return;
-        }
-
-        if (choice.startsWith("2")) {
-            System.out.print(KorGamePlayMsg.GAME_STAY_MSG);
-            return;
-        }
-
-        if (choice.startsWith(" ")) {
-            System.out.print("Game Over!!");
+            gameStart("1");
 
             return;
         }
 
-        createAnswer();
+        if (choice.equals("2")) {
+            gameStart("0");
 
-        gameStart(Console.readLine());
-    }
-
-    public String showGameMessage(String choice) {
-        if (choice.startsWith("0")) {
-            return KorGamePlayMsg.GAME_OVER_MSG;
+            return;
         }
 
-        if (choice.startsWith("1")) {
-            return KorGamePlayMsg.PRESS_NUMBER_MSG;
+        if (choice.equals(" ")) {
+            System.out.println("Game Over!!");
+
+            return;
         }
 
-        return KorGamePlayMsg.GAME_STAY_MSG;
+        gameStart();
     }
 }

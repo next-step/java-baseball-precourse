@@ -1,7 +1,7 @@
 package baseball.constant;
 
 public class KorGamePlayMsg {
-    public static final String STRIKE_MSG = "스트라이크";
+    public static final String STRIKE_MSG = "스트라이크 ";
     public static final String BALL_MSG = "볼";
     public static final String NOTHING_MSG = "낫싱";
 
