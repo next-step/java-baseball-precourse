@@ -52,8 +52,6 @@ public class GameBall {
         if (GameBallValidateUtils.isDulicateNumbers(ballNums)) {
             throw new IllegalArgumentException(DUPLICATE_MESSAGE);
         }
-
-
     }
 
     @Override
