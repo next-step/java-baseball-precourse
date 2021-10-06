@@ -13,7 +13,11 @@ public class BaseBall {
 
 		System.out.println("generate : " + generate);
 		while (strikeCount != 3) {
-			computed(inputNumber(), generate);
+			try {
+				computed(inputNumber(), generate);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			outputPrint();
 		}
 		restart();
@@ -62,11 +66,19 @@ public class BaseBall {
 	}
 
 	private boolean inputConsole(String sNum) {
-		if (isNumeric(sNum) == true) {
-			return true;
+		// 숫자 여부 확인
+		if (isNumeric(sNum) == false) {
+			System.out.println("\n[ERROR] 숫자만 입력해주세요.");
+			return false;
 		}
-		System.out.println("\n[ERROR]");
-		return false;
+
+		// 정수 3자리 여부 확인
+		if (isNumeric(sNum) == true && sNum.length() > 3) {
+			System.out.println("\n[ERROR] 정수 3자리만 입력해주세요.");
+			return false;
+		}
+
+		return true;
 	}
 
 	private String inputNumber() {
