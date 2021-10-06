@@ -1,11 +1,9 @@
 package baseball.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -35,5 +33,21 @@ public class GameTest {
     public void 스트라이크2() {
         game.computerBalls = Arrays.asList(1, 2, 3);
         assertThat(game.play(Arrays.asList(5, 2, 3)).getStrike()).isEqualTo(2);
+    }
+    // 볼 체크
+    @Test
+    public void 볼1() {
+        game.computerBalls = Arrays.asList(1, 2, 3);
+        assertThat(game.play(Arrays.asList(3, 5, 6)).getBall()).isEqualTo(1);
+    }
+    @Test
+    public void 볼1_숫자1개만입력() {
+        game.computerBalls = Arrays.asList(1, 2, 3);
+        assertThat(game.play(Arrays.asList(3)).getBall()).isEqualTo(1);
+    }
+    @Test
+    public void 볼2() {
+        game.computerBalls = Arrays.asList(1, 2, 3);
+        assertThat(game.play(Arrays.asList(5, 3, 2)).getBall()).isEqualTo(2);
     }
 }
