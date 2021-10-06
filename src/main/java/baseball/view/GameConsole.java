@@ -19,18 +19,24 @@ public class GameConsole {
         boolean isAnswer = false;
         // answer 를 넘긴다
         do {
-            System.out.print(CONSOLE_REPLY.INSERT_REPLY);
-            String inputNumber = Console.readLine();
-            if(!InputValidator.checkPipeLine(inputNumber))
-                continue;                 /* [ERROR] 메시지를 띄우는 경우 */
-
-            this.answerCheck.setUserInput(inputNumber);
-            this.answerCheck.checkPipeLine();
-
-            isAnswer = refereeSpeak(this.answerCheck.getStrike(), this.answerCheck.getBall());
-
+            isAnswer = tryPitch();
             this.answerCheck.resetCount();
         } while(!isAnswer);
+    }
+
+    /**
+     * 1번의 피치 메소드
+     */
+    private boolean tryPitch(){
+        System.out.print(CONSOLE_REPLY.INSERT_REPLY);
+        String inputNumber = Console.readLine();
+        if(!InputValidator.checkPipeLine(inputNumber))
+            return false;
+
+        this.answerCheck.setUserInput(inputNumber);
+        this.answerCheck.checkPipeLine();
+
+        return refereeSpeak(this.answerCheck.getStrike(), this.answerCheck.getBall());
     }
 
     /**
