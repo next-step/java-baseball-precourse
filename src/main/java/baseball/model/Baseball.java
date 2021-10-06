@@ -48,7 +48,7 @@ public class Baseball {
 		numbersCompareTo(inputNumbers);
 
 		if (strike == sizeOfNumbers) {
-			return new Success("3스트라이크\n3개의 숫자를 모두 맞히셨습니다! ");
+			return new Success(makeHint() + "\n3개의 숫자를 모두 맞히셨습니다!");
 		}
 
 		return new Fail(getFailMessage());
@@ -73,6 +73,8 @@ public class Baseball {
 			ball++;
 		}
 	}
+
+
 
 	private String getFailMessage() {
 		if (!existsStrike() && !existsBall()) {
