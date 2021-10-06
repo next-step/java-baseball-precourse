@@ -41,4 +41,8 @@ public class UserNum {
     public String getErrorMsg() {
         return errorMsg;
     }
+
+    public int getNum() {
+        return num;
+    }
 }
