@@ -48,7 +48,7 @@ public class GameConsole {
         } else if(strikeCnt != 0 && ballCnt == 0){
             System.out.println(strikeCnt + "스트라이크");
         } else if(strikeCnt == 0 && ballCnt == 0){
-            System.out.println("나싱");
+            System.out.println("낫싱");
         }
         return false;
     }
