@@ -12,22 +12,6 @@ public class Score {
         this.nothing = nothing;
     }
 
-    public Score(Strike strike, Ball ball) {
-        this(strike, ball, null);
-    }
-
-    public Score(Strike strike) {
-        this(strike, null, null);
-    }
-
-    public Score(Ball ball) {
-        this(null, ball, null);
-    }
-
-    public Score(Nothing nothing) {
-        this(null, null, nothing);
-    }
-
     public String getText() {
         if (strike.getCount() == 0 && ball.getCount() == 0) {
             return nothing.getText();
@@ -39,5 +23,9 @@ public class Score {
             return strike.getText();
         }
         return strike.getText() + " " + ball.getText();
+    }
+
+    public boolean isCorrect() {
+        return strike.getCount() == 3;
     }
 }
