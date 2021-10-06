@@ -11,7 +11,7 @@ public class Number {
     private final int value;
 
     public Number(String value) {
-        this.value = Integer.parseInt(value);
+        this(Integer.parseInt(value));
     }
 
     public Number(int value) {
