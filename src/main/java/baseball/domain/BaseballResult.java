@@ -1,14 +1,17 @@
 package baseball.domain;
 
+import baseball.enums.GameMessage;
+import baseball.veiw.ConsoleResponse;
+
 import java.util.Objects;
 
 public class BaseballResult {
 
+    public static final int ALLSTRIKE = 3;
     private int strike;
     private int ball;
 
     public BaseballResult() {
-
     }
 
     public BaseballResult(int strike, int ball) {
@@ -25,6 +28,16 @@ public class BaseballResult {
         }
     }
 
+    public boolean allStrike() {
+        return strike == ALLSTRIKE;
+    }
+
+    public void gameResultPrint() {
+        ConsoleResponse.printMessage(this.strike, GameMessage.STRIKE);
+        ConsoleResponse.printMessage(this.ball, GameMessage.BALL);
+        System.out.println("");
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -36,5 +49,13 @@ public class BaseballResult {
     @Override
     public int hashCode() {
         return Objects.hash(strike, ball);
+    }
+
+    @Override
+    public String toString() {
+        return "BaseballResult{" +
+                "strike=" + strike +
+                ", ball=" + ball +
+                '}';
     }
 }

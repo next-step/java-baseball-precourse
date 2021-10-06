@@ -1,5 +1,7 @@
 package baseball.domain;
 
+import baseball.util.NumberGenerator;
+
 import java.util.*;
 
 public class Baseball {
@@ -8,6 +10,9 @@ public class Baseball {
 
     List<Ball> balls;
 
+    public Baseball(int number) {
+        this(NumberGenerator.intToList(number));
+    }
     public Baseball(List<Integer> numbers) {
         ballSizeCheck(numbers);
         ballDuplicationCheck(numbers);
