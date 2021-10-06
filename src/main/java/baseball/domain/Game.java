@@ -44,9 +44,20 @@ public class Game {
         }
     }
 
+    // 1 : 재시작 / 2 : 종료 입력받기
     public int getIsRestart() {
+        String numbers = getIsRestartValue();
+
+        while(!ValidationUtils.checkIsNumber(numbers)
+            || !ValidationUtils.checkLength(numbers, 1)) {
+            numbers = getBallsValue();
+        }
+        return Character.getNumericValue(numbers.charAt(0));
+    }
+
+    public String getIsRestartValue() {
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-        return Integer.parseInt(readNumber());
+        return Console.readLine();
     }
 
     //== 화면 출력 ==//
@@ -81,7 +92,7 @@ public class Game {
     }
 
     /** 볼 체크하기!
-     * @param userBallNo          볼의 값
+     * @param userBallNo        볼의 값
      * @param index             볼의 위치
      * @param computerBalls     컴퓨터 볼들
      */
@@ -97,17 +108,21 @@ public class Game {
 
     // 사용자 볼 입력받기
     public List<Integer> getBalls() {
-        System.out.print("숫자를 입력해주세요 : ");
-        return convertToListOfInteger(readNumber());
+        String numbers = getBallsValue();
+
+        // 최소 3자리 이상 입력 받아야 됨
+        // 숫자만 입력받아야 한다.
+        while(!ValidationUtils.checkIsNumber(numbers)
+                || !ValidationUtils.checkLength(numbers, 3)) {
+            numbers = getBallsValue();
+        }
+
+        return convertToListOfInteger(numbers);
     }
 
-    // 숫자만 입력받기
-    public String readNumber() {
-        String numbers = "init";
-        while(!ValidationUtils.checkIsNumber(numbers)) {
-            numbers = Console.readLine();
-        }
-        return numbers;
+    public String getBallsValue() {
+        System.out.print("숫자를 입력해주세요 : ");
+        return Console.readLine();
     }
 
     // 랜덤한 3개의 숫자 생성
