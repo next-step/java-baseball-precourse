@@ -1,7 +1,6 @@
 package baseball.domain;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
@@ -18,7 +17,7 @@ class ExaminerTest {
 
 		Numbers goalNumber = examiner.getGoal();
 
-		List<Integer> digits = goalNumber.getDigits();
+		List<Number> digits = goalNumber.getNumber();
 		assertThat(digits).isNotEmpty().hasSize(3);
 
 	}

@@ -1,6 +1,7 @@
 package baseball.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -42,6 +43,10 @@ public class Numbers {
 		}
 	}
 
+	public List<Number> getNumber() {
+		return Collections.unmodifiableList(this.number);
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
@@ -56,4 +61,5 @@ public class Numbers {
 	public int hashCode() {
 		return Objects.hash(number);
 	}
+
 }
