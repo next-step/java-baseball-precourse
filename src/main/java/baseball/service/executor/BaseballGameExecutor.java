@@ -25,7 +25,7 @@ public class BaseballGameExecutor {
         do {
             print(GameMessage.ASK_INPUT);
             print(deal(baseballGame));
-        } while (isSingleGameDone(baseballGame));
+        } while (isSingleGameContinue(baseballGame));
     }
 
     private boolean isRestartGame() {
@@ -59,11 +59,11 @@ public class BaseballGameExecutor {
         return deal(baseballGame);
     }
 
-    private boolean isSingleGameDone(BaseballGame baseballGame) {
-        if (baseballGame.isDone()) {
+    private boolean isSingleGameContinue(BaseballGame baseballGame) {
+        if (baseballGame.isContinue()) {
+            print(GameMessage.END_SINGLE_GAME_WITH_THREE_STRIKES);
             return true;
         }
-
         return false;
     }
 }

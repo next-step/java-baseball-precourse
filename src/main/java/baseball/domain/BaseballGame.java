@@ -4,7 +4,7 @@ public class BaseballGame {
 
     private final String answer;
 
-    private BaseballGameScoreBoard result;
+    private BaseballGameScoreBoard board;
 
     public BaseballGame(String answer) {
         this.answer = answer;
@@ -20,11 +20,13 @@ public class BaseballGame {
             board.update(judge(i, split[i]));
         }
 
+        this.board = board;
+
         return board;
     }
 
-    public boolean isDone() {
-        return false;
+    public boolean isContinue() {
+        return !board.isThreeStrikes();
     }
 
     private BaseballGameScore judge(int index, String value) {
