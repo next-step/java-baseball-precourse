@@ -1,6 +1,7 @@
 package baseball;
 
 import nextstep.utils.Randoms;
+import utils.BaseballUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,14 +33,7 @@ class BaseballGame {
             if (!numbers.contains(picked)) numbers.add(picked);
         }
 
-        return toIntArray(numbers);
-    }
-
-    private static int[] toIntArray(List<Integer> list) {
-        int[] arr = new int[list.size()];
-        for (int i = 0; i < list.size(); i++) arr[i] = list.get(i);
-
-        return arr;
+        return BaseballUtils.toIntArray(numbers);
     }
 
     static boolean isValid(String userInput) {
