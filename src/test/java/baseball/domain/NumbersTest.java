@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import baseball.exception.ErrorMessage;
 import baseball.exception.DuplicationNumberException;
 import baseball.exception.NumberRangeInvalidException;
+import baseball.exception.NumberSizeInvalidException;
 
 class NumbersTest {
 
@@ -37,6 +38,15 @@ class NumbersTest {
 			.isInstanceOf(NumberRangeInvalidException.class)
 			.hasMessage(ErrorMessage.NUMBER_RANGE_INVALID_EXCEPTION.getMessage())
 		;
+	}
+
+	@Test
+	void 숫자_최대_최소값_확인() {
+		assertThatThrownBy(() -> {
+			Numbers numbers = new Numbers("120");
+		})
+		.isInstanceOf(NumberSizeInvalidException.class)
+		.hasMessage(ErrorMessage.NUMBER_SIZE_INVALID_EXCEPTION.getMessage());
 	}
 
 	@ParameterizedTest
