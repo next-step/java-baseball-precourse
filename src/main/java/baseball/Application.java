@@ -31,7 +31,11 @@ public class Application {
 
             // 결과 출력
             printCount(ballCounter);
+        }
 
+        // 정답 이후 새 게임 또는 게임 종료 수행
+        if(processWhenStrikeThree()) {
+            startGame();
         }
 
     }
@@ -143,6 +147,20 @@ public class Application {
         resultMessageBuilder.append(ball > 0 ? ball + "볼" : "");
         resultMessageBuilder.append(ball == strike && ball == 0 ? "낫싱" : "");
         System.out.println(resultMessageBuilder);
+    }
+
+    /**
+     * 사용자가 정답을 맞췄을 때, 새 게임 또는 게임 종료를 수행하는 메소드입니다.
+     * @return
+     */
+    private static boolean processWhenStrikeThree() {
+        boolean requiredMoreGame = false;
+
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        requiredMoreGame = Console.readLine().equals("1");
+
+        return requiredMoreGame;
     }
 
 }
