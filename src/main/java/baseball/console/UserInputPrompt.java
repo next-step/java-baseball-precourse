@@ -10,7 +10,7 @@ public class UserInputPrompt {
     private static final String USER_INPUT_MESSAGE = "숫자를 입력해주세요 : ";
     private static final String USER_SELECT_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
     public static final String USER_INPUT_ERROR_MESSAGE = "사용자 입력값 오류입니다.[1-9]사이의 값만 가능합니다.";
-    public static final String USER_SELECT_ERROR_MESSAGE = "사용자 입력값 오류입니다.[1:새게임시작,2:종료]";
+    public static final String USER_SELECT_ERROR_MESSAGE = "사용자 입력값 오류입니다.게임이 계속 진행됩니다.";
 
     public static String getUserInputValue() {
         System.out.println(USER_INPUT_MESSAGE);

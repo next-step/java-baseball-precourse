@@ -18,7 +18,7 @@ public class Application {
         try {
             do {
                 computerGameBalls = isGameOver ? getNewGameBalls() : computerGameBalls;
-                System.out.println("computerGameBalls = " + computerGameBalls);
+                System.out.println("[빠른실행검증을 위한 HINT] computerGameBalls = " + computerGameBalls);
                 isGameOver = gameStart(computerGameBalls);
             } while (!isBreakGame(isGameOver));
         } catch (Exception e) {
