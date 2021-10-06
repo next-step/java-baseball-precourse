@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 class BallCountTest {
     @ParameterizedTest
-    @CsvSource(value = {"0:0:낫싱", "2:0:2 스트라이크", "0:1:1 볼", "2:1:2 스트라이크 1 볼"}, delimiter = ':')
+    @CsvSource(value = {"0:0:낫싱", "2:0:2스트라이크", "0:1:1볼", "2:1:2스트라이크 1볼"}, delimiter = ':')
     @DisplayName("결과값에 따른 메세지 테스트")
     public void getMessageTest(int strike, int ball, String message) {
         List<Score> scores = new ArrayList<>();

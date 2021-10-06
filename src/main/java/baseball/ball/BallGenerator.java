@@ -2,7 +2,7 @@ package baseball.ball;
 
 import nextstep.utils.Randoms;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -18,7 +18,7 @@ public class BallGenerator {
     }
 
     private Set<Integer> generateNumberSet() {
-        Set<Integer> numbers = new HashSet<>();
+        Set<Integer> numbers = new LinkedHashSet<>();
 
         while (numbers.size() < 3) {
             numbers.add(Randoms.pickNumberInRange(1, 9));

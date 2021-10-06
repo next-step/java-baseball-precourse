@@ -10,7 +10,7 @@ public class ValidationUtils {
 
     private static final int BALL_MAX_LENGTH = 3;
 
-    public static boolean isValidInput(String input) {
+    public static boolean isValidBallInput(String input) {
         if (input.length() != BALL_MAX_LENGTH
         || hasDuplicatedNumbers(input)
         || !isNumber(input)
@@ -42,5 +42,15 @@ public class ValidationUtils {
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    public static boolean isValidRestartInput(String input) {
+        if(!isNumber(input)) {
+            return false;
+        }
+
+        int inputNumber = Integer.parseInt(input);
+
+        return inputNumber == 1 || inputNumber == 2;
     }
 }

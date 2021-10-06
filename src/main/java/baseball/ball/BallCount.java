@@ -39,7 +39,7 @@ public class BallCount {
             return "";
         }
 
-        return " " + scores.get(score) + " " + score.getDisplayName();
+        return " " + scores.get(score) + score.getDisplayName();
     }
 
     private int countByScore(Score score) {

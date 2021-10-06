@@ -20,7 +20,12 @@ public class Baseball {
     }
 
     public static void start() {
-        initGame();
+        boolean restart = true;
+
+        while (restart) {
+            initGame();
+            restart = inputService.readRestartValue();
+        }
     }
 
     private static void initGame() {
