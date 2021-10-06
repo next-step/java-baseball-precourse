@@ -8,4 +8,8 @@ public class BaseBallGame {
 	public BaseBallGame(BallNumberVo ballNumber) {
 		this.ballNumber = ballNumber;
 	}
+
+	public String submitBallNumber(BallNumberVo ballNumber) {
+		return "RESULT";
+	}
 }

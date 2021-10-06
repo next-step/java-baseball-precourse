@@ -15,17 +15,9 @@ public class BallNumberUtil {
 		BallNumberVo selectedNumber = new BallNumberVo();
 		do {
 			selectedNumber.setNumbers(createNumbers());
-		} while (checkSelectedNumber(selectedNumber));
+		} while (!checkSelectedNumber(selectedNumber));
 
 		return selectedNumber;
-	}
-
-	private static List<Integer> createNumbers() {
-		List<Integer> numbers = new ArrayList<Integer>();
-		for (int i = 0; i < SELECTED_NUMBER_SISE; i++) {
-			numbers.add(Randoms.pickNumberInRange(1, 9));
-		}
-		return numbers;
 	}
 
 	public static Boolean checkSelectedNumber(BallNumberVo selectedNumber) {
@@ -46,5 +38,29 @@ public class BallNumberUtil {
 			}
 		}
 		return true;
+	}
+
+	public static BallNumberVo stringToBallNumber(String str) {
+		BallNumberVo ballNumber = new BallNumberVo();
+		List<Integer> numbers = stringToNumbers(str);
+		ballNumber.setNumbers(numbers);
+		return ballNumber;
+	}
+
+	private static List<Integer> stringToNumbers(String str) {
+		List<Integer> numbers = new ArrayList<Integer>();
+		String[] splitedStrList = str.split(",");
+		for (String splitedStr : splitedStrList) {
+			numbers.add(Integer.parseInt(splitedStr));
+		}
+		return numbers;
+	}
+
+	private static List<Integer> createNumbers() {
+		List<Integer> numbers = new ArrayList<Integer>();
+		for (int i = 0; i < SELECTED_NUMBER_SISE; i++) {
+			numbers.add(Randoms.pickNumberInRange(1, 9));
+		}
+		return numbers;
 	}
 }

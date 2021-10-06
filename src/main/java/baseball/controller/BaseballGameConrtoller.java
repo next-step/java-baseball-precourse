@@ -9,4 +9,8 @@ public class BaseballGameConrtoller {
 	public void initGame() {
 		baseBallGame = new BaseBallGame(BallNumberUtil.createSelectedNumberList());
 	}
+
+	public String submitBallNumberStr(String str) {
+		return baseBallGame.submitBallNumber(BallNumberUtil.stringToBallNumber(str));
+	}
 }

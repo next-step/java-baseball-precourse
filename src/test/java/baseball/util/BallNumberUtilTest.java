@@ -1,4 +1,4 @@
-package baseball.service;
+package baseball.util;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -8,14 +8,12 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import baseball.util.BallNumberUtil;
 import baseball.vo.BallNumberVo;
 
-public class SelectedNumberTest {
-
+public class BallNumberUtilTest {
 	@DisplayName("createSelectedNumberList 정상 동작 확인")
 	@Test
-	void create() {
+	void createSelectedNumberList() {
 		assertThat(BallNumberUtil.createSelectedNumberList()).isNotNull();
 	}
 
@@ -42,7 +40,7 @@ public class SelectedNumberTest {
 		numbers.add(3);
 		numbers.add(4);
 		selectedNumber.setNumbers(numbers);
-		assertThat(BallNumberUtil.checkSelectedNumber(selectedNumber)).isTrue();
+		assertThat(BallNumberUtil.checkSelectedNumber(selectedNumber)).isFalse();
 	}
 
 	@DisplayName("checkSelectedNumber 범위 외의 숫자")
@@ -55,7 +53,7 @@ public class SelectedNumberTest {
 		numbers.add(2);
 		numbers.add(0);
 
-		assertThat(BallNumberUtil.checkSelectedNumber(selectedNumber)).isTrue();
+		assertThat(BallNumberUtil.checkSelectedNumber(selectedNumber)).isFalse();
 	}
 
 	@DisplayName("checkSelectedNumber 중복 숫자")
@@ -68,6 +66,20 @@ public class SelectedNumberTest {
 		numbers.add(2);
 		numbers.add(2);
 
-		assertThat(BallNumberUtil.checkSelectedNumber(selectedNumber)).isTrue();
+		assertThat(BallNumberUtil.checkSelectedNumber(selectedNumber)).isFalse();
+	}
+
+	@DisplayName("stringToBallNumber 정상 동작 확인")
+	@Test
+	void stringToBallNumber() {
+		BallNumberVo ballNumber = BallNumberUtil.stringToBallNumber("1,2,3");
+		assertThat(ballNumber).isNotNull();
+
+		List<Integer> numbers = ballNumber.getNumbers();
+
+		assertThat(numbers).isNotNull();
+		assertThat(numbers.get(0)).isEqualTo(1);
+		assertThat(numbers.get(1)).isEqualTo(2);
+		assertThat(numbers.get(2)).isEqualTo(3);
 	}
 }
