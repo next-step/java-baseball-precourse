@@ -13,7 +13,6 @@ public class BaseballGameController {
 		while(gaming) {
 			//랜덤값 생성
 			int randomValue = RandomValue.makeRandomValue();
-			System.out.println("테스트 컴퓨터 값 === " + randomValue);
 
 			GameStartController.startGame(randomValue);
 			
