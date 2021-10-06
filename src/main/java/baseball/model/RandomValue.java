@@ -3,8 +3,7 @@ package baseball.model;
 import nextstep.utils.Randoms;
 
 /**
- * 컴퓨터에서 설정하는 랜덤넘버 모델
- * @author mac
+ * 컴퓨터에서 중복되지 않는 랜덤넘버를 생성한다.
  *
  */
 public class RandomValue {
