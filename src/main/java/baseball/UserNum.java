@@ -1,6 +1,8 @@
 package baseball;
 
 
+import java.util.Objects;
+
 public class UserNum {
     private String inputStr;
     private String errorMsg;
@@ -44,6 +46,11 @@ public class UserNum {
         if (o == null || getClass() != o.getClass()) return false;
         UserNum userNum = (UserNum) o;
         return num == userNum.num;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(num);
     }
 
     public String getErrorMsg() {
