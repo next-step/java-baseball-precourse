@@ -1,5 +1,7 @@
 package baseball.controller;
 
+import baseball.view.GameView;
+
 public class GameController {
 	private final GameView gameView;
 	private final GameService gameService;
