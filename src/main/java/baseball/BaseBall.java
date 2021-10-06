@@ -6,6 +6,28 @@ public class BaseBall {
 	private static int strikeCount;
 	private static int ballCount;
 
+	private void computed(String inputs, String generate) {
+		strikeCount = 0;
+		ballCount = 0;
+
+		for (int i = 0; i < inputs.length(); i++) {
+			isBall(inputs, generate, i);
+			isStrike(inputs, generate, i);
+		}
+	}
+
+	private void isBall(String inputs, String generate, int idx) {
+		if (inputs.charAt(idx) != generate.charAt(idx) && generate.contains(Character.toString(inputs.charAt(idx)))) {
+			ballCount++;
+		}
+	}
+
+	private void isStrike(String inputs, String generate, int idx) {
+		if (inputs.charAt(idx) == generate.charAt(idx)) {
+			strikeCount++;
+		}
+	}
+
 	private String inNumber() {
 		System.out.print("\n숫자를 입력해 주세요 : ");
 		return Console.readLine();
