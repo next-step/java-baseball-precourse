@@ -1,5 +1,7 @@
 package baseball.utils;
 
+import baseball.view.GameUI;
+
 public class ValidationUtils {
 
     /** 숫자만 입력 가능!
@@ -9,7 +11,7 @@ public class ValidationUtils {
     public static boolean checkIsNumber(String numbers) {
         boolean isNumber = numbers.chars().allMatch(Character::isDigit);
         if (!isNumber) {
-            System.out.println("[ERROR] 숫자만 입력해주세요.");
+            GameUI.displayErrorMessage("숫자만 입력해주세요.");
         }
         return isNumber;
     }
@@ -21,7 +23,7 @@ public class ValidationUtils {
      */
     public static boolean checkLength(String numbers, int length) {
         if (numbers.trim().length() < length) {
-            System.out.println(String.format("[ERROR] 공백을 제외한 최소 %d자리 이상의 숫자를 입력해주세요.", length));
+            GameUI.displayErrorMessage(String.format("공백을 제외한 최소 %d자리 이상의 숫자를 입력해주세요.", length));
             return false;
         }
         return true;
