@@ -36,6 +36,14 @@ public class Validation {
         return true;
     }
 
+    public Boolean isCorrectRange(String input) {
+        if (input.contains("0")) {
+            makeException();
+            return false;
+        }
+        return true;
+    }
+
     public List<String> makeTmpNum(String input, List<String> tempNum) {
         for (String x : input.split("")) {
             tempNum = isContain(x, tempNum);

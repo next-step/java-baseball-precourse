@@ -28,7 +28,7 @@ public class UserView {
         System.out.print(ASK_NUMBER_INPUT_MSG);
         String inputVal = Console.readLine();
         if (validationService.checkNum(inputVal) && validationService.checkCorrectLen(inputVal)
-            && validationService.checkCorrectNum(inputVal)) {
+            && validationService.checkCorrectNum(inputVal) && validationService.checkCorrectRange(inputVal)) {
             return inputVal;
         }
         return "";

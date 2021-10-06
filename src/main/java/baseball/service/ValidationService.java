@@ -21,4 +21,8 @@ public class ValidationService {
     public Boolean checkCorrectNum(String inputVal) {
         return validation.isDiffNum(inputVal);
     }
+
+    public Boolean checkCorrectRange(String inputVal) {
+        return validation.isCorrectRange(inputVal);
+    }
 }
