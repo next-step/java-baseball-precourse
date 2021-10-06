@@ -6,8 +6,8 @@ import baseball.model.GameAnswer;
 public class GameService {
 	private final GameAnswer gameAnswer;
 
-	public GameService(GameAnswer gameAnswer) {
-		this.gameAnswer = gameAnswer;
+	public GameService() {
+		this.gameAnswer = new GameAnswer();
 	}
 
 	public void generateAnswer() {
