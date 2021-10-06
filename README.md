@@ -6,6 +6,9 @@
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
 
+## 실행 결과
+![](https://images.velog.io/images/shlee327/post/06732a1b-5958-4f62-b10d-74a5dab0d393/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-10-06%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%209.11.17.png)
+
 ---
 
 ## ✅ 게임 방법
@@ -69,3 +72,4 @@
 * 3스트라이크 경우 게임 종료
     * 랜덤값 삭제
     * 게임 진행여부 판단(새로운 게임 시작, 완전 종료)
+
