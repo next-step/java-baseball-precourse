@@ -8,7 +8,6 @@ import baseball.exception.BaseballException.InvalidBallsLength;
 import java.util.*;
 
 import static baseball.constant.Rule.COUNT_OF_BALLS;
-import static baseball.domain.score.ScoreType.STRIKE;
 
 public class Balls {
 
@@ -75,6 +74,14 @@ public class Balls {
 
     public int getSize() {
         return balls == null ? 0 : balls.size();
+    }
+
+    public void clear() {
+        balls = new ArrayList<>();
+    }
+
+    public boolean isEmpty() {
+        return balls == null || balls.size() == 0;
     }
 
 }

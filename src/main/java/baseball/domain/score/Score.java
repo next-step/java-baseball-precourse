@@ -43,15 +43,15 @@ public class Score {
     }
 
     private boolean hasStrike() {
-        return strike > 0;
+        return getStrike() > 0;
     }
 
     private boolean hasBall() {
-        return ball > 0;
+        return getBall() > 0;
     }
 
     private boolean isNothing() {
-        return !(hasStrike() && hasBall());
+        return !hasStrike() && !hasBall();
     }
 
     public int getStrike() {
