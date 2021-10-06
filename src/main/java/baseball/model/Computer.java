@@ -9,7 +9,7 @@ public class Computer {
 	private final List<Integer> numbers = new ArrayList<>();
 
 	public Computer() {
-		createNumbers();
+		addNumbers();
 	}
 
 	public int getStrikeCount(final List<Integer> playerNumbers) {
@@ -40,11 +40,6 @@ public class Computer {
 			return 1;
 		}
 		return 0;
-	}
-
-	private List<Integer> createNumbers() {
-		addNumbers();
-		return numbers;
 	}
 
 	private void addNumbers() {
