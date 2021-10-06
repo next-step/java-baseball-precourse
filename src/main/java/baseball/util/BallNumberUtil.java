@@ -61,7 +61,7 @@ public class BallNumberUtil {
 
 	private static List<Integer> stringToNumbers(String str) {
 		List<Integer> numbers = new ArrayList<Integer>();
-		String[] splitedStrList = str.split(",");
+		String[] splitedStrList = str.split("");
 		for (String splitedStr : splitedStrList) {
 			numbers.add(Integer.parseInt(splitedStr));
 		}

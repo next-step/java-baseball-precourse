@@ -76,7 +76,7 @@ public class BallNumberUtilTest {
 	@DisplayName("stringToBallNumber 정상 동작 확인")
 	@Test
 	void stringToBallNumber() throws InvalidBallNumberException {
-		BallNumberVo ballNumber = BallNumberUtil.stringToBallNumber("1,2,3");
+		BallNumberVo ballNumber = BallNumberUtil.stringToBallNumber("123");
 		assertThat(ballNumber).isNotNull();
 
 		List<Integer> numbers = ballNumber.getNumbers();
@@ -90,21 +90,21 @@ public class BallNumberUtilTest {
 	@DisplayName("stringToBallNumber 비정상 사이즈 체크")
 	@Test
 	void stringToBallNumberInvalidSize() throws InvalidBallNumberException {
-		assertThatThrownBy(() -> BallNumberUtil.stringToBallNumber("1,2,3,4"))
+		assertThatThrownBy(() -> BallNumberUtil.stringToBallNumber("1234"))
 			.isInstanceOf(InvalidBallNumberException.class);
 	}
 
 	@DisplayName("stringToBallNumber 범위 외의 숫자")
 	@Test
 	void stringToBallNumberInvalidNumber() throws InvalidBallNumberException {
-		assertThatThrownBy(() -> BallNumberUtil.stringToBallNumber("1,2,0"))
+		assertThatThrownBy(() -> BallNumberUtil.stringToBallNumber("120"))
 			.isInstanceOf(InvalidBallNumberException.class);
 	}
 
 	@DisplayName("stringToBallNumber 중복 숫자")
 	@Test
 	void stringToBallNumberDuplicatNumbe() throws InvalidBallNumberException {
-		assertThatThrownBy(() -> BallNumberUtil.stringToBallNumber("1,2,2"))
+		assertThatThrownBy(() -> BallNumberUtil.stringToBallNumber("122"))
 			.isInstanceOf(InvalidBallNumberException.class);
 	}
 }
