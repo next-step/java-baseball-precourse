@@ -2,8 +2,9 @@ package baseball;
 
 import nextstep.utils.Randoms;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -25,9 +26,20 @@ class BaseballGame {
     }
 
     static int[] generateGameAnswer() {
-        Set<Integer> numberSet = new HashSet<>();
-        while (numberSet.size() < ANSWER_DIGIT) numberSet.add(Randoms.pickNumberInRange(1, 9));
-        return numberSet.stream().mapToInt(Integer::intValue).toArray();
+        List<Integer> numbers = new ArrayList<>();
+        while (numbers.size() < ANSWER_DIGIT) {
+            int picked = Randoms.pickNumberInRange(1, 9);
+            if (!numbers.contains(picked)) numbers.add(picked);
+        }
+
+        return toIntArray(numbers);
+    }
+
+    private static int[] toIntArray(List<Integer> list) {
+        int[] arr = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) arr[i] = list.get(i);
+
+        return arr;
     }
 
     static boolean isValid(String userInput) {

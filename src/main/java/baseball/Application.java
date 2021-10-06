@@ -35,6 +35,7 @@ public class Application {
             game.grade(inputNumbers);
 
             if (game.allMatch()) {
+                GameUI.printGrade(game.getStrikeCount(), game.getBallCount());
                 GameUI.printAllMatchMessage();
                 GameUI.printAskRetryMessage();
                 game.complete();
