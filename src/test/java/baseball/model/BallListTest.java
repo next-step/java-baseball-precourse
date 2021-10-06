@@ -67,27 +67,27 @@ class BallListTest {
 
     @ParameterizedTest(name = "Ball List({0}, {1}, {2})를 입력하였을 때 정상적으로 볼 카운트를 수행하는지 확인")
     @MethodSource("generateData")
-    void checkBallCount(int ball1, int ball2, int ball3, BallCount ballCount) {
+    void checkBallCount(int ball1, int ball2, int ball3, BaseballResult baseballResult) {
         // given
         BallList userBallList = new BallList(Arrays.asList(ball1, ball2, ball3));
 
         // when
-        BallCount result = computerBallList.ballCount(userBallList);
+        BaseballResult result = computerBallList.ballCount(userBallList);
 
         // then
         assertAll(
                 () -> assertThat(userBallList.getBallList()).isNotEmpty(),
-                () -> assertThat(result.getStrike()).isEqualTo(ballCount.getStrike()),
-                () -> assertThat(result.getBall()).isEqualTo(ballCount.getBall())
+                () -> assertThat(result.getStrike()).isEqualTo(baseballResult.getStrike()),
+                () -> assertThat(result.getBall()).isEqualTo(baseballResult.getBall())
         );
     }
 
     static Stream<Arguments> generateData() {
         return Stream.of(
-                Arguments.of(1, 2, 3, new BallCount.Builder().strike(3).ball(0).build()),
-                Arguments.of(2, 3, 4, new BallCount.Builder().strike(0).ball(2).build()),
-                Arguments.of(1, 3, 2, new BallCount.Builder().strike(1).ball(2).build()),
-                Arguments.of(4, 5, 6, new BallCount.Builder().strike(0).ball(0).build())
+                Arguments.of(1, 2, 3, new BaseballResult.Builder().strike(3).ball(0).build()),
+                Arguments.of(2, 3, 4, new BaseballResult.Builder().strike(0).ball(2).build()),
+                Arguments.of(1, 3, 2, new BaseballResult.Builder().strike(1).ball(2).build()),
+                Arguments.of(4, 5, 6, new BaseballResult.Builder().strike(0).ball(0).build())
         );
     }
 }

@@ -5,8 +5,8 @@ import static baseball.util.BallListGenerator.*;
 import baseball.code.ErrorMessage;
 import baseball.code.GameStatus;
 import baseball.exception.BaseballException;
-import baseball.model.BallCount;
 import baseball.model.BallList;
+import baseball.model.BaseballResult;
 import baseball.util.BallListGenerator;
 import baseball.view.InputView;
 import baseball.view.OutputView;
@@ -28,13 +28,13 @@ public class BaseballService {
 
     }
 
-    public static BallCount ballCount(BallList computerBallList, BallList userBallList) {
+    public static BaseballResult baseballResult(BallList computerBallList, BallList userBallList) {
         return computerBallList.ballCount(userBallList);
     }
 
-    public static GameStatus checkBallCount(BallCount ballCount) {
-        OutputView.ballCount(ballCount.generateBallCountString());
-        if (ballCount.getStrike() == 3) {
+    public static GameStatus checkGameStatus(BaseballResult baseballResult) {
+        OutputView.ballCount(baseballResult.generateBallCountString());
+        if (baseballResult.getStrike() == 3) {
             OutputView.endGame();
             return toBeContinue();
         }

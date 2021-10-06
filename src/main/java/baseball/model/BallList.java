@@ -59,8 +59,8 @@ public class BallList {
         return ballBall;
     }
 
-    public BallCount ballCount(BallList ballList) {
-        return new BallCount.Builder()
+    public BaseballResult ballCount(BallList ballList) {
+        return new BaseballResult.Builder()
                 .strike(strikeBallCount(ballList))
                 .ball(ballBallCount(ballList))
                 .build();

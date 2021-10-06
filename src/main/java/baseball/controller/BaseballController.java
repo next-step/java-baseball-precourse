@@ -1,8 +1,8 @@
 package baseball.controller;
 
 import baseball.code.GameStatus;
-import baseball.model.BallCount;
 import baseball.model.BallList;
+import baseball.model.BaseballResult;
 import baseball.service.BaseballService;
 
 public class BaseballController {
@@ -13,8 +13,8 @@ public class BaseballController {
 
         do {
             BallList inputUserBallList = BaseballService.inputUserBall();
-            BallCount ballCount = BaseballService.ballCount(computerBallList, inputUserBallList);
-            gameStatus = BaseballService.checkBallCount(ballCount);
+            BaseballResult baseballResult = BaseballService.baseballResult(computerBallList, inputUserBallList);
+            gameStatus = BaseballService.checkGameStatus(baseballResult);
             computerBallList = generateNewComputerBallList(gameStatus, computerBallList);
         } while (!gameStatus.equals(GameStatus.END_GAME));
     }

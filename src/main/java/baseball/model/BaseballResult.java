@@ -2,11 +2,11 @@ package baseball.model;
 
 import baseball.code.BallCountType;
 
-public class BallCount {
+public class BaseballResult {
     private final int strike;
     private final int ball;
 
-    public BallCount(Builder builder) {
+    public BaseballResult(Builder builder) {
         this.strike = builder.strike;
         this.ball = builder.ball;
     }
@@ -45,18 +45,18 @@ public class BallCount {
         private int strike;
         private int ball;
 
-        public BallCount.Builder strike(int strike) {
+        public BaseballResult.Builder strike(int strike) {
             this.strike = strike;
             return this;
         }
 
-        public BallCount.Builder ball(int ball) {
+        public BaseballResult.Builder ball(int ball) {
             this.ball = ball;
             return this;
         }
 
-        public BallCount build() {
-            return new BallCount(this);
+        public BaseballResult build() {
+            return new BaseballResult(this);
         }
     }
 }
