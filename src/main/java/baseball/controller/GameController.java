@@ -24,6 +24,15 @@ public class GameController {
         return gameService;
     }
 
+    /**
+     * 숫자야구게임 시작
+     * <p>
+     * 게임 상태를 START 설정하고, 게임에서 진행될 임의의 수를 생성한다. 임의의 수가 생성되면 사용자에게 입력값을 받는다.
+     * </p>
+     * <p>
+     * 입력값을 비교하여 매치 결과를 출력한다. 숫자를 모두 맞히면 게임이 종료된다.
+     * </p>
+     */
     public void start() {
         setGameStatusStart();
         boolean isMakePickNumbers = makePickNumbers();

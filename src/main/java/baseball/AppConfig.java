@@ -5,6 +5,9 @@ import baseball.domain.GameStatus;
 import baseball.service.GameService;
 import baseball.service.GameServiceImpl;
 
+/**
+ * Application 초기 설정을 관리하는 클래스
+ */
 public class AppConfig {
 
     private static GameService gameService;
