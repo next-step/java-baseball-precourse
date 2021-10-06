@@ -41,6 +41,10 @@ public class GameBall {
     }
 
     private void validateBallNums(List<Integer> ballNums) {
+        if (!GameBallValidateUtils.isValidNumbersDigit(ballNums)) {
+            throw new IllegalArgumentException(INVALID_DIGIT_MESSAGE);
+        }
+
         if (!GameBallValidateUtils.isValidNumbersRange(ballNums)) {
             throw new IllegalArgumentException(INVALID_RANGE_MESSAGE);
         }
@@ -49,9 +53,7 @@ public class GameBall {
             throw new IllegalArgumentException(DUPLICATE_MESSAGE);
         }
 
-        if (!GameBallValidateUtils.isValidNumbersDigit(ballNums)) {
-            throw new IllegalArgumentException(INVALID_DIGIT_MESSAGE);
-        }
+
     }
 
     @Override

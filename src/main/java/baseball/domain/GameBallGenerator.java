@@ -39,7 +39,7 @@ public class GameBallGenerator {
 
     public static void getDigitUserInputNum(String userInputNums) {
         for (int i = 0; i < userInputNums.length(); i++) {
-            getUniqueNum(Integer.parseInt(String.valueOf(userInputNums.charAt(i))));
+            generatedBaseballNums.add(Integer.parseInt(String.valueOf(userInputNums.charAt(i))));
         }
     }
 }

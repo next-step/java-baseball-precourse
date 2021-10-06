@@ -55,11 +55,6 @@ public class GameBallValidationTest {
     @Test
     @DisplayName("게임볼생성간예외처리테스트")
     void validateCreatGameBallTest() {
-        /*IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            GameBall gameBall = new GameBall(Arrays.asList(1,1,2));
-        });
-        assertEquals("중복된 값이 있습니다.",exception.getMessage());*/
-
         assertThatThrownBy(() -> {
             GameBall gameBall = new GameBall(Arrays.asList(1,1,2));
         }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining(GameBall.DUPLICATE_MESSAGE);
@@ -71,6 +66,5 @@ public class GameBallValidationTest {
         assertThatThrownBy(() -> {
             GameBall gameBall = new GameBall(Arrays.asList(1,2));
         }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining(GameBall.INVALID_DIGIT_MESSAGE);
-
     }
 }
