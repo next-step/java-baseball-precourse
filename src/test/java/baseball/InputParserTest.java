@@ -1,11 +1,11 @@
 package baseball;
 
+import java.util.ArrayList;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import java.util.ArrayList;
 
 public class InputParserTest {
     @ParameterizedTest

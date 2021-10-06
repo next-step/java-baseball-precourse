@@ -5,7 +5,7 @@ import nextstep.utils.Console;
 public class Application {
     private static final String REQUEST_INPUT_MSG = "숫자를 입력해주세요: ";
 
-    static PlayGroundManager playGroundManager;
+    private static PlayGroundManager playGroundManager;
 
     public static void main(String[] args) {
         playGroundManager = new PlayGroundManager();

@@ -13,7 +13,7 @@ public class BallCollection extends ArrayList<Ball> {
         return result;
     }
 
-    public MATCH_RESULT overwriteIfValid(MATCH_RESULT oldValue, MATCH_RESULT newValue){
+    public MATCH_RESULT overwriteIfValid(MATCH_RESULT oldValue, MATCH_RESULT newValue) {
         return oldValue == MATCH_RESULT.NOTHING ? newValue : oldValue;
     }
 }

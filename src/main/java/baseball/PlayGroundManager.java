@@ -24,8 +24,7 @@ public class PlayGroundManager {
             ArrayList<Integer> inputBallNumbers = new InputParser().parse(userInput);
 
             return proceedGameInternal(inputBallNumbers);
-        }
-        catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(INPUT_BALL_NUMBER_ERROR_MSG);
         }
 

@@ -1,8 +1,8 @@
 package baseball;
 
-import nextstep.utils.Randoms;
-
 import java.util.ArrayList;
+
+import nextstep.utils.Randoms;
 
 public class RandomInputGenerator {
     public ArrayList<Integer> genRandomInts() {

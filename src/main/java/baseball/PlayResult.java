@@ -1,10 +1,10 @@
 package baseball;
 
 public class PlayResult {
-    public static final String STRIKE_STR = "스트라이크";
-    public static final String BALL_STR = "볼";
-    public static final String NOTHING_STR = "낫싱";
-    public static final String EMPTY_STR = " ";
+    private static final String STRIKE_STR = "스트라이크";
+    private static final String BALL_STR = "볼";
+    private static final String NOTHING_STR = "낫싱";
+    private static final String EMPTY_STR = " ";
 
     private int strikeCnt;
     private int ballCnt;
