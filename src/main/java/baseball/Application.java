@@ -22,13 +22,13 @@ public class Application {
                 try {
                     List<Integer> playerNumbers = facilitator.splitNumbers(command.askPlayerNumbers());
                     Count count = referee.atBat(comNumbers, playerNumbers);
-                    command.printCount(count.getBall(), count.getStrike());
+                    referee.callCount(command, count.getStrike(), count.getBall());
                     isStruckOut = referee.isStruckOut(count.getStrike());
                     if(isStruckOut) {
                         command.printGameClear();
                     }
                 } catch (IllegalArgumentException e) {
-                    System.out.println("[ERROR]");
+                    command.printError();
                 }
             }
             gameContinue = facilitator.isContinueGame(command.askContinueGame());

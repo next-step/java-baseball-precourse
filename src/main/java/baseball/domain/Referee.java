@@ -1,5 +1,7 @@
 package baseball.domain;
 
+import baseball.view.Command;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -37,5 +39,18 @@ public class Referee {
             result = true;
         }
         return result;
+    }
+
+    public void callCount(Command command, int strike, int ball){
+        if(strike == 0 && ball == 0) {
+            command.printNoting();
+        }
+        if(strike != 0) {
+            command.getStrikeMessage(strike);
+        }
+        if(ball != 0) {
+            command.getBallMessage(ball);
+        }
+        command.println();
     }
 }

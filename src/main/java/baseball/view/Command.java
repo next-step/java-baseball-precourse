@@ -9,27 +9,16 @@ public class Command {
         return Console.readLine();
     }
 
-    public void printCount(int ball, int strike) {
-        if(strike == 0 && ball == 0) {
-            System.out.println("낫싱");
-            return;
-        }
-        String countMessage = getStrikeMessage(strike) + getBallMessage(ball);
-        System.out.println(countMessage);
+    public void printNoting() {
+        System.out.print("낫싱");
     }
 
-    private String getStrikeMessage(int strike) {
-        if(strike == 0) {
-            return "";
-        }
-        return String.format("%d스트라이크 ", strike);
+    public void getStrikeMessage(int strike) {
+        System.out.printf("%d스트라이크 ", strike);
     }
 
-    private String getBallMessage(int ball) {
-        if(ball == 0) {
-            return "";
-        }
-        return String.format("%d볼 ", ball);
+    public void getBallMessage(int ball) {
+        System.out.printf("%d볼 ", ball);
     }
 
     public void printError() {
@@ -41,7 +30,11 @@ public class Command {
     }
 
     public int askContinueGame() {
-        System.out.println(String.format("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."));
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
         return Integer.parseInt(Console.readLine());
+    }
+
+    public void println(){
+        System.out.println();
     }
 }
