@@ -5,29 +5,29 @@ import java.util.StringJoiner;
 public class Result {
     private final static int CORRECT_STRIKE_COUNT = 3;
     private final static String BLACK_SPACE = " ";
-    private final int strikeCount;
-    private final int ballCount;
+    private final int strike;
+    private final int ball;
 
-    public Result(int strikeCount, int ballCount) {
-        this.strikeCount = strikeCount;
-        this.ballCount = ballCount;
+    public Result(int strike, int ball) {
+        this.strike = strike;
+        this.ball = ball;
     }
 
     public String getMessage() {
         if (isNothing()) return "낫싱";
 
         StringJoiner stringJoiner = new StringJoiner(BLACK_SPACE);
-        if (strikeCount > 0) stringJoiner.add(String.format("%d스트라이크", strikeCount));
-        if (ballCount > 0) stringJoiner.add(String.format("%d볼", ballCount));
+        if (strike > 0) stringJoiner.add(String.format("%d스트라이크", strike));
+        if (ball > 0) stringJoiner.add(String.format("%d볼", ball));
         if (isCorrect()) stringJoiner.add("\n3개의 숫자를 모두 맞히셨습니다! 게임 끝");
         return stringJoiner.toString();
     }
 
     public boolean isCorrect() {
-        return this.strikeCount == CORRECT_STRIKE_COUNT;
+        return this.strike == CORRECT_STRIKE_COUNT;
     }
 
     private boolean isNothing() {
-        return this.strikeCount == 0 && this.ballCount == 0;
+        return this.strike == 0 && this.ball == 0;
     }
 }

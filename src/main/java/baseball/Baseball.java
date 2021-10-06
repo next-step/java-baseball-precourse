@@ -3,56 +3,63 @@ package baseball;
 import nextstep.utils.Console;
 
 public class Baseball {
-    private boolean running = true;
+    private boolean runnable = true;
 
-    public boolean isRunning() {
-        return this.running;
+    public boolean isRunnable() {
+        return this.runnable;
     }
 
     public void run() {
-        Number targetNumber = new Number(TargetNumberProvider.generate());
+        if (!isRunnable()) return;
+
+        Number answerNumber = new Number(RandomNumberProvider.generate());
 
         while (true) {
-            Number expectedNumber = getExpectedNumber();
-            char[] chars = expectedNumber.getValue().toCharArray();
-            int strike = 0;
-            int ball = 0;
-            for (int i = 0; i < chars.length; i++) {
-                char aChar = chars[i];
-                int index = targetNumber.getValue().indexOf(aChar);
-                if (index < 0) continue;
-                if (index == i) {
-                    strike++;
-                } else {
-                    ball++;
-                }
-
-            }
-            Result result = new Result(strike, ball);
-            System.out.println(result.getMessage());
+            Result result = compute(answerNumber, getGuessNumber());
+            print(result.getMessage());
             if (result.isCorrect()) break;
         }
 
-        changeRunningStatus(getNextCommand());
+        decideTerminateStatus(getNextCommand());
     }
 
-    private Number getExpectedNumber() {
+    private Number getGuessNumber() {
         while (true) {
             try {
-                System.out.println("숫자를 입력해주세요 : ");
+                print("숫자를 입력해주세요 : ");
                 return new Number(Console.readLine());
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                print(e.getMessage());
             }
         }
     }
 
+    private Result compute(Number targetNumber, Number guessNumber) {
+        char[] guessNumbers = guessNumber.getValue().toCharArray();
+        int strike = 0;
+        int ball = 0;
+        for (int currentIndex = 0; currentIndex < guessNumbers.length; currentIndex++) {
+            int foundIndex = targetNumber.getValue().indexOf(guessNumbers[currentIndex]);
+            if (foundIndex < 0) continue;
+            if (foundIndex == currentIndex) {
+                strike++;
+            } else {
+                ball++;
+            }
+        }
+        return new Result(strike, ball);
+    }
+
     private Command getNextCommand() {
-        System.out.print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
         return Command.of(Console.readLine());
     }
 
-    private void changeRunningStatus(Command command) {
-        if (command == Command.EXIT) this.running = false;
+    private void decideTerminateStatus(Command command) {
+        if (command == Command.EXIT) this.runnable = false;
+    }
+
+    private void print(String message) {
+        System.out.println(message);
     }
 }

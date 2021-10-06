@@ -5,7 +5,7 @@ import nextstep.utils.Randoms;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class TargetNumberProvider {
+public class RandomNumberProvider {
     private static final int MAX_DIGIT_LENGTH = 3;
 
     public static String generate() {
