@@ -1,22 +1,38 @@
 package baseball.view;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
 import baseball.exception.InvalidSelectValueException;
 import baseball.model.ConstValue;
 import nextstep.utils.Console;
 
 public class RestartSelectView {
 
+	private final static Map<String, Boolean> selectOption = new HashMap<>();
+
 	public static boolean printRestartSelectMessage() {
+
+		selectOption.put("1", true);
+		selectOption.put("2", false);
+
 		System.out.println(ConstValue.GAME_RESTART_SELECT);
 		String restartSelected = Console.readLine();
 
-		if(!(restartSelected == "1" || restartSelected == "2"))
-			throw new InvalidSelectValueException();
+		try {
+			return validateSelectedValue(restartSelected);
+		} catch (InvalidSelectValueException exception) {
+			System.out.println(exception.getMessage());
+			return printRestartSelectMessage();
+		}
+	}
 
-		if(restartSelected == "1")
-			return true;
+	private static boolean validateSelectedValue(String selected) {
+		boolean isRestart = Optional.ofNullable(selectOption.get(selected))
+			.orElseThrow(() -> new InvalidSelectValueException());
 
-		return false;
-	};
+		return isRestart;
+	}
 
 }
