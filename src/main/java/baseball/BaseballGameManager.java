@@ -13,5 +13,11 @@ public class BaseballGameManager {
 
     public void play() {
         String answerNumber = randomNumberGenerator.generateRandomNumber();
+        BaseballCount baseballCount = getUserInput();
+    }
+
+    public BaseballCount getUserInput() {
+        String input = baseballViewer.getUserInput();
+        return new BaseballCount(input);
     }
 }

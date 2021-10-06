@@ -18,15 +18,12 @@
   ```
   Feature #2
   
-  Feature #2-1 사용자 입력 저장
+  Feature #2-1 사용자 입력 처리
   Feature #2-2 사용자 입력 Validation
   - 입력값 length check
   - 입력값의 숫자 check
   - 입력값의 숫자 범위 check
   - 입력값의 숫자 중복 check
-  Feature #2-3
-  - 허용된 값이 아닌 경우, 사용자에게 알림
-  - 입력 다시 받기
   ```
 * 숫자 판정 체크 #3
   ```
