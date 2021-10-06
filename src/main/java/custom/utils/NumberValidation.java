@@ -1,5 +1,9 @@
 package custom.utils;
-
+/**
+ * @author Yun JiHun<venaCode93@gmail.com>
+ * @version 1.0
+ * @since 1.0
+ */
 public class NumberValidation {
     /**
      * 숫자 유효성 검사하는 api

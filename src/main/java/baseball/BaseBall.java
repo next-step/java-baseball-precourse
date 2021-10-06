@@ -5,7 +5,11 @@ import custom.utils.NumberValidation;
 import nextstep.utils.Console;
 import nextstep.utils.Randoms;
 
-
+/**
+ * @author Yun JiHun<venaCode93@gmail.com>
+ * @version 1.0
+ * @since 1.0
+ */
 public class BaseBall {
 
     /**
@@ -49,7 +53,6 @@ public class BaseBall {
         return strikeNum;
     }
 
-    // 1에서 9 사이의 중복없는 3자리 랜덤 숫자
     private String getComNumbers(){
         String comNumbers = "";
         boolean[] drawnNums  = new boolean[9];
@@ -85,6 +88,7 @@ public class BaseBall {
         }
     }
 
+    //
     private int countStrike(String comNumbers, String userNumbers){
         int strikeNum = 0;
         for(int i=0; i<comNumbers.length(); i++) {
