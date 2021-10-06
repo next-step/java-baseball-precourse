@@ -30,6 +30,13 @@ public class BaseballGame {
             checkGameEnd(baseballCount.getStrikes(), baseballCount.getBalls());
         }
     }
+    public void askRestart(){
+        System.out.println("게임이 끝났습니다. 재시작하시려면 1, 종료하시려면 다른키 를 입력해주세요.");
+        String restartInput = Console.readLine();
+        if (restartInput == "1"){
+            startGame();
+        }
+    }
 
     public void checkGameEnd(int strikes, int balls){
         if (strikes == 3){
