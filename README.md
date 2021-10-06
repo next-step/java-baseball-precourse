@@ -17,7 +17,7 @@
 - Nothing
   - `Nothing`는 `Rule`을 가진다
 - Score
-  - `Score`은 3가지의 `Rule`을 가진다.
+  - `Score`은 `Strike`, `Ball`, `Nothing`을 가진다.
 - RandomGenerator
   - `RandomGenerator`는 서로 다른 3자리 숫자를 생성한다
 - Player

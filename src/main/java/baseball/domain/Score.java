@@ -1,29 +1,45 @@
 package baseball.domain;
 
+import java.util.Objects;
+
 public class Score {
 
-    private static final int ZERO = 0;
+    private final Strike strike;
+    private final Ball ball;
+    private final Nothing nothing;
 
-    private Rule strike;
-    private Rule ball;
-    private Rule nothing;
-
-    public Score(Rule strike, Rule ball, Rule nothing) {
+    public Score(Strike strike, Ball ball, Nothing nothing) {
         this.strike = strike;
         this.ball = ball;
         this.nothing = nothing;
     }
 
-    public String getText(int strikeCount, int ballCount) {
-        if (strikeCount == ZERO && ballCount == ZERO) {
-            return nothing.getName();
+    public Score(Strike strike, Ball ball) {
+        this(strike, ball, null);
+    }
+
+    public Score(Strike strike) {
+        this(strike, null, null);
+    }
+
+    public Score(Ball ball) {
+        this(null, ball, null);
+    }
+
+    public Score(Nothing nothing) {
+        this(null, null, nothing);
+    }
+
+    public String getText() {
+        if (!Objects.isNull(nothing)) {
+            return nothing.getText();
         }
-        if (ballCount == ZERO) {
-            return strike.getText(strikeCount);
+        if (Objects.isNull(strike)) {
+            return ball.getText();
         }
-        if (strikeCount == ZERO) {
-            return ball.getText(ballCount);
+        if (Objects.isNull(ball)) {
+            return strike.getText();
         }
-        return strike.getText(strikeCount) + " " + ball.getText(ballCount);
+        return strike.getText() + " " + ball.getText();
     }
 }

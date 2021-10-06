@@ -1,45 +1,47 @@
 package baseball.domain;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ScoreTest {
 
-    private Score score;
-
-    @BeforeEach
-    void setUp() {
-        score = new Score(Rule.STRIKE, Rule.BALL, Rule.NOTHING);
-    }
-
     @DisplayName("점수 문자를 생성한다.")
-    @Test
-    void text() {
-        String text = score.getText(1, 2);
-        assertThat(text).isEqualTo("1스트라이크 2볼");
+    @ParameterizedTest
+    @CsvSource(value = {"1,2"})
+    void text(int strike, int ball) {
+        Score score = new Score(new Strike(strike), new Ball(ball));
+        String text = score.getText();
+        assertThat(text).isEqualTo(Rule.STRIKE.getText(strike)+ " " + Rule.BALL.getText(ball));
     }
 
     @DisplayName("볼이 없는 경우 스트라이크만 생성한다.")
-    @Test
-    void text_strike() {
-        String text = score.getText(3, 0);
-        assertThat(text).isEqualTo("3스트라이크");
+    @ParameterizedTest
+    @ValueSource(ints = {1,2,3})
+    void strike(int count) {
+        Score score = new Score(new Strike(count));
+        String text = score.getText();
+        assertThat(text).isEqualTo(Rule.STRIKE.getText(count));
     }
 
     @DisplayName("스트라이크가 없는 경우 볼만 생성한다.")
-    @Test
-    void text_ball() {
-        String text = score.getText(0, 2);
-        assertThat(text).isEqualTo("2볼");
+    @ParameterizedTest
+    @ValueSource(ints = {1,2,3})
+    void ball(int count) {
+        Score score = new Score(new Ball(count));
+        String text = score.getText();
+        assertThat(text).isEqualTo(Rule.BALL.getText(count));
     }
 
     @DisplayName("스트라이크와 볼이 없는 경우 나싱만 생성한다")
     @Test
-    void text_nothing() {
-        String text = score.getText(0, 0);
-        assertThat(text).isEqualTo("나싱");
+    void nothing() {
+        Score score = new Score(new Nothing());
+        String text = score.getText();
+        assertThat(text).isEqualTo(Rule.NOTHING.getName());
     }
 }
