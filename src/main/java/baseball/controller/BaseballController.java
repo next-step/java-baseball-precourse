@@ -17,22 +17,22 @@ public class BaseballController {
         boolean playCheck = true;
         while (playCheck) {
             PlayerResponse response = Player.createPlayerBall();
-            playCheck = isPlayCheck(baseball, playCheck, response);
+            playCheck = playerInputCheck(baseball, playCheck, response);
         }
         return Game.restart();
     }
 
-    private boolean isPlayCheck(Baseball baseball, boolean playCheck, PlayerResponse response) {
+    private boolean playerInputCheck(Baseball baseball, boolean playCheck, PlayerResponse response) {
         if (response.isSuccess()) {
             BaseballResult baseballResult = baseball.compare(new Baseball(response));
             baseballResult.playResultPrint();
-            return isPlayCheck(playCheck, baseballResult);
+            return allStrikeCheck(playCheck, baseballResult);
         }
         response.errorPrint();
         return playCheck;
     }
 
-    private boolean isPlayCheck(boolean playCheck, BaseballResult baseballResult) {
+    private boolean allStrikeCheck(boolean playCheck, BaseballResult baseballResult) {
         if (baseballResult.allStrike()) {
             playCheck = false;
         }

@@ -10,10 +10,6 @@ public enum RestartNy {
         this.code = code;
     }
 
-    public String getCode() {
-        return code;
-    }
-
     public static boolean restartResult(String response) {
         return response.equals(YES.code);
     }
