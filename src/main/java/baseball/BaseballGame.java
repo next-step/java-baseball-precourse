@@ -21,7 +21,7 @@ class BaseballGame {
         finished = false;
     }
 
-    static int[] generateGameAnswer() {
+    public static int[] generateGameAnswer() {
         List<Integer> numbers = new ArrayList<>();
         while (numbers.size() < ANSWER_DIGIT) {
             int picked = Randoms.pickNumberInRange(1, 9);
@@ -32,11 +32,15 @@ class BaseballGame {
     }
 
     private static void addNumberOnlyDistinct(List<Integer> numbers, int picked) {
-        if (!numbers.contains(picked)) numbers.add(picked);
+        if (!numbers.contains(picked)) {
+            numbers.add(picked);
+        }
     }
 
-    static boolean isValid(String userInput) {
-        if (!consistOfDistinctValue(userInput)) return false;
+    public static boolean isValid(String userInput) {
+        if (!consistOfDistinctValue(userInput)) {
+            return false;
+        }
         return isThreeDigitNumber(userInput);
     }
 
@@ -51,68 +55,80 @@ class BaseballGame {
     }
 
     private static int addCountOnlyContained(int[] userInput, List<Integer> answerNumbers, int count, int i) {
-        if (answerNumbers.contains(userInput[i])) count++;
+        if (answerNumbers.contains(userInput[i])) {
+            count++;
+        }
         return count;
     }
 
-    void grade(int[] userInput) {
+    public void grade(int[] userInput) {
         int containCount = containCount(userInput);
         strikeCount = calculateStrikeCount(userInput);
-        if (containCount > strikeCount) ballCount = containCount - strikeCount;
+        if (containCount > strikeCount) {
+            ballCount = containCount - strikeCount;
+        }
     }
 
     private int containCount(int[] userInput) {
         List<Integer> answerNumbers = getAnswerNumberList();
 
         int count = 0;
-        for (int i = 0; i < ANSWER_DIGIT; i++) count = addCountOnlyContained(userInput, answerNumbers, count, i);
+        for (int i = 0; i < ANSWER_DIGIT; i++) {
+            count = addCountOnlyContained(userInput, answerNumbers, count, i);
+        }
 
         return count;
     }
 
     private List<Integer> getAnswerNumberList() {
         List<Integer> answerNumbers = new ArrayList<>(answer.length);
-        for (int i : answer) answerNumbers.add(i);
+        for (int i : answer) {
+            answerNumbers.add(i);
+        }
 
         return answerNumbers;
     }
 
     private int calculateStrikeCount(int[] userInput) {
         int count = 0;
-        for (int i = 0; i < ANSWER_DIGIT; i++) count = addCountPositionAndValueMatched(userInput, count, i);
+        for (int i = 0; i < ANSWER_DIGIT; i++) {
+            count = addCountPositionAndValueMatched(userInput, count, i);
+        }
         return count;
     }
 
     private int addCountPositionAndValueMatched(int[] userInput, int count, int i) {
-        if (answer[i] == userInput[i]) count++;
+        if (answer[i] == userInput[i]) {
+            count++;
+        }
         return count;
     }
 
-    boolean nonMatch() {
+    public boolean nonMatch() {
         return strikeCount == 0 && ballCount == 0;
     }
 
-    boolean allMatch() {
+    public boolean allMatch() {
         return strikeCount == ANSWER_DIGIT;
     }
 
-    int getStrikeCount() {
+    public int getStrikeCount() {
         return strikeCount;
     }
 
-    int getBallCount() {
+    public int getBallCount() {
         return ballCount;
     }
 
-    boolean isFinished() {
+    public boolean isFinished() {
         return finished;
     }
 
-    void complete() {
+    public void complete() {
         finished = true;
     }
 
-    void initGrade() {
+    public void initGrade() {
         strikeCount = 0;
         ballCount = 0;
     }

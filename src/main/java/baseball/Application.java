@@ -40,7 +40,9 @@ public class Application {
                 GameUI.printAskRetryMessage();
                 game.complete();
                 String retryInput = GameUI.userInput();
-                if (GameUI.isRetryNeeded(retryInput)) continue;
+                if (GameUI.isRetryNeeded(retryInput)) {
+                    continue;
+                }
                 return;
             }
 
@@ -54,7 +56,9 @@ public class Application {
     }
 
     private static BaseballGame startNewGameOnGameFinished(BaseballGame game) {
-        if (game.isFinished()) game = new BaseballGame(BaseballGame.generateGameAnswer());
+        if (game.isFinished()) {
+            game = new BaseballGame(BaseballGame.generateGameAnswer());
+        }
         return game;
     }
 
