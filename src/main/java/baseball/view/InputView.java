@@ -2,13 +2,10 @@ package baseball.view;
 
 import nextstep.utils.Console;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class InputView {
-    public String[] InputNumberFromUser() {
+    public String InputNumberFromUser() {
         System.out.print("숫자를 입력해주세요 : ");
-        return Console.readLine().split("");
+        return Console.readLine();
     }
 
     public String restartGameByPrompt() {

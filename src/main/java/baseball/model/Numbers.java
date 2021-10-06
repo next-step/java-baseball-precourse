@@ -3,7 +3,10 @@ package baseball.model;
 import baseball.view.InputView;
 import nextstep.utils.Randoms;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Numbers {
     private List<Integer> userInputNumber;
@@ -26,12 +29,16 @@ public class Numbers {
         this.generateComputeNumber = new ArrayList<>(numberSet);
     }
 
-    public void inputNumber() {
-        String[] inputArr = new InputView().InputNumberFromUser();
+    public boolean inputNumber() {
+        String inputStr = new InputView().InputNumberFromUser();
+        if (!inputStr.matches("^[1-9]{3}$")) {
+            return true;
+        }
         userInputNumber = new ArrayList<>();
-        for (String s: inputArr) {
+        for (String s: inputStr.split("")) {
             userInputNumber.add(Integer.valueOf(s));
         }
+        return false;
     }
 
 }

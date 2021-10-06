@@ -11,12 +11,18 @@ public class GameController {
     }
 
     public void run() {
-        while (true) {
+        boolean restartBool = true;;
+        while (restartBool) {
             new GameService().playGame();
-            if (inputView.restartGameByPrompt().equals("2")) {
-                break;
-            }
+            restartBool = restartGameCheck();
         }
+    }
+
+    private boolean restartGameCheck() {
+        if (inputView.restartGameByPrompt().equals("2")) {
+            return false;
+        }
+        return true;
     }
 
 }

@@ -22,10 +22,9 @@ public class GameService {
     }
 
     private void isInputNumber(Numbers numbers) {
-        numbers.inputNumber();
-        while(numbers.getUserInputNumber().size() != 3) {
+        if (numbers.inputNumber()) {
             outputView.displayErrorMessage();
-            numbers.inputNumber();
+            isInputNumber(numbers);
         }
     }
 
