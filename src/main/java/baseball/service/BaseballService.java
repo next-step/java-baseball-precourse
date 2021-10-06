@@ -2,6 +2,8 @@ package baseball.service;
 
 import static baseball.util.BallListGenerator.*;
 
+import java.util.List;
+
 import baseball.exception.BaseballException;
 import baseball.model.BallList;
 import baseball.util.BallListGenerator;
@@ -23,5 +25,9 @@ public class BaseballService {
             return inputUserBall();
         }
 
+    }
+
+    public static List<Integer> ballCount(BallList computerBallList, BallList userBallList) {
+        return computerBallList.ballCount(userBallList);
     }
 }
