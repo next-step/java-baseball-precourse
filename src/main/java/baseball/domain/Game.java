@@ -19,6 +19,34 @@ public class Game {
         this.computerBalls = createThreeRandomBalls();
     }
 
+    //== 게임 결과 리턴 ==//
+    // 스트라이크 숫자
+    public PlayResult play(List<Integer> userBalls) {
+        PlayResult playResult = new PlayResult();
+        int max = Math.min(BALL_MAX_COUNT, userBalls.size());
+        for (int i = 0; i < max; i++) {
+            BallStatus status = checkBalls(userBalls.get(i), i, this.computerBalls);
+            playResult.report(status);
+        }
+        return playResult;
+    }
+
+    /** 볼 체크하기!
+     * @param userBall          볼의 값
+     * @param index             볼의 위치
+     * @param computerBalls     컴퓨터 볼들
+     * @return
+     */
+    public BallStatus checkBalls(int userBallNo, int index, List<Integer> computerBalls) {
+        if (computerBalls.get(index) == userBallNo) {
+            return BallStatus.STRIKE;
+        }
+        if (computerBalls.contains(userBallNo)) {
+            return BallStatus.BALL;
+        }
+        return BallStatus.NOTHING;
+    }
+
     // 사용자 볼 입력받기
     public List<Integer> getBalls() {
         System.out.print("숫자를 입력해주세요 : ");
