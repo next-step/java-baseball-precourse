@@ -27,21 +27,21 @@ public class AnswerMakerTest {
     @ParameterizedTest
     @ValueSource(strings = {"abc", "12a", "ab2", "가나1", "", "  "})
     @DisplayName("answer는 문자가 있을 수 없음")
-    void 정답_문자_포함_시_unvalid_테스트(String answer) {
+    void 정답_문자_포함_시_invalid_테스트(String answer) {
         assertThat(isValid(answer)).isFalse();
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"12", "1", "1234", "12513324123", "", " "})
     @DisplayName("answer는 3개의 숫자로 이루어져야 함")
-    void 정답_숫자_3개_아닐_시_unvalid_테스트(String answer) {
+    void 정답_숫자_3개_아닐_시_invalid_테스트(String answer) {
         assertThat(isValid(answer)).isFalse();
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"111", "112", "101", "012", "000", "001", "100"})
     @DisplayName("answer는 3개의 중복되지 않는, 0을 제외한 숫자로 이루어져야 함")
-    void 정답_ZERO_또는_중복_포함_시_unvalid_테스트(String answer) {
+    void 정답_ZERO_또는_중복_포함_시_invalid_테스트(String answer) {
 
         assertThat(isValid(answer)).isFalse();
     }
