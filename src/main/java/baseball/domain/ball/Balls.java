@@ -1,14 +1,14 @@
 package baseball.domain.ball;
 
+import baseball.domain.score.Score;
+import baseball.domain.score.ScoreType;
 import baseball.exception.BaseballException.DuplicatedBallsException;
 import baseball.exception.BaseballException.InvalidBallsLength;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static baseball.constant.Rule.COUNT_OF_BALLS;
+import static baseball.domain.score.ScoreType.STRIKE;
 
 public class Balls {
 
@@ -48,12 +48,29 @@ public class Balls {
 
     private void setBalls(List<Integer> numbers) {
         for (int i = 0; i < COUNT_OF_BALLS; i++) {
-            balls.add(new Ball(numbers.get(i), START_POSITION+i));
+            balls.add(new Ball(numbers.get(i), START_POSITION + i));
         }
     }
 
-    public List<Ball> getValue() {
-        return balls;
+    public Score compare(Balls targetBalls) {
+        Score score = new Score();
+        for (int i = 0; targetBalls != null && i < targetBalls.getSize(); i++) {
+            ScoreType scoreType = getScoreType(targetBalls.getByIndex(i));
+            score.put(scoreType);
+        }
+        return score;
+    }
+
+    private ScoreType getScoreType(Ball targetBall) {
+        PriorityQueue<ScoreType> scoreTypes = new PriorityQueue<>();
+        for (Ball ball : balls) {
+            scoreTypes.add(ball.compare(targetBall));
+        }
+        return scoreTypes.poll();
+    }
+
+    private Ball getByIndex(int index) {
+        return balls.get(index);
     }
 
     public int getSize() {
