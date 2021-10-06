@@ -1,11 +1,13 @@
 package baseball.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
 import baseball.code.BallConfig;
+import baseball.model.BallList;
 import nextstep.utils.Randoms;
 
 public class BallListGenerator {
@@ -21,5 +23,15 @@ public class BallListGenerator {
             );
         }
         return new ArrayList<>(ballSet);
+    }
+
+    public static BallList generateUserBallList(String enterValue) {
+        BallListValidator.inputValidate(enterValue);
+        return new BallList(
+                Arrays.asList(
+                        Character.getNumericValue(enterValue.charAt(0)),
+                        Character.getNumericValue(enterValue.charAt(1)),
+                        Character.getNumericValue(enterValue.charAt(2))
+                ));
     }
 }
