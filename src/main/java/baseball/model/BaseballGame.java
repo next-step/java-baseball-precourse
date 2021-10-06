@@ -5,7 +5,7 @@ public class BaseballGame {
     private String GAMESTATUS = "start";
     private final BaseballComputer numberOfComputer;
 
-    private BaseballGame(BaseballComputer computerNumber) {
+    public BaseballGame(BaseballComputer computerNumber) {
         this.numberOfComputer = computerNumber;
     }
 
@@ -16,6 +16,10 @@ public class BaseballGame {
 
     public BaseballComputer getComputer(){
         return this.numberOfComputer;
+    }
+
+    public String getGamestatus(){
+        return this.GAMESTATUS;
     }
 
     public void startGame(){

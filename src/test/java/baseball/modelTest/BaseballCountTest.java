@@ -4,7 +4,6 @@ import baseball.model.BaseballCount;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
-import java.util.ArrayList;
 
 public class BaseballCountTest {
     private BaseballCount baseballCount;
