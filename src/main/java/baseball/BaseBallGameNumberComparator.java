@@ -2,14 +2,10 @@ package baseball;
 
 /**
  * Name : BaseBallGameNumberComparator <br/>
- * Description : 야구 게임 숫자 비교하는 기능을 하는 객체
+ * Description : 야구 게임 숫자 비교하는 기능을 하는 클래스
  */
 public class BaseBallGameNumberComparator {
-    private int maxLength;
-
-    private BaseBallGameNumberComparator() {
-        this(BaseBallGame.DEFAULT_LENGTH);
-    }
+    private final int maxLength;
 
     public BaseBallGameNumberComparator(int maxLength) {
         this.maxLength = maxLength;
@@ -41,7 +37,7 @@ public class BaseBallGameNumberComparator {
      */
     public int getBallsCount(String randomGenerated, String input) {
         int ballCount = 0;
-        for ( int i = 0 ; i < maxLength ; i++ )
+        for (int i=0; i<maxLength; i++)
             ballCount += checkBall(randomGenerated, input, i);
 
         return ballCount;

@@ -10,11 +10,7 @@ import java.util.List;
  * Description : 랜덤 숫자 3자리를 생성하는 객체
  */
 public class RandomNumberGenerator {
-    private int maxLength;
-
-    public RandomNumberGenerator() {
-        this(BaseBallGame.DEFAULT_LENGTH);
-    }
+    private final int maxLength;
 
     public RandomNumberGenerator(int maxLength) {
         this.maxLength = maxLength;
@@ -39,7 +35,7 @@ public class RandomNumberGenerator {
     private void setNumbers(List<Integer> baseNumbers, StringBuilder numbers) {
         int randomNumber = Randoms.pickNumberInRange(1, 9);
 
-        if(baseNumbers.get(randomNumber) == randomNumber) {
+        if (baseNumbers.get(randomNumber) == randomNumber) {
             numbers.append(randomNumber);
             baseNumbers.set(randomNumber, 0);
             return;

@@ -7,21 +7,16 @@ package baseball;
 public class BaseBallGameResultConverter {
 
     public String  convertGameResult(int[] result) {
-        int strikeCount = result[0];
-        int ballCount = result[1];
-
-        if(isNothing(result)) {
+        if (isNothing(result)) {
             return "낫싱";
         }
-
-        if(isStrikes(result)) {
-            return strikeCount + "스트라이크";
+        if (isStrikes(result)) {
+            return result[0] + "스트라이크";
         }
-
-        if(isBalls(result))
-            return ballCount + "볼";
-
-        return strikeCount + "스트라이크 " + ballCount + "볼";
+        if (isBalls(result)) {
+            return result[1] + "볼";
+        }
+        return result[0] + "스트라이크 " + result[1] + "볼";
     }
 
     private boolean isBalls(int[] result) {

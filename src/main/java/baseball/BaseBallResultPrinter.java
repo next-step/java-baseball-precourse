@@ -5,7 +5,7 @@ package baseball;
  * Description : 야구게임 결과 출력 클래스
  */
 public class BaseBallResultPrinter {
-    private BaseBallGameResultConverter baseBallGameResultConverter;
+    private final BaseBallGameResultConverter baseBallGameResultConverter;
 
     public BaseBallResultPrinter() {
         this.baseBallGameResultConverter = new BaseBallGameResultConverter();
