@@ -37,7 +37,11 @@ public class GameService {
         return strikeCount == targetDigit;
     }
 
-    public int getStrikeCount(List<Integer> targetNumber, List<Integer> proposalNumber) {
+    public void setTargetNumber(List<Integer> targetNumber) {
+        this.targetNumber = targetNumber;
+    }
+
+    private int getStrikeCount(List<Integer> targetNumber, List<Integer> proposalNumber) {
         int strikeCount = 0;
         for (int i = 0; i < targetDigit; i++) {
             strikeCount = addStrikeCount(targetNumber.get(i), proposalNumber.get(i), strikeCount);
@@ -50,7 +54,7 @@ public class GameService {
         return strikeCount;
     }
 
-    public int getBallCount(List<Integer> targetNumber, List<Integer> proposalNumber, int strikeCount) {
+    private int getBallCount(List<Integer> targetNumber, List<Integer> proposalNumber, int strikeCount) {
         int ballCount = 0;
 
         for (int i = 0; i < targetDigit; i++) {
