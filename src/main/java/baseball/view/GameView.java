@@ -4,6 +4,7 @@ import baseball.domain.Score;
 import nextstep.utils.Console;
 
 import java.io.PrintStream;
+import java.util.NoSuchElementException;
 
 public class GameView {
 
@@ -19,7 +20,11 @@ public class GameView {
     }
 
     public void showScoreMessage(Score score) {
-        out.println(score.getText());
+        try {
+            out.println(score.getText());
+        } catch (NoSuchElementException e) {
+            out.println(e.getMessage());
+        }
     }
 
     public void showEndMessage() {
@@ -27,7 +32,7 @@ public class GameView {
     }
 
     public void showResumeMessage() {
-        out.println(GAME_RESUME_MESSAGE);
+        System.out.println(GAME_RESUME_MESSAGE);
     }
 
     public void showResumeError() {

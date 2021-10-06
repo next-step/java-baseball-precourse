@@ -4,7 +4,7 @@ public enum Rule {
 
     STRIKE("스트라이크"),
     BALL("볼"),
-    NOTHING("나싱");
+    NOTHING("낫싱");
 
     private String name;
 

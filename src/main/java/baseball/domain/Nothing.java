@@ -1,5 +1,7 @@
 package baseball.domain;
 
+import java.util.NoSuchElementException;
+
 public class Nothing extends GameRule {
 
     public Nothing() {
@@ -8,6 +10,6 @@ public class Nothing extends GameRule {
 
     @Override
     public String getText() {
-        return rule.getName();
+        throw new NoSuchElementException(rule.getName());
     }
 }

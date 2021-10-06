@@ -2,10 +2,6 @@ package baseball.domain;
 
 import nextstep.utils.Randoms;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 public class RandomNumberGenerator implements RandomGenerator{
 
     private static final int MIN_THRESHOLD = 2;
@@ -16,15 +12,10 @@ public class RandomNumberGenerator implements RandomGenerator{
 
     @Override
     public String getValue() {
+        StringBuffer buffer = new StringBuffer();
         int first = Randoms.pickNumberInRange(MIN_THRESHOLD, MAX_THRESHOLD);
         int second = Randoms.pickNumberInRange(first + OFFSET, MAX_VALUE);
         int third = Randoms.pickNumberInRange(MIN_VALUE, first - OFFSET);
-        List<Integer> list = Arrays.asList(first, second, third);
-        Collections.shuffle(list);
-        StringBuffer buffer = new StringBuffer();
-        for (Integer number : list) {
-            buffer.append(number);
-        }
-        return buffer.toString();
+        return buffer.append(first).append(second).append(third).toString();
     }
 }
