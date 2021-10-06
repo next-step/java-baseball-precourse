@@ -2,12 +2,12 @@ package baseball.controller;
 
 import nextstep.utils.Randoms;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 
 public class RandomNumberGenerator {
 
     public String generateRandomNumber() {
-        HashSet<Integer> list = new HashSet<>();
+        LinkedHashSet<Integer> list = new LinkedHashSet<>();
         int count = 0;
         while(count < 3) {
             count += getUniqueNumber(list);
@@ -15,7 +15,7 @@ public class RandomNumberGenerator {
         return listToString(list);
     }
 
-    private String listToString(HashSet<Integer> list) {
+    private String listToString(LinkedHashSet<Integer> list) {
         StringBuilder sb = new StringBuilder();
         for (Integer a : list) {
             sb.append(a);
@@ -23,7 +23,7 @@ public class RandomNumberGenerator {
         return sb.toString();
     }
 
-    private int getUniqueNumber(HashSet<Integer> list) {
+    private int getUniqueNumber(LinkedHashSet<Integer> list) {
         if (list.add(Randoms.pickNumberInRange(1, 9))) return 1;
         return 0;
     }

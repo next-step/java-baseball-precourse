@@ -16,7 +16,7 @@ public class BaseballViewer {
     public void displayResult(ResultBallCount resultBallCount) {
         System.out.println(resultBallCount);
         if(resultBallCount.isOut()){
-            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
         }
     }
 
