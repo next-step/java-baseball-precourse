@@ -16,6 +16,14 @@ public class BaseballController {
             BallList inputUserBallList = BaseballService.inputUserBall();
             List<Integer> ballCount = BaseballService.ballCount(computerBallList, inputUserBallList);
             gameStatus = BaseballService.checkBallCount(ballCount);
+            computerBallList = generateNewComputerBallList(gameStatus, computerBallList);
         } while (!gameStatus.equals(GameStatus.END_GAME));
+    }
+
+    private static BallList generateNewComputerBallList(GameStatus gameStatus, BallList computerBallList) {
+        if (gameStatus.equals(GameStatus.RESTART_GAME)) {
+            return BaseballService.generateComputerBallList();
+        }
+        return computerBallList;
     }
 }
