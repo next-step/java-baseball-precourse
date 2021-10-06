@@ -15,7 +15,7 @@ public class GameResult {
         this.userBalls = userBalls;
     }
 
-    public String playGame() {
+    public String getResultMessage() {
         Referee referee = new Referee(computerBalls);
 
         for (int i = 0; i < userBalls.getBallList().size(); i++) {
@@ -26,34 +26,50 @@ public class GameResult {
     }
 
     private void increaseCount(String judgementResult) {
-        if (judgementResult == "STRIKE") {
+        if (judgementResult.equals("STRIKE")) {
             ++strikeCount;
         }
 
-        if (judgementResult == "BALL") {
+        if (judgementResult.equals("BALL")) {
             ++ballCount;
         }
     }
 
     private String resultWithCount() {
-        if (strikeCount == 0 && ballCount == 0) {
-            return "낫싱";
-        }
+        String resultMessage = "";
 
-        if (strikeCount == 0) {
-            return ballCount + "볼";
-        }
+        resultMessage = getNothingMessage();
+        resultMessage += getStrikeMessage();
+        resultMessage += getBallMessage();
 
-        if (ballCount == 0) {
+        return resultMessage;
+    }
+
+    private String getStrikeMessage() {
+        if (strikeCount != 0 && ballCount ==0) {
             return strikeCount + "스트라이크";
         }
 
-        if (strikeCount != 0 && ballCount != 0) {
-            return strikeCount + "스트라이크 " + ballCount + "볼";
+        if (strikeCount != 0) {
+            return strikeCount + "스트라이크 ";
         }
-
-        return "낫싱";
+        return "";
     }
+
+    private String getBallMessage() {
+        if (ballCount != 0) {
+            return ballCount + "볼";
+        }
+        return "";
+    }
+
+    private String getNothingMessage() {
+        if (strikeCount == 0 && ballCount == 0) {
+            return "낫싱";
+        }
+        return "";
+    }
+
 
     public boolean gameEnd(String inputNumber) {
         if (strikeCount == 3) {
@@ -71,6 +87,14 @@ public class GameResult {
             return false;
         }
 
+        return false;
+    }
+
+
+    public boolean isEnd() {
+        if (strikeCount == 3) {
+            return true;
+        }
         return false;
     }
 }
