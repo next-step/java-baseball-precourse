@@ -26,6 +26,11 @@ public class Application {
             // 정답 입력 받기 (예외 처리 포함)
             String userInput = getUserInput();
 
+            // 결과 판독하기
+            ballCounter = countBallAndStrike(answer, userInput);
+
+            // 결과 출력
+            printCount(ballCounter);
 
         }
 
@@ -104,6 +109,40 @@ public class Application {
             return getUserInput();
         }
         return userInput;
+    }
+
+    /**
+     * 사용자의 입력을 받아 볼, 스트라이크 판정 결과를 반환합니다.
+     * @param answer 주어진 문제 문자열
+     * @param userInput 사용자 입력 문자열
+     * @return 판정 결과를 담은 BallCounter 객체
+     */
+    private static BallCounter countBallAndStrike(String answer, String userInput) {
+        BallCounter ballCounter = new BallCounter();
+        String[] answerSplit = answer.split("");
+        String[] userInputSplit = userInput.split("");
+        for (int i = 0; i < answerSplit.length; i++) {
+            boolean isStrike = answerSplit[i].equals(userInputSplit[i]);
+            boolean isBall = !isStrike && answer.contains(userInputSplit[i]);
+            ballCounter.setBall(isBall ? ballCounter.getBall() + 1 : ballCounter.getBall());
+            ballCounter.setStrike(isStrike ? ballCounter.getStrike() + 1 : ballCounter.getStrike());
+        }
+        return ballCounter;
+    }
+
+    /**
+     * 사용자 입력에 따른 볼, 스트라이크 결과를 출력하는 메소드입니다.
+     * @param ballCounter 볼, 스트라이크 결과를 담은 BallCounter 객체가 필요합니다.
+     */
+    private static void printCount(BallCounter ballCounter) {
+        int ball = ballCounter.getBall();
+        int strike = ballCounter.getStrike();
+
+        StringBuilder resultMessageBuilder = new StringBuilder();
+        resultMessageBuilder.append(strike > 0 ? strike + "스트라이크 " : "");
+        resultMessageBuilder.append(ball > 0 ? ball + "볼" : "");
+        resultMessageBuilder.append(ball == strike && ball == 0 ? "낫싱" : "");
+        System.out.println(resultMessageBuilder);
     }
 
 }
