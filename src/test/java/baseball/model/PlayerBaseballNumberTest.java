@@ -20,8 +20,8 @@ public class PlayerBaseballNumberTest {
 
 	@DisplayName("PlayBaseballNumber 자리수 테스트 ")
 	@Test
-	void validateDuplicatedPlayerNumber() {
-		assertThatThrownBy(() -> PlayerBaseballNumber.createPlayerBaseballNumber("11"))
+	void validateFiguresPlayerNumber() {
+		assertThatThrownBy(() -> PlayerBaseballNumber.createPlayerBaseballNumber("12"))
 			.isInstanceOf(InvalidFiguresNumberException.class)
 			.hasMessageContaining(ErrorMessage.INVALID_FIGURES_NUMBER);
 	}
@@ -33,5 +33,13 @@ public class PlayerBaseballNumberTest {
 			.isInstanceOf(InvalidInputTypeException.class)
 			.hasMessageContaining(ErrorMessage.INVALID_INPUT_TYPE);
 
+	}
+
+	@DisplayName("PlayBaseballNumber 중복된 숫자 Test")
+	@Test
+	void validateDuplicatedPlayerNumber() {
+		assertThatThrownBy(() -> PlayerBaseballNumber.createPlayerBaseballNumber("119"))
+			.isInstanceOf(DuplicatedNumberException.class)
+			.hasMessageContaining(ErrorMessage.DUPLICATED_NUMBER);
 	}
 }

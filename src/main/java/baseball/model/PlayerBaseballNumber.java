@@ -24,6 +24,14 @@ public class PlayerBaseballNumber {
 		return new PlayerBaseballNumber(inputNumberList);
 	}
 
+	private static void validateDuplicatedNumber(List<Integer> playerNumberList) {
+
+		HashSet<Integer> validateNumberHashSet = new HashSet<>(playerNumberList);
+
+		if(validateNumberHashSet.size() != playerNumberList.size())
+			throw new DuplicatedNumberException();
+	}
+
 	private static void validateNumberFigures(String inputNumbers) {
 		if(inputNumbers.length() != ConstValue.BASEBALL_SIZE)
 			throw new InvalidFiguresNumberException();
@@ -33,7 +41,7 @@ public class PlayerBaseballNumber {
 		for(int i=0; i<inputNumbers.length(); i++) {
 			char currentNumber = inputNumbers.charAt(i);
 
-			if(!(currentNumber > '0' && currentNumber < '9')) {
+			if(!(currentNumber > '0' && currentNumber <= '9')) {
 				throw new InvalidInputTypeException();
 			}
 		}
@@ -46,6 +54,8 @@ public class PlayerBaseballNumber {
 			String number = Character.toString(inputNumbers.charAt(i));
 			playerBaseballNumbers.add(Integer.valueOf(number));
 		}
+
+		validateDuplicatedNumber(playerBaseballNumbers);
 
 		return playerBaseballNumbers;
 
