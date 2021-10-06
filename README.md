@@ -5,3 +5,10 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 게임 구현 기능
+* Application.java : application 시작 및 동작 실행
+* BaseballLogic.java : game 실행의 기능을 담당
+* BaseballUi.java : 사용자에 대한 입출력을 담당
+
+## 테스트 케이스 구현
