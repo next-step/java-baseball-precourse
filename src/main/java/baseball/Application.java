@@ -1,6 +1,8 @@
 package baseball;
 
 
+import utils.BaseballUtils;
+
 //        1. 전체 프로그램 sequence 관리 - Main
 //        2. baseball Game 정답 숫자 생성하기 - Game
 //        3. 유저에게 숫자 입력 요청문 출력하기 - UI
@@ -14,10 +16,13 @@ package baseball;
 //        11. 게임 재시작여부 질의 판단하기 - UI
 public class Application {
     public static void main(String[] args) {
-        while (true) {
-            int[] gameAnswer = BaseballGame.generateGameAnswer();
-            BaseballGame game = new BaseballGame(gameAnswer);
 
+        int[] gameAnswer = BaseballGame.generateGameAnswer();
+        BaseballGame game = new BaseballGame(gameAnswer);
+
+        while (true) {
+            if (game.isFinished()) game = new BaseballGame(BaseballGame.generateGameAnswer());
+            game.initGrade();
             GameUI.printNumberInputRequest();
             String userInput = GameUI.userInput();
 
@@ -26,12 +31,13 @@ public class Application {
                 continue;
             }
 
-            game.grade(userInput);
+            int[] inputNumbers = BaseballUtils.userInputToIntArray(userInput);
+            game.grade(inputNumbers);
 
-            if (BaseballGame.allMatch()) {
+            if (game.allMatch()) {
                 GameUI.printAllMatchMessage();
                 GameUI.printAskRetryMessage();
-
+                game.complete();
                 String retryInput = GameUI.userInput();
                 if (GameUI.isRetryNeeded(retryInput)) continue;
                 return;
@@ -42,7 +48,8 @@ public class Application {
                 continue;
             }
 
-            GameUI.printGrade(BaseballGame.getStrikeCount(), BaseballGame.getBallCount());
+            GameUI.printGrade(game.getStrikeCount(), game.getBallCount());
         }
     }
+
 }

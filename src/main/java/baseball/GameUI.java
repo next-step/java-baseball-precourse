@@ -1,6 +1,5 @@
 package baseball;
 
-
 import nextstep.utils.Console;
 
 class GameUI {
@@ -26,7 +25,7 @@ class GameUI {
     }
 
     static void printAskRetryMessage() {
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요. 1");
+        System.out.print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요. ");
     }
 
     static boolean isRetryNeeded(String retryInput) {
@@ -38,6 +37,7 @@ class GameUI {
             System.out.println(strikeCount + "스트라이크 " + ballCount + "볼");
             return;
         }
+
         if (strikeCount > 0) {
             System.out.println(strikeCount + "스트라이크");
             return;

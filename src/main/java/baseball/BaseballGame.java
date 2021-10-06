@@ -2,51 +2,91 @@ package baseball;
 
 import nextstep.utils.Randoms;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-public class BaseballGame {
+class BaseballGame {
+    private static final int ANSWER_DIGIT = 3;
 
     private final int[] answer;
+    private boolean finished;
+    private int strikeCount;
+    private int ballCount;
 
     BaseballGame(int[] numbers) {
         answer = numbers;
+        strikeCount = 0;
+        ballCount = 0;
+        finished = false;
     }
 
     static int[] generateGameAnswer() {
-        // 1부터 9까지 서로 다른 수로 이루어진 3자리의 수 생성
         Set<Integer> numberSet = new HashSet<>();
-
-        while(numberSet.size() < 3) numberSet.add(Randoms.pickNumberInRange(1, 9));
-
+        while (numberSet.size() < ANSWER_DIGIT) numberSet.add(Randoms.pickNumberInRange(1, 9));
         return numberSet.stream().mapToInt(Integer::intValue).toArray();
     }
 
-    public static boolean isFinished() {
-        return false;
+    static boolean isValid(String userInput) {
+        if (!consistOfDistinctValue(userInput)) return false;
+        return isThreeDigitNumber(userInput);
     }
 
-    static boolean isValid(String input) {
-        return false;
+    private static boolean isThreeDigitNumber(String input) {
+        final String THREE_DIGIT_NUMBER_PATTERN = "^[1-9]{3}$";
+        return Pattern.matches(THREE_DIGIT_NUMBER_PATTERN, input);
     }
 
-    void grade(String input) {
-
+    private static boolean consistOfDistinctValue(String input) {
+        return Arrays.stream(input.split("")).collect(Collectors.toSet()).size() == ANSWER_DIGIT;
     }
 
-    static boolean nonMatch() {
-        return false;
+    void grade(int[] userInput) {
+        int containCount = containCount(userInput);
+        strikeCount = calculateStrikeCount(userInput);
+        if (containCount > strikeCount) ballCount = containCount - strikeCount;
     }
 
-    static boolean allMatch() {
-        return false;
+    private int containCount(int[] userInput) {
+        Set<Integer> answerNumberSet = Arrays.stream(answer).boxed().collect(Collectors.toSet());
+        return (int) Arrays.stream(userInput).boxed().filter(answerNumberSet::contains).count();
     }
 
-    static int getStrikeCount() {
-        return 0;
+    private int calculateStrikeCount(int[] userInput) {
+        return (int) IntStream.range(0, answer.length)
+                .filter(i -> answer[i] == userInput[i])
+                .count();
     }
 
-    static int getBallCount() {
-        return 0;
+    boolean nonMatch() {
+        return strikeCount == 0 && ballCount == 0;
+    }
+
+    boolean allMatch() {
+        return strikeCount == ANSWER_DIGIT;
+    }
+
+    int getStrikeCount() {
+        return strikeCount;
+    }
+
+    int getBallCount() {
+        return ballCount;
+    }
+
+    boolean isFinished() {
+        return finished;
+    }
+
+    void complete() {
+        finished = true;
+    }
+
+    void initGrade() {
+        strikeCount = 0;
+        ballCount = 0;
     }
 }
