@@ -66,7 +66,7 @@ public class Game {
     public List<Integer> createThreeRandomBalls() {
         Set<Integer> balls = new HashSet<>();
         while(balls.size() < 3) {
-            balls.add(Randoms.pickNumberInRange(1, 9));
+            balls.add(Randoms.pickNumberInRange(MIN_NO, MAX_NO));
         }
         return new ArrayList<>(balls);
     }
