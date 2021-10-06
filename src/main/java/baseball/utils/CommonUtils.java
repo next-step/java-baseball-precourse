@@ -4,7 +4,7 @@ import nextstep.utils.Randoms;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 public class CommonUtils{
@@ -20,9 +20,9 @@ public class CommonUtils{
 
     public static List<Integer> createRandomList(int gameNumberDigits, int minNumber, int maxNumber){
         List<Integer> resultList = new ArrayList<>();
-        HashSet<Integer> randomList = new HashSet<>();
-        while (randomList.size() < gameNumberDigits){
-            randomList.add(Randoms.pickNumberInRange(minNumber,maxNumber));
+        LinkedHashSet<Integer> randomList = new LinkedHashSet<>(gameNumberDigits);
+        while (gameNumberDigits != randomList.size()) {
+            randomList.add(Randoms.pickNumberInRange(minNumber, maxNumber));
         }
         for (Integer number : randomList) {
             resultList.add(number);

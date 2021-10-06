@@ -13,7 +13,6 @@ public class GameController {
         User user = new User();
         referee.ready(computer);
         do {
-            System.out.println(computer.getQuizList());
             user.setReadLine(ConsoleView.readInput(user));
             referee.gameDoingCheck(user, computer);
         }

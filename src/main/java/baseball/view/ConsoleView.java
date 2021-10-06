@@ -20,24 +20,21 @@ public class ConsoleView {
     }
 
     public static void decision(User user) {
+        int countStrike = Collections.frequency(user.getDecisionList(), StrikeZone.STRIKE);
+        int countBall = Collections.frequency(user.getDecisionList(), StrikeZone.BALL);
+        String message = "";
+        if(countStrike > 0){
+            message += countStrike + StrikeZone.STRIKE.getName() + " ";
+        }
+        if(countBall > 0){
+            message += countBall + StrikeZone.BALL.getName() + " ";
+        }
+        if(countStrike == 0 && countBall == 0){
+            message = StrikeZone.NOTHING.getName();
+        }
+        System.out.println(message);
         if(Decision.SUCCESS.equals(user.getDecision())){
             System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
-            return;
-        }
-        if(Decision.DOING.equals(user.getDecision())) {
-            int countStrike = Collections.frequency(user.getDecisionList(), StrikeZone.STRIKE);
-            int countBall = Collections.frequency(user.getDecisionList(), StrikeZone.BALL);
-            String message = "";
-            if(countStrike > 0){
-                message += countStrike + StrikeZone.STRIKE.getName() + " ";
-            }
-            if(countBall > 0){
-                message += countBall + StrikeZone.BALL.getName() + " ";
-            }
-            if(countStrike == 0 && countBall == 0){
-                message = StrikeZone.NOTHING.getName();
-            }
-            System.out.println(message);
         }
     }
 }
