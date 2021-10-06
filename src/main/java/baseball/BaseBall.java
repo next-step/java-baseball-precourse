@@ -11,8 +11,9 @@ public class BaseBall {
 		strikeCount = 0;
 		ballCount = 0;
 
+		System.out.println("generate : " + generate);
 		while (strikeCount != 3) {
-			computed(inNumber(), generate);
+			computed(inputNumber(), generate);
 			outputPrint();
 		}
 		restart();
@@ -30,6 +31,9 @@ public class BaseBall {
 	}
 
 	private void computed(String inputs, String generate) {
+		strikeCount = 0;
+		ballCount = 0;
+
 		for (int i = 0; i < inputs.length(); i++) {
 			isBall(inputs, generate, i);
 			isStrike(inputs, generate, i);
@@ -48,9 +52,34 @@ public class BaseBall {
 		}
 	}
 
-	private String inNumber() {
-		System.out.print("숫자를 입력해 주세요 : ");
-		return Console.readLine();
+	private boolean isNumeric(String s) {
+		try {
+			Integer.parseInt(s);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
+
+	private boolean inputConsole(String sNum) {
+		if (isNumeric(sNum) == true) {
+			return true;
+		}
+		System.out.println("\n[ERROR]");
+		return false;
+	}
+
+	private String inputNumber() {
+		String sNum;
+		boolean chkNum;
+
+		do {
+			System.out.print("\n숫자를 입력해 주세요 : ");
+			sNum = Console.readLine();
+			chkNum = inputConsole(sNum);
+		} while (chkNum == false);
+
+		return sNum;
 	}
 
 	private String restartQuestion() {
