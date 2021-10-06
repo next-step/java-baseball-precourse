@@ -16,6 +16,8 @@ public class Application {
         if (!validateInput(input)){
             System.out.println("[ERROR] 1부터 9까지 숫자 3개만 입력해주세요. (예시) 123");
         }
+        int[] counted = count(target, input);
+        System.out.println(generateResult(counted));
     }
 
     private static String generateNumberString(){
@@ -37,5 +39,57 @@ public class Application {
             return true;
         }
         return false;
+    }
+
+    private static int[] count(String target, String input){
+        int[] result = new int[2];
+
+        for (int i=0; i<input.length(); i++){
+            result[0] += isStrike(target, input, i);
+            result[1] += isBall(target, input, i);
+        }
+
+        return result;
+    }
+
+    private static int isBall(String target, String input, int index){
+        char icur = input.charAt(index);
+        char tcur = target.charAt(index);
+
+        if (tcur == icur){
+            return 0;
+        }
+        if (target.indexOf(icur) == -1){
+            return 0;
+        }
+
+        return 1;
+    }
+
+    private static int isStrike(String target, String input, int index){
+        char icur = input.charAt(index);
+        char tcur = target.charAt(index);
+
+        if (tcur == icur){
+            return 1;
+        }
+
+        return 0;
+    }
+
+    private static String generateResult(int[] result){
+        if (result[0] == 0 && result[1] == 0){
+            return "꽝";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        if (result[0] != 0){
+            sb.append(result[0]).append("스트라이크");
+        }
+        if (result[1] != 0){
+            sb.append(result[1]).append("볼");
+        }
+
+        return sb.toString();
     }
 }
