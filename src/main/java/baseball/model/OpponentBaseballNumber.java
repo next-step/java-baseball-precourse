@@ -21,6 +21,12 @@ public class OpponentBaseballNumber {
 		this.baseballNumbers = baseballNumbers;
 	}
 
+	public void createOpponentBaseballNumber(List<Integer> baseballNumbers) {
+		validateBaseballNumberSize(baseballNumbers);
+		validateBaseballNumberDuplicated(baseballNumbers);
+		this.baseballNumbers = baseballNumbers;
+	}
+
 	private void validateBaseballNumberSize(List<Integer> baseballNumbers) {
 		if(baseballNumbers.size() != ConstValue.BASEBALL_SIZE)
 			throw new InvalidFiguresNumberException();
