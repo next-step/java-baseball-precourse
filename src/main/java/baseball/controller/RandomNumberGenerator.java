@@ -12,7 +12,15 @@ public class RandomNumberGenerator {
         while(count < 3) {
             count += getUniqueNumber(list);
         }
-        return list.toString();
+        return listToString(list);
+    }
+
+    private String listToString(HashSet<Integer> list) {
+        StringBuilder sb = new StringBuilder();
+        for (Integer a : list) {
+            sb.append(a);
+        }
+        return sb.toString();
     }
 
     private int getUniqueNumber(HashSet<Integer> list) {
