@@ -28,17 +28,19 @@ public class Application {
     }
 
     private static String generateNumberString(){
-        StringBuilder result = new StringBuilder();
-        int counter = 0;
-        while (counter < DIGIT_SIZE){
+        StringBuilder value = new StringBuilder();
+        while (value.length() < DIGIT_SIZE){
             String number = String.valueOf(Randoms.pickNumberInRange(START_RANGE, END_RANGE));
-            if (result.indexOf(number) == -1){
-                result.append(number);
-                counter ++;
-            }
+            appendIfUnique(value, number);
         }
 
-        return result.toString();
+        return value.toString();
+    }
+
+    private static void appendIfUnique(StringBuilder value, String number){
+        if (value.indexOf(number) == -1){
+            value.append(number);
+        }
     }
 
     private static String getUserInput(){
@@ -55,6 +57,7 @@ public class Application {
         if (input.matches(ONLY_DIGIT) && input.length() == 3 && !input.contains("0")){
             return true;
         }
+
         return false;
     }
 
