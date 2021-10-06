@@ -12,7 +12,7 @@ public enum Rule {
         this.name = name;
     }
 
-    public String toString(int count) {
+    public String getText(int count) {
         return count + this.name;
     }
 

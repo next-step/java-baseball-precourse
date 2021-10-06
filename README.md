@@ -10,6 +10,8 @@
   - `Numbers`는 3자리의 서로 다른 `Number`를 가진다
 - Rule
   - `Rule`은 `STRIKE`,`BALL`,`NOTHING`을 가진다
+- Score
+  - `Score`은 3가지의 `Rule`을 가진다.
 - RandomGenerator
   - `RandomGenerator`는 서로 다른 3자리 숫자를 생성한다
 - Player
@@ -17,10 +19,6 @@
   - `Player`는 3자리 숫자를 받는다.
 - Game
   - `Game`은 `Player`를 가진다
-- Score
-  - `STRIKE`는 같은 숫자가 같은 자리인 경우
-  - `BALL`는 같은 수가 다른 자리인 경우
-  - `NOTHING` 같은 수가 전혀 없는 경우
 
 ### 요구사항
 2. 상대방은 1에서 9까지 서로 다른 임의의 수 3개를 선택한다
