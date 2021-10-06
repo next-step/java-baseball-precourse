@@ -1,7 +1,7 @@
 package baseball.domain;
 
 import baseball.utils.ValidationUtils;
-import nextstep.utils.Console;
+import baseball.view.GameUI;
 
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class Game {
             List<Integer> userBalls = balls.getBalls();
             PlayResult result = balls.play(userBalls);
             isFinished = result.isGameEnd();
-            displayPlayResult(result);
+            GameUI.displayPlayResult(result);
         }
     }
 
@@ -43,40 +43,17 @@ public class Game {
         if (isRestart == 1) {
             start();
         }
+        GameUI.gameEndMessage();;
     }
 
     // 1 : 재시작 / 2 : 종료 입력받기
     public int getIsRestart() {
-        String numbers = getIsRestartValue();
+        String numbers = GameUI.getIsRestartValue();
 
         while(!ValidationUtils.checkIsNumber(numbers)
             || !ValidationUtils.checkLength(numbers, 1)) {
-            numbers = balls.getBallsValue();
+            numbers = GameUI.getIsRestartValue();
         }
         return Character.getNumericValue(numbers.charAt(0));
-    }
-
-    public String getIsRestartValue() {
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-        return Console.readLine();
-    }
-
-    //== 화면 출력 ==//
-    public void displayPlayResult(PlayResult playResult) {
-        int strike = playResult.getStrike();
-        int ball = playResult.getBall();
-
-        if (playResult.isNothing()) {
-            System.out.println("낫싱");
-            return;
-        }
-        String message = "";
-        if (strike > 0) {
-            message += strike + "스트라이크 ";
-        }
-        if (ball > 0) {
-            message += ball + "볼 ";
-        }
-        System.out.println(message);
     }
 }

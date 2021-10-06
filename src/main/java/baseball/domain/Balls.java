@@ -1,7 +1,7 @@
 package baseball.domain;
 
 import baseball.utils.ValidationUtils;
-import nextstep.utils.Console;
+import baseball.view.GameUI;
 import nextstep.utils.Randoms;
 
 import java.util.ArrayList;
@@ -46,21 +46,16 @@ public class Balls {
 
     // 사용자 볼 입력받기
     public List<Integer> getBalls() {
-        String numbers = getBallsValue();
+        String numbers = GameUI.getBallsValue();
 
         // 최소 3자리 이상 입력 받아야 됨
         // 숫자만 입력받아야 한다.
         while(!ValidationUtils.checkIsNumber(numbers)
                 || !ValidationUtils.checkLength(numbers, 3)) {
-            numbers = getBallsValue();
+            numbers = GameUI.getBallsValue();
         }
 
         return convertToListOfInteger(numbers);
-    }
-
-    public String getBallsValue() {
-        System.out.print("숫자를 입력해주세요 : ");
-        return Console.readLine();
     }
 
     // 랜덤한 3개의 숫자 생성
