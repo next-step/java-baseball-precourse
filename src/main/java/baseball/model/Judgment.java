@@ -23,11 +23,15 @@ public class Judgment {
     private void judgmentNumbers(String oppnentNumbers, char checkChar, int checkIndex) {
         if(oppnentNumbers.charAt(checkIndex) == checkChar){
             ++BaseballGame.strike;
+            return;
         }
+
 
         if(oppnentNumbers.indexOf(checkChar) > -1){
             ++BaseballGame.ball;
+            return;
         }
+
     }
 
 }
