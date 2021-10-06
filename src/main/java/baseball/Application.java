@@ -6,7 +6,6 @@ import baseball.domain.GameBall;
 import baseball.domain.GameBallGenerator;
 import baseball.domain.GameResult;
 
-
 public class Application {
     public static void main(String[] args) {
         // 숫자 야구 게임 구현
