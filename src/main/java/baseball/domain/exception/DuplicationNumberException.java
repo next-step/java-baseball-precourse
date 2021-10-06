@@ -1,4 +1,4 @@
-package baseball.exception;
+package baseball.domain.exception;
 
 public class DuplicationNumberException extends RuntimeException {
 

@@ -4,14 +4,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import baseball.ErrorMessage;
-import baseball.exception.DuplicationNumberException;
+import baseball.domain.exception.ErrorMessage;
+import baseball.domain.exception.DuplicationNumberException;
+import baseball.domain.exception.NumberRangeInvalidException;
 
 public class Numbers {
+
+	private final static Integer NUMBERS_SIZE = 3;
 
 	private final List<Integer> digits = new ArrayList<>();
 
 	public Numbers(final String numbers) {
+		validateRange(numbers);
 		this.digits.addAll(parse(numbers));
 	}
 
@@ -25,6 +29,12 @@ public class Numbers {
 		}
 
 		return tempDigits;
+	}
+
+	private void validateRange(final String numbers) {
+		if(numbers == null || numbers.length() != NUMBERS_SIZE) {
+			throw new NumberRangeInvalidException(ErrorMessage.NUMBER_RANGE_INVALID_EXCEPTION.getMessage());
+		}
 	}
 
 	private void validationDuplicate(final List<Integer> tempDigits, int number) {
