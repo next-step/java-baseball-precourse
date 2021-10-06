@@ -33,8 +33,11 @@ public class ApplicationTest extends NSTest {
             mockRandoms.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
                     .thenReturn(7, 1, 3)
                     .thenReturn(5, 8, 9);
-            run("713", "1", "597", "589", "2");
-            verify("3스트라이크", "게임 끝", "1스트라이크 1볼");
+            run("713", "2");
+            verify("숫자를 입력해주세요 : 3스트라이크",
+                    "3개의 숫자를 모두 맞히셨습니다! 게임 끝",
+                    "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."
+            );
         }
     }
 
