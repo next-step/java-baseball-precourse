@@ -11,7 +11,7 @@ public class BallNumbersTest {
 
 	@DisplayName("중복되지 않는 3자리 숫자인지 확인")
 	@ParameterizedTest
-	@ValueSource(strings = {"12", "3456", "44555", "454", "d"})
+	@ValueSource(strings = {"12", "3456", "44555", "454"})
 	void isValidSize_test(String value) {
 		assertThatThrownBy(() -> BallNumbers.of(value))
 			.isInstanceOf(IllegalArgumentException.class)
