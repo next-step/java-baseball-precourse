@@ -4,27 +4,29 @@ import nextstep.utils.Randoms;
 import java.util.HashSet;
 
 public class BaseballNumber {
-    private int number;
+    public static int number;
 
     public BaseballNumber(){
+        this.number = setNumber();
     }
 
     public int getNumber(){
-        return number;
+        return this.number;
     }
 
-    public void setNumber(){
+    public int setNumber(){
         int computerNumber = 0;
         HashSet<Integer> numberList = new HashSet<Integer>();
         for(int i=0;i<3;i++){
             int pickedNumber = pickRandomNumber(numberList);
-            computerNumber += pickedNumber;
+            computerNumber += pickedNumber*Math.pow(10,i);
             numberList.add(pickedNumber);
         }
-        number = computerNumber;
+        this.number = computerNumber;
+        return number;
     }
 
-    public int pickRandomNumber(HashSet<Integer>numberList){
+    public static int pickRandomNumber(HashSet<Integer>numberList){
         int pickedNumber = Randoms.pickNumberInRange(1,9);
         while(numberList.contains(pickedNumber)){
             pickedNumber = Randoms.pickNumberInRange(1,9);
