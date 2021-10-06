@@ -21,15 +21,7 @@ public class ScoreFactory {
             Number number1 = randomNumbers.getNumber(i);
             countLoop(numbers, i, number1);
         }
-        if (isNothing()) {
-            this.ball = null;
-            this.strike = null;
-        }
         return new Score(strike, ball, nothing);
-    }
-
-    private boolean isNothing() {
-        return strike.getCount() == 0 && ball.getCount() == 0;
     }
 
     private void countLoop(Numbers numbers, int i, Number number1) {
