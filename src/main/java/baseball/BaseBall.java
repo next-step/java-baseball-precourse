@@ -14,6 +14,10 @@ public class BaseBall {
 
     /**
      * 야구게임 java api
+     *
+     * 사용자에게서 1~9의 서로다른 세자리의 숫자를 받아서,
+     * 상대편(=컴퓨터)의 숫자와 같은지 확인하는 게임.
+     *
      */
     private String comNumbers;
     private String userNumbers;
@@ -28,9 +32,7 @@ public class BaseBall {
         
         // 사용자 숫자 맞추는 구간
         while(true){
-            if(matchTheNumber() == 3){
-                break;
-            }
+            if(matchTheNumber() == 3){break;}
         }
         
         //사용자에게 계속할지 안할지 묻기
