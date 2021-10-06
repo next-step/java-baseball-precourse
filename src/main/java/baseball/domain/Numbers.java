@@ -10,7 +10,7 @@ import baseball.exception.ErrorMessage;
 import baseball.exception.NumberRangeInvalidException;
 
 public class Numbers {
-	private static final int RANGE_SIZE = 3;
+	public static final int RANGE_SIZE = 3;
 
 	private final List<Number> number = new ArrayList<>();
 
