@@ -7,53 +7,45 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 public class GameTest {
 
     private Game game;
+    private Number answer;
 
     @BeforeEach
     void setUp() {
-        game = new Game("123");
+        answer = new Number("123");
+        game = new Game(answer);
     }
 
     @DisplayName("게임을 생성할 수 있다.")
     @Test
     void create() {
         assertDoesNotThrow(
-            () -> new Game("123")
+            () -> new Game(answer)
         );
     }
 
-    @DisplayName("1부터 9까지 서로 다른 수로 이루어진 3자리의 수 외 다른 숫자를 게임의 정답으로 지정할 수 없다.")
-    @ParameterizedTest
-    @ValueSource(strings = {"", "a", "1", "12", "1234", "012", "102", "120", "112", "122", "111"})
-    void createWithInvalidAnswer(final String answer) {
+    @DisplayName("게임의 정답은 null이 될 수 없다.")
+    @Test
+    void createWithNullAnswer() {
         assertThatThrownBy(
-            () -> new Game(answer)
+            () -> new Game(null)
         ).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("게임의 정답을 추측할 수 있다 (성공).")
     @Test
     void guessSuccess() {
-        assertThat(game.guess("123")).isTrue();
+        final Number guess = new Number("123");
+        assertThat(game.guess(guess)).isTrue();
     }
 
     @DisplayName("게임의 정답을 추측할 수 있다 (실패).")
     @Test
     void guessFail() {
-        assertThat(game.guess("456")).isFalse();
-    }
-
-    @DisplayName("1부터 9까지 서로 다른 수로 이루어진 3자리의 수 외 다른 숫자를 게임의 정답을 추측할 때 사용할 수 없다.")
-    @ParameterizedTest
-    @ValueSource(strings = {"", "a", "1", "12", "1234", "012", "102", "120", "112", "122", "111"})
-    void guessWithInvalidNumber(final String guess) {
-        assertThatThrownBy(
-            () -> game.guess(guess)
-        ).isInstanceOf(IllegalArgumentException.class);
+        final Number guess = new Number("456");
+        assertThat(game.guess(guess)).isFalse();
     }
 }
