@@ -19,10 +19,14 @@ public class GameResultView {
 	};
 
 	private static String generateBallCountMessage(PlayerBaseballNumber playerBaseballNumber) {
-		if(playerBaseballNumber.getBallCount() > 0)
+		if(playerBaseballNumber.getBallCount() > 0) {
+			if (playerBaseballNumber.getStrikeCount() > 0)
+				return " " + Integer.toString(playerBaseballNumber.getBallCount()) +
+					ConstValue.GAME_RULE_BALL;
+
 			return Integer.toString(playerBaseballNumber.getBallCount()) +
 				ConstValue.GAME_RULE_BALL;
-
+		}
 		return "";
 	};
 
