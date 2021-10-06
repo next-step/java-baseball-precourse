@@ -1,5 +1,6 @@
 package baseball.view;
 
+import baseball.model.ResultBallCount;
 import nextstep.utils.Console;
 
 public class BaseballViewer {
@@ -8,8 +9,12 @@ public class BaseballViewer {
     private final static String QUIT = "2";
 
     public String getUserInput() {
-        System.out.println("숫자를 입력해주세요. : ");
-        return String.valueOf(Console.readLine());
+        System.out.print("숫자를 입력해주세요. : ");
+        return Console.readLine();
+    }
+
+    public void displayResult(ResultBallCount resultBallCount) {
+        System.out.println(resultBallCount);
     }
 
 }

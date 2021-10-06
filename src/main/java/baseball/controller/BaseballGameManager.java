@@ -1,6 +1,7 @@
 package baseball.controller;
 
 import baseball.model.BaseballCount;
+import baseball.model.ResultBallCount;
 import baseball.view.BaseballViewer;
 
 public class BaseballGameManager {
@@ -17,6 +18,8 @@ public class BaseballGameManager {
     public void play() {
         String answerNumber = randomNumberGenerator.generateRandomNumber();
         BaseballCount baseballCount = getUserInput();
+        ResultBallCount resultBallCount = baseballReferee.getResultBallCount(answerNumber, baseballCount);
+        baseballViewer.displayResult(resultBallCount);
     }
 
     public BaseballCount getUserInput() {

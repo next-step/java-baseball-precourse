@@ -12,6 +12,10 @@ public class BaseballCount {
         inputNumberValidationCheck();
     }
 
+    public String getBallCount() {
+        return ballCount;
+    }
+
     public void inputNumberValidationCheck() {
         if (ballCount.length() != PLAY_NUMBER_LENGTH) {
             throw new IllegalArgumentException("playNumber length error");
