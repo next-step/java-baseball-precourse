@@ -15,16 +15,14 @@ public class GameView {
 
     private static final PrintStream out = System.out;
 
-    public void showInputMessage() {
-        out.print(INPUT_NUMBER_MESSAGE);
+    public String showInputMessage() {
+        String input = getInput();
+        out.println(INPUT_NUMBER_MESSAGE + input);
+        return input;
     }
 
     public void showScoreMessage(Score score) {
-        try {
-            out.println(score.getText());
-        } catch (NoSuchElementException e) {
-            out.println(e.getMessage());
-        }
+        out.println(score.getText());
     }
 
     public void showEndMessage() {

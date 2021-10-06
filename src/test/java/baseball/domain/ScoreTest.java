@@ -6,7 +6,10 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.NoSuchElementException;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class ScoreTest {
 
@@ -41,7 +44,7 @@ class ScoreTest {
     @Test
     void nothing() {
         Score score = new Score(new Strike(0), new Ball(0), new Nothing());
-        String text = score.getText();
-        assertThat(text).isEqualTo(Rule.NOTHING.getName());
+        assertThatExceptionOfType(NoSuchElementException.class)
+                .isThrownBy(() -> score.getText());
     }
 }

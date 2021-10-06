@@ -4,7 +4,7 @@ import baseball.domain.Game;
 import baseball.domain.Score;
 import baseball.view.GameView;
 
-import java.util.Objects;
+import java.util.NoSuchElementException;
 
 public class GameController {
 
@@ -23,22 +23,16 @@ public class GameController {
 
     public void start() {
         while (key) {
-            view.showInputMessage();
-            Score score = getScore();
-            if (Objects.isNull(score)) {
+            String input = view.showInputMessage();
+            Score score = null;
+            try {
+                score = game.input(input);
+                view.showScoreMessage(score);
+            } catch (RuntimeException e) {
+                System.out.println(e.getMessage());
                 continue;
             }
-            view.showScoreMessage(score);
             checkCorrect(score);
-        }
-    }
-
-    private Score getScore() {
-        try {
-            return game.input(view.getInput());
-        } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
-            return null;
         }
     }
 
