@@ -6,7 +6,7 @@
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
 
-##-----------------------------------------------
+----------------------------------------------
 ## 게임방법
 * 1부터 9까지 서로 다른 수로 이루어진 3자리의 수를 맞추는 게임이다.
 * 같은 수가 같은 자리에 있으면 스트라이크, 다른 자리에 있으면 볼, 같은 수가 전혀 없으면 낫싱 이라는 힌트가 주어진다.
@@ -14,9 +14,17 @@
 
 ## 구현 기능목록
 * 게임규칙에 관련된 변수 상수화 및 객체
+  * Constant, BaseballVO
 * Controller. 게임 진입점
+  * Application, BaseballController
 * Service 1.게임 초기화 및 시작과 끝
-* Service 2.게임 유효성검사 및 상세규칙
-* Service 3과 InputView. 사용자에게 입력받는 화면
-* Service 4와 OutputView. 사용자에게 출력하는 화면
+  * BaseballProcessService
+* Service 2.게임 상세규칙
+  * BaseballRuleService
+* Service 3.입력화면 호출, 입력값 유효성검사
+  * BaseballInputService
+* Service 4.출력 메세지 및 출력화면 호출
+  * BaseballOutputService
+* View. 사용자의 입/출력담당
+  * ViewService
 * 단위테스트
