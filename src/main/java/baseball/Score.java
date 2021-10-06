@@ -87,4 +87,8 @@ public class Score {
             System.out.println(errorMsg);
         }
     }
+
+    public boolean isSuccess() {
+        return successFlag;
+    }
 }
