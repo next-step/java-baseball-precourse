@@ -20,6 +20,15 @@ public class Application {
         // 문제 생성 (문제 길이, 최소값, 최대값 설정)
         String answer = createAnswer();
 
+        // 문제 맞추기
+        BallCounter ballCounter = new BallCounter();
+        while(ballCounter.getStrike() < 3) {
+            // 정답 입력 받기 (예외 처리 포함)
+            String userInput = getUserInput();
+
+
+        }
+
     }
 
 
@@ -37,6 +46,64 @@ public class Application {
             answer += integer;
         }
         return answer;
+    }
+
+    /**
+     * 볼, 스트라이크 결과를 관리하는 클래스
+     */
+    public static class BallCounter {
+        private int ball;
+        private int strike;
+
+        public int getBall() {
+            return ball;
+        }
+
+        public void setBall(int ball) {
+            this.ball = ball;
+        }
+
+        public int getStrike() {
+            return strike;
+        }
+
+        public void setStrike(int strike) {
+            this.strike = strike;
+        }
+    }
+
+    /**
+     * 사용자 입력을 받는 메소드입니다.
+     * @return 유효한 사용자 입력값 문자열을 반환합니다.
+     */
+    private static String getUserInput() {
+        System.out.print("숫자를 입력해주세요 : ");
+        String userInput = Console.readLine();
+        Set<Character> userInputSet = new HashSet<>();
+        for (int i = 0; i < userInput.length(); i++) {
+            userInputSet.add(userInput.charAt(i));
+        }
+        boolean duplicateInput = userInputSet.size() < userInput.length();
+        boolean matches = userInput.matches(USER_INPUT_REGEX);
+        return processAfterUserInputValidation(userInput, duplicateInput, matches);
+    }
+
+    /**
+     * 사용자 입력에 대한 유효성 검증을 수행하는 메소드입니다.
+     * @param userInput 사용자 입력 문자열입니다.
+     * @param duplicateInput 사용자 입력 내 중복값 존재 여부입니다.
+     * @param matches 범위 내 입력 여부입니다.
+     * @return 유효한 문자열을 반환합니다.
+     */
+    private static String processAfterUserInputValidation(String userInput, boolean duplicateInput, boolean matches) {
+        if(duplicateInput) {
+            System.out.println("[ERROR] : 중복 없이 입력해주세요 :)");
+            return getUserInput();
+        } else if(!matches){
+            System.out.println("[ERROR] : " + MIN_RANGE + " ~ " + MAX_RANGE + "사이의 숫자 " + ANSWER_LENGTH + "개를 입력해주세요.");
+            return getUserInput();
+        }
+        return userInput;
     }
 
 }
