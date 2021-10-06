@@ -31,13 +31,13 @@ public class GameController {
     private void checkCorrect(Score score) {
         if (score.isCorrect()) {
             view.showEndMessage();
-            view.showResumeMessage();
-            String number = view.getResume();
-            key = checkResume(number);
+            key = isResume();
         }
     }
 
-    private boolean checkResume(String number) {
+    private boolean isResume() {
+        view.showResumeMessage();
+        String number = view.getResume();
         if (number == RESUME) {
             game.update();
             return true;
@@ -45,7 +45,7 @@ public class GameController {
         if (number == QUIT) {
             return false;
         }
-        System.err.println("[ERROR] 1과 2중 하나의 숫자를 선택해주세요.");
-        return checkResume(number);
+        view.showResumeError();
+        return isResume();
     };
 }
