@@ -10,6 +10,8 @@ public class Game {
     public static final int MAX_NO = 9; // 랜덤 숫자 최대값
     public static final int BALL_MAX_COUNT = 3; // 입력 볼 최대 개수
 
+
+
     List<Integer> computerBalls; // 컴퓨터 볼
 
     public Game() {}
@@ -17,6 +19,33 @@ public class Game {
     // 게임 시작
     public void start() {
         this.computerBalls = createThreeRandomBalls();
+
+        boolean isFinished = false;
+
+        while(!isFinished) {
+            List<Integer> userBalls = getBalls();
+            PlayResult result = play(userBalls);
+            isFinished = result.isGameEnd();
+            displayPlayResult(result);
+        }
+    }
+
+    //== 화면 출력 ==//
+    public void displayPlayResult(PlayResult playResult) {
+        int strike = playResult.getStrike();
+        int ball = playResult.getBall();
+
+        if (strike == 0 && ball == 0) {
+            System.out.println("낫싱");
+            return;
+        }
+        if (strike > 0) {
+            System.out.print(strike + "스트라이크 ");
+        }
+        if (ball > 0) {
+            System.out.print(ball + "볼 ");
+        }
+        System.out.println("");
     }
 
     //== 게임 결과 리턴 ==//
