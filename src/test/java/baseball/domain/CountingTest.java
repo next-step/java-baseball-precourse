@@ -8,6 +8,8 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class CountingTest {
 
@@ -28,6 +30,13 @@ public class CountingTest {
 			void it_returns_true() {
 				assertThat(counting.isCorrectAnswer(crtUserInput, crtAnswerNum)).isTrue();
 			}
+
+			@ParameterizedTest
+			@CsvSource(value={"456, 456", "123, 123"})
+			@DisplayName("True를 반환한다.")
+			void it_returns_true_also(String input, Integer answer) {
+				assertThat(counting.isCorrectAnswer(input, answer)).isTrue();
+			}
 		}
 
 		@Nested
@@ -37,6 +46,13 @@ public class CountingTest {
 			@Test
 			void it_returns_false() {
 				assertThat(counting.isCorrectAnswer(errUserInput, errAnswerNum)).isFalse();
+			}
+
+			@ParameterizedTest
+			@CsvSource(value={"456, 123", "789, 123"})
+			@DisplayName("False를 반환한다.")
+			void it_returns_true_also(String input, Integer answer) {
+				assertThat(counting.isCorrectAnswer(input, answer)).isFalse();
 			}
 		}
 	}

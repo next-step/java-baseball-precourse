@@ -35,11 +35,11 @@ public class BaseballGameController {
     }
 
     public void setAndCounting() {
-         if (!userInput.equals("")) {
-             boolean newGameResult = countingService.setCountingParams(newGame, userInput);
-             setNewGame(newGameResult);
-             countingStart();
-             userView.setAndPrintResult(newGame, gameResultVO.getBallCnt(), gameResultVO.getStrikeCnt());
+        if (!userInput.equals("")) {
+            boolean newGameResult = countingService.setCountingParams(newGame, userInput);
+            setNewGame(newGameResult);
+            countingStart();
+            userView.setAndPrintResult(newGame, gameResultVO.getBallCnt(), gameResultVO.getStrikeCnt());
         }
     }
 
