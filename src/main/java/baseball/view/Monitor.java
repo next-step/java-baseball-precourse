@@ -42,13 +42,39 @@ public class Monitor {
                 && answer[1] != answer[2];
     }
 
+    private int getStrikeCount(char[] ch) {
+        int strike_cnt = 0;
+
+        for(int i = 0; i < 3; i++) {
+            if(ch[i] - '0' == answer[i]) {
+                strike_cnt++;
+            }
+        }
+
+        return strike_cnt;
+    }
+
+    private int getBallCount(char[] ch) {
+        int ball_cnt = 0;
+
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++) {
+                if(i != j && ch[i] == answer[j]) {
+                    ball_cnt++;
+                }
+            }
+        }
+
+        return ball_cnt;
+    }
+
     public void gameStart() {
         createAnswer();
 
         gameStart("1");
     }
 
-    public void gameStart(String choice) {
+    private void gameStart(String choice) {
         if (choice.equals("0")) {
             System.out.print(KorGamePlayMsg.GAME_STAY_MSG);
 
@@ -82,23 +108,9 @@ public class Monitor {
 
             char[] ch = tryStr.toCharArray();
 
-            int strike_cnt = 0;
+            int strike_cnt = getStrikeCount(ch);
 
-            for(int i = 0; i < 3; i++) {
-                if(ch[i] - '0' == answer[i]) {
-                    strike_cnt++;
-                }
-            }
-
-            int ball_cnt = 0;
-
-            for(int i = 0; i < 3; i++) {
-                for(int j = 0; j < 3; j++) {
-                    if(i != j && ch[i] == answer[j]) {
-                        ball_cnt++;
-                    }
-                }
-            }
+            int ball_cnt = getBallCount(ch);
 
             if(strike_cnt > 0) {
                 System.out.print(strike_cnt + KorGamePlayMsg.STRIKE_MSG);
