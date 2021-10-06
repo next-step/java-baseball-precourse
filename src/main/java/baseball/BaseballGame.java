@@ -5,30 +5,30 @@ import java.util.List;
 public class BaseballGame {
 
     boolean end;
+    ViewConsole console;
 
-    public BaseballGame() {
+    public BaseballGame(ViewConsole viewConsole) {
         this.end = false;
+        this.console = viewConsole;
     }
 
-    public void startGame(){
+    public void startNewGame(){
         List<Integer> answer = GameUtils.generateAnswer();
-        playRound(answer);
+        playGame(answer);
         finishGame();
     }
 
-    private void playRound(List<Integer> answer) {
+    private void playGame(List<Integer> answer) {
         Record record;
         do {
-            String input = View.enterInput();
-            record = new Record(answer,input);
-            GameUtils.match(record);
-            View.printScore(record);
+            List<Integer> input = console.enterNumber();
+            record = GameUtils.match(answer,input);
+            console.printOutput(record.renderResult());
         }while (!record.checkFinished());
     }
 
-
     private void finishGame() {
-        if(View.askOfIsEndGame()){
+        if(console.askOfFinishGame()){
             exitGame();
         }
     }

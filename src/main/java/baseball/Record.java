@@ -1,6 +1,5 @@
 package baseball;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Record {
@@ -9,20 +8,11 @@ public class Record {
     int strike;
     int ball;
 
-    public Record(List<Integer> answer, String input) {
+    public Record(List<Integer> answer, List<Integer> input) {
         this.answer = answer;
-        this.input = convertIntegerArray(input);
+        this.input = input;
         this.strike = 0;
         this.ball = 0;
-    }
-
-    private List<Integer> convertIntegerArray(String input) {
-        List<Integer> newInput= new ArrayList<>();
-        String[] inputs = input.split("");
-        for (String s : inputs) {
-            newInput.add(Integer.parseInt(s));
-        }
-        return newInput;
     }
 
     public boolean checkFinished() {
@@ -35,5 +25,23 @@ public class Record {
 
     public void plusOneBall() {
         this.ball++;
+    }
+
+    public String renderResult() {
+        if (this.strike == 0 && this.ball == 0) {
+            return "낫싱";
+        }
+        return renderScore();
+    }
+
+    private String renderScore() {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (this.strike != 0) {
+            stringBuilder.append(this.strike).append("스트라이크 ");
+        }
+        if (this.ball != 0) {
+            stringBuilder.append(this.ball).append("볼");
+        }
+        return stringBuilder.toString();
     }
 }

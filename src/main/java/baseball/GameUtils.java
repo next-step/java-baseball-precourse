@@ -15,10 +15,12 @@ public class GameUtils {
         return new ArrayList<>(numbers);
     }
 
-    public static void match(Record record) {
-        for(int i=0; i < record.input.size();i++){
+    public static Record match(List<Integer> answer,List<Integer> input) {
+        Record record = new Record(answer,input);
+        for(int i=0; i < input.size();i++){
             calculate(record,i);
         }
+        return record;
     }
 
     private static void calculate(Record record, int i) {
@@ -30,4 +32,6 @@ public class GameUtils {
             record.plusOneBall();
         }
     }
+
+
 }

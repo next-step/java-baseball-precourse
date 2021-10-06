@@ -1,15 +1,12 @@
 package baseball;
 
-import nextstep.utils.Console;
-
-import java.util.List;
-
 public class Application {
     public static void main(String[] args) {
         // TODO 숫자 야구 게임 구현
-        BaseballGame baseballGame= new BaseballGame();
+        ViewConsole viewConsole = new ViewConsole();
+        BaseballGame baseballGame= new BaseballGame(viewConsole);
         do{
-            baseballGame.startGame();
+            baseballGame.startNewGame();
         }while (!baseballGame.isEnd());
 
     }
