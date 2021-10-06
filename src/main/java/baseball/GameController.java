@@ -1,29 +1,37 @@
 package baseball;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import nextstep.utils.Console;
-
 import baseball.common.GameConfig;
 import baseball.common.GameMessage;
 import baseball.exception.GameException;
 
 public class GameController {
-    List<Integer> randomNumber;
+    GameService computer;
 
     protected GameController() {
-        randomNumber = GameService.makeRandomNumber();
+        computer = new GameService();
     }
 
     public void playGame() {
+        boolean isPlayerWin;
+        do {
+            isPlayerWin = isFindTargetNumber();
+        } while (!isPlayerWin);
+
+        GameConsole.gameEnd();
+    }
+
+    private boolean isFindTargetNumber() {
         String proposalNumber;
         do {
             GameConsole.requestProposalNumber();
             proposalNumber = Console.readLine();
         } while (!isValidProposalNumber(proposalNumber));
 
-        // TODO
-
+        return computer.compareProposalNumber(makeIntegerList(proposalNumber));
     }
 
     public boolean askContinue() {
@@ -66,7 +74,7 @@ public class GameController {
         }
 
         if (!proposalNumber.matches(pattern)) {
-            throw new GameException(GameMessage.NOT_NUMERIC_ERROR.getMessageWithReplacedNumber(
+            throw new GameException(GameMessage.NOT_NUMERIC_ERROR.getMessageWithNumber(
                     GameConfig.RULE_NUMBER_COUNT.getNumber()));
         }
     }
@@ -81,6 +89,16 @@ public class GameController {
         if (!(continueNumber.equals("1") || continueNumber.equals("2"))) {
             throw new GameException(GameMessage.INCORRECT_VALUE_ERROR.getMessage());
         }
+    }
+
+    private List<Integer> makeIntegerList(String proposalNumber) {
+        String[] listOfNumberSting = proposalNumber.split("");
+        List<Integer> intList = new ArrayList<>();
+
+        for (String s : listOfNumberSting) {
+            intList.add(Integer.parseInt(s));
+        }
+        return intList;
     }
 
 }
