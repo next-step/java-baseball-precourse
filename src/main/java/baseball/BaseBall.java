@@ -12,11 +12,7 @@ public class BaseBall {
 		ballCount = 0;
 
 		while (strikeCount != 3) {
-			try {
-				computed(inputNumber(), generate);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			computed(inputNumber(), generate);
 			outputPrint();
 		}
 		restart();
