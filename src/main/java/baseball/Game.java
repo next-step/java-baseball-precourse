@@ -4,6 +4,9 @@ import baseball.domain.Checker;
 import baseball.domain.Examiner;
 import baseball.domain.Numbers;
 import baseball.domain.Player;
+import baseball.exception.DuplicationNumberException;
+import baseball.exception.NumberRangeInvalidException;
+import baseball.exception.NumberSizeInvalidException;
 import baseball.type.GameStatus;
 import baseball.view.InputMessage;
 import baseball.view.OutputMessage;
@@ -58,6 +61,14 @@ public class Game {
 		Numbers goal = examiner.getGoal();
 
 		do {
+			oneInput(goal);
+		} while (!checker.isAllStrike());
+
+		askRestart();
+	}
+
+	private void oneInput(Numbers goal) {
+		try {
 			InputMessage.inputNumberMessage();
 			player.inputAnswer();
 
@@ -66,9 +77,9 @@ public class Game {
 
 			OutputMessage.printHint(checker.getStrike(), checker.getBall());
 
-		} while (!checker.isAllStrike());
-
-		askRestart();
+		} catch (DuplicationNumberException | NumberRangeInvalidException | NumberSizeInvalidException e){
+			OutputMessage.printError(e.getMessage());
+		}
 	}
 
 	private void changeGameStatus(GameStatus status) {
