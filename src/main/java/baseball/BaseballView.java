@@ -15,6 +15,9 @@ public class BaseballView {
 
     BaseballController baseballController = new BaseballController();
 
+    /*
+    게임 시작
+     */
     public void playBaseball(){
         String resultCode = "F";
         baseballController.initComputerNumber();
@@ -31,15 +34,20 @@ public class BaseballView {
 
             printBaseballResult(baseballResult);
             resultCode = baseballResult.getResultCode();
-
         }
     }
 
+    /*
+     유저 숫자 입력
+     */
     private String InputNumber(){
         System.out.print(inputInitMessage);
         return readLine();
     }
 
+    /*
+     컴퓨터의 숫자와 비교한 결과를 출력
+     */
     private void printBaseballResult(BaseballResult baseballResult){
         if(baseballResult.getStrike() == 0 && baseballResult.getBall() == 0){
             System.out.println(notingMessage);

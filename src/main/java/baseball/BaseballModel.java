@@ -46,8 +46,19 @@ public class BaseballModel {
     }
 
     /*
-    입력된 숫자 검증
-     */
+    컴퓨터 숫자 get함수
+    */
+    public String getComputerNumber() {
+        return computerNumber;
+    }
+
+    public static int getNumberSize() {
+        return numberSize;
+    }
+
+    /*
+            입력된 숫자 검증
+             */
     private Boolean verifyNumber(String inputNumber){
         if("".equals(inputNumber) || inputNumber.length() != numberSize){
             return false;
