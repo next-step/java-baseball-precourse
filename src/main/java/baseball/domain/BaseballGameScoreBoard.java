@@ -11,10 +11,41 @@ public class BaseballGameScoreBoard {
         this.ballCount = ballCount;
     }
 
-    private boolean is3Strikes() {
-        if (strikeCount == 3) {
-            return true;
+    public BaseballGameScoreBoard() {
+        this(0, 0);
+    }
+
+    public BaseballGameScoreBoard update(BaseballGameScore score) {
+        if (score.equals(BaseballGameScore.BALL)) {
+            this.increaseBallCount();
         }
-        return false;
+
+        if (score.equals(BaseballGameScore.STRIKE)) {
+            this.increaseStrikeCount();
+        }
+
+        return this;
+    }
+
+    public BaseballGameScoreBoard increaseBallCount() {
+        ballCount++;
+        return this;
+    }
+
+    public BaseballGameScoreBoard increaseStrikeCount() {
+        strikeCount++;
+        return this;
+    }
+
+    private boolean isThreeStrikes() {
+        return strikeCount == 3;
+    }
+
+    public int getStrikeCount() {
+        return strikeCount;
+    }
+
+    public int getBallCount() {
+        return ballCount;
     }
 }

@@ -1,23 +1,50 @@
 package baseball.domain;
 
-import baseball.service.AnswerMaker;
-
 public class BaseballGame {
 
     private final String answer;
 
     private BaseballGameScoreBoard result;
 
-    public BaseballGame() {
-        this.answer = AnswerMaker.make();
+    public BaseballGame(String answer) {
+        this.answer = answer;
     }
 
     public BaseballGameScoreBoard deal(String input) {
-        //!TODO need implement
-        return null;
+
+        BaseballGameScoreBoard board = new BaseballGameScoreBoard();
+
+        String[] split = input.split("");
+
+        for (int i=0; i<split.length; i++) {
+            board.update(judge(i, split[i]));
+        }
+
+        return board;
     }
 
     public boolean isDone() {
         return false;
+    }
+
+    private BaseballGameScore judge(int index, String value) {
+
+        if (isContainsValueWithSamePosition(index, value)) {
+            return BaseballGameScore.STRIKE;
+        }
+
+        if (isContainsValueButNotSamePosition(index, value)) {
+            return BaseballGameScore.BALL;
+        }
+
+        return BaseballGameScore.NOTHING;
+    }
+
+    private boolean isContainsValueWithSamePosition(int index, String value) {
+        return answer.indexOf(value) == index;
+    }
+
+    private boolean isContainsValueButNotSamePosition(int index, String value) {
+        return answer.contains(value) && answer.indexOf(value) != index;
     }
 }

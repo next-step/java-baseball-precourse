@@ -3,6 +3,7 @@ package baseball.service.executor;
 import baseball.domain.BaseballGame;
 import baseball.domain.BaseballGameScoreBoard;
 import baseball.domain.GameMessage;
+import baseball.service.AnswerMaker;
 import nextstep.utils.Console;
 
 import static baseball.domain.GameMessagePrinter.print;
@@ -13,7 +14,7 @@ public class BaseballGameExecutor {
     public void execute() {
 
         do {
-            BaseballGame baseballGame = new BaseballGame();
+            BaseballGame baseballGame = new BaseballGame(AnswerMaker.make());
             executeSingleGame(baseballGame);
 
             print(GameMessage.ASK_RESTART_OR_DONE);
