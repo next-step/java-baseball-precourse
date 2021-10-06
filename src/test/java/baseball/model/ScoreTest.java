@@ -20,6 +20,20 @@ class ScoreTest {
 	@ParameterizedTest
 	@CsvSource(value = {"124,1스트라이크", "152,1스트라이크 1볼", "987,낫싱", "135,3스트라이크"})
 	void getScoreMessage(final String num, final String message) {
+		Score score = createScore(num);
+		assertThat(score.getScoreMessage()).contains(message);
+	}
+
+	@DisplayName("스코어 생성시 스트라이크 카운트의 범위 테스트")
+	@ParameterizedTest
+	@CsvSource(value = {"124", "152", "987", "135"})
+	void getStrikeCount(final String num) {
+		Score score = createScore(num);
+		assertThat(score.getStrikeCount())
+			.isBetween(0, 3);
+	}
+
+	private Score createScore(final String num) {
 		Computer computer;
 		try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
 			mockRandoms
@@ -29,8 +43,6 @@ class ScoreTest {
 		}
 		List<Integer> numbers = convertNumbers(num);
 		int strikeCount = computer.getStrikeCount(numbers);
-		int ballCount = computer.getBallCount(numbers, strikeCount);
-		Score score = new Score(strikeCount, ballCount);
-		assertThat(score.getScoreMessage()).contains(message);
+		return new Score(strikeCount, computer.getBallCount(numbers, strikeCount));
 	}
 }

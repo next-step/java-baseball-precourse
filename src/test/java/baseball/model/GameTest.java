@@ -6,6 +6,7 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.MockedStatic;
@@ -27,5 +28,12 @@ class GameTest {
 		}
 		Game game = new Game(computer);
 		assertThat(game.getScoreResponse(convertNumbers(num)).getMessage()).contains(message);
+	}
+
+	@DisplayName("게임 생성시 게임의 상태 태스트")
+	@Test
+	void isFinish() {
+		Game game = new Game(new Computer());
+		assertThat(game.isFinish()).isFalse();
 	}
 }

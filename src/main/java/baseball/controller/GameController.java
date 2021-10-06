@@ -9,8 +9,11 @@ import baseball.view.request.NumberRequest;
 public class GameController {
 	public void play() {
 		Game game = new Game(new Computer());
-		NumberRequest request = getInputRequest();
-		printScore(game.getScoreResponse(request.getNumbers()));
+		while (!game.isFinish()) {
+			NumberRequest request = getInputRequest();
+			printScore(game.getScoreResponse(request.getNumbers()));
+		}
+		printGameClear();
 	}
 
 	private NumberRequest getInputRequest() {
