@@ -37,7 +37,7 @@ public class Application {
         return value.toString();
     }
 
-    private static void appendIfUnique(StringBuilder value, String number){
+    public static void appendIfUnique(StringBuilder value, String number){
         if (value.indexOf(number) == -1){
             value.append(number);
         }
@@ -47,13 +47,13 @@ public class Application {
         System.out.println("숫자를 입력해 주세요: ");
         String input = Console.readLine();
         if (!validateInput(input)){
-            System.out.println("[ERROR] 1부터 9까지 숫자 3개만 입력해주세요. (예시) 123");
+            System.out.println("[ERROR] 1부터 9까지 숫자 3개만 입력해주세요. (예시) 123 ");
         }
 
         return input;
     }
 
-    private static boolean validateInput(String input){
+    public static boolean validateInput(String input){
         if (input.matches(ONLY_DIGIT) && input.length() == 3 && !input.contains("0")){
             return true;
         }
@@ -61,7 +61,7 @@ public class Application {
         return false;
     }
 
-    private static int[] count(String target, String input){
+    public static int[] count(String target, String input){
         int[] result = new int[2];
 
         for (int i=0; i<input.length(); i++){
@@ -72,7 +72,7 @@ public class Application {
         return result;
     }
 
-    private static int isBall(String target, String input, int index){
+    public static int isBall(String target, String input, int index){
         char icur = input.charAt(index);
         char tcur = target.charAt(index);
 
@@ -86,7 +86,7 @@ public class Application {
         return 1;
     }
 
-    private static int isStrike(String target, String input, int index){
+    public static int isStrike(String target, String input, int index){
         char icur = input.charAt(index);
         char tcur = target.charAt(index);
 
@@ -97,7 +97,7 @@ public class Application {
         return 0;
     }
 
-    private static String generateResult(int[] result){
+    public static String generateResult(int[] result){
         if (result[0] == 0 && result[1] == 0){
             return "낫싱";
         }
