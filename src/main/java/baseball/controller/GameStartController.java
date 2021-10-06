@@ -29,7 +29,6 @@ public class GameStartController {
 			errCode = UserInputValue.getErrCode();
 		}
 		
-		System.out.println("테스트 로그 사용자 입력값 === " +inputNumber);
 		return inputNumber;
 	}
 }
