@@ -24,16 +24,6 @@ public class GameController {
         GameConsole.gameEnd();
     }
 
-    private boolean isFindTargetNumber() {
-        String proposalNumber;
-        do {
-            GameConsole.requestProposalNumber();
-            proposalNumber = Console.readLine();
-        } while (!isValidProposalNumber(proposalNumber));
-
-        return computer.compareProposalNumber(makeIntegerList(proposalNumber));
-    }
-
     public boolean askContinue() {
         String continueNumber;
         do {
@@ -42,6 +32,16 @@ public class GameController {
         } while (!isValidContinueAnswer(continueNumber));
 
         return continueNumber.equals("1");
+    }
+
+    private boolean isFindTargetNumber() {
+        String proposalNumber;
+        do {
+            GameConsole.requestProposalNumber();
+            proposalNumber = Console.readLine();
+        } while (!isValidProposalNumber(proposalNumber));
+
+        return computer.compareProposalNumber(makeIntegerList(proposalNumber));
     }
 
     private boolean isValidProposalNumber(String proposalNumber) {
@@ -69,13 +69,13 @@ public class GameController {
 
     private void checkNumericProposalNumber(String proposalNumber) throws GameException {
         String pattern = "[0-9]";
-        for (int i = 0; i < GameConfig.RULE_NUMBER_COUNT.getNumber() - 1; i++) {
+        for (int i = 0; i < GameConfig.RULE_NUMBER_DIGIT.getNumber() - 1; i++) {
             pattern = pattern.concat("[0-9]");
         }
 
         if (!proposalNumber.matches(pattern)) {
             throw new GameException(GameMessage.NOT_NUMERIC_ERROR.getMessageWithNumber(
-                    GameConfig.RULE_NUMBER_COUNT.getNumber()));
+                    GameConfig.RULE_NUMBER_DIGIT.getNumber()));
         }
     }
 

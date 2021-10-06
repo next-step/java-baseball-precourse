@@ -11,7 +11,7 @@ public class GameService {
     int targetDigit;
 
     protected GameService() {
-        this.targetDigit = GameConfig.RULE_NUMBER_COUNT.getNumber();
+        this.targetDigit = GameConfig.RULE_NUMBER_DIGIT.getNumber();
         this.targetNumber = makeRandomNumber();
     }
 
