@@ -7,6 +7,7 @@ import baseball.service.AnswerMaker;
 import nextstep.utils.Console;
 
 import static baseball.domain.GameMessagePrinter.print;
+import static baseball.domain.GameMessagePrinter.println;
 import static baseball.service.AnswerMaker.isValid;
 
 public class BaseballGameExecutor {
@@ -17,14 +18,14 @@ public class BaseballGameExecutor {
             BaseballGame baseballGame = new BaseballGame(AnswerMaker.make());
             executeSingleGame(baseballGame);
 
-            print(GameMessage.ASK_RESTART_OR_DONE);
+            println(GameMessage.ASK_RESTART_OR_DONE);
         } while (isRestartGame());
     }
 
     public void executeSingleGame(BaseballGame baseballGame) {
         do {
             print(GameMessage.ASK_INPUT);
-            print(deal(baseballGame));
+            println(deal(baseballGame));
         } while (isSingleGameContinue(baseballGame));
     }
 
@@ -38,11 +39,11 @@ public class BaseballGameExecutor {
 
         if (input.equals("2")) {
 
-            print(GameMessage.END_PROGRAM);
+            println(GameMessage.END_PROGRAM);
             return false;
         }
 
-        print(GameMessage.ERR_PUT_ONLY_1_OR_2);
+        println(GameMessage.ERR_PUT_ONLY_1_OR_2);
         return isRestartGame();
     }
 
@@ -54,7 +55,7 @@ public class BaseballGameExecutor {
             return baseballGame.deal(input);
         }
 
-        print(GameMessage.ERR_PUT_ONLY_THREE_NUMBERS);
+        println(GameMessage.ERR_PUT_ONLY_THREE_NUMBERS);
         print(GameMessage.ASK_INPUT);
         return deal(baseballGame);
     }
@@ -63,7 +64,7 @@ public class BaseballGameExecutor {
         if (baseballGame.isContinue()) {
             return true;
         }
-        print(GameMessage.END_SINGLE_GAME_WITH_THREE_STRIKES);
+        println(GameMessage.END_SINGLE_GAME_WITH_THREE_STRIKES);
         return false;
     }
 }

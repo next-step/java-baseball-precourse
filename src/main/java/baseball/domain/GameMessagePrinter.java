@@ -2,11 +2,15 @@ package baseball.domain;
 
 public class GameMessagePrinter {
 
+    public static void println(GameMessage gameMessage) {
+        System.out.println(gameMessage.getMessage());
+    }
+
     public static void print(GameMessage gameMessage) {
         System.out.print(gameMessage.getMessage());
     }
 
-    public static void print(BaseballGameScoreBoard board) {
+    public static void println(BaseballGameScoreBoard board) {
 
         if (board.isNothing()) {
             System.out.println("낫싱");
