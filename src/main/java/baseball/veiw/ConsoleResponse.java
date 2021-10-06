@@ -22,4 +22,7 @@ public class ConsoleResponse {
         }
     }
 
+    public static void printMessage() {
+        System.out.println("");
+    }
 }

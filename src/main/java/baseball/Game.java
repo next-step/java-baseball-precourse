@@ -8,8 +8,7 @@ public class Game {
 
     public static boolean restart() {
         ConsoleResponse.printMessage(GameMessage.ALL_STRIKE);
-        String response = ConsoleResponse.responseMessage(GameMessage.RESTART_NY);
-        return restartNy(response);
+        return restartNy(ConsoleResponse.responseMessage(GameMessage.RESTART_NY));
     }
 
     private static boolean restartNy(String response) {

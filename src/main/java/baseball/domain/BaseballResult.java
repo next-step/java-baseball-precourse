@@ -32,10 +32,10 @@ public class BaseballResult {
         return strike == ALLSTRIKE;
     }
 
-    public void gameResultPrint() {
+    public void playResultPrint() {
         ConsoleResponse.printMessage(this.strike, GameMessage.STRIKE);
         ConsoleResponse.printMessage(this.ball, GameMessage.BALL);
-        System.out.println("");
+        ConsoleResponse.printMessage();
     }
 
     @Override
