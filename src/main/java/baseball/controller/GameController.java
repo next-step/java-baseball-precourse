@@ -35,6 +35,7 @@ public class GameController {
 	public boolean requestAnswer() {
 		String input = gameView.inputAnswerMessage();
 		CompareResult compareResult = gameService.compareAnswer(input);
+		gameView.printResult(compareResult);
 
 		return compareResult.isAnswer();
 	}

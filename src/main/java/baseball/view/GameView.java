@@ -3,12 +3,13 @@ package baseball.view;
 import baseball.errors.InvalidLengthException;
 import baseball.errors.NotANumberException;
 import baseball.errors.UnboundRangeException;
+import baseball.model.CompareResult;
 import nextstep.utils.Console;
 
 public class GameView {
 	public static final String INPUT_MESSAGE = "숫자를 입력해주세요 : ";
 	public static final String MENU_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
-	public static final String CORRECT_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 끝";
+	public static final String CORRECT_MESSAGE = "개의 숫자를 모두 맞히셨습니다! 게임 끝";
 	public static final String ERROR_PREFIX = "[ERROR]";
 	public static final int MENU_LENGTH = 1;
 	public static final int ANSWER_LENGTH = 3;
@@ -29,6 +30,18 @@ public class GameView {
 			input = Console.readLine();
 		} while (isValid(input));
 		return input;
+	}
+
+	public void printResult(CompareResult result) {
+		if (result.isNothing()) {
+			System.out.println("낫싱");
+			return;
+		}
+
+		System.out.println(result.getStrike() + "스트라이크 " + result.getBall() + "볼");
+		if (result.isAnswer()) {
+			System.out.println(ANSWER_LENGTH + CORRECT_MESSAGE);
+		}
 	}
 
 	private boolean checkInvalidLength(String input, int length) {

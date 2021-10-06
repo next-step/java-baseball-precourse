@@ -27,6 +27,10 @@ public class CompareResult {
 		return length == strike;
 	}
 
+	public boolean isNothing() {
+		return strike == 0 && ball == 0;
+	}
+
 	public int getStrike() {
 		return strike;
 	}
