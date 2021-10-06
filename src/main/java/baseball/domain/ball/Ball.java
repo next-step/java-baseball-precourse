@@ -1,42 +1,33 @@
-package baseball.domain;
+package baseball.domain.ball;
 
-import baseball.exception.BaseBallException.InvalidBallFormatException;
 import baseball.exception.BaseBallException.InvalidBallRangeException;
 
 import java.util.Objects;
 
-import static baseball.rule.Rule.MAX_NUMBER_OF_BALL;
-import static baseball.rule.Rule.MIN_NUMBER_OF_BALL;
+import static baseball.constant.Rule.MAX_BALL_NUMBER;
+import static baseball.constant.Rule.MIN_BALL_NUMBER;
 
 public class Ball {
 
-    private int value;
+    private int number;
 
-    public Ball(int value) {
-        setValue(value);
+    public Ball(int number) {
+        setNumber(number);
     }
 
-    public Ball(String value) {
-        try {
-            setValue(Integer.parseInt(value));
-        } catch (NumberFormatException e) {
-            throw new InvalidBallFormatException();
-        }
+    public int getNumber() {
+        return number;
     }
 
-    private void validate(int value) {
-        if (value > MAX_NUMBER_OF_BALL || value < MIN_NUMBER_OF_BALL) {
+    private void setNumber(int number) {
+        validateNumber(number);
+        this.number = number;
+    }
+
+    private void validateNumber(int number) {
+        if (number > MAX_BALL_NUMBER || number < MIN_BALL_NUMBER) {
             throw new InvalidBallRangeException();
         }
-    }
-
-    public int getValue() {
-        return value;
-    }
-
-    private void setValue(int value) {
-        validate(value);
-        this.value = value;
     }
 
     @Override
@@ -44,11 +35,11 @@ public class Ball {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ball that = (Ball) o;
-        return value == that.value;
+        return number == that.number;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value);
+        return Objects.hash(number);
     }
 }
