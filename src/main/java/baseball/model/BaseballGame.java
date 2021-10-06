@@ -27,21 +27,17 @@ public class BaseballGame {
             BaseballCount baseballCount = new BaseballCount(0,0).calculateCount(this.numberOfComputer.getNumber(),baseballPlayerNumber.getNumber());
             BaseballHint baseballHint = new BaseballHint(baseballCount.getStrikes(), baseballCount.getBalls());
             baseballHint.showHint();
-
+            checkGameEnd(baseballCount.getStrikes(), baseballCount.getBalls());
         }
     }
 
-    public void setStatusEnd(){
-        GAMESTATUS = "end";
-    }
-
-    public void checkGameEnd(){
-        if (GAMESTATUS == "end"){
+    public void checkGameEnd(int strikes, int balls){
+        if (strikes == 3){
             endGame();
         }
     }
 
     public void endGame(){
-
+        this.GAMESTATUS = "end";
     }
 }
