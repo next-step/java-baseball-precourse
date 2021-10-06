@@ -11,5 +11,7 @@ public class PlayerInputView {
 		String playerNumbers = Console.readLine();
 
 		return PlayerBaseballNumber.createPlayerBaseballNumber(playerNumbers);
-	};
+	}
+
+	;
 }

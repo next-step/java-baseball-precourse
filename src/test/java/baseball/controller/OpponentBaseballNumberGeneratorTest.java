@@ -1,7 +1,6 @@
 package baseball.controller;
 
 import static org.assertj.core.api.AssertionsForClassTypes.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.HashSet;
 import java.util.List;
@@ -10,7 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import baseball.controller.OpponentBaseballNumberGenerator;
 import baseball.model.ConstValue;
 
 public class OpponentBaseballNumberGeneratorTest {

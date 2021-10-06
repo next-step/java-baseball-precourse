@@ -17,21 +17,21 @@ public class BaseballGameStarter {
 		);
 		boolean isKeepGoing = true;
 
-		do{
+		do {
 			PlayerBaseballNumber playerBaseballNumber = PlayerInputView.inputBaseballNumber();
 			CheckBaseballNumberWithRule.checkBaseballNumber(opponentBaseballNumber, playerBaseballNumber);
 			GameResultView.printGameRoundResult(playerBaseballNumber);
 
-			if(playerBaseballNumber.getStrikeCount() == 3)
+			if (playerBaseballNumber.getStrikeCount() == 3)
 				isKeepGoing = false;
-		}while(isKeepGoing);
+		} while (isKeepGoing);
 
 		selectRestart();
 	}
 
 	private static void selectRestart() {
 
-		if(RestartSelectView.printRestartSelectMessage())
+		if (RestartSelectView.printRestartSelectMessage())
 			startGame();
 	}
 }

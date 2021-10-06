@@ -1,7 +1,6 @@
 package baseball.controller;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 
@@ -13,7 +12,7 @@ public class OpponentBaseballNumberGenerator {
 	public static List<Integer> generateOpponentBaseBallNumber() {
 		LinkedHashSet<Integer> opponentBaseballNumbers = new LinkedHashSet<>();
 
-		while(opponentBaseballNumbers.size() < ConstValue.BASEBALL_SIZE) {
+		while (opponentBaseballNumbers.size() < ConstValue.BASEBALL_SIZE) {
 			opponentBaseballNumbers.add(
 				Randoms.pickNumberInRange(
 					ConstValue.BASEBALL_MIN_NUMBER,
@@ -22,5 +21,7 @@ public class OpponentBaseballNumberGenerator {
 		}
 
 		return new ArrayList<>(opponentBaseballNumbers);
-	};
+	}
+
+	;
 }

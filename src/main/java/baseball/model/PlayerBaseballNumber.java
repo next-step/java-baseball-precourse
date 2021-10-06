@@ -16,32 +16,8 @@ public class PlayerBaseballNumber {
 
 	public PlayerBaseballNumber(List<Integer> playerBaseballNumber) {
 		this.baseballNumbers = playerBaseballNumber;
-		strikeCount=0;
-		ballCount=0;
-	}
-
-	public List<Integer> getBaseballNumbers() {
-		return baseballNumbers;
-	}
-
-	public int getStrikeCount() {
-		return strikeCount;
-	}
-
-	public int getBallCount() {
-		return ballCount;
-	}
-
-	public void setBaseballNumbers(List<Integer> baseballNumbers) {
-		this.baseballNumbers = baseballNumbers;
-	}
-
-	public void setStrikeCount(int strikeCount) {
-		this.strikeCount = strikeCount;
-	}
-
-	public void setBallCount(int ballCount) {
-		this.ballCount = ballCount;
+		strikeCount = 0;
+		ballCount = 0;
 	}
 
 	public static PlayerBaseballNumber createPlayerBaseballNumber(String playerInputNumber) {
@@ -56,20 +32,20 @@ public class PlayerBaseballNumber {
 
 		HashSet<Integer> validateNumberHashSet = new HashSet<>(playerNumberList);
 
-		if(validateNumberHashSet.size() != playerNumberList.size())
+		if (validateNumberHashSet.size() != playerNumberList.size())
 			throw new DuplicatedNumberException();
 	}
 
 	private static void validateNumberFigures(String inputNumbers) {
-		if(inputNumbers.length() != ConstValue.BASEBALL_SIZE)
+		if (inputNumbers.length() != ConstValue.BASEBALL_SIZE)
 			throw new InvalidFiguresNumberException();
 	}
 
 	private static void validateOnlyNumber(String inputNumbers) {
-		for(int i=0; i<inputNumbers.length(); i++) {
+		for (int i = 0; i < inputNumbers.length(); i++) {
 			char currentNumber = inputNumbers.charAt(i);
 
-			if(!(currentNumber > '0' && currentNumber <= '9')) {
+			if (!(currentNumber > '0' && currentNumber <= '9')) {
 				throw new InvalidInputTypeException();
 			}
 		}
@@ -78,7 +54,7 @@ public class PlayerBaseballNumber {
 	private static List<Integer> convertInputTypeToBaseballType(String inputNumbers) {
 		List<Integer> playerBaseballNumbers = new ArrayList<>();
 
-		for(int i=0; i<inputNumbers.length(); i++) {
+		for (int i = 0; i < inputNumbers.length(); i++) {
 			String number = Character.toString(inputNumbers.charAt(i));
 			playerBaseballNumbers.add(Integer.valueOf(number));
 		}
@@ -88,5 +64,28 @@ public class PlayerBaseballNumber {
 		return playerBaseballNumbers;
 	}
 
+	public List<Integer> getBaseballNumbers() {
+		return baseballNumbers;
+	}
+
+	public void setBaseballNumbers(List<Integer> baseballNumbers) {
+		this.baseballNumbers = baseballNumbers;
+	}
+
+	public int getStrikeCount() {
+		return strikeCount;
+	}
+
+	public void setStrikeCount(int strikeCount) {
+		this.strikeCount = strikeCount;
+	}
+
+	public int getBallCount() {
+		return ballCount;
+	}
+
+	public void setBallCount(int ballCount) {
+		this.ballCount = ballCount;
+	}
 
 }

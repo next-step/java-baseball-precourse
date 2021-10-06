@@ -1,7 +1,6 @@
 package study;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,7 +23,7 @@ public class StringTest {
 	@DisplayName("\"(1,2)\" 값이 주어졌을 때 String의 substring() 메소드를 활용해 () 을 제거하고 \"1,2\"를 반환되는지 확인")
 	@Test
 	void substringTest() {
-		assertThat("(1,2)".substring(1,4))
+		assertThat("(1,2)".substring(1, 4))
 			.isEqualTo("1,2");
 	}
 
