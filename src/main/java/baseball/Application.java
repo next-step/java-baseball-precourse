@@ -3,6 +3,6 @@ package baseball;
 public class Application {
 
     public static void main(String[] args) {
-        BaseBallGame.playBallsBallGame();
+        new BaseBallGame().playBallsBallGame();
     }
 }

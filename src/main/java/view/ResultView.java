@@ -6,14 +6,14 @@ import baseball.Status;
 import java.util.Map;
 
 public class ResultView {
-    public static void printResult(PlayResult playResult) {
+    public  void printResult(PlayResult playResult) {
         for (Map.Entry<Status, Integer> entry : playResult.resultGame().entrySet()) {
             String ballCount = entry.getKey() == Status.NOTHING ? "" : entry.getValue().toString();
             System.out.print(ballCount + "" + entry.getKey().statusName + " ");
         }
     }
 
-    public static void answerContinuePlay() {
+    public  void answerContinuePlay() {
         System.out.println("3스트라이크");
         System.out.println("3개의숫자를모두맞히셨습니다!게임 끝");
         System.out.println("게임을새로시작하려면1,종료하려면2를입력하세요.");

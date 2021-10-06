@@ -3,47 +3,60 @@ package baseball;
 import view.InputView;
 import view.ResultView;
 
+import java.util.List;
+
+import static baseball.commonConstants.COMMON_THREE;
+
 public class BaseBallGame {
 
 
-    private static Balls computerBalls = Balls.of(new RandomBaseBallGenerator());
-    private static Boolean gameContinue = true;
+    private Balls computerBalls;
+    private Boolean gameContinue;
+    private InputView inputView;
+    private ResultView resultView;
 
-    public static void playBallsBallGame() {
+    public BaseBallGame() {
+        this.computerBalls = Balls.of(new RandomBaseBallGenerator());
+        this.gameContinue = true;
+        this.inputView = new InputView();
+        this.resultView = new ResultView();
+    }
+
+    public void playBallsBallGame() {
         while (gameContinue) {
-            String playerBall = InputView.insertBallNumbers();
+            String playerBall = inputView.insertBallNumbers();
             playStart(playerBall);
         }
     }
 
-    private static void playStart(String playerBall) {
+    private void playStart(String playerBall) {
         try {
-            countHit(playerBall);
+            countHit(Balls.playerBallInit(playerBall));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-    private static void countHit(String playerBall) {
-        PlayResult playResult = computerBalls.playBalls(Balls.playerBallInit(playerBall));
-        if (playResult.strikeCount() == 3) {
+    private void countHit(List<Ball> playerBallNumber) {
+        PlayResult playResult = computerBalls.playBalls(playerBallNumber);
+        if (playResult.strikeCount() == COMMON_THREE) {
             selectGamePlay();
             return;
         }
-        ResultView.printResult(playResult);
+        resultView.printResult(playResult);
     }
 
 
-    private static void selectGamePlay() {
-        ResultView.answerContinuePlay();
-        if (InputView.insertSelectGameContinue() == 1) {
+    private void selectGamePlay() {
+        resultView.answerContinuePlay();
+        if (inputView.insertSelectGameContinue() == 1) {
             computerBalls = Balls.of(new RandomBaseBallGenerator());
             playBallsBallGame();
         }
         gameEnd();
     }
 
-    private static void gameEnd() {
+    private void gameEnd() {
         gameContinue = false;
     }
 }
