@@ -6,6 +6,14 @@ public class BaseBall {
 	private static int strikeCount;
 	private static int ballCount;
 
+	public void run() {
+		String generate = RandomNumberGenerator.generate();
+		while (strikeCount != 3) {
+			computed(inNumber(), generate);
+			outputPrint();
+		}
+	}
+
 	private void computed(String inputs, String generate) {
 		strikeCount = 0;
 		ballCount = 0;
