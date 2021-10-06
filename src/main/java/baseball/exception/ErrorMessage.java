@@ -1,4 +1,4 @@
-package baseball.domain.exception;
+package baseball.exception;
 
 public enum ErrorMessage {
 

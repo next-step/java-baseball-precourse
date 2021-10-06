@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import baseball.domain.exception.ErrorMessage;
-import baseball.domain.exception.DuplicationNumberException;
-import baseball.domain.exception.NumberRangeInvalidException;
+import baseball.exception.ErrorMessage;
+import baseball.exception.DuplicationNumberException;
+import baseball.exception.NumberRangeInvalidException;
 
 class NumbersTest {
 

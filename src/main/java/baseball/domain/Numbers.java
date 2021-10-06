@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import baseball.domain.exception.ErrorMessage;
-import baseball.domain.exception.DuplicationNumberException;
-import baseball.domain.exception.NumberRangeInvalidException;
+import baseball.exception.ErrorMessage;
+import baseball.exception.DuplicationNumberException;
+import baseball.exception.NumberRangeInvalidException;
 
 public class Numbers {
 
