@@ -60,6 +60,17 @@ public class ApplicationTest extends NSTest {
             verify(GameMessage.ERR_PUT_ONLY_THREE_NUMBERS.getMessage());
         }
     }
+
+    @Test
+    void 단일게임_종료_후_재시작_여부_확인_시_올바르지_않은_입력() {
+        try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
+            mockRandoms.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
+              .thenReturn(1,2,3);
+            running("123", "a", "aa", "3", "11", "0", "", "  ");
+            verify(GameMessage.ERR_PUT_ONLY_1_OR_2.getMessage());
+        }
+    }
+
     @AfterEach
     void tearDown() {
         outputStandard();
