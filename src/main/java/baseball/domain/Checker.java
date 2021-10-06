@@ -7,10 +7,16 @@ public class Checker {
 	private int ball;
 
 	public void answerCheck(Numbers answer, Numbers goal) {
+		initScore();
 
 		for (int idx = 0; idx < Numbers.RANGE_SIZE; idx++) {
 			compareNumbers(answer, goal, idx);
 		}
+	}
+
+	private void initScore() {
+		this.strike = 0;
+		this.ball = 0;
 	}
 
 	private void compareNumbers(Numbers answer, Numbers goal, int idx) {
@@ -40,5 +46,9 @@ public class Checker {
 
 	public int getStrike() {
 		return strike;
+	}
+
+	public boolean isAllStrike() {
+		return this.strike == 3;
 	}
 }
