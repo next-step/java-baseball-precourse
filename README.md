@@ -20,11 +20,10 @@
   - `Score`은 `Strike`, `Ball`, `Nothing`을 가진다.
 - RandomGenerator
   - `RandomGenerator`는 서로 다른 3자리 숫자를 생성한다
-- Player
-  - `Player`는 `Answer`를 가진다
-  - `Player`는 3자리 숫자를 받는다.
 - Game
-  - `Game`은 `Player`를 가진다
+  - `Game`은 `RandomGenerator`를 가진다
+- ScoreFactory
+  - `ScoreFactory`는 `Strike`,`Ball`,`Nothing`을 가진다
 
 ### 요구사항
 2. 상대방은 1에서 9까지 서로 다른 임의의 수 3개를 선택한다

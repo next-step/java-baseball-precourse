@@ -34,4 +34,8 @@ public class Numbers {
     public List<Number> getNumbers() {
         return this.numbers;
     }
+
+    public Number getNumber(int index) {
+        return this.numbers.get(index);
+    }
 }

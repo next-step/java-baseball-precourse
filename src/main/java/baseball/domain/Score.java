@@ -1,7 +1,5 @@
 package baseball.domain;
 
-import java.util.Objects;
-
 public class Score {
 
     private final Strike strike;
@@ -31,13 +29,13 @@ public class Score {
     }
 
     public String getText() {
-        if (!Objects.isNull(nothing)) {
+        if (strike.getCount() == 0 && ball.getCount() == 0) {
             return nothing.getText();
         }
-        if (Objects.isNull(strike)) {
+        if (strike.getCount() == 0) {
             return ball.getText();
         }
-        if (Objects.isNull(ball)) {
+        if (ball.getCount() == 0) {
             return strike.getText();
         }
         return strike.getText() + " " + ball.getText();

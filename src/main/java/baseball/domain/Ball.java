@@ -2,11 +2,19 @@ package baseball.domain;
 
 public class Ball extends GameRule {
 
-    private final int count;
+    private int count;
 
     public Ball(int count) {
         super(Rule.BALL);
         this.count = count;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void count() {
+        this.count++;
     }
 
     @Override

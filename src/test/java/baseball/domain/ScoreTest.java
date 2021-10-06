@@ -14,7 +14,7 @@ class ScoreTest {
     @ParameterizedTest
     @CsvSource(value = {"1,2"})
     void text(int strike, int ball) {
-        Score score = new Score(new Strike(strike), new Ball(ball));
+        Score score = new Score(new Strike(strike), new Ball(ball), new Nothing());
         String text = score.getText();
         assertThat(text).isEqualTo(Rule.STRIKE.getText(strike)+ " " + Rule.BALL.getText(ball));
     }
@@ -23,7 +23,7 @@ class ScoreTest {
     @ParameterizedTest
     @ValueSource(ints = {1,2,3})
     void strike(int count) {
-        Score score = new Score(new Strike(count));
+        Score score = new Score(new Strike(count), new Ball(0), new Nothing());
         String text = score.getText();
         assertThat(text).isEqualTo(Rule.STRIKE.getText(count));
     }
@@ -32,7 +32,7 @@ class ScoreTest {
     @ParameterizedTest
     @ValueSource(ints = {1,2,3})
     void ball(int count) {
-        Score score = new Score(new Ball(count));
+        Score score = new Score(new Strike(0), new Ball(count), new Nothing());
         String text = score.getText();
         assertThat(text).isEqualTo(Rule.BALL.getText(count));
     }
@@ -40,7 +40,7 @@ class ScoreTest {
     @DisplayName("스트라이크와 볼이 없는 경우 나싱만 생성한다")
     @Test
     void nothing() {
-        Score score = new Score(new Nothing());
+        Score score = new Score(new Strike(0), new Ball(0), new Nothing());
         String text = score.getText();
         assertThat(text).isEqualTo(Rule.NOTHING.getName());
     }
