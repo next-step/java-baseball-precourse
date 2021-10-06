@@ -8,9 +8,7 @@ public class Judgment {
         int ball = this.containNumberCount(computer, player);
         int strike = 0;
         for (int i = 0; i < computer.size(); i++) {
-            if (this.samePlace(computer, i, player.get(i))) {
-                strike++;
-            }
+            strike += this.samePlace(computer, i, player.get(i));
         }
         return new BaseBall(strike, ball - strike);
     }
@@ -23,8 +21,11 @@ public class Judgment {
         return result;
     }
 
-    private boolean samePlace(List<Integer> computer, int location, int number) {
-        return computer.get(location) == number;
+    private int samePlace(List<Integer> computer, int location, int number) {
+        if (computer.get(location) == number) {
+            return 1;
+        }
+        return 0;
     }
 
     private int containNumber(List<Integer> computer, int playerNumber) {
