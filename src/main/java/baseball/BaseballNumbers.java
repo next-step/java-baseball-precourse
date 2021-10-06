@@ -18,7 +18,7 @@ public class BaseballNumbers {
 		int count = 0;
 		for (int index = 0; index < baseballNumbers.size(); index++) {
 			int number = baseballNumbers.get(index);
-			if(computerNumbers.contains(number)){
+			if (computerNumbers.contains(number)) {
 				count++;
 			}
 		}
@@ -30,10 +30,28 @@ public class BaseballNumbers {
 		int count = 0;
 		for (int index = 0; index < baseballNumbers.size(); index++) {
 			int number = baseballNumbers.get(index);
-			if(computerNumbers.get(index) == number){
+			if (computerNumbers.get(index) == number) {
 				count++;
 			}
 		}
 		return count;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		BaseballNumbers other = (BaseballNumbers)o;
+		List<Integer> otherBaseballNumbers = other.getBaseballNumbers();
+
+		for (int index = 0; index < this.baseballNumbers.size(); index++) {
+			int number = this.baseballNumbers.get(index);
+			if (otherBaseballNumbers.get(index) != number) {
+				return false;
+			}
+		}
+		return true;
 	}
 }
