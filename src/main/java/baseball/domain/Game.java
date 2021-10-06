@@ -17,7 +17,29 @@ public class Game {
         }
     }
 
-    public boolean guess(final Number guess) {
-        return this.answer.equals(guess);
+    public Count guess(final Number guess) {
+        int numberOfStrikes = 0;
+        int numberOfBalls = 0;
+
+        for (int i = 0; i < Number.NUMBER_OF_DIGITS; i++) {
+            numberOfStrikes += isStrike(guess, i);
+            numberOfBalls += isBall(guess, i);
+        }
+
+        return new Count(numberOfStrikes, numberOfBalls);
+    }
+
+    private int isStrike(final Number guess, final int index) {
+        if (answer.equalsAt(guess, index)) {
+            return 1;
+        }
+        return 0;
+    }
+
+    private int isBall(final Number guess, final int i) {
+        if (answer.containsExceptAt(guess, i)) {
+            return 1;
+        }
+        return 0;
     }
 }

@@ -4,10 +4,10 @@ import java.util.Objects;
 
 public class Number {
 
+    public static final int NUMBER_OF_DIGITS = 3;
+
     private static final int UPPER_BOUND = 9;
     private static final int LOWER_BOUND = 1;
-    private static final int NUMBER_OF_DIGITS = 3;
-
     private final String value;
 
     public Number(final String value) {
@@ -65,6 +65,18 @@ public class Number {
         if (value.charAt(i) == value.charAt(j)) {
             throw new IllegalArgumentException("[ERROR] 서로 같은 수로 이루어진 숫자를 입력할 수 없습니다.");
         }
+    }
+
+    public boolean equalsAt(final Number o, final int index) {
+        return this.value.charAt(index) == o.value.charAt(index);
+    }
+
+    public boolean containsExceptAt(final Number o, final int index) {
+        if (equalsAt(o, index)) {
+            return false;
+        }
+        final String otherValue = o.value.substring(index, index + 1);
+        return this.value.contains(otherValue);
     }
 
     @Override
