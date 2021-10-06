@@ -3,6 +3,7 @@ package baseball.ui;
 import baseball.domain.Count;
 import baseball.domain.Game;
 import baseball.domain.Number;
+import baseball.domain.RandomNumberGenerator;
 
 public class GameDriver {
 
@@ -17,7 +18,7 @@ public class GameDriver {
     }
 
     public void play() {
-        final Number randomNumber = new Number("123");
+        final Number randomNumber = RandomNumberGenerator.generate();
         final Game game = new Game(randomNumber);
         Number guess;
         Count count;
