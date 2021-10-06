@@ -9,6 +9,10 @@ public class Application {
     public static void main(String[] args) {
         BaseballController baseballController = new BaseballController();
         BaseballModel model = new BaseballModel();
+        startGame(baseballController, model);
+    }
+
+    private static void startGame(BaseballController baseballController, BaseballModel model) {
         while (model.getGameStatus() != GameStatus.GAME_OVER) {
             ModelAndView gameMV = baseballController.startStage(model, 3);
             playStage(baseballController, gameMV);

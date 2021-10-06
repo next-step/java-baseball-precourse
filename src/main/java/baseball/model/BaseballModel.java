@@ -93,6 +93,10 @@ public class BaseballModel implements Model{
         if(!answer.chars().allMatch(Character::isDigit))
             throw new IllegalArgumentException("[ERROR] 숫자가 아닌 값이 입력되었습니다");
 
+        validateNumberDuplicate(answer);
+    }
+
+    private void validateNumberDuplicate(String answer) {
         char[] arr = answer.toCharArray();
         Arrays.sort(arr);
         for(int i=0; i<arr.length-1; i++){
