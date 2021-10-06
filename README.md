@@ -21,3 +21,53 @@
 - 게임을 종료한 후 게임을 다시 시작하거나 완전히 종료할 수 있다.
 - 사용자가 잘못된 값을 입력할 경우 [ERROR]로 시작하는 에러 메시지를 출력하고 게임을 계속 진행할 수 있어야 한다.
 
+## 기능 구현
+
+### Domain
+
+- Ball
+  - play() : 해당 볼의 인덱스와 수를 비교하여 스트라이크, 볼, 낫싱 판별
+- Balls
+  - 볼 일급 컬렉션으로 3개의 볼을 관리
+  - play() : 3개의 볼을 판별하여 PlayResult에 저장
+- PlayResult
+  - strike와 ball의 카운트를 저장
+  - increaseCount() : 볼 상태에 따라 strike, ball 카운트 증가
+  - isEndGame() : 게임 종료 판별
+  - resultMessage() : 힌트 메시지 생성
+- ComputerBaseballNumber
+  - createNumbers() : 서로 다른 수 3개 생성 후 List로 반환
+- UserBaseballNumber
+  - createNumbers() : 유저가 입력한 수를 List로 반환
+  - validate() : 입력한 수를 검증
+
+### Controller
+
+- BaseballGame
+  - run()
+    - 게임 시작
+    - computerNumbers 생성
+    - 게임 상태에 따라 재시작, 종료 판별
+  - startGame()
+    - 게임이 종료될 때까지 유저 입력 및 힌트 출력
+    - 게임이 종료되면 입력에 따라 재시작, 종료 상태 변경
+  - inputNumber()
+    - 유저가 입력한 값을 검증을 거쳐 List로 반환
+  - restartOrEndGame()
+    - 게임 종료 후 입력에 따라 재시작, 종료 상태 변경
+
+### View
+
+- BaseballPrint
+  - print(), println()을 통해 콘솔 출력
+  
+- BaseballInput
+  - input() : 사용자 입력
+  
+### Exception
+
+- ErrorMessage
+  - 에러 메시지를 담은 enum 객체
+
+- BaseballException
+  - 에러 메시지 출력
