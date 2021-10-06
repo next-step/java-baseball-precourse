@@ -19,6 +19,18 @@ public class BallNumber {
         return number;
     }
 
+    public Score getScore(BallNumber other) {
+        if (this.equals(other)) {
+            return Score.STRIKE;
+        }
+
+        if (this.number == other.number) {
+            return Score.BALL;
+        }
+
+        return Score.NOTHING;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

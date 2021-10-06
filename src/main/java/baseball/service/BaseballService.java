@@ -1,6 +1,7 @@
 package baseball.service;
 
 import baseball.ball.Ball;
+import baseball.ball.BallCount;
 import baseball.ball.BallGenerator;
 
 
@@ -17,5 +18,10 @@ public class BaseballService {
 
     public Ball generateBall() {
         return ballGenerator.generate();
+    }
+
+    public BallCount judgementBall(Ball computerBall, int[] userInput) {
+        Ball ball = new Ball(userInput);
+        return computerBall.judgeBallCount(ball);
     }
 }

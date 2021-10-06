@@ -20,6 +20,31 @@ public class Ball {
         return numbers;
     }
 
+    public BallCount judgeBallCount(Ball other) {
+        List<Score> scores = new ArrayList<>();
+
+        for (BallNumber number : numbers) {
+            scores.add(other.getScore(number));
+        }
+
+        return new BallCount(scores);
+    }
+
+
+    private Score getScore(BallNumber other) {
+        Score score = Score.NOTHING;
+
+        for (BallNumber number : this.numbers) {
+            score = maxScore(score, other.getScore(number));
+        }
+
+        return score;
+    }
+
+    private Score maxScore(Score score, Score newScore) {
+        return score.getValue() > newScore.getValue() ? score : newScore;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
