@@ -1,6 +1,7 @@
 package baseball;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import nextstep.utils.Console;
@@ -8,7 +9,7 @@ import nextstep.utils.Randoms;
 
 public class Baseball {
     public List<Integer> setRandomNums(int numCnt) {
-        int startInclusive = 1, endInclusive = 9, randdomNum = 0;
+        int startInclusive = 1, endInclusive = 9, randdomNum;
         List<Integer> randomNums = new ArrayList<>();
 
         while (true) {
@@ -25,11 +26,7 @@ public class Baseball {
     }
 
     private List<String> setUserInput() {
-        List<String> userNums = new ArrayList<>();
-        for (String numStr : Console.readLine().split("")) {
-            userNums.add(numStr);
-        }
-        return userNums;
+        return new ArrayList<>(Arrays.asList(Console.readLine().split("")));
     }
 
     public void runBaseBallGeme(int numCnt, List<Integer> randomNums) {
@@ -45,5 +42,22 @@ public class Baseball {
                 break;
             }
         }
+    }
+
+    public int goOrStop() {
+        int answer;
+
+        while (true) {
+            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+            try {
+                answer = Integer.parseInt(Console.readLine());
+            } catch (Exception e) {
+                continue;
+            }
+            if (answer == 1 || answer == 2) {
+                break;
+            }
+        }
+        return answer;
     }
 }
