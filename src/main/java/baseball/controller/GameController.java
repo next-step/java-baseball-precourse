@@ -1,22 +1,22 @@
 package baseball.controller;
 
+import baseball.aggregate.RefereeService;
 import baseball.domain.Computer;
-import baseball.domain.Referee;
 import baseball.domain.User;
-import nextstep.utils.Console;
+import baseball.view.ConsoleView;
 
 public class GameController {
 
     public void run(int gameNumberDigits, int minNumber, int maxNumber){
+        RefereeService referee = new RefereeService(gameNumberDigits, minNumber, maxNumber);
         Computer computer = new Computer(gameNumberDigits);
-        computer.makeQuiz(minNumber, maxNumber);
-        Referee referee = new Referee(gameNumberDigits, computer.getQuizList());
         User user = new User();
-        while (!referee.isEndGame()){
-            System.out.print("숫자를 입력해주세요 : ");
-            String readLine = Console.readLine();
-            referee.ruleCheck(readLine, minNumber, maxNumber);
-            user.challenge(referee.getInputList());
+        referee.ready(computer);
+        do {
+            System.out.println(computer.getQuizList());
+            user.setReadLine(ConsoleView.readInput(user));
+            referee.gameDoingCheck(user, computer);
         }
+        while (!user.getIsEndPlay());
     }
 }
