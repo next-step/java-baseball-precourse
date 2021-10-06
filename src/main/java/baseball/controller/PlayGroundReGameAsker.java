@@ -1,4 +1,6 @@
-package baseball;
+package baseball.controller;
+
+import baseball.enums.REGAME_FLAG;
 
 import nextstep.utils.Console;
 

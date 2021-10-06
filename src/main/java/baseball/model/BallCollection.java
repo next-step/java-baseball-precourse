@@ -1,6 +1,8 @@
-package baseball;
+package baseball.model;
 
 import java.util.ArrayList;
+
+import baseball.enums.MATCH_RESULT;
 
 public class BallCollection extends ArrayList<Ball> {
     public MATCH_RESULT match(Ball counterBall) {

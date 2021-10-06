@@ -1,10 +1,12 @@
-package baseball;
+package baseball.model;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import baseball.enums.MATCH_RESULT;
 
 public class BallTest {
 

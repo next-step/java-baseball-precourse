@@ -1,4 +1,6 @@
-package baseball;
+package baseball.model;
+
+import baseball.enums.MATCH_RESULT;
 
 public class Ball {
     private int ballNumber;

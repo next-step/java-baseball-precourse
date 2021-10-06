@@ -1,4 +1,6 @@
-package baseball;
+package baseball.utils;
+
+import baseball.GlobalVariables;
 
 public class InputValidator {
     public boolean validateLength(String[] inputs) {

@@ -1,6 +1,8 @@
-package baseball;
+package baseball.model;
 
 import java.util.List;
+
+import baseball.enums.MATCH_RESULT;
 
 public class PlayerState {
     private BallCollection ballCollection;

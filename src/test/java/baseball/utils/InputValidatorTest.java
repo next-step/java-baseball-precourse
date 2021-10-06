@@ -1,4 +1,4 @@
-package baseball;
+package baseball.utils;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;

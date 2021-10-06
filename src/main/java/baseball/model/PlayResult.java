@@ -1,4 +1,7 @@
-package baseball;
+package baseball.model;
+
+import baseball.GlobalVariables;
+import baseball.enums.MATCH_RESULT;
 
 public class PlayResult {
     private static final String STRIKE_STR = "스트라이크";

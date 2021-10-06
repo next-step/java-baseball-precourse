@@ -1,6 +1,8 @@
-package baseball;
+package baseball.utils;
 
 import java.util.ArrayList;
+
+import baseball.GlobalVariables;
 
 import nextstep.utils.Randoms;
 

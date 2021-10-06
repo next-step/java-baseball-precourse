@@ -1,9 +1,11 @@
-package baseball;
+package baseball.utils;
 
 import java.util.ArrayList;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import baseball.GlobalVariables;
 
 public class RandomInputGeneratorTest {
     @Test
