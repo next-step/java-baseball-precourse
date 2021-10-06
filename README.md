@@ -24,11 +24,11 @@
   * [X] 기존 2개의 TestCase 성공
     * 부가적으로 잘못입력했을 때에 대한 TestCase 구현
 ### 컨벤션
-  * [ ] indent depth 2가 넘지 않도록 구현
+  * [X] indent depth 2가 넘지 않도록 구현
     * 확인 필요
   * [X] stream api 사용안함
   * [X] else 사용안함
   * [X] 메소드 길이가 10라인 넘어가지 않도록 구현
-  * [ ] https://naver.github.io/hackday-conventions-java/ 컨벤션 확인필요
+  * [X] https://naver.github.io/hackday-conventions-java/ 컨벤션 확인필요
 ### 단위테스트
   * [X] 비지니스/UI 로직 분리

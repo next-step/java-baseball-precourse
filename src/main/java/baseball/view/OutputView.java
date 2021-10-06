@@ -12,4 +12,5 @@ public class OutputView {
     public void displayErrorMessage() {
         System.out.println("[ERROR] 잘못 입력하셨습니다. 숫자 3자리를 입력해주세요.");
     }
+
 }
