@@ -84,12 +84,12 @@ public class BaseballLogic {
     }
     
     // 입력 validation
-    private boolean isValidInput(String[] inputs) {
+    public boolean isValidInput(String[] inputs) {
     	return isValidLength(inputs) && isValidNumbers(inputs) && isNoDupNumbers(inputs);
     }
     
     // 길이(3자리)
-    private boolean isValidLength(String[] inputs) {
+    public boolean isValidLength(String[] inputs) {
     	if (inputs.length != 3) {	// length : 3
     		ui.printValidLength();
     		return false;
@@ -98,7 +98,7 @@ public class BaseballLogic {
     }
     
     // 숫자(1~9)
-    private boolean isValidNumbers(String[] inputs) {
+    public boolean isValidNumbers(String[] inputs) {
     	if (!canTranslateToNumber(inputs)) {
     		ui.printValidNumbers();
     		return false;
@@ -116,7 +116,7 @@ public class BaseballLogic {
     }
     
     // 중복 여부
-    private boolean isNoDupNumbers(String[] inputs) {
+    public boolean isNoDupNumbers(String[] inputs) {
     	boolean flag = true;
     	for (int i = 0; i < inputs.length - 1; i++) {
     		flag = (inputs[i].equals(inputs[i + 1])) ? false : flag;
@@ -130,9 +130,17 @@ public class BaseballLogic {
 	public String[] getGoals() {
 		return goals;
 	}
+	
+	public void setGoals(String[] goals) {
+		this.goals = goals;
+	}
 
 	public String[] getInputs() {
 		return inputs;
+	}
+	
+	public void setInputs(String[] inputs) {
+		this.inputs = inputs;
 	}
 	
 	public int[] getResults() {
