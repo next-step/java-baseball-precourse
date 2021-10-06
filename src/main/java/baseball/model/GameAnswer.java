@@ -19,7 +19,7 @@ public class GameAnswer {
 	}
 
 	public CompareResult compare(int[] userAnswer) {
-		CompareResult result = new CompareResult();
+		CompareResult result = new CompareResult(LENGTH);
 		for (int i = 0; i < userAnswer.length; i++) {
 			int answerIndex = getAnswerIndex(userAnswer[i]);
 			result.update(i, answerIndex);

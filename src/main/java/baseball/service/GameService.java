@@ -1,5 +1,6 @@
 package baseball.service;
 
+import baseball.model.CompareResult;
 import baseball.model.GameAnswer;
 
 public class GameService {
