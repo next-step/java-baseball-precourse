@@ -1,22 +1,22 @@
 package baseball.vo;
 
 public class GameResultVO {
-	public int ballCnt;
-	public int strikeCnt;
+    public int ballCnt;
+    public int strikeCnt;
 
-	public void setBallCnt(int ballCnt) {
-		this.ballCnt = ballCnt;
-	}
+    public void setBallCnt(int ballCnt) {
+        this.ballCnt = ballCnt;
+    }
 
-	public int getBallCnt() {
-		return ballCnt;
-	}
+    public int getBallCnt() {
+        return ballCnt;
+    }
 
-	public void setStrikeCnt(int strikeCnt) {
-		this.strikeCnt = strikeCnt;
-	}
+    public void setStrikeCnt(int strikeCnt) {
+        this.strikeCnt = strikeCnt;
+    }
 
-	public int getStrikeCnt() {
-		return strikeCnt;
-	}
+    public int getStrikeCnt() {
+        return strikeCnt;
+    }
 }
