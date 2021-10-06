@@ -1,4 +1,7 @@
-package baseball;
+package baseball.controller;
+
+import baseball.model.BaseballCount;
+import baseball.view.BaseballViewer;
 
 public class BaseballGameManager {
     private final BaseballViewer baseballViewer;
