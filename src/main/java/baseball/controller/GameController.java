@@ -4,6 +4,7 @@ import static baseball.view.ConsoleLog.*;
 
 import baseball.model.Computer;
 import baseball.model.Game;
+import baseball.view.request.MenuRequest;
 import baseball.view.request.NumberRequest;
 
 public class GameController {
@@ -14,6 +15,17 @@ public class GameController {
 			printScore(game.getScoreResponse(request.getNumbers()));
 		}
 		printGameClear();
+		selectMenu(getMenuRequest().getMenu());
+	}
+
+	private void selectMenu(final MenuRequest.Menu menu) {
+		if (menu.equals(MenuRequest.Menu.CONTINUE)) {
+			restartGame();
+		}
+	}
+
+	private void restartGame() {
+		play();
 	}
 
 	private NumberRequest getInputRequest() {
@@ -22,6 +34,15 @@ public class GameController {
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			return getInputRequest();
+		}
+	}
+
+	private MenuRequest getMenuRequest() {
+		try {
+			return getInputMenu();
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return getMenuRequest();
 		}
 	}
 }
