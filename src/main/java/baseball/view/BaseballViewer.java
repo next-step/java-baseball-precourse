@@ -15,6 +15,24 @@ public class BaseballViewer {
 
     public void displayResult(ResultBallCount resultBallCount) {
         System.out.println(resultBallCount);
+        if(resultBallCount.isOut()){
+            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        }
+    }
+
+    public boolean isRestart() {
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        String input = Console.readLine();
+
+        if (input.equals(RESTART)) {
+            return true;
+        }
+
+        if (input.equals(QUIT)) {
+            return false;
+        }
+
+        throw new IllegalArgumentException();
     }
 
 }

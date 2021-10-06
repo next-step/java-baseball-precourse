@@ -17,13 +17,25 @@ public class BaseballGameManager {
 
     public void play() {
         String answerNumber = randomNumberGenerator.generateRandomNumber();
-        BaseballCount baseballCount = getUserInput();
-        ResultBallCount resultBallCount = baseballReferee.getResultBallCount(answerNumber, baseballCount);
-        baseballViewer.displayResult(resultBallCount);
+        boolean isOut;
+        do {
+            BaseballCount baseballCount = getUserInput();
+            ResultBallCount resultBallCount = baseballReferee.getResultBallCount(answerNumber, baseballCount);
+            baseballViewer.displayResult(resultBallCount);
+            isOut = resultBallCount.isOut();
+        } while (!isOut);
+
+        reGame();
     }
 
     public BaseballCount getUserInput() {
         String input = baseballViewer.getUserInput();
         return new BaseballCount(input);
+    }
+
+    public void reGame() {
+        if(baseballViewer.isRestart()){
+            play();
+        }
     }
 }
