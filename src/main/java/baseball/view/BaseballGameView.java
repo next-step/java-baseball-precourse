@@ -13,8 +13,13 @@ public class BaseballGameView {
 	public void play() {
 		String result;
 		baseballGameConrtoller.initGame();
-		do {
+		while (true) {
+			System.out.print("숫자를입력해주세요 : ");
 			result = baseballGameConrtoller.submitBallNumberStr(Console.readLine());
-		} while (result.equals("InvalidBallNumberException"));
+			if (!result.equals("InvalidBallNumberException")) {
+				break;
+			}
+			System.out.println("[ERROR] InvalidBallNumberException");
+		}
 	}
 }
