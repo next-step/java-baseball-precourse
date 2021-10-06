@@ -12,7 +12,7 @@ public class ViewConsole {
         do {
             input = enterInput("숫자를 입력해주세요 : ");
         } while (!confirmInput(input));
-        return convertIntegerArray(input);
+        return Utils.convertIntegerArray(input);
     }
 
     private static boolean confirmInput(String input) {
@@ -23,15 +23,6 @@ public class ViewConsole {
             System.out.println("[ERROR]: " + e.getMessage());
             return false;
         }
-    }
-
-    private static List<Integer> convertIntegerArray(String input) {
-        List<Integer> newInput = new ArrayList<>();
-        String[] inputs = input.split("");
-        for (String s : inputs) {
-            newInput.add(Integer.parseInt(s));
-        }
-        return newInput;
     }
 
     public boolean askOfFinishGame() {

@@ -6,6 +6,8 @@ import java.util.*;
 
 public class GameUtils {
 
+    private GameUtils(){}
+
     public static List<Integer> generateAnswer(){
         Set<Integer> numbers = new LinkedHashSet<>();
         while (numbers.size() < 3){
