@@ -2,17 +2,23 @@ package baseball.exception;
 
 import static baseball.constant.ErrorMessage.*;
 
-public class BaseBallException {
+public class BaseballException {
 
     public static class InvalidBallFormatException extends RuntimeException {
         public InvalidBallFormatException() {
             super(INVALID_BALL_FORMAT);
         }
+        public InvalidBallFormatException(String message) {
+            super(message);
+        }
     }
 
-    public static class InvalidBallRangeException extends RuntimeException {
-        public InvalidBallRangeException() {
-            super(INVALID_BALL_RANGE);
+    public static class InvalidRangeException extends RuntimeException {
+        public InvalidRangeException() {
+            super(INVALID_RANGE);
+        }
+        public InvalidRangeException(String message) {
+            super(message);
         }
     }
 
@@ -20,11 +26,17 @@ public class BaseBallException {
         public DuplicatedBallsException() {
             super(DUPLICATED_BALLS);
         }
+        public DuplicatedBallsException(String message) {
+            super(message);
+        }
     }
 
     public static class InvalidBallsLength extends RuntimeException {
         public InvalidBallsLength() {
             super(INVALID_BALLS_LENGTH);
+        }
+        public InvalidBallsLength(String message) {
+            super(message);
         }
     }
 }

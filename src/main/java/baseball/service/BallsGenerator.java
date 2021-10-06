@@ -1,7 +1,7 @@
-package baseball.utils;
+package baseball.service;
 
 import baseball.domain.ball.Balls;
 
-interface BallsGenerator {
+public interface BallsGenerator {
     Balls generate();
 }

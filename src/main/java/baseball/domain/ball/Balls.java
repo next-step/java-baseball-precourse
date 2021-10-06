@@ -1,7 +1,7 @@
 package baseball.domain.ball;
 
-import baseball.exception.BaseBallException.DuplicatedBallsException;
-import baseball.exception.BaseBallException.InvalidBallsLength;
+import baseball.exception.BaseballException.DuplicatedBallsException;
+import baseball.exception.BaseballException.InvalidBallsLength;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -12,36 +12,43 @@ import static baseball.constant.Rule.COUNT_OF_BALLS;
 
 public class Balls {
 
-    private final List<Ball> balls;
+    private static final Integer START_POSITION = 1;
+    private List<Ball> balls = new ArrayList<>();
 
-    private Balls(List<Ball> balls) {
-        validateLength(balls);
-        this.balls = balls;
+    private Balls(List<Integer> numbers) {
+        setBalls(numbers);
     }
 
-    public static Balls valueOf(List<Integer> input) {
-        List<Ball> balls = asBalls(input);
-        validateDuplication(input, balls);
-        return new Balls(balls);
+    public static Balls valueOf(List<Integer> numbers) {
+        validateLength(numbers);
+        List<Integer> removedDuplicationNumbers = removeDuplication(numbers);
+        validateDuplication(numbers, removedDuplicationNumbers);
+        return new Balls(removedDuplicationNumbers);
     }
 
-    private static List<Ball> asBalls(List<Integer> balls) {
-        Set<Ball> removeDuplicationBalls = new LinkedHashSet<>();
-        for (Integer ball : balls) {
-            removeDuplicationBalls.add(new Ball(ball));
+    private static List<Integer> removeDuplication(List<Integer> numbers) {
+        Set<Integer> removedDuplicationNumbers = new LinkedHashSet<>();
+        for (Integer number : numbers) {
+            removedDuplicationNumbers.add(number);
         }
-        return new ArrayList<>(removeDuplicationBalls);
+        return new ArrayList<>(removedDuplicationNumbers);
     }
 
-    private static void validateDuplication(List<Integer> input, List<Ball> balls) {
-        if (balls.size() < input.size()) {
+    private static void validateLength(List<Integer> numbers) {
+        if (numbers == null || numbers.size() != COUNT_OF_BALLS) {
+            throw new InvalidBallsLength();
+        }
+    }
+
+    private static void validateDuplication(List<Integer> numbers, List<Integer> removeDuplicationNumbers) {
+        if (numbers.size() > removeDuplicationNumbers.size()) {
             throw new DuplicatedBallsException();
         }
     }
 
-    private void validateLength(List<Ball> balls) {
-        if (balls == null || balls.size() != COUNT_OF_BALLS) {
-            throw new InvalidBallsLength();
+    private void setBalls(List<Integer> numbers) {
+        for (int i = 0; i < COUNT_OF_BALLS; i++) {
+            balls.add(new Ball(numbers.get(i), START_POSITION+i));
         }
     }
 

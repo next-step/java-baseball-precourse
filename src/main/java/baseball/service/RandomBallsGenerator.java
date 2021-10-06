@@ -1,4 +1,4 @@
-package baseball.utils;
+package baseball.service;
 
 import baseball.domain.ball.Balls;
 import nextstep.utils.Randoms;

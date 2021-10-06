@@ -1,7 +1,7 @@
 package baseball.domain.ball;
 
-import baseball.exception.BaseBallException.DuplicatedBallsException;
-import baseball.exception.BaseBallException.InvalidBallsLength;
+import baseball.exception.BaseballException.DuplicatedBallsException;
+import baseball.exception.BaseballException.InvalidBallsLength;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @DisplayName("야구게임 숫자 모음 테스트")
 public class BallsTest {
 
-    @ParameterizedTest(name = "중복되지 않은 3자리 야구게임 숫자 모음 생성 테스트")
+    @ParameterizedTest
     @CsvSource({
             "1, 9, 7"
             , "2, 8, 1"
@@ -32,7 +32,7 @@ public class BallsTest {
         assertThat(balls.getSize()).isEqualTo(COUNT_OF_BALLS);
     }
 
-    @ParameterizedTest(name = "중복 존재시 예외발생 테스트")
+    @ParameterizedTest
     @CsvSource({
             "9, 9, 7"
             , "2, 8, 2"
@@ -45,7 +45,7 @@ public class BallsTest {
         assertThatThrownBy(() -> Balls.valueOf(inputValues)).isInstanceOf(DuplicatedBallsException.class);
     }
 
-    @ParameterizedTest(name = "자리수 예외발생 테스트")
+    @ParameterizedTest
     @CsvSource({
             "1, 2, 3, 4"
     })
