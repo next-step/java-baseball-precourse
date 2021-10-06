@@ -124,12 +124,11 @@ public class BaseBall {
     }
 
     private void printHint(int strikeNum, int ballNum){
-        if(strikeNum == 0 && ballNum == 0){
-            Message.printlnInform("낫싱");
-        }
-        if(strikeNum > 0 || ballNum > 0) {
-            Message.printlnInform(strikeNum + "스트라이크 " + ballNum + "볼");
-        }
+        String hint = "";
+        if(strikeNum == 0 && ballNum == 0){ hint = "낫싱";}
+        if(strikeNum > 0) { hint += strikeNum + "스트라이크 ";}
+        if(ballNum > 0) { hint += ballNum + "볼";}
+        Message.printlnInform(hint);
     }
 
     private String continueOrNot(){
