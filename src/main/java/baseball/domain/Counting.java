@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Counting {
-
     public List<Integer> forRemove;
     public int strikeCnt;
     public int ballCnt;

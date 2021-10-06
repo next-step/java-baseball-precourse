@@ -3,7 +3,6 @@ package baseball.service;
 import baseball.domain.Validation;
 
 public class ValidationService {
-
     private final Validation validation;
 
     public ValidationService() {
