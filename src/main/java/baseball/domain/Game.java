@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import baseball.utils.ValidationUtils;
 import nextstep.utils.Console;
 import nextstep.utils.Randoms;
 

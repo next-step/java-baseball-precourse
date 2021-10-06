@@ -1,6 +1,4 @@
-package baseball.domain;
-
-import java.util.List;
+package baseball.utils;
 
 public class ValidationUtils {
 
