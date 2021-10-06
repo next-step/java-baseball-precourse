@@ -4,6 +4,8 @@ import baseball.exception.InvalidBallNumberException;
 import baseball.model.BaseBallGame;
 import baseball.util.BallNumberUtil;
 import baseball.vo.BallNumberVo;
+import baseball.vo.GameResultVo;
+import baseball.vo.SubmitBallNumberResponseVo;
 
 public class BaseballGameConrtoller {
 	private BaseBallGame baseBallGame;
@@ -12,14 +14,17 @@ public class BaseballGameConrtoller {
 		baseBallGame = new BaseBallGame(BallNumberUtil.createBallNumber());
 	}
 
-	public String submitBallNumberStr(String str) {
-		String gameResult = "";
+	public SubmitBallNumberResponseVo submitBallNumberStr(String str) {
+		SubmitBallNumberResponseVo response = new SubmitBallNumberResponseVo();
 		try {
 			BallNumberVo ballNumber = BallNumberUtil.stringToBallNumber(str);
-			gameResult = baseBallGame.submitBallNumber(ballNumber);
+			baseBallGame.submitBallNumber(ballNumber);
+			GameResultVo gameResult = baseBallGame.getGameResult();
+			response.setGameResult(gameResult);
+			response.setStatus("SUCCESS");
 		} catch (InvalidBallNumberException e) {
-			gameResult = "InvalidBallNumberException";
+			response.setStatus("ERROR");
 		}
-		return gameResult;
+		return response;
 	}
 }

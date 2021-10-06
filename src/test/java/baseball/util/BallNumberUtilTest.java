@@ -107,4 +107,32 @@ public class BallNumberUtilTest {
 		assertThatThrownBy(() -> BallNumberUtil.stringToBallNumber("122"))
 			.isInstanceOf(InvalidBallNumberException.class);
 	}
+
+	@DisplayName("getBallBetweenBallNumber 테스트")
+	@Test
+	void getBallBetweenBallNumber() {
+		assertThatThrownBy(() -> BallNumberUtil.stringToBallNumber("122"))
+			.isInstanceOf(InvalidBallNumberException.class);
+	}
+
+	@DisplayName("getStrikeBetweenBallNumber 테스트")
+	@Test
+	void getStrikeBetweenBallNumber() throws InvalidBallNumberException {
+		BallNumberVo ballNumber1 = BallNumberUtil.stringToBallNumber("123");
+		BallNumberVo ballNumber2 = BallNumberUtil.stringToBallNumber("456");
+
+		assertThat(BallNumberUtil.getBallBetweenBallNumber(ballNumber1, ballNumber2)).isEqualTo(0);
+
+		ballNumber1 = BallNumberUtil.stringToBallNumber("123");
+		ballNumber2 = BallNumberUtil.stringToBallNumber("123");
+		assertThat(BallNumberUtil.getBallBetweenBallNumber(ballNumber1, ballNumber2)).isEqualTo(0);
+
+		ballNumber1 = BallNumberUtil.stringToBallNumber("123");
+		ballNumber2 = BallNumberUtil.stringToBallNumber("452");
+		assertThat(BallNumberUtil.getBallBetweenBallNumber(ballNumber1, ballNumber2)).isEqualTo(1);
+
+		ballNumber1 = BallNumberUtil.stringToBallNumber("123");
+		ballNumber2 = BallNumberUtil.stringToBallNumber("231");
+		assertThat(BallNumberUtil.getBallBetweenBallNumber(ballNumber1, ballNumber2)).isEqualTo(3);
+	}
 }

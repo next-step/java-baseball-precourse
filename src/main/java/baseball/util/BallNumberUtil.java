@@ -59,6 +59,39 @@ public class BallNumberUtil {
 		return ballNumber;
 	}
 
+	public static Integer getBallBetweenBallNumber(BallNumberVo ballNumber1, BallNumberVo ballNumber2) {
+		Integer ballCnt = 0;
+		List<Integer> numbers1 = ballNumber1.getNumbers();
+		List<Integer> numbers2 = ballNumber2.getNumbers();
+		for (int i = 0; i < SELECTED_NUMBER_SISE; i++) {
+			if (numbers1.indexOf(numbers2.get(i)) == -1) {
+				continue;
+			}
+			ballCnt += isBall(numbers1.indexOf(numbers2.get(i)), i) ? 1 : 0;
+		}
+		return ballCnt;
+	}
+
+	public static Integer getStrikeBetweenBallNumber(BallNumberVo ballNumber1, BallNumberVo ballNumber2) {
+		Integer strikeCnt = 0;
+		List<Integer> numbers1 = ballNumber1.getNumbers();
+		List<Integer> numbers2 = ballNumber2.getNumbers();
+		for (int i = 0; i < SELECTED_NUMBER_SISE; i++) {
+			if (numbers1.indexOf(numbers2.get(i)) == -1) {
+				continue;
+			}
+			strikeCnt += isBall(numbers1.indexOf(numbers2.get(i)), i) ? 0 : 1;
+		}
+		return strikeCnt;
+	}
+
+	private static Boolean isBall(Integer index1, Integer index2) {
+		if (index1 == index2) {
+			return false;
+		}
+		return true;
+	}
+
 	private static List<Integer> stringToNumbers(String str) {
 		List<Integer> numbers = new ArrayList<Integer>();
 		String[] splitedStrList = str.split("");
