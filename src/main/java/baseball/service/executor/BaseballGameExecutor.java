@@ -61,9 +61,9 @@ public class BaseballGameExecutor {
 
     private boolean isSingleGameContinue(BaseballGame baseballGame) {
         if (baseballGame.isContinue()) {
-            print(GameMessage.END_SINGLE_GAME_WITH_THREE_STRIKES);
             return true;
         }
+        print(GameMessage.END_SINGLE_GAME_WITH_THREE_STRIKES);
         return false;
     }
 }
