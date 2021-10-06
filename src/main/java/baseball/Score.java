@@ -38,4 +38,10 @@ public class Score {
         Set<UserNum> userNumsSet = new HashSet<>(userNums);
         return userNums.size() != userNumsSet.size();
     }
+
+    public void printErrorMsgs() {
+        for (String errorMsg : errorMsgs) {
+            System.out.println(errorMsg);
+        }
+    }
 }
