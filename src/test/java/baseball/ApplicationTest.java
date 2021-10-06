@@ -38,6 +38,36 @@ public class ApplicationTest extends NSTest {
         }
     }
 
+    @Test
+    void 이상한_문자_입력(){
+        try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
+            mockRandoms.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
+                    .thenReturn(7, 1, 3);
+            running("abc");
+            verify("[ERROR]");
+        }
+    }
+
+    @Test
+    void 중복_자릿수(){
+        try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
+            mockRandoms.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
+                    .thenReturn(7, 1, 3);
+            running("777");
+            verify("[ERROR]");
+        }
+    }
+
+    @Test
+    void 잘못된_종료숫자_입력(){
+        try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
+            mockRandoms.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
+                    .thenReturn(7, 1, 3);
+            running("713","4");
+            verify("[ERROR]");
+        }
+    }
+
     @AfterEach
     void tearDown() {
         outputStandard();
