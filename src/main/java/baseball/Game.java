@@ -14,7 +14,6 @@ import baseball.view.OutputMessage;
 public class Game {
 
 	private static final String RESTART_CODE = "1";
-	private static final String END_CODE = "2";
 
 	private final Player player;
 
@@ -31,19 +30,10 @@ public class Game {
 		this.gameStatus = GameStatus.START;
 	}
 
-	public Game(Player player, Examiner examiner, Checker checker) {
-		this.player = player;
-		this.examiner = examiner;
-		this.checker = checker;
-		this.gameStatus = GameStatus.START;
-	}
-
 	public void start(){
-
 		while(!this.gameStatus.equals(GameStatus.END)) {
 			play();
 		}
-
 	}
 
 	private void askRestart() {
