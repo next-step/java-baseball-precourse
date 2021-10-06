@@ -31,13 +31,9 @@ public class UserInput {
     }
 
     private boolean checkNumber(String input) {
-        if (input.charAt(0) < 49 || input.charAt(0) > 57 ) {
-            return false;
-        }
-        if (input.charAt(1) < 49 || input.charAt(1) > 57 ) {
-            return false;
-        }
-        if (input.charAt(2) < 49 || input.charAt(2) > 57 ) {
+        if (input.charAt(0) < 49 || input.charAt(0) > 57
+                || input.charAt(1) < 49 || input.charAt(1) > 57
+                ||input.charAt(2) < 49 || input.charAt(2) > 57 ) {
             return false;
         }
         return true;

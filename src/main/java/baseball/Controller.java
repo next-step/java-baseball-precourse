@@ -37,10 +37,9 @@ public class Controller {
     //GameState.REFEREECHECK
     public void refereeCheck() {
         out.printUserInput();
-        String input = null;
         try {
             event.setState(GameState.REFEREECHECK);
-            input = in.ball();
+            String input = in.ball();
             BallState ballState = referee.checkBallState(input);
             out.printBallState(ballState);
             chaeckGameOut(ballState);
@@ -58,10 +57,9 @@ public class Controller {
     //GameState.RESTART
     public void checkRestartGame() {
         out.printCheckExitGame();
-        String input = null;
         try {
             event.setState(GameState.CHECKRESTART);
-            input = in.restartGame();
+            String input = in.restartGame();
             event.setState(GameState.INIT);
             checkExitGame(input);
         } catch (Exception e) {
