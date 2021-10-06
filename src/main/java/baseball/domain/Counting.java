@@ -20,7 +20,7 @@ public class Counting {
     }
 
     public Integer strikeCounting(List<Integer> answerNumList, List<Integer> inputNumList) {
-        for(int i = 0; i < answerNumList.size(); i++) {
+        for (int i = 0; i < answerNumList.size(); i++) {
             addStrikeCnt(answerNumList, inputNumList, i);
         }
         inputNumList.removeAll(forRemove);
@@ -35,7 +35,7 @@ public class Counting {
     }
 
     public Integer ballCounting(List<Integer> answerNumList, List<Integer> inputNumList) {
-        for(int i = 0; i < inputNumList.size(); i++) {
+        for (int i = 0; i < inputNumList.size(); i++) {
             addBallCnt(answerNumList, inputNumList, i);
         }
         return ballCnt;

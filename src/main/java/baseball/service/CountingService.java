@@ -1,12 +1,11 @@
 package baseball.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import baseball.domain.Counting;
 import baseball.vo.GameResultVO;
 import nextstep.utils.Randoms;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 public class CountingService {
     public List<Integer> answerNumList;
@@ -40,7 +39,7 @@ public class CountingService {
         return counting.isCorrectAnswer(userInput, answerNum);
     }
 
-    public GameResultVO countingStart(String userInput) {
+    public GameResultVO countingStart() {
         counting.clearCnt();
         gameResultVO.setStrikeCnt(counting.strikeCounting(answerNumList, inputNumList));
         gameResultVO.setBallCnt(counting.ballCounting(answerNumList, inputNumList));
@@ -49,20 +48,20 @@ public class CountingService {
 
     public void makeAnswerNumList() {
         int resultRandom;
-        while(answerNumList.size() < 3) {
+        while (answerNumList.size() < 3) {
             resultRandom = Randoms.pickNumberInRange(1, 9);
             addAnswerNumList(resultRandom);
         }
     }
 
     public void addAnswerNumList(Integer resultRandom) {
-        if(!answerNumList.contains(resultRandom)) {
+        if (!answerNumList.contains(resultRandom)) {
             answerNumList.add(resultRandom);
         }
     }
 
     public void makeInputNumList(String inputVal) {
-        for(int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {
             inputNumList.add(Integer.parseInt(inputVal.split("")[i]));
         }
     }

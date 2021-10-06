@@ -1,13 +1,9 @@
 package baseball.controller;
 
-import baseball.domain.Counting;
 import baseball.service.CountingService;
 import baseball.view.UserView;
 import baseball.vo.GameResultVO;
 
-/*
-    숫자야구 게임 Controller
- */
 public class BaseballGameController {
     private Boolean gameFinish;
     private Boolean newGame;
@@ -15,7 +11,6 @@ public class BaseballGameController {
 
     private CountingService countingService;
     private UserView userView;
-
     private GameResultVO gameResultVO;
 
     public BaseballGameController() {
@@ -53,11 +48,12 @@ public class BaseballGameController {
         if (isAnswer) {
             askGameFinish();
         }
-        gameResultVO = countingService.countingStart(userInput);
+        gameResultVO = countingService.countingStart();
     }
 
     public void askGameFinish() {
-        if (gameFinish = (!userView.askOneMoreGame())) {
+        gameFinish = !userView.askOneMoreGame();
+        if (gameFinish) {
             setNewGame(true);
             setGameFinish(true);
             return;

@@ -1,17 +1,17 @@
 package baseball.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import static org.assertj.core.api.Assertions.assertThat;
 
-
-class ValidateValueTest {
+class ValidationTest {
 
 	@Nested
 	@DisplayName("isNum method는")
 	class Describe_isNum {
-		private ValidateValue validateValue = new ValidateValue();
+		private Validation validation = new Validation();
 		private String crtInput = "123";
 		private String errInput = "ball";
 
@@ -21,7 +21,7 @@ class ValidateValueTest {
 			@DisplayName("True를 반환한다.")
 			@Test
 			void it_returns_true() {
-				assertThat(validateValue.isNum(crtInput)).isTrue();
+				assertThat(validation.isNum(crtInput)).isTrue();
 			}
 		}
 
@@ -32,7 +32,7 @@ class ValidateValueTest {
 			@DisplayName("False를 반환한다.")
 			@Test
 			void it_return_false() {
-				assertThat(validateValue.isNum(errInput)).isFalse();
+				assertThat(validation.isNum(errInput)).isFalse();
 			}
 		}
 	}
@@ -41,7 +41,7 @@ class ValidateValueTest {
 	@Nested
 	@DisplayName("isCorrectLength method는")
 	class Describe_isCorrectLength {
-		private ValidateValue validateValue = new ValidateValue();
+		private Validation validation = new Validation();
 		private String crtInput = "123";
 		private String errInput = "12345";
 
@@ -51,7 +51,7 @@ class ValidateValueTest {
 			@DisplayName("True를 반환한다.")
 			@Test
 			void it_returns_true() {
-				assertThat(validateValue.isCorrectLength(crtInput)).isTrue();
+				assertThat(validation.isCorrectLength(crtInput)).isTrue();
 			}
 		}
 
@@ -61,7 +61,7 @@ class ValidateValueTest {
 			@DisplayName("False를 반환한다.")
 			@Test
 			void it_return_false() {
-				assertThat(validateValue.isCorrectLength(errInput)).isFalse();
+				assertThat(validation.isCorrectLength(errInput)).isFalse();
 			}
 		}
 	}
@@ -69,7 +69,7 @@ class ValidateValueTest {
 	@Nested
 	@DisplayName("isDiffNum method는")
 	class Describe_isDiffNum {
-		private ValidateValue validateValue = new ValidateValue();
+		private Validation validation = new Validation();
 		private String crtInput = "123";
 		private String errInput = "111";
 
@@ -79,7 +79,7 @@ class ValidateValueTest {
 			@DisplayName("True를 반환한다.")
 			@Test
 			void it_returns_true() {
-				assertThat(validateValue.isDiffNum(crtInput)).isTrue();
+				assertThat(validation.isDiffNum(crtInput)).isTrue();
 			}
 		}
 
@@ -89,7 +89,7 @@ class ValidateValueTest {
 			@DisplayName("False를 반환한다.")
 			@Test
 			void it_return_false() {
-				assertThat(validateValue.isDiffNum(errInput)).isFalse();
+				assertThat(validation.isDiffNum(errInput)).isFalse();
 			}
 		}
 	}

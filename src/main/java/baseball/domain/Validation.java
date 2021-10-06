@@ -3,12 +3,10 @@ package baseball.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ValidateValue {
+public class Validation {
     public static final String ERROR_MSG = "[ERROR] 서로 다른 세 자리의 자를 입력해주세요 :)";
 
-    public ValidateValue() {
-
-    }
+    public Validation() {}
 
     public Boolean isNum(String input) {
         try {
