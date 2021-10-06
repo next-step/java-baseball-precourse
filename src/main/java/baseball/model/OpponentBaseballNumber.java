@@ -11,6 +11,10 @@ public class OpponentBaseballNumber {
 
 	private List<Integer> baseballNumbers;
 
+	public List<Integer> getBaseballNumbers() {
+		return baseballNumbers;
+	}
+
 	public OpponentBaseballNumber(List<Integer> baseballNumbers) {
 		validateBaseballNumberSize(baseballNumbers);
 		validateBaseballNumberDuplicated(baseballNumbers);

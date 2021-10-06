@@ -11,9 +11,43 @@ import baseball.exception.InvalidInputTypeException;
 public class PlayerBaseballNumber {
 
 	private List<Integer> baseballNumbers;
+	private int strikeCount;
+	private int ballCount;
+
+	public PlayerBaseballNumber(List<Integer> baseballNumbers, int strikeCount, int ballCount) {
+		this.baseballNumbers = baseballNumbers;
+		this.strikeCount = strikeCount;
+		this.ballCount = ballCount;
+	}
 
 	public PlayerBaseballNumber(List<Integer> playerBaseballNumber) {
 		this.baseballNumbers = playerBaseballNumber;
+		strikeCount=0;
+		ballCount=0;
+	}
+
+	public List<Integer> getBaseballNumbers() {
+		return baseballNumbers;
+	}
+
+	public int getStrikeCount() {
+		return strikeCount;
+	}
+
+	public int getBallCount() {
+		return ballCount;
+	}
+
+	public void setBaseballNumbers(List<Integer> baseballNumbers) {
+		this.baseballNumbers = baseballNumbers;
+	}
+
+	public void setStrikeCount(int strikeCount) {
+		this.strikeCount = strikeCount;
+	}
+
+	public void setBallCount(int ballCount) {
+		this.ballCount = ballCount;
 	}
 
 	public static PlayerBaseballNumber createPlayerBaseballNumber(String playerInputNumber) {
@@ -58,15 +92,7 @@ public class PlayerBaseballNumber {
 		validateDuplicatedNumber(playerBaseballNumbers);
 
 		return playerBaseballNumbers;
-
 	}
 
-
-	private void validateBaseballNumberDuplicated(List<Integer> playerBaseballNumbers) {
-		HashSet<Integer> validateNumberHashSet = new HashSet<>(playerBaseballNumbers);
-
-		if(baseballNumbers.size() != validateNumberHashSet.size())
-			throw new DuplicatedNumberException();
-	}
 
 }
