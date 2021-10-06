@@ -33,7 +33,6 @@ public class BaseballGame {
     public void askRestart(){
         System.out.println("게임이 끝났습니다. 재시작하시려면 1, 종료하시려면 다른키 를 입력해주세요.");
         String restartInput = Console.readLine();
-        System.out.println(restartInput+"1");
         if (restartInput.equals("1")){
             this.GAMESTATUS="start";
             startGame();
