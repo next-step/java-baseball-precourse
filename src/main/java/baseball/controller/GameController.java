@@ -4,6 +4,8 @@ import baseball.domain.Game;
 import baseball.domain.Score;
 import baseball.view.GameView;
 
+import java.util.Objects;
+
 public class GameController {
 
     private static final String RESUME = "1";
@@ -22,9 +24,21 @@ public class GameController {
     public void start() {
         while (key) {
             view.showInputMessage();
-            Score score = game.input(view.getInput());
+            Score score = getScore();
+            if (Objects.isNull(score)) {
+                continue;
+            }
             view.showScoreMessage(score);
             checkCorrect(score);
+        }
+    }
+
+    private Score getScore() {
+        try {
+            return game.input(view.getInput());
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 
