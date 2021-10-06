@@ -21,6 +21,10 @@ public class PlayResult {
         }
     }
 
+    public boolean isNothing() {
+        return strike == 0 && ball == 0;
+    }
+
     public boolean isGameEnd() {
         return strike == 3;
     }

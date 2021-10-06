@@ -54,7 +54,7 @@ public class Game {
         int strike = playResult.getStrike();
         int ball = playResult.getBall();
 
-        if (strike == 0 && ball == 0) {
+        if (playResult.isNothing()) {
             System.out.println("낫싱");
             return;
         }
