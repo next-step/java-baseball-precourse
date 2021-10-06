@@ -1,5 +1,6 @@
 package baseball;
 
+import baseball.domain.GameBall;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -8,8 +9,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GameBallValidationTest {
     @Test
@@ -49,5 +50,27 @@ public class GameBallValidationTest {
     void validateNumberRangeSuccessTest(int userInputNumber) {
         assertThat(GameBallValidateUtils.isValidNumberRange(userInputNumber)).isTrue();
         assertTrue(GameBallValidateUtils.isValidNumberRange(userInputNumber));
+    }
+
+    @Test
+    @DisplayName("게임볼생성간예외처리테스트")
+    void validateCreatGameBallTest() {
+        /*IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            GameBall gameBall = new GameBall(Arrays.asList(1,1,2));
+        });
+        assertEquals("중복된 값이 있습니다.",exception.getMessage());*/
+
+        assertThatThrownBy(() -> {
+            GameBall gameBall = new GameBall(Arrays.asList(1,1,2));
+        }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining(GameBall.DUPLICATE_MESSAGE);
+
+        assertThatThrownBy(() -> {
+            GameBall gameBall = new GameBall(Arrays.asList(0,10,11));
+        }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining(GameBall.INVALID_RANGE_MESSAGE);
+
+        assertThatThrownBy(() -> {
+            GameBall gameBall = new GameBall(Arrays.asList(1,2));
+        }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining(GameBall.INVALID_DIGIT_MESSAGE);
+
     }
 }
