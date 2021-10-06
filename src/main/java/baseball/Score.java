@@ -6,11 +6,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.StringJoiner;
 
 public class Score {
     private List<UserNum> userNums;
     private List<Integer> randomNums;
     private List<String> errorMsgs;
+    private boolean successFlag;
 
     public Score(List<String> userNums, List<Integer> randomNums) {
         this.userNums = new ArrayList<>();
@@ -58,6 +60,26 @@ public class Score {
             }
         }
         return cntMap;
+    }
+
+    private String getResult(int strikeCnt, int ballCnt) {
+        StringJoiner resultMsg = new StringJoiner(" ");
+        successFlag = false;
+
+        if (strikeCnt==0 && ballCnt==0) {
+            return "낫싱";
+        }
+        if(strikeCnt > 0) {
+            resultMsg.add(strikeCnt + "스트라이크");
+            if(strikeCnt == randomNums.size()) {
+                resultMsg.add("\n" + strikeCnt + "개의 숫자를 모두 맞히셨습니다! 게임 끝");
+                successFlag = true;
+            }
+        }
+        if (ballCnt > 0) {
+            resultMsg.add(ballCnt + "볼");
+        }
+        return resultMsg.toString();
     }
 
     public void printErrorMsgs() {
