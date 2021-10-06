@@ -1,6 +1,5 @@
 package baseball;
 
-import baseball.domain.BaseballResult;
 import baseball.enums.RestartNy;
 import baseball.veiw.ConsoleResponse;
 import baseball.enums.GameMessage;
