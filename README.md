@@ -5,3 +5,9 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능 목록
+* 문제 생성(자릿수, 최소값, 최대값 설정)
+* 사용자로부터 정답 입력 받기 (예외 처리)
+* 결과 출력하기
+* 결과 판독 및 분기처리 (새로 시작 또는 종료)
