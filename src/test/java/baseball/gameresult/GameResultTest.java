@@ -36,7 +36,7 @@ public class GameResultTest {
 
         GameResult gameResult = new GameResult(computerBalls, userBalls);
 
-        assertThat(gameResult.playGame()).isEqualTo("1스트라이크 2볼");
+        assertThat(gameResult.getResultMessage()).isEqualTo("1스트라이크 2볼");
     }
 
     @Test
@@ -50,7 +50,7 @@ public class GameResultTest {
 
         GameResult gameResult = new GameResult(computerBalls, userBalls);
 
-        assertThat(gameResult.playGame()).isEqualTo("2스트라이크");
+        assertThat(gameResult.getResultMessage()).isEqualTo("2스트라이크");
     }
 
 
@@ -65,7 +65,7 @@ public class GameResultTest {
 
         GameResult gameResult = new GameResult(computerBalls, userBalls);
 
-        assertThat(gameResult.playGame()).isEqualTo("2볼");
+        assertThat(gameResult.getResultMessage()).isEqualTo("2볼");
     }
 
     @Test
@@ -79,7 +79,7 @@ public class GameResultTest {
 
         GameResult gameResult = new GameResult(computerBalls, userBalls);
 
-        assertThat(gameResult.playGame()).isEqualTo("낫싱");
+        assertThat(gameResult.getResultMessage()).isEqualTo("낫싱");
     }
 
     @Test
@@ -93,7 +93,7 @@ public class GameResultTest {
 
         GameResult gameResult = new GameResult(computerBalls, userBalls);
 
-        gameResult.playGame();
+        gameResult.getResultMessage();
 
         boolean gameEnd = gameResult.gameEnd("1");
         boolean gameNotEnd = gameResult.gameEnd("2");
