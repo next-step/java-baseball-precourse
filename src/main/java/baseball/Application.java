@@ -20,8 +20,9 @@ public class Application {
             boolean isStruckOut = false;
             while(!isStruckOut) {
                 try {
+                    Count count = new Count();
                     List<Integer> playerNumbers = facilitator.splitNumbers(command.askPlayerNumbers());
-                    Count count = referee.atBat(comNumbers, playerNumbers);
+                    referee.atBat(comNumbers, playerNumbers, count);
                     referee.callCount(command, count.getStrike(), count.getBall());
                     isStruckOut = referee.isStruckOut(count.getStrike());
                     if(isStruckOut) {

@@ -12,11 +12,15 @@ public class Facilitator {
         List<Integer> numbers = new ArrayList<>();
         while(numbers.size() < 3) {
             int num = Randoms.pickNumberInRange(1, 9);
-            if(!numbers.contains(num)) {
-                numbers.add(num);
-            }
+            inputNumbers(numbers, num);
         }
         return numbers;
+    }
+
+    public void inputNumbers(List<Integer> numbers, int num) {
+        if(!numbers.contains(num)) {
+            numbers.add(num);
+        }
     }
 
     public List<Integer> splitNumbers(String numbersStr) {

@@ -25,7 +25,8 @@ class RefereeTest {
     @ParameterizedTest
     @CsvSource({"1,2,3,0,3", "3,1,2,3,0", "1,3,2,2,1", "7,8,9,0,0"})
     public void atBat(int number1, int number2, int number3, int ball, int strike) {
-        Count count = referee.atBat(COM_NUMBERS, Arrays.asList(number1, number2, number3));
+        Count count = new Count();
+        referee.atBat(COM_NUMBERS, Arrays.asList(number1, number2, number3), count);
         assertThat(count.getBall()).isEqualTo(ball);
         assertThat(count.getStrike()).isEqualTo(strike);
     }

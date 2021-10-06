@@ -7,30 +7,34 @@ import java.util.Objects;
 
 public class Referee {
 
-    public Count atBat(List<Integer> comNumbers, List<Integer> playerNumbers) {
-        int strike = getStrike(comNumbers, playerNumbers);
-        int ball = correctCount(comNumbers, playerNumbers) - strike;
-        return new Count(ball, strike);
+    public void atBat(List<Integer> comNumbers, List<Integer> playerNumbers, Count count) {
+        strikeCheck(comNumbers, playerNumbers, count);
+        ballCheck(comNumbers, playerNumbers, count);
     }
 
-    private int correctCount(List<Integer> comNumbers, List<Integer> playerNumbers) {
-        int count = 0;
+    private void ballCheck(List<Integer> comNumbers, List<Integer> playerNumbers, Count count) {
         for(Integer playerNum : playerNumbers) {
-            if(comNumbers.contains(playerNum)) {
-                count++;
-            };
+            containNumber(comNumbers, playerNum, count);
         }
-        return count;
+        count.setBallCount();
     }
 
-    private int getStrike(List<Integer> comNumbers, List<Integer> playerNumbers) {
-        int count = 0;
-        for(int i=0; i<3; i++) {
-            if(Objects.equals(comNumbers.get(i), playerNumbers.get(i))) {
-                count++;
-            }
+    private void containNumber(List<Integer> comNumbers, Integer playerNum, Count count) {
+        if(comNumbers.contains(playerNum)) {
+            count.ballPlus();
         }
-        return count;
+    }
+
+    private void strikeCheck(List<Integer> comNumbers, List<Integer> playerNumbers, Count count) {
+        for(int i=0; i<3; i++) {
+            plusStrike(comNumbers.get(i), playerNumbers.get(i), count);
+        }
+    }
+
+    private void plusStrike(Integer comNum, Integer playerNum, Count count) {
+        if(Objects.equals(comNum, playerNum)) {
+            count.strikePlus();
+        }
     }
 
     public boolean isStruckOut(int strike) {
