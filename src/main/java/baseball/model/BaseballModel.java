@@ -14,10 +14,8 @@ public class BaseballModel implements Model{
     private List<Integer> randomNumber;
     private Map<String, Integer> result = new HashMap<>();
 
-    public BaseballModel(final int size) {
-        this.size = size;
-        this.generateRandomNumber();
-        this.gameStatus = GameStatus.STAGE_START;
+    public BaseballModel() {
+        this.gameStatus = GameStatus.BEFORE_START;
     }
 
     /**
@@ -100,6 +98,28 @@ public class BaseballModel implements Model{
         for(int i=0; i<arr.length-1; i++){
             if(arr[i] == arr[i+1])
                 throw new IllegalArgumentException("[ERROR] 중복된 값을 입력하였습니다");
+        }
+    }
+
+    public void startStage(int size) {
+        this.size = size;
+        this.generateRandomNumber();
+        this.gameStatus = GameStatus.STAGE_START;
+    }
+
+    public void continueGame(String answer) {
+        validateContinueGameAnswer(answer);
+        this.gameStatus = GameStatus.GAME_OVER;
+        if(answer.equals("1")) {
+            this.gameStatus = GameStatus.BEFORE_START;
+        }
+    }
+
+    private void validateContinueGameAnswer(String answer) {
+        if(answer == null || answer.isEmpty())
+            throw new IllegalArgumentException("[ERROR] 입력된 내용이 없습니다");
+        if(!answer.equals("1") && !answer.equals("2")){
+            throw new IllegalArgumentException("[ERROR] 옳바르지 않은 값입니다");
         }
     }
 }

@@ -8,10 +8,11 @@ import nextstep.utils.Console;
 public class Application {
     public static void main(String[] args) {
         BaseballController baseballController = new BaseballController();
-        while (true) {
-            ModelAndView gameMV = baseballController.startStage(3);
+        BaseballModel model = new BaseballModel();
+        while (model.getGameStatus() != GameStatus.GAME_OVER) {
+            ModelAndView gameMV = baseballController.startStage(model, 3);
             playStage(baseballController, gameMV);
-            break;
+            continueGame(baseballController, gameMV);
         }
     }
 
@@ -21,6 +22,15 @@ public class Application {
         while (model.getGameStatus() != GameStatus.STAGE_END) {
             gameMV = baseballController.challenge(model, Console.readLine());
             model = (BaseballModel) gameMV.getModel();
+            gameMV.getView().print();
+        }
+    }
+
+    private static void continueGame(BaseballController baseballController, ModelAndView gameMV) {
+        BaseballModel model = (BaseballModel) gameMV.getModel();
+        while (model.getGameStatus() == GameStatus.STAGE_END){
+            String console = Console.readLine();
+            gameMV = baseballController.continueGame(model, console);
             gameMV.getView().print();
         }
     }

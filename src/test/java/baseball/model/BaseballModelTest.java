@@ -10,21 +10,13 @@ import org.junit.jupiter.api.Test;
 
 class BaseballModelTest {
 
-    BaseballModel baseballModel;
-
     @DisplayName("랜덤 값 생성 테스트")
     @RepeatedTest(1000)
     void generateRandomNumber_테스트(){
         //given
         int size = 3;
-        baseballModel = new BaseballModel(size);
-
-        //when
-        baseballModel.generateRandomNumber();
-
-        //then
+        BaseballModel baseballModel = 모델생성(size);
         String randomNumber = baseballModel.getRandomNumber();
-        assertThat(randomNumber).isNotNull();
         assertThat(randomNumber.length()).isEqualTo(size);
 
         int randomNumberInt = Integer.parseInt(randomNumber);
@@ -44,11 +36,7 @@ class BaseballModelTest {
     @Test
     void challenge_테스트_입력내용없음() {
         //given
-        baseballModel = new BaseballModel(3);
-
-        //when
-        String randomNumber = baseballModel.getRandomNumber();
-        assertThat(randomNumber).isNotNull();
+        BaseballModel baseballModel = 모델생성(3);
 
         //then
         assertThatExceptionOfType(IllegalArgumentException.class)
@@ -58,13 +46,8 @@ class BaseballModelTest {
 
     @Test
     void challenge_테스트_크기미일치() {
-        //given
-        baseballModel = new BaseballModel(3);
-
-        //when
+        BaseballModel baseballModel = 모델생성(3);
         String randomNumber = baseballModel.getRandomNumber();
-        assertThat(randomNumber).isNotNull();
-
         //then
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> baseballModel.challenge(randomNumber+"3"))
@@ -74,11 +57,7 @@ class BaseballModelTest {
     @Test
     void challenge_테스트_0_입력() {
         //given
-        baseballModel = new BaseballModel(3);
-
-        //when
-        String randomNumber = baseballModel.getRandomNumber();
-        assertThat(randomNumber).isNotNull();
+        BaseballModel baseballModel = 모델생성(3);
 
         //then
         assertThatExceptionOfType(IllegalArgumentException.class)
@@ -89,11 +68,7 @@ class BaseballModelTest {
     @Test
     void challenge_테스트_숫자아닌값_입력() {
         //given
-        baseballModel = new BaseballModel(3);
-
-        //when
-        String randomNumber = baseballModel.getRandomNumber();
-        assertThat(randomNumber).isNotNull();
+        BaseballModel baseballModel = 모델생성(3);
 
         //then
         assertThatExceptionOfType(IllegalArgumentException.class)
@@ -104,11 +79,7 @@ class BaseballModelTest {
     @Test
     void challenge_테스트_중복값_입력() {
         //given
-        baseballModel = new BaseballModel(3);
-
-        //when
-        String randomNumber = baseballModel.getRandomNumber();
-        assertThat(randomNumber).isNotNull();
+        BaseballModel baseballModel = 모델생성(3);
 
         //then
         assertThatExceptionOfType(IllegalArgumentException.class)
@@ -119,9 +90,7 @@ class BaseballModelTest {
     @Test
     void challenge_테스트() {
         //given
-        baseballModel = new BaseballModel(3);
-
-        //when
+        BaseballModel baseballModel = 모델생성(3);
         String randomNumber = baseballModel.getRandomNumber();
         Map<String, Integer> challenge = baseballModel.challenge(randomNumber);
 
@@ -130,5 +99,58 @@ class BaseballModelTest {
         int ball = challenge.getOrDefault("BALL", 0);
         assertThat(strike).isEqualTo(randomNumber.length());
         assertThat(ball).isEqualTo(0);
+    }
+
+    @Test
+    void continueGame_테스트_미입력() {
+        //given
+        BaseballModel baseballModel = 모델생성(3);
+
+        //then
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> baseballModel.continueGame(""))
+                .withMessage("[ERROR] 입력된 내용이 없습니다");
+    }
+
+    @Test
+    void continueGame_테스트_다른값_입력() {
+        //given
+        BaseballModel baseballModel = 모델생성(3);
+
+        //then
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> baseballModel.continueGame("3"))
+                .withMessage("[ERROR] 옳바르지 않은 값입니다");
+    }
+
+    @Test
+    void continueGame_테스트_게임계속() {
+        //given
+        BaseballModel baseballModel = 모델생성(3);
+
+        //then
+        baseballModel.continueGame("1");
+        assertThat(baseballModel.getGameStatus()).isEqualTo(GameStatus.BEFORE_START);
+    }
+
+    @Test
+    void continueGame_테스트_게임종료() {
+        //given
+        BaseballModel baseballModel = 모델생성(3);
+
+        //then
+        baseballModel.continueGame("2");
+        assertThat(baseballModel.getGameStatus()).isEqualTo(GameStatus.GAME_OVER);
+    }
+
+    private BaseballModel 모델생성(int size) {
+        //given
+        BaseballModel baseballModel = new BaseballModel();
+
+        //when
+        baseballModel.startStage(size);
+        String randomNumber = baseballModel.getRandomNumber();
+        assertThat(randomNumber).isNotNull();
+        return baseballModel;
     }
 }
