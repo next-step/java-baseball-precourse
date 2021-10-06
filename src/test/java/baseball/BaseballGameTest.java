@@ -1,5 +1,6 @@
 package baseball;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import utils.TestUtils;
 
@@ -13,6 +14,7 @@ class BaseballGameTest {
     private static final int TEST_SIZE = 10000;
 
     @Test
+    @DisplayName("생성된 정답은 길이가 3이다.")
     void generateGameAnswer_has_size_three() {
         for (int i = 0; i < TEST_SIZE; i++) {
             int[] result = BaseballGame.generateGameAnswer();
@@ -21,6 +23,7 @@ class BaseballGameTest {
     }
 
     @Test
+    @DisplayName("생성된 정답은 distinct 숫자로 구성되어 있다.")
     void generateGameAnswer_consist_of_distinct_number() {
         for (int i = 0; i < TEST_SIZE; i++) {
             int[] result = BaseballGame.generateGameAnswer();
@@ -30,6 +33,7 @@ class BaseballGameTest {
     }
 
     @Test
+    @DisplayName("생성된 정답의 각 숫자는 1~9 사이의 숫자이다.")
     void generateGameAnswer_consist_of_1_to_9() {
         for (int i = 0; i < TEST_SIZE; i++) {
             int[] result = BaseballGame.generateGameAnswer();

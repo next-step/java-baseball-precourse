@@ -21,7 +21,7 @@ public class Application {
         BaseballGame game = new BaseballGame(gameAnswer);
 
         while (true) {
-            if (game.isFinished()) game = new BaseballGame(BaseballGame.generateGameAnswer());
+            game = startNewGameOnGameFinished(game);
             game.initGrade();
             GameUI.printNumberInputRequest();
             String userInput = GameUI.userInput();
@@ -51,6 +51,11 @@ public class Application {
 
             GameUI.printGrade(game.getStrikeCount(), game.getBallCount());
         }
+    }
+
+    private static BaseballGame startNewGameOnGameFinished(BaseballGame game) {
+        if (game.isFinished()) game = new BaseballGame(BaseballGame.generateGameAnswer());
+        return game;
     }
 
 }
