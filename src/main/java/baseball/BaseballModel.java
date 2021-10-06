@@ -19,10 +19,11 @@ public class BaseballModel {
                 computerNumber = computerNumber + number;
             }
         }
-
-        System.out.println(computerNumber);
     }
 
+    /*
+    스트라이크 볼 판정
+     */
     public BaseballResult countStrikeBall(String iuputNumber){
         int strike = 0;
         int ball = 0;
@@ -44,11 +45,25 @@ public class BaseballModel {
         return new BaseballResult(strike, ball, resultCode);
     }
 
+    /*
+    입력된 숫자 검증
+     */
     private Boolean verifyNumber(String inputNumber){
-
+        if("".equals(inputNumber) || inputNumber.length() != numberSize){
+            return false;
+        }
+        for (int i = 0; i < numberSize; i++) {
+            if(i != inputNumber.lastIndexOf(inputNumber.charAt(i))
+                || !Character.isDigit(inputNumber.charAt(i))){
+                return false;
+            }
+        }
         return true;
     }
 
+    /*
+    스트라이크 카운트
+     */
     private int countStrike(String inputNumber){
         int strike = 0;
         for(int i=0; i < numberSize; i++){
@@ -59,6 +74,9 @@ public class BaseballModel {
         return strike;
     }
 
+    /*
+    볼 카운트
+     */
     private int countBall(String inputNumber){
         int ball = 0;
         for(int i=0; i < numberSize; i++){

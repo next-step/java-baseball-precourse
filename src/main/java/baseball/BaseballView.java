@@ -7,7 +7,7 @@ import static nextstep.utils.Console.readLine;
 public class BaseballView {
 
     static final String inputInitMessage = "숫자를 입력해주세요 : ";
-    static final String inputErrorMessage = "[ERROR]잘못된 입력형식 입니다. 다시 입력해주세요. ";
+    static final String inputErrorMessage = "[ERROR] 잘못된 입력형식 입니다. 다시 입력해주세요.(입력형식 : 1~9 중 서로 다른 수로 이루어진 3자리수)";
     static final String GamEndMessage = "3개의 숫자를 모두 맞히셨습니다! 게임 끝";
     static final String notingMessage = "낫싱";
     static final String strikeMessage = "스트라이크 ";
@@ -33,8 +33,6 @@ public class BaseballView {
             resultCode = baseballResult.getResultCode();
 
         }
-
-
     }
 
     private String InputNumber(){
