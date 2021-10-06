@@ -1,5 +1,10 @@
 package baseball.domain;
 
+/**
+ * @author theco2de
+ * @version 1.0
+ * @since 1.0
+ */
 public class Gamer {
 
 	public final static int BALL_COUNT_LENGTH = 3;

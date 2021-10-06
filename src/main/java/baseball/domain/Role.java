@@ -3,7 +3,12 @@ package baseball.domain;
 import java.util.Arrays;
 import java.util.List;
 
-public class Umpire {
+/**
+ * @author theco2de
+ * @version 1.0
+ * @since 1.0
+ */
+public class Role {
 
     private Computer computer;
     private Gamer gamer;
@@ -11,7 +16,7 @@ public class Umpire {
     private int ballCount;
     private List tempList;
 
-    public Umpire(Computer computer, Gamer gamer) {
+    public Role(Computer computer, Gamer gamer) {
         this.computer = computer;
         this.gamer = gamer;
     }
@@ -24,13 +29,21 @@ public class Umpire {
         return ballCount;
     }
 
+    /**
+     * 3 스트라이크 판정
+     * @return boolean
+     */
     public boolean isThreeStrike() {
         if (this.strikeCount == 3)
             return true;
         return false;
     }
 
-    public Umpire called() {
+    /**
+     * 스트라이크와 볼 수 판정
+     * @return Role
+     */
+    public Role called() {
         this.tempList = Arrays.asList(gamer.getBalls());
         for (int i = 0; i < computer.getFullCount().length; i++) {
             countStrike(gamer.getBalls()[i], computer.getFullCount()[i]);
@@ -39,10 +52,20 @@ public class Umpire {
         return this;
     }
 
+    /**
+     * 스트라이크 수 판정
+     * @param ball
+     * @param count
+     */
     private void countStrike(int ball, int count) {
         if (ball == count) strikeCount++;
     }
 
+    /**
+     * 볼 수 판정
+     * @param index
+     * @param count
+     */
     private void countBall(int index, int count) {
         int tempIndex = tempList.indexOf(count);
         if (tempIndex > -1 && index != tempList.indexOf(count)) ballCount++;

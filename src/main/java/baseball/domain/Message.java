@@ -1,5 +1,10 @@
 package baseball.domain;
 
+/**
+ * @author theco2de
+ * @version 1.0
+ * @since 1.0
+ */
 public enum Message {
 
     INPUT("숫자를 입력해 주세요 : "),
