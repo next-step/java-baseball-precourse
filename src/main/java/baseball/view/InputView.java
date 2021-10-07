@@ -19,7 +19,7 @@ public final class InputView {
 			System.out.println(INPUT_NUMBER_MESSAGE);
 			return Player.create(Console.readLine());
 		} catch (InvalidNumberRangeException | InvalidNumbersSizeException | DuplicateNumberException e) {
-			printErrorInvalidInPutValueMessage(e.getMessage());
+			printInvalidInputValueErrorMessage(e.getMessage());
 			return getPlayer();
 		}
 	}
@@ -30,7 +30,7 @@ public final class InputView {
 		String commandString = Console.readLine();
 		GameConsoleCommand command = GameConsoleCommand.findFirstOrNull(commandString);
 		if (command == null) {
-			printErrorInvalidInPutValueMessage(commandString);
+			printInvalidInputValueErrorMessage(commandString);
 			return isRestartGame();
 		}
 
@@ -43,7 +43,7 @@ public final class InputView {
 			GameConsoleCommand.END_GAME.getCommandStringValue()));
 	}
 
-	private static void printErrorInvalidInPutValueMessage(String message) {
+	private static void printInvalidInputValueErrorMessage(String message) {
 		System.err.println(String.format(ERROR_INVALID_INPUT_VALUE_MESSAGE_FORMANT, message));
 	}
 }

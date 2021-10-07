@@ -21,6 +21,6 @@ class RandomNumbersGeneratorTest {
 		assertThat(randomNumbers)
 			.isNotNull()
 			.satisfies(numbers -> assertThat(numbers.getValues())
-				.hasSize(Numbers.SIZE));
+				.hasSize(Numbers.IMMUTABLE_SIZE));
 	}
 }

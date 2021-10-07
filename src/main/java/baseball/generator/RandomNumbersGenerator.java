@@ -10,11 +10,11 @@ import nextstep.utils.Randoms;
 public class RandomNumbersGenerator implements NumbersGenerator {
 	@Override
 	public Numbers createNumbers() {
-		LinkedHashSet<Integer> threeDigitNumbers = new LinkedHashSet<>(Numbers.SIZE);
-		while (Numbers.SIZE != threeDigitNumbers.size()) {
-			threeDigitNumbers.add(Randoms.pickNumberInRange(Number.MIN, Number.MAX));
+		LinkedHashSet<Integer> randomNumbers = new LinkedHashSet<>(Numbers.IMMUTABLE_SIZE);
+		while (Numbers.IMMUTABLE_SIZE != randomNumbers.size()) {
+			randomNumbers.add(Randoms.pickNumberInRange(Number.MIN, Number.MAX));
 		}
 
-		return new Numbers(new ArrayList<>(threeDigitNumbers));
+		return new Numbers(new ArrayList<>(randomNumbers));
 	}
 }

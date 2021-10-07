@@ -31,7 +31,7 @@ public class Hint {
 	}
 
 	public boolean isStrikeOut() {
-		return values.get(StrikeZone.STRIKE) == Numbers.SIZE;
+		return values.get(StrikeZone.STRIKE) == Numbers.IMMUTABLE_SIZE;
 	}
 
 	@Override

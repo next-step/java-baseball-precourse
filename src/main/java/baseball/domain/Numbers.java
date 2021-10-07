@@ -10,7 +10,7 @@ import baseball.exception.InvalidNumbersSizeException;
 import baseball.utils.CollectionUtils;
 
 public class Numbers {
-	public static final int SIZE = 3;
+	public static final int IMMUTABLE_SIZE = 3;
 
 	private final List<Number> values;
 
@@ -20,7 +20,7 @@ public class Numbers {
 			checkDuplicateNumber(values, value);
 		}
 
-		List<Number> numbers = new ArrayList<>(SIZE);
+		List<Number> numbers = new ArrayList<>(IMMUTABLE_SIZE);
 		for (Integer value : values) {
 			numbers.add(new Number(value));
 		}
@@ -61,9 +61,9 @@ public class Numbers {
 	}
 
 	private void checkValidValuesSize(List<Integer> values) {
-		boolean isValid = !CollectionUtils.isEmpty(values) && values.size() == SIZE;
+		boolean isValid = !CollectionUtils.isEmpty(values) && values.size() == IMMUTABLE_SIZE;
 		if (!isValid) {
-			throw new InvalidNumbersSizeException(SIZE);
+			throw new InvalidNumbersSizeException(IMMUTABLE_SIZE);
 		}
 	}
 

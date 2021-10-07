@@ -29,8 +29,7 @@ public final class ResultView {
 
 	private static String getHintString(Hint hint) {
 		List<String> list = new ArrayList<>();
-		EnumSet<StrikeZone> strikeZoneSet = EnumSet.of(StrikeZone.STRIKE, StrikeZone.BALL);
-		for (StrikeZone strikeZone : strikeZoneSet) {
+		for (StrikeZone strikeZone : EnumSet.of(StrikeZone.STRIKE, StrikeZone.BALL)) {
 			addHitStrikeZoneCountString(list, hint, strikeZone);
 		}
 
@@ -41,12 +40,12 @@ public final class ResultView {
 	}
 
 	private static void addHitStrikeZoneCountString(List<String> list, Hint hint, StrikeZone strikeZone) {
-		int count = hint.getCount(strikeZone);
-		boolean isNoneHitCount = count == 0;
+		int hitCount = hint.getCount(strikeZone);
+		boolean isNoneHitCount = hitCount == 0;
 		if (isNoneHitCount) {
 			return;
 		}
 
-		list.add(count + strikeZone.getName());
+		list.add(hitCount + strikeZone.getName());
 	}
 }

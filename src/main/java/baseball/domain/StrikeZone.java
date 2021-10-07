@@ -34,7 +34,7 @@ public enum StrikeZone {
 
 		while (iterator.hasNext()) {
 			StrikeZone strikeZone = iterator.next();
-			removeIfNotExists(iterator, strikeZone, existsNumber, sameDigit);
+			removeIfNotEqualsValue(iterator, strikeZone, existsNumber, sameDigit);
 		}
 		return list.get(0);
 	}
@@ -43,14 +43,14 @@ public enum StrikeZone {
 		return name;
 	}
 
-	private static void removeIfNotExists(Iterator<StrikeZone> iterator, StrikeZone strikeZone,
-		boolean existNumber, boolean sameDigit) {
-		if (!strikeZone.equalsOf(existNumber, sameDigit)) {
+	private static void removeIfNotEqualsValue(Iterator<StrikeZone> iterator, StrikeZone strikeZone,
+		boolean otherExistNumber, boolean otherSameDigit) {
+		if (!strikeZone.equalsValue(otherExistNumber, otherSameDigit)) {
 			iterator.remove();
 		}
 	}
 
-	private boolean equalsOf(boolean existNumber, boolean sameDigit) {
+	private boolean equalsValue(boolean existNumber, boolean sameDigit) {
 		return this.existsNumber == existNumber && this.sameDigit == sameDigit;
 	}
 }

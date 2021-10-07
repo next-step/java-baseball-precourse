@@ -24,7 +24,7 @@ class NumbersTest {
 
 		// then
 		assertThat(numbers.getValues())
-			.hasSize(Numbers.SIZE)
+			.hasSize(Numbers.IMMUTABLE_SIZE)
 			.contains(new Number(1), new Number(2), new Number(3));
 	}
 
@@ -35,10 +35,10 @@ class NumbersTest {
 		assertAll(
 			() -> assertThatThrownBy(() -> new Numbers(Arrays.asList(1, 2, 3, 4)))
 				.isInstanceOf(InvalidNumbersSizeException.class)
-				.hasMessage("The number of digits must be %d.", Numbers.SIZE),
+				.hasMessage("The number of digits must be %d.", Numbers.IMMUTABLE_SIZE),
 			() -> assertThatThrownBy(() -> new Numbers(Arrays.asList(1, 2)))
 				.isInstanceOf(InvalidNumbersSizeException.class)
-				.hasMessage("The number of digits must be %d.", Numbers.SIZE)
+				.hasMessage("The number of digits must be %d.", Numbers.IMMUTABLE_SIZE)
 		);
 	}
 

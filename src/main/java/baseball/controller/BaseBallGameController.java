@@ -18,7 +18,7 @@ public class BaseBallGameController {
 		return new BaseBallGameController(numbersGenerator);
 	}
 
-	public void start() {
+	public void playBall() {
 		Computer computer = Computer.create(numbersGenerator);
 		Hint hint;
 		do {
@@ -28,16 +28,16 @@ public class BaseBallGameController {
 			ResultView.print(hint);
 		} while (!isEndGame(hint));
 
-		attemptRestartGame();
+		attemptReplayBall();
 	}
 
 	private boolean isEndGame(Hint hint) {
 		return hint.isStrikeOut();
 	}
 
-	private void attemptRestartGame() {
+	private void attemptReplayBall() {
 		if (InputView.isRestartGame()) {
-			start();
+			playBall();
 			return;
 		}
 

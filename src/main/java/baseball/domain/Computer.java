@@ -18,7 +18,7 @@ public class Computer {
 	public Hint getHintFromPlayerNumbers(Player player) {
 		Hint hint = Hint.create();
 
-		for (int digit = 0; digit < Numbers.SIZE; digit++) {
+		for (int digit = 0; digit < Numbers.IMMUTABLE_SIZE; digit++) {
 			Number number = values.get(digit);
 
 			boolean existsNumber = player.isContainsNumber(number);
