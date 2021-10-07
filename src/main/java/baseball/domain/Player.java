@@ -21,8 +21,8 @@ public class Player {
 		return values.isContains(number);
 	}
 
-	public int getNumberDigit(Number number) {
-		return values.getDigit(number);
+	public int getNumberIndex(Number number) {
+		return values.getNumberIndex(number);
 	}
 
 	@Override

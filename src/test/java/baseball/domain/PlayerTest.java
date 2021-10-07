@@ -42,23 +42,23 @@ class PlayerTest {
 	}
 
 	@Test
-	@DisplayName("플레이어의 특정 Number 자릿수를 반환한다.")
-	void getNumberDigit() {
+	@DisplayName("플레이어의 특정 Number index를 반환한다.")
+	void getNumberIndex() {
 		// given
 		Player player = new Player(new Numbers(Arrays.asList(3, 1, 2)));
 
 		// when
-		int digit = player.getNumberDigit(new Number(4));
-		int digitOfFirst = player.getNumberDigit(new Number(3));
-		int digitOfSecond = player.getNumberDigit(new Number(1));
-		int digitOfThird = player.getNumberDigit(new Number(2));
+		int indexOfNotExistsNumber = player.getNumberIndex(new Number(4));
+		int indexOfFirst = player.getNumberIndex(new Number(3));
+		int indexOfSecond = player.getNumberIndex(new Number(1));
+		int indexOfThird = player.getNumberIndex(new Number(2));
 
 		// then
 		assertAll(
-			() -> assertThat(digit).isZero(),
-			() -> assertThat(digitOfFirst).isEqualTo(1),
-			() -> assertThat(digitOfSecond).isEqualTo(2),
-			() -> assertThat(digitOfThird).isEqualTo(3)
+			() -> assertThat(indexOfNotExistsNumber).isEqualTo(-1),
+			() -> assertThat(indexOfFirst).isZero(),
+			() -> assertThat(indexOfSecond).isEqualTo(1),
+			() -> assertThat(indexOfThird).isEqualTo(2)
 		);
 	}
 }

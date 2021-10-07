@@ -79,21 +79,21 @@ class NumbersTest {
 	}
 
 	@Test
-	@DisplayName("지정된 Number의 자릿수를 반환한다.")
-	void getDigit() {
+	@DisplayName("Number의 자릿수를 반환한다.")
+	void getNumberIndex() {
 		// given
 		Numbers numbers = new Numbers(Arrays.asList(2, 3, 1));
 
 		// when
-		int digitOfFirst = numbers.getDigit(new Number(2));
-		int digitOfSecond = numbers.getDigit(new Number(3));
-		int digitOfThird = numbers.getDigit(new Number(1));
+		int indexOfFirst = numbers.getNumberIndex(new Number(2));
+		int indexOfSecond = numbers.getNumberIndex(new Number(3));
+		int indexOfThird = numbers.getNumberIndex(new Number(1));
 
 		// then
 		assertAll(
-			() -> assertThat(digitOfFirst).isEqualTo(1),
-			() -> assertThat(digitOfSecond).isEqualTo(2),
-			() -> assertThat(digitOfThird).isEqualTo(3)
+			() -> assertThat(indexOfFirst).isZero(),
+			() -> assertThat(indexOfSecond).isEqualTo(1),
+			() -> assertThat(indexOfThird).isEqualTo(2)
 		);
 	}
 

@@ -31,8 +31,8 @@ public class Numbers {
 		return values.contains(number);
 	}
 
-	public int getDigit(Number number) {
-		return values.indexOf(number) + 1;
+	public int getNumberIndex(Number number) {
+		return values.indexOf(number);
 	}
 
 	public Number get(int index) {
