@@ -9,17 +9,29 @@ public class StringTest {
     @Test
     void Should_SplitTheString_When_WithColon() {
         // given
-        String case1 = "1,2";
+        String testCase1 = "1,2";
         // when
-        final String[] splitCase1 = case1.split(",");
+        final String[] result1 = testCase1.split(",");
         // then
-        assertThat(splitCase1).contains("1").contains("2");
+        assertThat(result1).contains("1").contains("2");
 
         // given
-        String case2 = "1";
+        String testCase2 = "1";
         // when
-        final String[] splitCase2 = case2.split(",");
+        final String[] result2 = testCase2.split(",");
         // then
-        assertThat(splitCase2).containsExactly("1");
+        assertThat(result2).containsExactly("1");
+    }
+
+    @Test
+    void Should_SubstringTheString_When_WithBracket() {
+        // given
+        String testCase = "(1,2)";
+        // when
+        final int indexLeftBracket = testCase.indexOf("(");
+        final int indexRightBracket = testCase.indexOf(")");
+        final String result = testCase.substring(indexLeftBracket+1, indexRightBracket);
+        // then
+        assertThat(result).isEqualTo("1,2");
     }
 }
