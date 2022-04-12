@@ -6,7 +6,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 public class Play {
 
     public void validInput(String input) {
-        if (input.length() > 3) {
+        if (input.length() > 3 || input.length() < 3) {
             throw new IllegalArgumentException("입력값은 3자리 숫자여야 합니다.");
         }
     }
@@ -48,5 +48,20 @@ public class Play {
         }
 
         return 3;
+    }
+
+    public String printResult(Board board) {
+        StringBuilder sb = new StringBuilder();
+
+        if (board.getScore()[0] == 0 && board.getScore()[1] == 0) {
+            return "낫싱";
+        }
+        if (board.getScore()[0] > 0) {
+            sb.append(board.getScore()[0]).append("볼 ");
+        }
+        if (board.getScore()[1] > 0) {
+            sb.append(board.getScore()[1]).append("스트라이크");
+        }
+        return sb.toString();
     }
 }
