@@ -86,4 +86,30 @@ public class PlayTest {
         assertThat(retNot).isEqualTo(3);
 
     }
+
+    @Test
+    void printResultTest() {
+        Board board = new Board();
+        Play play = new Play();
+
+        assertThat(play.printResult(board)).isEqualTo("낫싱");
+    }
+
+    @Test
+    void printResultTest_strike() {
+        Board board = new Board();
+        Play play = new Play();
+        board.setScore(new int[]{0 ,3});
+
+        assertThat(play.printResult(board)).isEqualTo("3스트라이크");
+    }
+
+    @Test
+    void printResultTest_ball() {
+        Board board = new Board();
+        Play play = new Play();
+        board.setScore(new int[]{3 ,0});
+
+        assertThat(play.printResult(board)).isEqualTo("3볼 ");
+    }
 }
