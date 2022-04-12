@@ -18,4 +18,35 @@ public class Play {
         }
         board.setGoal(arr);
     }
+
+    public void writeScore(Board board, String input) {
+        String[] tmp = input.split("");
+        int[] score = new int[2];
+        for (int i = 0; i < 3; i++) {
+            int result = checkNum(board.getGoal(), Integer.parseInt(tmp[i]), i);
+            if (result == 1) {
+                score[1]++;
+                continue;
+            }
+            if (result == 2) {
+                score[0]++;
+                continue;
+            }
+        }
+        board.setScore(score);
+    }
+
+    private int checkNum(int[] goal, int num, int index) {
+        if (goal[index] == num) {
+            return 1;
+        }
+
+        for (int i = 0; i < 3; i++) {
+            if (goal[i] == num) {
+                return 2;
+            }
+        }
+
+        return 3;
+    }
 }
