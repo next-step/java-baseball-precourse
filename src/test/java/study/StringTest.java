@@ -1,7 +1,11 @@
 package study;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
 
+import org.assertj.core.api.AbstractThrowableAssert;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class StringTest {
@@ -30,8 +34,23 @@ public class StringTest {
         // when
         final int indexLeftBracket = testCase.indexOf("(");
         final int indexRightBracket = testCase.indexOf(")");
-        final String result = testCase.substring(indexLeftBracket+1, indexRightBracket);
+        final String result = testCase.substring(indexLeftBracket + 1, indexRightBracket);
         // then
         assertThat(result).isEqualTo("1,2");
+    }
+
+    @Test
+    @DisplayName("문자열 인덱스를 벗어나는 인덱스 입력시 StringIndexOutOfBoundsException이 발생한다.")
+    void Should_OccurException_When_InputInvalidIndex() {
+        // given
+        String testCase = "abc";
+        // when
+        final Throwable exception = catchThrowable(() -> testCase.charAt(3));
+        // then
+        assertThat(exception)
+                .isInstanceOf(IndexOutOfBoundsException.class)
+                .hasMessageContaining("String index out of range: 3");
+
+
     }
 }
