@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class SetTest {
     private Set<Integer> numbers;
@@ -25,6 +27,13 @@ public class SetTest {
         final int result = numbers.size();
         // then
         assertThat(result).isEqualTo(3);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1,2,3})
+    void Should_ReturnTheSize_When_CallSizeMethod(int when) {
+        // then
+        assertThat(numbers).contains(when);
     }
 
 }
