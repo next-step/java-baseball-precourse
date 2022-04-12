@@ -7,6 +7,7 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class SetTest {
@@ -36,4 +37,10 @@ public class SetTest {
         assertThat(numbers).contains(when);
     }
 
+    @ParameterizedTest
+    @CsvSource(value = {"1:true","2:true","3:true","4:false","5:false"}, delimiter = ':')
+    void Should_ReturnTheSize_When_CallSizeMethod(int when, boolean expect) {
+        // then
+        assertThat(numbers.contains(when)).isEqualTo(expect);
+    }
 }
