@@ -29,7 +29,7 @@ class BaseballDecisionTest {
 
     @Test
     @DisplayName("결과 1스트라이크")
-    void threeStrike() {
+    void oneStrike() {
         // given
         userNumber.setNumbers(Arrays.asList(1, 2, 3));
 

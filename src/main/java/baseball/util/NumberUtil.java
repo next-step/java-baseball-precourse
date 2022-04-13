@@ -8,8 +8,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public final class RandomNumberUtil {
-    private RandomNumberUtil() {
+public final class NumberUtil {
+    private NumberUtil() {
     }
 
     public static List<Integer> pickUniqueNumbers(int start, int end, int size) {

@@ -10,7 +10,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-class RandomNumberUtilTest {
+class NumberUtilTest {
     @RepeatedTest(value = 10, name = "{displayName} {currentRepetition}/{totalRepetitions}")
     @DisplayName("1부터 9까지 서로 다른 수로 이루어진 3자리의 수 생성")
     void pickUniqueNumbers() {
@@ -20,8 +20,8 @@ class RandomNumberUtilTest {
         int randomNumberSize = 3;
 
         // when
-        List<Integer> numbers = RandomNumberUtil.pickUniqueNumbers(startRandomNumber, endRandomNumber,
-                                                                   randomNumberSize);
+        List<Integer> numbers = NumberUtil.pickUniqueNumbers(startRandomNumber, endRandomNumber,
+                                                             randomNumberSize);
 
         // then
         assertThat(numbers).hasSize(randomNumberSize);
@@ -39,9 +39,9 @@ class RandomNumberUtilTest {
 
         // when
         Throwable exception = assertThrows(IllegalArgumentException.class,
-                                           () -> RandomNumberUtil.pickUniqueNumbers(startRandomNumber,
-                                                                                    endRandomNumber,
-                                                                                    randomNumberSize));
+                                           () -> NumberUtil.pickUniqueNumbers(startRandomNumber,
+                                                                              endRandomNumber,
+                                                                              randomNumberSize));
         String message = exception.getMessage();
 
         // then
