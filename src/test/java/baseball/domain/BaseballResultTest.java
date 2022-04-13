@@ -21,14 +21,13 @@ class BaseballResultTest {
                                                                                   END_RANDOM_NUMBER,
                                                                                   NUMBER_COUNT);
 
-    private final BaseballNumber computerNumber = new BaseballNumber(validator);
-    private final BaseballNumber userNumber = new BaseballNumber(validator);
-    private final BaseballDecision decision = new BaseballDecision();
+    private BaseballDecision decision;
 
     @BeforeEach
     void setUp() {
-        computerNumber.setNumbers(Arrays.asList(4, 2, 5));
-        decision.setComputerNumber(computerNumber);
+        List<Integer> numbers = Arrays.asList(4, 2, 5);
+        BaseballNumber computerNumber = new BaseballNumber(numbers, validator);
+        decision = new BaseballDecision(computerNumber);
     }
 
     @ParameterizedTest(name = "{displayName} value={0}")
@@ -40,7 +39,7 @@ class BaseballResultTest {
         BaseballInput input = new MockBaseballInput(value); // 인자로 전달된 값을 반환하는 목 객체 사용
         String text = input.read();
         List<Integer> numbers = NumberUtil.convertTextToIntegerList(text);
-        userNumber.setNumbers(numbers);
+        BaseballNumber userNumber = new BaseballNumber(numbers, validator);
 
         // when
         BaseballResult result = decision.getResult(userNumber);
@@ -57,7 +56,7 @@ class BaseballResultTest {
         BaseballInput input = new MockBaseballInput(value);
         String text = input.read();
         List<Integer> numbers = NumberUtil.convertTextToIntegerList(text);
-        userNumber.setNumbers(numbers);
+        BaseballNumber userNumber = new BaseballNumber(numbers, validator);
 
         // when
         BaseballResult result = decision.getResult(userNumber);
@@ -74,7 +73,7 @@ class BaseballResultTest {
         BaseballInput input = new MockBaseballInput(value);
         String text = input.read();
         List<Integer> numbers = NumberUtil.convertTextToIntegerList(text);
-        userNumber.setNumbers(numbers);
+        BaseballNumber userNumber = new BaseballNumber(numbers, validator);
 
         // when
         BaseballResult result = decision.getResult(userNumber);

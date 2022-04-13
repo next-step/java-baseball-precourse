@@ -25,17 +25,12 @@ class BaseballNumberTest {
     @DisplayName("숫자 객체 생성 및 유효성 확인")
     void test() {
         // given
-        BaseballNumber baseballNumber = new BaseballNumber(validator);
         List<Integer> numbers = Arrays.asList(1, 2, 3);
 
         // when
-        ThrowingSupplier<Boolean> validate = () -> {
-            baseballNumber.setNumbers(numbers);
-            return true;
-        };
+        BaseballNumber baseballNumber = new BaseballNumber(numbers, validator);
 
         // then
-        assertDoesNotThrow(validate);
         assertThat(baseballNumber.get(0)).isEqualTo(1);
         assertThat(baseballNumber.get(1)).isEqualTo(2);
         assertThat(baseballNumber.get(2)).isEqualTo(3);
@@ -45,11 +40,10 @@ class BaseballNumberTest {
     @DisplayName("숫자 객체 생성 및 유효성 확인 - 숫자 개수가 3개가 아니면 예외 발생")
     void validateSize() {
         // given
-        BaseballNumber baseballNumber = new BaseballNumber(validator);
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4);
 
         // when
-        Throwable exception = assertThrows(IllegalArgumentException.class, () -> baseballNumber.setNumbers(numbers));
+        Throwable exception = assertThrows(IllegalArgumentException.class, () -> new BaseballNumber(numbers, validator));
         String message = exception.getMessage();
 
         // then
@@ -60,11 +54,10 @@ class BaseballNumberTest {
     @DisplayName("숫자 객체 생성 및 유효성 확인 - 숫자 범위가 1 ~ 9가 아니면 예외 발생")
     void validateRange() {
         // given
-        BaseballNumber baseballNumber = new BaseballNumber(validator);
         List<Integer> numbers = Arrays.asList(1, 2, 10);
 
         // when
-        Throwable exception = assertThrows(IllegalArgumentException.class, () -> baseballNumber.setNumbers(numbers));
+        Throwable exception = assertThrows(IllegalArgumentException.class, () -> new BaseballNumber(numbers, validator));
         String message = exception.getMessage();
 
         // then
@@ -76,11 +69,10 @@ class BaseballNumberTest {
     @DisplayName("숫자 객체 생성 및 유효성 확인 - 숫자가 중복되면 예외 발생")
     void validateUnique() {
         // given
-        BaseballNumber baseballNumber = new BaseballNumber(validator);
         List<Integer> numbers = Arrays.asList(1, 2, 2);
 
         // when
-        Throwable exception = assertThrows(IllegalArgumentException.class, () -> baseballNumber.setNumbers(numbers));
+        Throwable exception = assertThrows(IllegalArgumentException.class, () -> new BaseballNumber(numbers, validator));
         String message = exception.getMessage();
 
         // then

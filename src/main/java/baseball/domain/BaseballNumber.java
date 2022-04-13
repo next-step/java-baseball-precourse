@@ -3,15 +3,9 @@ package baseball.domain;
 import java.util.List;
 
 public class BaseballNumber {
-    private final BaseballNumberValidator validator;
+    private final List<Integer> numbers;
 
-    private List<Integer> numbers;
-
-    public BaseballNumber(BaseballNumberValidator validator) {
-        this.validator = validator;
-    }
-
-    public void setNumbers(List<Integer> numbers) {
+    public BaseballNumber(List<Integer> numbers, BaseballNumberValidator validator) {
         validator.validate(numbers);
 
         this.numbers = numbers;

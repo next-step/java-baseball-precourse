@@ -1,9 +1,9 @@
 package baseball.domain;
 
 public class BaseballDecision {
-    private BaseballNumber computerNumber;
+    private final BaseballNumber computerNumber;
 
-    public void setComputerNumber(BaseballNumber computerNumber) {
+    public BaseballDecision(BaseballNumber computerNumber) {
         this.computerNumber = computerNumber;
     }
 

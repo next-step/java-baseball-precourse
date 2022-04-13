@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,21 +18,21 @@ class BaseballDecisionTest {
                                                                                   END_RANDOM_NUMBER,
                                                                                   NUMBER_COUNT);
 
-    private final BaseballNumber computerNumber = new BaseballNumber(validator);
-    private final BaseballNumber userNumber = new BaseballNumber(validator);
-    private final BaseballDecision decision = new BaseballDecision();
+    private BaseballDecision decision;
 
     @BeforeEach
     void setUp() {
-        computerNumber.setNumbers(Arrays.asList(4, 2, 5));
-        decision.setComputerNumber(computerNumber);
+        List<Integer> numbers = Arrays.asList(4, 2, 5);
+        BaseballNumber computerNumber = new BaseballNumber(numbers, validator);
+        decision = new BaseballDecision(computerNumber);
     }
 
     @Test
     @DisplayName("결과 1스트라이크")
     void oneStrike() {
         // given
-        userNumber.setNumbers(Arrays.asList(1, 2, 3));
+        List<Integer> numbers = Arrays.asList(1, 2, 3);
+        BaseballNumber userNumber = new BaseballNumber(numbers, validator);
 
         // when
         BaseballResult result = decision.getResult(userNumber);
@@ -44,7 +45,8 @@ class BaseballDecisionTest {
     @DisplayName("결과 1볼 1스트라이크")
     void oneBallOneStrike() {
         // given
-        userNumber.setNumbers(Arrays.asList(4, 5, 6));
+        List<Integer> numbers = Arrays.asList(4, 5, 6);
+        BaseballNumber userNumber = new BaseballNumber(numbers, validator);
 
         // when
         BaseballResult result = decision.getResult(userNumber);
@@ -57,7 +59,8 @@ class BaseballDecisionTest {
     @DisplayName("결과 낫싱")
     void nothing() {
         // given
-        userNumber.setNumbers(Arrays.asList(7, 8, 9));
+        List<Integer> numbers = Arrays.asList(7, 8, 9);
+        BaseballNumber userNumber = new BaseballNumber(numbers, validator);
 
         // when
         BaseballResult result = decision.getResult(userNumber);
