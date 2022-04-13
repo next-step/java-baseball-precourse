@@ -1,13 +1,21 @@
 package baseball.io;
 
+import java.io.PrintStream;
+
 public class ConsoleBaseballOutput implements BaseballOutput {
+    private final PrintStream output;
+
+    public ConsoleBaseballOutput(PrintStream output) {
+        this.output = output;
+    }
+
     @Override
     public void write(String message) {
-        System.out.print(message);
+        output.print(message);
     }
 
     @Override
     public void writeln(String message) {
-        System.out.println(message);
+        output.println(message);
     }
 }
