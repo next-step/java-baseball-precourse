@@ -1,7 +1,17 @@
 package baseball;
 
+import baseball.domain.BaseballGame;
+import baseball.io.BaseballInput;
+import baseball.io.BaseballOutput;
+import baseball.io.ConsoleBaseballInput;
+import baseball.io.ConsoleBaseballOutput;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        BaseballInput input = new ConsoleBaseballInput();
+        BaseballOutput output = new ConsoleBaseballOutput();
+
+        BaseballGame baseballGame = new BaseballGame(input, output);
+        baseballGame.start();
     }
 }
