@@ -34,4 +34,16 @@ public final class NumberUtil {
     private static int pickNumber(int start, int end) {
         return Randoms.pickNumberInRange(start, end);
     }
+
+    public static List<Integer> convertTextToIntegerList(String text) {
+        try {
+            List<Integer> numbers = new ArrayList<>();
+            for (int i = 0; i < text.length(); i++) {
+                numbers.add(Character.getNumericValue(text.charAt(i)));
+            }
+            return numbers;
+        } catch (Exception e) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
