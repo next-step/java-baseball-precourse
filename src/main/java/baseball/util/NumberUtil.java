@@ -35,7 +35,7 @@ public final class NumberUtil {
         return Randoms.pickNumberInRange(start, end);
     }
 
-    public static List<Integer> convertTextToIntegerList(String text) {
+    public static List<Integer> convertStringToIntegerList(String text) {
         try {
             List<Integer> numbers = new ArrayList<>();
             for (int i = 0; i < text.length(); i++) {

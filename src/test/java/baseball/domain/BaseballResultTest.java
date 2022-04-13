@@ -38,7 +38,7 @@ class BaseballResultTest {
 //        BaseballInput input = new ConsoleBaseballInput(); // 콘솔 입력을 받을 수 없다.
         BaseballInput input = new MockBaseballInput(value); // 인자로 전달된 값을 반환하는 목 객체 사용
         String text = input.read();
-        List<Integer> numbers = NumberUtil.convertTextToIntegerList(text);
+        List<Integer> numbers = NumberUtil.convertStringToIntegerList(text);
         BaseballNumber userNumber = new BaseballNumber(numbers, validator);
 
         // when
@@ -55,7 +55,7 @@ class BaseballResultTest {
         // given
         BaseballInput input = new MockBaseballInput(value);
         String text = input.read();
-        List<Integer> numbers = NumberUtil.convertTextToIntegerList(text);
+        List<Integer> numbers = NumberUtil.convertStringToIntegerList(text);
         BaseballNumber userNumber = new BaseballNumber(numbers, validator);
 
         // when
@@ -72,7 +72,7 @@ class BaseballResultTest {
         // given
         BaseballInput input = new MockBaseballInput(value);
         String text = input.read();
-        List<Integer> numbers = NumberUtil.convertTextToIntegerList(text);
+        List<Integer> numbers = NumberUtil.convertStringToIntegerList(text);
         BaseballNumber userNumber = new BaseballNumber(numbers, validator);
 
         // when
