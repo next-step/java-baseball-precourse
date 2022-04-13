@@ -57,7 +57,7 @@ public class PlayerTest {
         // then
         assertThat(when)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("세자리 숫자를 입력해주세요.");
+                .hasMessage("3자리 숫자를 입력해주세요.");
     }
 
     @Test

@@ -1,5 +1,6 @@
 package baseball.domains;
 
+import baseball.constants.GameOption;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.HashSet;
 
@@ -22,8 +23,8 @@ public class Player extends Character {
     }
 
     private void validateLength(String aimPositions) {
-        if (aimPositions.length() != 3) {
-            throw new IllegalArgumentException("세자리 숫자를 입력해주세요.");
+        if (aimPositions.length() != GameOption.INPUT_LENGTH) {
+            throw new IllegalArgumentException(GameOption.INPUT_LENGTH+ "자리 숫자를 입력해주세요.");
         }
     }
     private void validateDeduplicatedRandomString(String aimPositions) {
