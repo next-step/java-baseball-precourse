@@ -2,6 +2,9 @@ package baseball.domain;
 
 import baseball.constant.BaseballMessages;
 import baseball.constant.BaseballRestartStatus;
+import baseball.domain.decision.ResultDecision;
+import baseball.domain.generator.NumberGenerator;
+import baseball.domain.validator.NumberValidator;
 import baseball.io.BaseballInput;
 import baseball.io.BaseballOutput;
 import baseball.util.NumberUtil;
@@ -9,56 +12,64 @@ import baseball.util.NumberUtil;
 import java.util.List;
 
 public class BaseballGame {
-    private static final int START_RANDOM_NUMBER = 1;
-    private static final int END_RANDOM_NUMBER = 9;
-    private static final int NUMBER_COUNT = 3;
+    private final BaseballNumberConfig numberConfig;
+    private final NumberGenerator numberGenerator;
+    private final NumberValidator numberValidator;
+    private final ResultDecision resultDecision;
 
     private final BaseballInput input;
     private final BaseballOutput output;
 
-    private final BaseballNumberValidator validator;
-
-    public BaseballGame(BaseballInput input, BaseballOutput output) {
+    public BaseballGame(BaseballNumberConfig numberConfig, NumberGenerator numberGenerator,
+                        NumberValidator numberValidator, ResultDecision resultDecision,
+                        BaseballInput input, BaseballOutput output) {
+        this.numberConfig = numberConfig;
+        this.numberGenerator = numberGenerator;
+        this.numberValidator = numberValidator;
+        this.resultDecision = resultDecision;
         this.input = input;
         this.output = output;
-
-        this.validator = new BaseballNumberValidator(START_RANDOM_NUMBER, END_RANDOM_NUMBER, NUMBER_COUNT);
     }
 
     public void start() {
-        BaseballDecision decision = makeDecision();
-
-        challenge(decision);
-    }
-
-    private BaseballDecision makeDecision() {
         BaseballNumber computerNumber = makeComputerNumber();
 
-        return new BaseballDecision(computerNumber);
+        challenge(computerNumber);
     }
 
     private BaseballNumber makeComputerNumber() {
-        List<Integer> numbers = generateRandomNumbers();
-        return new BaseballNumber(numbers, validator);
+        List<Integer> numbers = generateNumbers();
+
+        validateNumbers(numbers);
+
+        return new BaseballNumber(numbers);
     }
 
-    private List<Integer> generateRandomNumbers() {
-        return NumberUtil.pickUniqueNumbers(START_RANDOM_NUMBER, END_RANDOM_NUMBER, NUMBER_COUNT);
+    private List<Integer> generateNumbers() {
+        return numberGenerator.generateNumbers();
     }
 
-    private void challenge(BaseballDecision decision) {
+    private void validateNumbers(List<Integer> numbers) {
+        numberValidator.validate(numbers);
+    }
+
+    private void challenge(BaseballNumber computerNumber) {
         BaseballNumber userNumber = getUserNumber();
 
-        BaseballResult result = decision.getResult(userNumber);
+        BaseballResult result = getResult(computerNumber, userNumber);
         showResult(result);
 
-        boolean passed = result.isPassed(NUMBER_COUNT);
+        boolean passed = result.isPassed(numberConfig.getNumberCount());
         if (passed) {
             passedChallenge();
             return;
         }
 
-        challenge(decision);
+        challenge(computerNumber);
+    }
+
+    private BaseballResult getResult(BaseballNumber computerNumber, BaseballNumber userNumber) {
+        return resultDecision.decide(computerNumber, userNumber);
     }
 
     private BaseballNumber getUserNumber() {
@@ -67,7 +78,9 @@ public class BaseballGame {
         String text = input.read();
         List<Integer> numbers = NumberUtil.convertStringToIntegerList(text);
 
-        return new BaseballNumber(numbers, validator);
+        validateNumbers(numbers);
+
+        return new BaseballNumber(numbers);
     }
 
     private void showInputNumberMessage() {
@@ -85,7 +98,7 @@ public class BaseballGame {
     }
 
     private void showPassedMessage() {
-        output.writeln(String.format(BaseballMessages.OUTPUT_GAME_PASSED, NUMBER_COUNT));
+        output.writeln(String.format(BaseballMessages.OUTPUT_GAME_PASSED, numberConfig.getNumberCount()));
     }
 
     private void askRestart() {

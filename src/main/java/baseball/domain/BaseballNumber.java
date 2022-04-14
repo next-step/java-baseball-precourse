@@ -5,9 +5,7 @@ import java.util.List;
 public class BaseballNumber {
     private final List<Integer> numbers;
 
-    public BaseballNumber(List<Integer> numbers, BaseballNumberValidator validator) {
-        validator.validate(numbers);
-
+    public BaseballNumber(List<Integer> numbers) {
         this.numbers = numbers;
     }
 
@@ -15,7 +13,7 @@ public class BaseballNumber {
         return numbers.get(index);
     }
 
-    public boolean contains(int number) {
+    public boolean contains(Integer number) {
         return numbers.contains(number);
     }
 

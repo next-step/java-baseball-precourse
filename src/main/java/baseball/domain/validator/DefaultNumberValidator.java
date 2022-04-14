@@ -1,22 +1,24 @@
-package baseball.domain;
+package baseball.domain.validator;
 
 import baseball.constant.BaseballMessages;
+import baseball.domain.BaseballNumberConfig;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class BaseballNumberValidator {
+public class DefaultNumberValidator implements NumberValidator {
     private final int startRandomNumber;
     private final int endRandomNumber;
     private final int numberCount;
 
-    public BaseballNumberValidator(int startRandomNumber, int endRandomNumber, int numberCount) {
-        this.startRandomNumber = startRandomNumber;
-        this.endRandomNumber = endRandomNumber;
-        this.numberCount = numberCount;
+    public DefaultNumberValidator(BaseballNumberConfig numberConfig) {
+        this.startRandomNumber = numberConfig.getStartRandomNumber();
+        this.endRandomNumber = numberConfig.getEndRandomNumber();
+        this.numberCount = numberConfig.getNumberCount();
     }
 
+    @Override
     public void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateRange(numbers);
@@ -31,10 +33,14 @@ public class BaseballNumberValidator {
 
     private void validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (number < startRandomNumber || number > endRandomNumber) {
-                throw new IllegalArgumentException(
-                        String.format(BaseballMessages.ERROR_NUMBER_RANGE, startRandomNumber, endRandomNumber));
-            }
+            validateRange(number);
+        }
+    }
+
+    private void validateRange(Integer number) {
+        if (number < startRandomNumber || number > endRandomNumber) {
+            throw new IllegalArgumentException(
+                    String.format(BaseballMessages.ERROR_NUMBER_RANGE, startRandomNumber, endRandomNumber));
         }
     }
 
