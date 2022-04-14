@@ -2,6 +2,7 @@ package baseball.controller;
 
 import baseball.domain.ComputerRandomNumber;
 import baseball.domain.UserRandomNumber;
+import baseball.exception.ValidIllegalArgumentException;
 import baseball.view.UserInputView;
 import baseball.view.UserOutputView;
 
@@ -29,7 +30,7 @@ public class baseballGameController {
                         return;
                 }
 
-                throw new IllegalArgumentException("1또는 2를 입력해야 합니다.");
+                throw new ValidIllegalArgumentException();
         }
 
 
