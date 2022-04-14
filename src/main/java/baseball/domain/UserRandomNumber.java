@@ -1,6 +1,8 @@
 package baseball.domain;
 
 import java.util.ArrayList;
+
+import baseball.exception.OnlyNumberException;
 import baseball.exception.SizeMisseException;
 import static java.lang.Character.getNumericValue;
 
@@ -75,6 +77,12 @@ public class UserRandomNumber {
         }
 
         private void validateUserNumbers(String requireBaseBallNumber) {
+                // 숫자 이외의 문자가 들어 간 것을 방지.
+                final String REGEX = "[0-9]+";
+                if(!requireBaseBallNumber.matches(REGEX)) {
+                        throw new OnlyNumberException();
+                }
+
                 if (requireBaseBallNumber.length() != 3) {
                         throw new SizeMisseException();
                 }
