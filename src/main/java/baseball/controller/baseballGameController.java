@@ -20,7 +20,7 @@ public class baseballGameController {
                 String checkMsg = UserInputView.endGameMsg();
 
                 if (checkMsg.equals("1")){
-                        gameStart();
+                        run();
                         return;
                 }
 
