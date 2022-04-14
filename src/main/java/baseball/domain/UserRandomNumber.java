@@ -23,8 +23,6 @@ public class UserRandomNumber {
                         //charat으로 분리 시 char 형변환으로 아스키코드 형식으로 저장됨으로 아스키코드를 넘버로 변경
                         userNumbersList.add( getNumericValue(requireBaseBallNumber.charAt(i)) );
                 }
-
-                System.out.println(userNumbersList);
                 return userNumbersList;
         }
 
