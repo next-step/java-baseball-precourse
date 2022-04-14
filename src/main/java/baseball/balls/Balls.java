@@ -29,6 +29,16 @@ public class Balls {
         return BallStatus.NOTHING;
     }
 
+    public PlayResult play(final List<Integer> userNumbers) {
+        Map<BallStatus, Integer> statusMap = new HashMap<>();
+        Balls userBalls = new Balls(userNumbers);
+        for (final Ball ball : computerBalls){
+            BallStatus status = userBalls.play(ball);
+            statusMap.put(status, statusMap.getOrDefault(status, 0) + 1);
+        }
+        return new PlayResult(statusMap);
+    }
+
     private Set<BallStatus> getPlayResult(final Ball userBall) {
         Set<BallStatus> result = new HashSet<>();
         for (final Ball ball : computerBalls) {
