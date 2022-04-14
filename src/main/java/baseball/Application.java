@@ -9,11 +9,5 @@ public class Application {
 
                 baseballGameController.run();
 
-                UserInputView userinput = new UserInputView();
-
-                String a = userinput.requireBaseBallNumber();
-
-                System.out.println(a);
-
         }
 }

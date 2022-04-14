@@ -22,6 +22,7 @@ public class ComputerRandomNumber {
         ArrayList<Integer> randomNum = new ArrayList<Integer>();
 
         public ArrayList<Integer> RandomNum(){
+
                 // COUNT 갯수 만큼 랜덤 숫자 생성.
                 while(randomNum.size() < COUNT){
                     num = Randoms.pickNumberInRange(START, END);
