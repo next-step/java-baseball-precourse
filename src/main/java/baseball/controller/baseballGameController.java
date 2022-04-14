@@ -50,7 +50,6 @@ public class baseballGameController {
                         ballCount = userBaseBallNumbers.ballCount(computer);
                         strikeCount = userBaseBallNumbers.strikeCount(computer);
                         UserOutputView.printResult(ballCount, strikeCount);
-                        System.out.println(computer);
                 }
                 UserOutputView.printClearMsg();
         }
