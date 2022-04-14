@@ -7,7 +7,7 @@ import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
 public class GameUtil {
 
     public static List<Integer> randomNumbers(int numNumbers, int start, int end) {
-        Set<Integer> result = new HashSet<>();
+        Set<Integer> result = new LinkedHashSet<>();
 
         while (result.size() < numNumbers) {
             int picked = pickNumberInRange(start, end);
