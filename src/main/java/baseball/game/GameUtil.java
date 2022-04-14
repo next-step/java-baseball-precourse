@@ -2,24 +2,18 @@ package baseball.game;
 
 import java.util.*;
 
-import static camp.nextstep.edu.missionutils.Randoms.pickNumberInList;
+import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
 
 public class GameUtil {
 
-    public static int randomNumber(List<Integer> l) {
-        return pickNumberInList(l);
-    }
+    public static List<Integer> randomNumbers(int numNumbers, int start, int end) {
+        Set<Integer> result = new HashSet<>();
 
-    public static List<Integer> randomNumbers(int numNumbers, Collection<Integer> pool) {
-        Set<Integer> newPool = new HashSet<>(pool);
-        List<Integer> l = new ArrayList<>();
-
-        for (int i = 0; i < numNumbers; i++) {
-            int picked = randomNumber(new ArrayList<>(newPool));
-            l.add(picked);
-            newPool.remove(picked);
+        while (result.size() < numNumbers) {
+            int picked = pickNumberInRange(start, end);
+            result.add(picked);
         }
-        return l;
+        return new ArrayList<>(result);
     }
 
     public static String readLine() {

@@ -5,17 +5,17 @@ import java.util.*;
 import static baseball.game.GameConfig.NUM_NUMBERS;
 
 public class Game {
-    private final NumberToIndex solution = new NumberToIndex();
+    private final NumberToIndex computerNumbers = new NumberToIndex();
 
     public Game() {
-        solution.putAll(GameUtil.randomNumbers(NUM_NUMBERS, Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9)));
+        computerNumbers.putAll(GameUtil.randomNumbers(NUM_NUMBERS, 1, 9));
     }
 
     private GuessingJudgment checkAnswer(int num, int indexOfNum) {
-        if (!solution.contains(num)) {
+        if (!computerNumbers.contains(num)) {
             return GuessingJudgment.NONE;
         }
-        int index = solution.getIndexOf(num);
+        int index = computerNumbers.getIndexOf(num);
         return index == indexOfNum ? GuessingJudgment.STRIKE : GuessingJudgment.BALL;
     }
 
@@ -42,7 +42,7 @@ public class Game {
     }
 
     public void play() {
-//        GameUtil.println(solution);
+//        GameUtil.println(computerNumbers);
         boolean isOver = false;
 
         while (!isOver) {
