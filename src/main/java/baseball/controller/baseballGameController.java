@@ -21,6 +21,7 @@ public class baseballGameController {
 
                 if (checkMsg.equals("1")){
                         gameStart();
+                        return;
                 }
 
                 if (checkMsg.equals("2")){
