@@ -46,13 +46,13 @@ public class Game {
         boolean isOver = false;
 
         while (!isOver) {
-            GameUtil.print("숫자를 입력해주세요 : ");
+            GameUtil.print(GameMessage.prompt());
             String line = GameUtil.readLine();
 
             ScoringResults score = process(line);
             isOver = isGameOver(score);
 
-            String message = GameMessage.resultMessage(score);
+            String message = GameMessage.resultMessage(score.getNumStrikes(), score.getNumBalls());
             GameUtil.println(message);
         }
     }
