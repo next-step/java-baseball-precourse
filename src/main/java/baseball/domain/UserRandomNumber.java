@@ -38,11 +38,21 @@ public class UserRandomNumber {
 
 
         private int isBall(int targetIndex, ArrayList<Integer> computerRandomNumbers) {
-                if(targetIndex != computerRandomNumbers.indexOf(userBaseballNumbers.get(targetIndex) )){
-                        return 1;
+
+                if(isBallIndex(targetIndex, computerRandomNumbers) == targetIndex){
+                        return 0;
                 }
 
-                return 0;
+                if(isBallIndex(targetIndex, computerRandomNumbers) == -1){
+                        return 0;
+                }
+
+                return 1;
+        }
+
+        private int isBallIndex(int targetIndex, ArrayList<Integer> computerRandomNumbers){
+
+                return computerRandomNumbers.indexOf(userBaseballNumbers.get(targetIndex));
         }
 
         public int strikeCount(ArrayList<Integer> computerRandomNumbers) {
@@ -56,6 +66,7 @@ public class UserRandomNumber {
         }
 
         private int isStrike(int targetIndex, ArrayList<Integer> computerRandomNumbers) {
+
                 if ( computerRandomNumbers.get(targetIndex).equals(userBaseballNumbers.get(targetIndex)) ){
                         return 1;
                 }
@@ -68,5 +79,7 @@ public class UserRandomNumber {
                         throw new SizeMisseException();
                 }
         }
+
+
 
 }

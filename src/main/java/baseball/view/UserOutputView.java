@@ -15,13 +15,16 @@ public class UserOutputView {
 
         // 게임 진행 중 해당 하는 메시지 호출
         public static void printResult(int ballCount, int strikeCount){
-                System.out.println(ballCount + "볼");
-                System.out.println(strikeCount + "스트라이크");
 
                 // 볼/스트라이크 없는 경우
                 if(ballCount == 0 && strikeCount == 0) {
                         System.out.println(NOTHING);
 
+                }
+
+                if(ballCount > 0 || strikeCount > 0){
+                        System.out.print(ballCount + "볼 ");
+                        System.out.println(strikeCount + "스트라이크");
                 }
         }
 
