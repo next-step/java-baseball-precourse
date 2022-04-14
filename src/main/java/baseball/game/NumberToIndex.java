@@ -15,7 +15,7 @@ public class NumberToIndex {
 
     public NumberToIndex(String input) {
         NumberToIndex parsed = parseAnswerFrom(input);
-        this.m = new HashMap<>(parsed.m);
+        this.m = parsed.m;
         this.index = parsed.index;
     }
 
