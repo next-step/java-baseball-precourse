@@ -1,23 +1,19 @@
 package baseball;
 
-import baseball.domain.ComputerRandomNumber;
+import baseball.controller.baseballGameController;
+import baseball.view.UserInputView;
 
 public class Application {
         public static void main(String[] args) {
                 // TODO: 프로그램 구현
-        
-                // 컴퓨터 랜덤 숫자 클래스 생성
-                ComputerRandomNumber num = new ComputerRandomNumber();
 
-                // 랜덤 숫자 생성
-                num.RandomNum();
-        
-                // 생성된 숫자 호출
-                num.getRandomNum();
+                baseballGameController.run();
 
-                System.out.println("asdad");
+                UserInputView userinput = new UserInputView();
 
+                String a = userinput.requireBaseBallNumber();
 
+                System.out.println(a);
 
         }
 }

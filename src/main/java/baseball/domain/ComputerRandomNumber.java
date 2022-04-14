@@ -21,12 +21,13 @@ public class ComputerRandomNumber {
         // 랜덤 숫자 담을 리스트
         ArrayList<Integer> randomNum = new ArrayList<Integer>();
 
-        public void RandomNum(){
+        public ArrayList<Integer> RandomNum(){
                 // COUNT 갯수 만큼 랜덤 숫자 생성.
                 while(randomNum.size() < COUNT){
                     num = Randoms.pickNumberInRange(START, END);
                     RandomDuplicationCheck();
                 }
+                return randomNum;
         }
 
         // 숫자 중복 체크
@@ -36,7 +37,8 @@ public class ComputerRandomNumber {
                 }
         }
 
-        public void getRandomNum() {
+        public void getToStrRandomNum() {
                 System.out.println(randomNum);
         }
+
 }
