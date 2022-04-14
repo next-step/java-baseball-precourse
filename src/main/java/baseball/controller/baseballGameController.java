@@ -1,6 +1,7 @@
 package baseball.controller;
 
 import baseball.domain.ComputerRandomNumber;
+import baseball.domain.UserRandomNumber;
 import baseball.view.UserInputView;
 import baseball.view.UserOutputView;
 
@@ -10,29 +11,45 @@ public class baseballGameController {
 
         public static void run() {
 
-                // 컴퓨터 랜덤 숫자 클래스 생성
-                ComputerRandomNumber num = new ComputerRandomNumber();
+                gameStart();
 
-                ArrayList<Integer> ConputerNum = num.RandomNum();
-
-
-
-
+                endContinueCheck();
         }
 
         private static void endContinueCheck(){
                 String checkMsg = UserInputView.endGameMsg();
 
                 if (checkMsg.equals("1")){
-
+                        gameStart();
                 }
 
                 if (checkMsg.equals("2")){
-                    UserOutputView.printClearMsg();
-                    return;
+                        UserOutputView.printEndMsg();
+                        return;
                 }
 
                 throw new IllegalArgumentException("1또는 2를 입력해야 합니다.");
+        }
+
+
+        private static void gameStart(){
+                int strikeCount = 0;
+                int ballCount = 0;
+
+                // 컴퓨터 랜덤 숫자 클래스 생성
+                ComputerRandomNumber num = new ComputerRandomNumber();
+
+                // 생성
+                ArrayList<Integer> computer = num.RandomNum();
+
+
+                while (strikeCount != 3) {
+                        UserRandomNumber userBaseBallNumbers = new UserRandomNumber(UserInputView.requireBaseBallNumber());
+                        ballCount = userBaseBallNumbers.ballCount(computer);
+                        strikeCount = userBaseBallNumbers.strikeCount(computer);
+                        UserOutputView.printResult(ballCount, strikeCount);
+                }
+                UserOutputView.printClearMsg();
         }
 
 

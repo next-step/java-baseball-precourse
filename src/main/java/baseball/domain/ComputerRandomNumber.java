@@ -36,9 +36,4 @@ public class ComputerRandomNumber {
                     randomNum.add(num);
                 }
         }
-
-        public void getToStrRandomNum() {
-                System.out.println(randomNum);
-        }
-
 }

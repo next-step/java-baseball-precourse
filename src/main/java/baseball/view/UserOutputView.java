@@ -11,6 +11,7 @@ public class UserOutputView {
         private static final String STRIKE = "스트라이크";
         private static final String NOTHING = "낫싱";
         private static final String CLEAR_MSG = "3개의 숫자를 모두 맞히셨습니다! 게임 종료";
+        private static final String END_MSG = "게임 종료";
 
         // 게임 진행 중 해당 하는 메시지 호출
         public static void printResult(int ballCount, int strikeCount){
@@ -28,6 +29,13 @@ public class UserOutputView {
         public static void printClearMsg() {
                 System.out.println(CLEAR_MSG);
         }
+
+        // 게임을 종료하는 경우 메시지 호출
+        public static void printEndMsg() {
+                System.out.println(END_MSG);
+        }
+
+
 
 
 }
