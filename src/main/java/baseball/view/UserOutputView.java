@@ -19,12 +19,6 @@ public class UserOutputView {
                 NothingMsg(ballCount,strikeCount);
                 ballCountMsg(ballCount);
                 strikeCountMsg(strikeCount);
-
-
-                if(ballCount > 0 || strikeCount > 0){
-                        System.out.print(ballCount + "볼 ");
-                        System.out.println(strikeCount + "스트라이크");
-                }
         }
 
         public static void NothingMsg(int ballCount, int strikeCount){
