@@ -1,5 +1,8 @@
 package baseball.common;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Utils {
     private Utils(){
         throw new IllegalStateException();
@@ -18,5 +21,13 @@ public class Utils {
             min = Math.min(val, min);
         }
         return min;
+    }
+
+    public static Set<Integer> setOf(int[] array){
+        Set<Integer> set = new HashSet<>();
+        for (int idx = 0; idx < array.length; idx++){
+            set.add(array[idx]);
+        }
+        return set;
     }
 }
