@@ -44,9 +44,9 @@ public class Game {
 
         while (!isOver) {
             GameUtil.print(GameMessage.prompt());
-            String line = GameUtil.readLine();
+            String input = GameUtil.readLine();
 
-            RoundScore score = process(state, line);
+            RoundScore score = process(state, input);
             isOver = isGameOver(score);
 
             String message = GameMessage.resultMessage(score.getNumStrikes(), score.getNumBalls());
