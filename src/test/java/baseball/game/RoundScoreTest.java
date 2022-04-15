@@ -15,6 +15,7 @@ public class RoundScoreTest {
         score.addJudgment(Judgment.STRIKE);
         score.addJudgment(Judgment.STRIKE);
         score.addJudgment(Judgment.STRIKE);
+
         assertThat(score.getNumBalls()).isEqualTo(2);
         assertThat(score.getNumStrikes()).isEqualTo(3);
     }

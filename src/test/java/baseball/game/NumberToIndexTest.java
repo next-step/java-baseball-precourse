@@ -14,6 +14,7 @@ public class NumberToIndexTest {
         target.put(1);
         target.put(2);
         target.put(3);
+
         assertThat(target.size()).isEqualTo(3);
         assertThat(target.getIndexOf(1)).isEqualTo(0);
         assertThat(target.getIndexOf(2)).isEqualTo(1);
@@ -24,6 +25,7 @@ public class NumberToIndexTest {
     @DisplayName("put() 1,2,3을 String으로 넣으면, 3개가 추가됨")
     void constructor_With123AsString_3ItemsAdded() {
         NumberToIndex target = new NumberToIndex("123");
+
         assertThat(target.size()).isEqualTo(3);
         assertThat(target.getIndexOf(1)).isEqualTo(0);
         assertThat(target.getIndexOf(2)).isEqualTo(1);
