@@ -8,17 +8,20 @@ public class CalculateCounts {
     public int strikeCount = 0;
     public int ballCount = 0;
 
-    public void compareEachLists(List<Integer> a, List<String> b) {
+    public void compareEachLists(List<Integer> computerNumberList, List<String> playerNumberList) {
+
         int count = 3;
-        for (int i = 0; i < count; i++) {
-            Integer a_ = a.get(i);
-            Integer b_ = Integer.parseInt(b.get(i));
-            calculateStrikes(i, a_, b_);
-            calculateBall(i, a, b_);
+        for (int index = 0; index < count; index++) {
+            Integer computerNumber = computerNumberList.get(index);
+            Integer playerNumber = Integer.parseInt(playerNumberList.get(index));
+
+            calculateStrikes(computerNumber, playerNumber);
+            calculateBall(index, computerNumberList, playerNumber);
         }
         printResult();
     }
 
+    //TODO : 하드코딩 치환 필요한가?
     private void printResult() {
         if (ballCount == 0 && strikeCount == 0) {
             System.out.println("낫싱");
@@ -35,14 +38,14 @@ public class CalculateCounts {
         System.out.printf("%d볼 %d스트라이크 \n", ballCount, strikeCount);
     }
 
-    public void calculateStrikes(int i, Integer a, Integer b) {
-        if (Objects.equals(a, b)) {
+    public void calculateStrikes(Integer computerNumber, Integer playerNumber) {
+        if (Objects.equals(computerNumber, playerNumber)) {
             strikeCount += 1;
         }
     }
 
-    public void calculateBall(int i, List<Integer> a, Integer b) {
-        if (a.contains(b) && !Objects.equals(a.get(i), b)) {
+    public void calculateBall(int i, List<Integer> computerNumber, Integer playerNumber) {
+        if (computerNumber.contains(playerNumber) && !Objects.equals(computerNumber.get(i), playerNumber)) {
             ballCount += 1;
         }
     }
