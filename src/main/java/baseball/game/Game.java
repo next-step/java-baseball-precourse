@@ -11,7 +11,7 @@ public class Game {
         computerNumbers.putAll(GameUtil.randomNumbers(NUM_NUMBERS, 1, 9));
     }
 
-    private GuessingJudgment checkAnswer(int num, int indexOfNum) {
+    GuessingJudgment checkAnswer(int num, int indexOfNum) {
         if (!computerNumbers.contains(num)) {
             return GuessingJudgment.NONE;
         }
@@ -19,7 +19,7 @@ public class Game {
         return index == indexOfNum ? GuessingJudgment.STRIKE : GuessingJudgment.BALL;
     }
 
-    private ScoringResults judge(NumberToIndex answer) {
+    ScoringResults judge(NumberToIndex answer) {
         ScoringResults score = new ScoringResults();
         Iterator<Integer> answerIterator = answer.numberIterator();
 
