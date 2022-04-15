@@ -2,20 +2,20 @@ package baseball.game;
 
 import java.util.List;
 
-import static baseball.game.GameConfig.NUM_NUMBERS;
+import static baseball.game.GameConfig.*;
 
 public class GameState {
-    private final NumberToIndex computerNumbers = new NumberToIndex();
+    private final NumberToIndex computerDigits = new NumberToIndex();
 
     public GameState() {
-        computerNumbers.putAll(GameUtil.randomNumbers(NUM_NUMBERS, 1, 9));
+        computerDigits.putAll(GameUtil.randomNumbers(NUM_DIGITS, DIGIT_START, DIGIT_END));
     }
 
-    public GameState(List<Integer> numbers) {
-        computerNumbers.putAll(numbers);
+    public GameState(List<Integer> digits) {
+        computerDigits.putAll(digits);
     }
 
-    public NumberToIndex getComputerNumbers() {
-        return computerNumbers;
+    public NumberToIndex getComputerDigits() {
+        return computerDigits;
     }
 }

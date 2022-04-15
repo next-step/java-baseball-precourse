@@ -1,6 +1,6 @@
 package baseball.game;
 
-import static baseball.game.GameConfig.NUM_NUMBERS;
+import static baseball.game.GameConfig.NUM_DIGITS;
 
 public class GameMessage {
     public static String prompt() {
@@ -25,10 +25,10 @@ public class GameMessage {
     }
 
     private static String endMessage(int strikes) {
-        if (strikes != NUM_NUMBERS) {
+        if (strikes != NUM_DIGITS) {
             return "";
         }
-        return "\n" + NUM_NUMBERS + "개의 숫자를 모두 맞히셨습니다! 게임 종료";
+        return "\n" + NUM_DIGITS + "개의 숫자를 모두 맞히셨습니다! 게임 종료";
     }
 
     public static String resultMessage(int strikes, int balls) {

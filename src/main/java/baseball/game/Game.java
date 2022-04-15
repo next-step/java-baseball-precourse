@@ -2,18 +2,18 @@ package baseball.game;
 
 import java.util.*;
 
-import static baseball.game.GameConfig.NUM_NUMBERS;
+import static baseball.game.GameConfig.NUM_DIGITS;
 
 public class Game {
 
     private Game() { }
 
-    static Judgment checkAnswer(GameState state, int num, int indexOfNum) {
-        if (!state.getComputerNumbers().contains(num)) {
+    static Judgment checkAnswer(GameState state, int digit, int indexOfDigit) {
+        if (!state.getComputerDigits().contains(digit)) {
             return Judgment.NONE;
         }
-        int index = state.getComputerNumbers().getIndexOf(num);
-        return index == indexOfNum ? Judgment.STRIKE : Judgment.BALL;
+        int index = state.getComputerDigits().getIndexOf(digit);
+        return index == indexOfDigit ? Judgment.STRIKE : Judgment.BALL;
     }
 
     static RoundScore judge(GameState state, NumberToIndex answer) {
@@ -35,7 +35,7 @@ public class Game {
     }
 
     private static boolean isGameOver(RoundScore score) {
-        return score.getNumStrikes() == NUM_NUMBERS;
+        return score.getNumStrikes() == NUM_DIGITS;
     }
 
     private static void play(GameState state) {
