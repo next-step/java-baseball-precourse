@@ -27,7 +27,7 @@ public class NumberToIndex {
             throw new IllegalArgumentException("can't parse " + s);
         }
         if (num < DIGIT_START || num > DIGIT_END) {
-            throw new IllegalArgumentException(s + " must be between " + DIGIT_START + " and " + DIGIT_END);
+            throw new IllegalArgumentException("input must be between " + DIGIT_START + " and " + DIGIT_END);
         }
         return num;
     }
@@ -40,7 +40,7 @@ public class NumberToIndex {
             result.put(parsed);
         }
         if (result.size() != NUM_DIGITS) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException(NUM_DIGITS + " different digits are required");
         }
         return result;
     }
