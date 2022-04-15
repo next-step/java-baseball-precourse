@@ -13,8 +13,8 @@ public class NumberToIndex {
 
     public NumberToIndex() { }
 
-    public NumberToIndex(String input) {
-        NumberToIndex parsed = parseAnswerFrom(input);
+    public NumberToIndex(String digits) {
+        NumberToIndex parsed = parseAnswerFrom(digits);
         this.m = parsed.m;
         this.index = parsed.index;
     }
@@ -27,11 +27,11 @@ public class NumberToIndex {
         }
     }
 
-    private NumberToIndex parseAnswerFrom(String line) {
+    private NumberToIndex parseAnswerFrom(String s) {
         NumberToIndex result = new NumberToIndex();
 
-        for (String s: line.split("")) {
-            int parsedNum = parseInt(s);
+        for (String digit: s.split("")) {
+            int parsedNum = parseInt(digit);
             result.put(parsedNum);
         }
         if (result.size() != NUM_NUMBERS) {
