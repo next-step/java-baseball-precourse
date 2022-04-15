@@ -58,7 +58,7 @@ public class Game {
         String input = "1";
         while (Objects.equals(input, "1") && !Objects.equals(input, "2")) {
             play(new GameState());
-            GameUtil.print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+            GameUtil.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
             input = GameUtil.readLine();
         }
         if (!Objects.equals(input, "2")) {
