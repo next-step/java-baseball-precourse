@@ -38,7 +38,7 @@ public class Game {
         return score.getNumStrikes() == NUM_NUMBERS;
     }
 
-    public static void play(GameState state) {
+    private static void play(GameState state) {
 //        GameUtil.println(computerNumbers);
         boolean isOver = false;
 
@@ -51,6 +51,18 @@ public class Game {
 
             String message = GameMessage.resultMessage(score.getNumStrikes(), score.getNumBalls());
             GameUtil.println(message);
+        }
+    }
+
+    public static void run() {
+        String input = "1";
+        while (Objects.equals(input, "1") && !Objects.equals(input, "2")) {
+            play(new GameState());
+            GameUtil.print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+            input = GameUtil.readLine();
+        }
+        if (!Objects.equals(input, "2")) {
+            throw new IllegalArgumentException("wrong input");
         }
     }
 }
