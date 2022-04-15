@@ -1,5 +1,6 @@
 package baseball;
 
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.LinkedHashSet;
@@ -25,6 +26,29 @@ public class Game {
 
     private void progress() {
         System.out.println("게임 진행");
+
+         // 게임 진행
+        System.out.print("숫자를 입력해주세요: ");
+        String input = Console.readLine();
+        System.out.println(input);
+
+        if(input.length() != 3) {
+            throw new IllegalArgumentException("3자리의 숫자만 입력가능합니다.");
+        }
+
+        LinkedHashSet<Integer> temp = new LinkedHashSet<>();
+        for(int i = 0; i < input.length(); i++) {
+            int tempValue = input.charAt(i) - '0';
+            if(tempValue < 1 || tempValue > 9) {
+                throw new IllegalArgumentException("숫자(1~9)가 아닌 문자가 입력되었습니다.");
+            }
+
+            temp.add(tempValue);
+        }
+
+        if(temp.size() != 3) {
+            throw new IllegalArgumentException("중복된 숫자가 입력되었습니다.");
+        }
     }
 
     private void end() {

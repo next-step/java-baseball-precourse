@@ -18,4 +18,16 @@ public class GameTest {
                 .isNotEmpty()
                 .hasSize(3);
     }
+
+    @Test
+    public void 입력값_검증() {
+        LinkedHashSet<Integer> validInput = new LinkedHashSet<>();
+        validInput.add(1);
+        validInput.add(2);
+        validInput.add(3);
+
+        assertThat(validInput)
+                .isNotEmpty()
+                .hasSize(3);
+    }
 }
