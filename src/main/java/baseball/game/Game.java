@@ -8,33 +8,33 @@ public class Game {
 
     private Game() { }
 
-    static GuessingJudgment checkAnswer(GameState state, int num, int indexOfNum) {
+    static Judgment checkAnswer(GameState state, int num, int indexOfNum) {
         if (!state.getComputerNumbers().contains(num)) {
-            return GuessingJudgment.NONE;
+            return Judgment.NONE;
         }
         int index = state.getComputerNumbers().getIndexOf(num);
-        return index == indexOfNum ? GuessingJudgment.STRIKE : GuessingJudgment.BALL;
+        return index == indexOfNum ? Judgment.STRIKE : Judgment.BALL;
     }
 
-    static ScoringResults judge(GameState state, NumberToIndex answer) {
-        ScoringResults score = new ScoringResults();
+    static RoundScore judge(GameState state, NumberToIndex answer) {
+        RoundScore score = new RoundScore();
         Iterator<Integer> answerIterator = answer.numberIterator();
 
         while (answerIterator.hasNext()) {
             int n = answerIterator.next();
             int i = answer.getIndexOf(n);
-            GuessingJudgment result = checkAnswer(state, n, i);
+            Judgment result = checkAnswer(state, n, i);
             score.addJudgment(result);
         }
         return score;
     }
 
-    private static ScoringResults process(GameState state, String input) {
+    private static RoundScore process(GameState state, String input) {
         NumberToIndex answer = new NumberToIndex(input);
         return judge(state, answer);
     }
 
-    private static boolean isGameOver(ScoringResults score) {
+    private static boolean isGameOver(RoundScore score) {
         return score.getNumStrikes() == NUM_NUMBERS;
     }
 
@@ -46,7 +46,7 @@ public class Game {
             GameUtil.print(GameMessage.prompt());
             String line = GameUtil.readLine();
 
-            ScoringResults score = process(state, line);
+            RoundScore score = process(state, line);
             isOver = isGameOver(score);
 
             String message = GameMessage.resultMessage(score.getNumStrikes(), score.getNumBalls());
