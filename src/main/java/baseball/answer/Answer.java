@@ -61,6 +61,11 @@ public class Answer {
         }
     }
 
+    public int[] getNumbers(){
+        return numbers;
+    }
+
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
