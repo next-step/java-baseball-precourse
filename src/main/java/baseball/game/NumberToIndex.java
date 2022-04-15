@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import static baseball.game.GameConfig.NUM_NUMBERS;
+import static baseball.game.GameConfig.*;
 
 public class NumberToIndex {
     private Map<Integer, Integer> m = new HashMap<>();
@@ -13,28 +13,33 @@ public class NumberToIndex {
 
     public NumberToIndex() { }
 
-    public NumberToIndex(String digits) {
-        NumberToIndex parsed = parseAnswerFrom(digits);
+    public NumberToIndex(String s) {
+        NumberToIndex parsed = parseAnswerFrom(s);
         this.m = parsed.m;
         this.index = parsed.index;
     }
 
     private int parseInt(String s) {
+        int num;
         try {
-            return Integer.parseInt(s);
+            num = Integer.parseInt(s);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("can't parse " + s);
         }
+        if (num < DIGIT_START || num > DIGIT_END) {
+            throw new IllegalArgumentException(s + " must be between " + DIGIT_START + " and " + DIGIT_END);
+        }
+        return num;
     }
 
     private NumberToIndex parseAnswerFrom(String s) {
         NumberToIndex result = new NumberToIndex();
 
-        for (String digit: s.split("")) {
-            int parsedNum = parseInt(digit);
-            result.put(parsedNum);
+        for (String stringNumber: s.split("")) {
+            int parsed = parseInt(stringNumber);
+            result.put(parsed);
         }
-        if (result.size() != NUM_NUMBERS) {
+        if (result.size() != NUM_DIGITS) {
             throw new IllegalArgumentException("");
         }
         return result;
