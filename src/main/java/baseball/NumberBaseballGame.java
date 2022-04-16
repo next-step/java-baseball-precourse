@@ -3,9 +3,7 @@ package baseball;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class NumberBaseballGame {
@@ -38,8 +36,12 @@ public class NumberBaseballGame {
 
     public boolean isPlay() { return this.play; }
 
-    public boolean playing(String number) throws IllegalArgumentException{
-        return true;
+    public boolean playing(String number) {
+        this.validateNumber(number);
+        ResultState resultState = this.countBollAndStrike(computer.getNumber(), number);
+        String message = this.printResultMessage(resultState);
+        System.out.println(message);
+        return resultState.getStrike() != maxNumberLength;
     }
 
     public void validateNumber(String number) throws IllegalArgumentException{
@@ -52,8 +54,22 @@ public class NumberBaseballGame {
             throw new IllegalArgumentException();
     }
 
-    private void printResult(int[] result){
+    public ResultState countBollAndStrike(String defenseNum, String attackNum){
+        ResultState result = new ResultState();
+        for(int i = 0; i < maxNumberLength; i++){
+            if(defenseNum.charAt(i) == attackNum.charAt(i)) result.setStrike(result.getStrike() + 1);
+            if(defenseNum.indexOf(attackNum.charAt(i)) > -1) result.setBoll(result.getBoll() + 1);
+        }
+        return result;
+    }
 
+    private String printResultMessage(ResultState resultCount){
+        if(resultCount.isNothing()) return "낫싱";
+        if(resultCount.getStrike() == maxNumberLength) return maxNumberLength + "개의 숫자를 모두 맞히셨습니다. 게임종료";
+        StringBuilder msg = new StringBuilder();
+        if(resultCount.getBoll() > 0) msg.append(resultCount.getBoll()).append(" 볼 ");
+        if(resultCount.getStrike() > 0) msg.append(resultCount.getStrike()).append(" 스트라이크 ");
+        return msg.toString();
     }
 
     public boolean restart(){
