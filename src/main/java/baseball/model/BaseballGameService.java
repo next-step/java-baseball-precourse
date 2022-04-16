@@ -15,30 +15,44 @@ public class BaseballGameService {
 
     public void createAnswer() {
         answerNumberList.clear();
-        int count = 0;
-        while (count < NUMBER_OF_DIGIT) {
-            int randomNumber = Randoms.pickNumberInRange(1, 9);
-            if (!answerNumberList.contains(randomNumber)) {
-                answerNumberList.add(randomNumber);
-                count++;
-            }
+        int size = 0;
+        while (size < NUMBER_OF_DIGIT) {
+            size = generateAnswerNumber();
         }
     }
 
-    public CompareResultVO compareInputToAnswer(String inputNumber, List<Integer> answerNumberList) {
-        validateInputNumber(inputNumber);
-        List<Integer> inputNumberList = parseStringToIntegerList(inputNumber);
-        int ballCount = 0, strikeCount = 0;
-        for (int i = 0; i < answerNumberList.size(); i++) {
-            if (answerNumberList.get(i).intValue() == inputNumberList.get(i).intValue()) {
-                strikeCount++;
-                continue;
-            }
-            if (answerNumberList.contains(inputNumberList.get(i))) {
-                ballCount++;
-            }
+    private int generateAnswerNumber() {
+        int randomNumber = Randoms.pickNumberInRange(1, 9);
+        if (!answerNumberList.contains(randomNumber)) {
+            answerNumberList.add(randomNumber);
         }
-        return new CompareResultVO(ballCount, strikeCount);
+        return answerNumberList.size();
+    }
+
+    public CompareResultVO compareInputToAnswer(String inputNumber, List<Integer> answerNumberList) {
+        validateNonDigit(inputNumber);
+        validateNumberOfDigit(Integer.parseInt(inputNumber));
+
+        List<Integer> inputNumberList = parseStringToIntegerList(inputNumber);
+        CompareResultVO compareResultVO = new CompareResultVO();
+        for (int index = 0; index < answerNumberList.size(); index++) {
+            increaseCount(answerNumberList, inputNumberList, compareResultVO, index);
+        }
+        return compareResultVO;
+    }
+
+    private void increaseCount(List<Integer> answerNumberList, List<Integer> inputNumberList,
+                               CompareResultVO compareResultVO, int index) {
+
+        if (answerNumberList.get(index).intValue() == inputNumberList.get(index).intValue()) {
+            compareResultVO.increaseStrikeCount();
+            return;
+        }
+
+        if (answerNumberList.contains(inputNumberList.get(index))) {
+            compareResultVO.increaseBallCount();
+        }
+
     }
 
     private List<Integer> parseStringToIntegerList(String inputNumber) {
@@ -68,15 +82,15 @@ public class BaseballGameService {
         }
     }
 
-    private void validateInputNumber(String inputNumber) {
-        try {
-            int parseInput = Integer.parseInt(inputNumber);
-
-            if (parseInput < 100 || parseInput > 999) {
-                throw new IllegalArgumentException("3자리수가 아닙니다.");
-            }
-        } catch (NumberFormatException e) {
+    private void validateNonDigit(String inputNumber) {
+        if (inputNumber.matches("\\p{Digit}}")) {
             throw new IllegalArgumentException("숫자만 입력할 수 있습니다.");
+        }
+    }
+
+    private void validateNumberOfDigit(int inputNumber) {
+        if (inputNumber < 100 || inputNumber > 999) {
+            throw new IllegalArgumentException("3자리수가 아닙니다.");
         }
     }
 

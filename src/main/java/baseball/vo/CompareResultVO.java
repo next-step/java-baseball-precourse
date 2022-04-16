@@ -2,12 +2,12 @@ package baseball.vo;
 
 
 public class CompareResultVO {
-    private final int ballCount;
-    private final int strikeCount;
+    private int ballCount;
+    private int strikeCount;
 
-    public CompareResultVO(int ballCount, int strikeCount) {
-        this.ballCount = ballCount;
-        this.strikeCount = strikeCount;
+    public CompareResultVO(){
+        this.ballCount = 0;
+        this.strikeCount = 0;
     }
 
     public int getBallCount() {
@@ -16,5 +16,13 @@ public class CompareResultVO {
 
     public int getStrikeCount() {
         return strikeCount;
+    }
+
+    public void increaseBallCount(){
+        this.ballCount++;
+    }
+
+    public void increaseStrikeCount(){
+        this.strikeCount++;
     }
 }
