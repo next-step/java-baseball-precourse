@@ -1,4 +1,4 @@
-package baseball.dto.enumtype;
+package baseball.vo.enumtype;
 
 public enum Inclusive {
     START(1), END(9);

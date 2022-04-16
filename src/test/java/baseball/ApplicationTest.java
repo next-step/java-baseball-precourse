@@ -1,11 +1,9 @@
 package baseball;
 
-import baseball.dto.enumtype.Inclusive;
+import baseball.vo.enumtype.Inclusive;
 import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.test.NsTest;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
 
