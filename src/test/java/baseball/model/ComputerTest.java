@@ -5,10 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
@@ -18,14 +15,14 @@ class ComputerTest {
     @Test
     void generateRandomNumber() {
         Computer computer = new Computer();
-        Set<Integer> number = computer.getNumber();
+        List<Integer> number = computer.getNumber();
         assertThat(number).hasSize(3).doesNotHaveDuplicates().doesNotContain(0);
     }
 
     @ParameterizedTest
     @MethodSource(value = {"generateCountStrikeData"})
     void countStrikeTest(List<Integer> computerNumber, List<Integer> playerNumber, int expected) {
-        Computer computer = new Computer(new LinkedHashSet<>(computerNumber));
+        Computer computer = new Computer(new ArrayList<>(computerNumber));
         assertThat(computer.countStrike(playerNumber)).isEqualTo(expected);
     }
 
@@ -43,7 +40,7 @@ class ComputerTest {
     @ParameterizedTest
     @MethodSource(value = {"generateCountBallData"})
     void countBallTest(List<Integer> computerNumber, List<Integer> playerNumber, int expected) {
-        Computer computer = new Computer(new LinkedHashSet<>(computerNumber));
+        Computer computer = new Computer(new ArrayList<>(computerNumber));
         assertThat(computer.countBall(computer.countStrike(playerNumber), playerNumber)).isEqualTo(expected);
     }
 

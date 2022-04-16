@@ -3,22 +3,19 @@ package baseball.model;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Computer {
     private static final int START_RANGE = 1;
     private static final int END_RANGE = 9;
     private static final int NUMBER_SIZE = 3;
-    Set<Integer> number = new LinkedHashSet<>();
+    List<Integer> number = new ArrayList<>();
 
     public Computer() {
         generateRandomNumber();
     }
 
-    public Computer(LinkedHashSet<Integer> number) {
+    public Computer(List<Integer> number) {
         this.number = number;
     }
 
@@ -28,16 +25,15 @@ public class Computer {
         }
     }
 
-    public Set<Integer> getNumber() {
+    public List<Integer> getNumber() {
         return number;
     }
 
     public int countStrike(List<Integer> input) {
-        List<Integer> numberList = new ArrayList<>(number);
         int strike = 0;
 
         for(int i=0; i<NUMBER_SIZE; i++) {
-            Integer computerNumber = numberList.get(i);
+            Integer computerNumber = number.get(i);
             Integer playerNumber = input.get(i);
             if(computerNumber.equals(playerNumber)) {
                 strike++;
