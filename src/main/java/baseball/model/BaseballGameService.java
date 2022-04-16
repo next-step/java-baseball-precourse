@@ -1,15 +1,18 @@
 package baseball.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BaseballGameService {
 
-    private int answer;
+    private final List<Integer> answerNumberList = new ArrayList<>();
 
     public void initAnswer() {
 
     }
 
-    public int getAnswer() {
-        return answer;
+    public List<Integer> getAnswerNumberList() {
+        return answerNumberList;
     }
 
 }

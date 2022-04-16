@@ -15,18 +15,11 @@ class BaseballGameServiceTest {
     @Test
     void initAnswer() {
         baseballGameService.initAnswer();
-        int answer = baseballGameService.getAnswer();
-        int nums = answer;
-        List<Integer> numberList = new ArrayList<>();
-
-        while (nums > 0) {
-            numberList.add(nums % 10);
-            nums = nums / 10;
-        }
+        List<Integer> answerNumberList = baseballGameService.getAnswerNumberList();
 
         assertAll(
-                () -> assertTrue(answer >= 100 && answer < 1000, "정답은 3자리 숫자여야한다."),
-                () -> assertFalse(numberList.contains(0), "정답 숫자에는 0을 포함하지 않는다.")
+                () -> assertEquals(3, answerNumberList.size(), "정답은 3자리 숫자여야한다."),
+                () -> assertFalse(answerNumberList.contains(0), "정답 숫자에는 0을 포함하지 않는다.")
         );
     }
 }
