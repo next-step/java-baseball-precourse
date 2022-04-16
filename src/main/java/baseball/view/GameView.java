@@ -12,7 +12,7 @@ public class GameView {
         this.inputReader = inputReader;
     }
 
-    List<Integer> inputUserNumber() {
+    public List<Integer> inputUserNumber() {
         System.out.print("숫자를 입력해주세요 : ");
         return inputReader.readBallNumber();
     }
@@ -31,12 +31,17 @@ public class GameView {
 
     private String createCountingString(CompareResult compareResult) {
         String string = "";
-        if (compareResult.getStrike() != 0) {
-            string += compareResult.getStrike() + "스트라이크 ";
-        }
         if (compareResult.getBall() != 0) {
-            string += compareResult.getBall() + "볼";
+            string += compareResult.getBall() + "볼 ";
+        }
+        if (compareResult.getStrike() != 0) {
+            string += compareResult.getStrike() + "스트라이크";
         }
         return string;
+    }
+
+    public boolean askReGame() {
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        return inputReader.readReGameFlag();
     }
 }

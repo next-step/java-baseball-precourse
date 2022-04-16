@@ -2,7 +2,6 @@ package baseball.view;
 
 import baseball.domain.CompareResult;
 import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -48,7 +47,7 @@ class GameViewTest {
         assertThat(capture.toString()).contains("낫싱");
     }
 
-    @DisplayName("비교결과출력_1스트라이크, 1볼")
+    @DisplayName("비교결과출력_1볼, 2스트라이크")
     @Test
     void show_1strike_1ball() {
         CompareResult compareResult = mock(CompareResult.class);
@@ -59,12 +58,12 @@ class GameViewTest {
         when(compareResult.getBall()).thenReturn(1);
         view.showCompareResult(compareResult);
 
-        assertThat(capture.toString()).contains("1스트라이크 1볼");
+        assertThat(capture.toString()).contains("1볼 1스트라이크");
     }
 
-    @DisplayName("비교결과출력_1스트라이크, 2볼")
+    @DisplayName("비교결과출력_2볼, 1스트라이크")
     @Test
-    void show_1strike_2ball() {
+    void show_2ball_1strike() {
         CompareResult compareResult = mock(CompareResult.class);
         GameView view = new GameView(null);
 
@@ -73,7 +72,7 @@ class GameViewTest {
         when(compareResult.getBall()).thenReturn(2);
         view.showCompareResult(compareResult);
 
-        assertThat(capture.toString()).contains("1스트라이크 2볼");
+        assertThat(capture.toString()).contains("2볼 1스트라이크");
     }
 
     @DisplayName("비교결과출력_3스트라이크")
