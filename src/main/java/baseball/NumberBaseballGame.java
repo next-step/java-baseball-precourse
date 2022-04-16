@@ -42,7 +42,7 @@ public class NumberBaseballGame {
         return true;
     }
 
-    private void validateNumber(String number) throws IllegalArgumentException{
+    public void validateNumber(String number) throws IllegalArgumentException{
         if(number == null || number.length() != maxNumberLength)
             throw new IllegalArgumentException();
 
