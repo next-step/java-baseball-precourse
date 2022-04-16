@@ -9,11 +9,11 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.List;
 
-class UserInputViewTest {
+class GameViewTest {
     @DisplayName("입력요청 문구 확인")
     @Test
     void requestMessage() {
-        UserInputView view = new UserInputView(new InputReader() {
+        GameView view = new GameView(new InputReader() {
             @Override
             public List<Integer> readBallNumber() {
                 return null;

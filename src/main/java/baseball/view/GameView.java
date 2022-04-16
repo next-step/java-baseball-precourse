@@ -2,10 +2,10 @@ package baseball.view;
 
 import java.util.List;
 
-public class UserInputView {
+public class GameView {
     private final InputReader inputReader;
 
-    public UserInputView(InputReader inputReader) {
+    public GameView(InputReader inputReader) {
         this.inputReader = inputReader;
     }
 
