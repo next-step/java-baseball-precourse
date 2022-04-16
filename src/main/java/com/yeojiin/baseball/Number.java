@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Number {
+
     private final ArrayList<Integer> numbers;
 
     public Number(ArrayList<Integer> numbers) {
@@ -31,6 +32,32 @@ public class Number {
         return new Number(playerNumbers);
     }
 
+    public static void validateCommand( String command ) {
+        if ( !command.equals("1") && !command.equals("2")  ) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public int getNumByIdx(int idx) {
+        return numbers.get(idx);
+    }
+
+    public boolean isBall (int number) {
+        return numbers.contains(number);
+    }
+
+    public boolean isStrike ( int number, int idx ) {
+        return numbers.get(idx).equals(number);
+    }
+
+    private static ArrayList<Integer> convertStringToList(String inputNumbers) {
+        ArrayList<Integer> playerNumbers = new ArrayList<>();
+        String[] splitNumbers = inputNumbers.split("");
+        for ( String number : splitNumbers ) {
+            playerNumbers.add(Integer.parseInt(number));
+        }
+        return playerNumbers;
+    }
 
     private static void validateNumbers(String inputNumbers) {
         HashSet<Character> duplicateNumber = new HashSet<>();
@@ -49,27 +76,5 @@ public class Number {
                 throw new IllegalArgumentException();
             }
         }
-    }
-
-    private static ArrayList<Integer> convertStringToList(String inputNumbers) {
-        ArrayList<Integer> playerNumbers = new ArrayList<>();
-        String[] splitNumbers = inputNumbers.split("");
-        for ( String number : splitNumbers ) {
-            playerNumbers.add(Integer.parseInt(number));
-        }
-        return playerNumbers;
-    }
-
-
-    public int getNumByIdx(int idx) {
-        return numbers.get(idx);
-    }
-
-    public boolean isContainNumber (int number) {
-        return numbers.contains(number);
-    }
-
-    public boolean isSameNumber ( int number, int idx ) {
-        return numbers.get(idx).equals(number);
     }
 }
