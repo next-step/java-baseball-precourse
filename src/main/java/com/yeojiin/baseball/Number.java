@@ -3,6 +3,7 @@ package com.yeojiin.baseball;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Number {
     private final ArrayList<Integer> numbers;
@@ -21,5 +22,54 @@ public class Number {
             }
         }
         return new Number(numbers);
+    }
+
+    public static Number generatePlayerNumbers(String inputNumbers) {
+        validateNumbers(inputNumbers);
+        ArrayList<Integer> playerNumbers = convertStringToList(inputNumbers);
+
+        return new Number(playerNumbers);
+    }
+
+
+    private static void validateNumbers(String inputNumbers) {
+        HashSet<Character> duplicateNumber = new HashSet<>();
+
+        if ( inputNumbers.length() != 3 ) {
+            throw new IllegalArgumentException();
+        }
+
+        for( int i = 0; i<inputNumbers.length(); i++) {
+            char number = inputNumbers.charAt(i);
+            if ( number < '1' || number > '9'  ) {
+                throw new IllegalArgumentException();
+            }
+
+            if ( !duplicateNumber.add(number) ) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
+    private static ArrayList<Integer> convertStringToList(String inputNumbers) {
+        ArrayList<Integer> playerNumbers = new ArrayList<>();
+        String[] splitNumbers = inputNumbers.split("");
+        for ( String number : splitNumbers ) {
+            playerNumbers.add(Integer.parseInt(number));
+        }
+        return playerNumbers;
+    }
+
+
+    public int getNumByIdx(int idx) {
+        return numbers.get(idx);
+    }
+
+    public boolean isContainNumber (int number) {
+        return numbers.contains(number);
+    }
+
+    public boolean isSameNumber ( int number, int idx ) {
+        return numbers.get(idx).equals(number);
     }
 }
