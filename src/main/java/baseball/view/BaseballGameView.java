@@ -8,6 +8,7 @@ public class BaseballGameView {
     private static final String NOTHING_PHRASES = "낫싱";
     private static final String BALL_PHRASES = "볼";
     private static final String STRIKE_PHRASES = "스트라이크";
+    private static final String GAP_PHRASES = " ";
 
     public String inputNumber() {
         return INPUT_NUMBER_PHRASES;
@@ -22,11 +23,19 @@ public class BaseballGameView {
     }
 
     public String ballCount(int ballCount) {
-        return ballCount + BALL_PHRASES;
+        String message = "";
+        if(ballCount > 0){
+            message = ballCount + BALL_PHRASES + GAP_PHRASES;
+        }
+        return message;
     }
 
     public String strikeCount(int strikeCount) {
-        return strikeCount + STRIKE_PHRASES;
+        String message = "";
+        if(strikeCount > 0){
+            message = strikeCount + STRIKE_PHRASES;
+        }
+        return message;
     }
 
     public String nothingCount() {
