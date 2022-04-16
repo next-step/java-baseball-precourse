@@ -3,7 +3,9 @@ package baseball.model;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Computer {
     private static final int START_RANGE = 1;
@@ -20,9 +22,12 @@ public class Computer {
     }
 
     public void generateRandomNumber() {
-        while (number.size() < NUMBER_SIZE) {
-            number.add(Randoms.pickNumberInRange(START_RANGE, END_RANGE));
+        number.clear();
+        Set<Integer> randomSet = new LinkedHashSet<>();
+        while (randomSet.size() < NUMBER_SIZE) {
+            randomSet.add(Randoms.pickNumberInRange(START_RANGE, END_RANGE));
         }
+        number = new ArrayList<>(randomSet);
     }
 
     public List<Integer> getNumber() {
