@@ -8,22 +8,22 @@ public final class Game {
 
     private Game() { }
 
-    static Judgment checkAnswer(GameState state, int digit, int indexOfDigit) {
-        if (!state.getComputersDigits().contains(digit)) {
+    static Judgment checkAnswer(NumberToIndex opponent, int digit, int indexOfDigit) {
+        if (!opponent.contains(digit)) {
             return Judgment.NONE;
         }
-        int index = state.getComputersDigits().getIndexOf(digit);
+        int index = opponent.getIndexOf(digit);
         return index == indexOfDigit ? Judgment.STRIKE : Judgment.BALL;
     }
 
-    static RoundScore judge(GameState state, NumberToIndex answer) {
+    static RoundScore judge(NumberToIndex opponent, NumberToIndex answer) {
         RoundScore score = new RoundScore();
         Iterator<Integer> answerIterator = answer.numberIterator();
 
         while (answerIterator.hasNext()) {
             int n = answerIterator.next();
             int i = answer.getIndexOf(n);
-            Judgment result = checkAnswer(state, n, i);
+            Judgment result = checkAnswer(opponent, n, i);
             score.addJudgment(result);
         }
         return score;
@@ -31,7 +31,7 @@ public final class Game {
 
     private static RoundScore process(GameState state, String input) {
         NumberToIndex answer = GameUtil.parseDigitsFrom(input);
-        return judge(state, answer);
+        return judge(state.getComputersDigits(), answer);
     }
 
     private static boolean isGameOver(RoundScore score) {
