@@ -9,8 +9,16 @@
 ## ︎📝 구현할 기능 목록
 * 상대방(컴퓨터)의 역할을 하는 Computer가 가질 랜덤 숫자 3개 생성
     * 단, 1 ~ 9까지 숫자를 가지며, 각 숫자는 중복되지 않음
-* Computer가 야구게임의 랜덤 숫자 3개를 가짐
+    * 게임이 새로 시작될 때까지, 랜덤 숫자 3개는 변경되지 않음 : Singleton, Builder 패턴 고려
 * Controller(Operator)가 Computer에게 야구게임의 랜덤 숫자 3개를 가지도록 메시지 전달
+* Computer가 야구게임의 랜덤 숫자 3개를 가짐
+* Controller(Operator)가 Player로부터 숫자를 입력받아 임시저장을 한 뒤, 이를 Computer에게 전달
+  * 이 때, Validator를 통해 값을 검증한다
+    > 검증 내용 : 입력값이 3자리 미만 또는 초과, 0이 입력되면 입력한 값을 Computer에게 전달하지 않고,
+    IllegalArgumentException을 발생시킨 후 애플리케이션은 종료되어야 한다.
+* Computer가 Controller(Operator)로부터 전달받은 야구게임의 입력값에 대해 게임의 결과를 판단하고,
+  Controller(Operator)에게 결과를 반환
+  * 결과값은 enum으로 정리해서, else 키워드 사용 방지 및 함수(또는 메소드)의 길이가 10라인을 넘어가지 않도록 구현
 
 ## ︎💡 구현할 기능 후보 목록(브레인 스토밍)
 ### ☕️ 객체 종류
