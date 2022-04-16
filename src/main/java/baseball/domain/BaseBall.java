@@ -42,7 +42,11 @@ public class BaseBall {
     }
 
     public static BaseBall generateComputerBall() {
-        return new BaseBall(Randoms.pickUniqueNumbersInRange(MIN_BALL_NUMBER, MAX_BALL_NUMBER, BALL_SIZE));
+        Set<Integer> ballNumbers = new HashSet<>();
+        while (ballNumbers.size() != BALL_SIZE) {
+            ballNumbers.add(Randoms.pickNumberInRange(MIN_BALL_NUMBER, MAX_BALL_NUMBER));
+        }
+        return new BaseBall(new ArrayList<>(ballNumbers));
     }
 
     public CompareResult compare(BaseBall otherBaseball) {
