@@ -28,7 +28,7 @@ public class BaseBallController {
             System.out.println(getResultMessage(strike, ball));
             if(isDone(strike)) {
                 if(isExit(InputView.inputExit())) {
-                    exit = false;
+                    break;
                 }
                 computer.generateRandomNumber();
             }
