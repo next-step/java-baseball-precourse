@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import baseball.vo.CompareResultVO;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,13 +15,15 @@ class BaseballGameServiceTest {
 
     @DisplayName("숫자 야구게임에 대한 정답을 생성(임의의 수)")
     @Test
-    void initAnswer() {
+    void createAnswer() {
         baseballGameService.createAnswer();
         List<Integer> answerNumberList = baseballGameService.getAnswerNumberList();
 
         assertAll(
                 () -> assertEquals(3, answerNumberList.size(), "정답은 3자리 숫자여야한다."),
-                () -> assertFalse(answerNumberList.contains(0), "정답 숫자에는 0을 포함하지 않는다.")
+                () -> assertFalse(answerNumberList.contains(0), "정답 숫자에는 0을 포함하지 않는다."),
+                () -> assertEquals(3, new HashSet<>(answerNumberList).size(),
+                        "정답 숫자들은 중복을 허용하지 않는다.")
         );
     }
 

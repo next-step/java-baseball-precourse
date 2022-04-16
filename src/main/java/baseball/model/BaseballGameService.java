@@ -13,10 +13,13 @@ public class BaseballGameService {
 
     public void createAnswer() {
         answerNumberList.clear();
-
-        for (int count = 0; count < NUMBER_OF_DIGIT; count++) {
+        int count = 0;
+        while (count < NUMBER_OF_DIGIT) {
             int randomNumber = Randoms.pickNumberInRange(1, 9);
-            answerNumberList.add(randomNumber);
+            if (!answerNumberList.contains(randomNumber)) {
+                answerNumberList.add(randomNumber);
+                count++;
+            }
         }
     }
 
