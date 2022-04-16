@@ -5,11 +5,19 @@ import java.util.Objects;
 
 public class GameProcessor {
 
-    public int countStrike = 0;
-    public int countBall = 0;
+    public static int countStrike = 0;
+    public static int countBall = 0;
     public int STRIKE = 3;
 
-    public boolean compareComputerPlayerNumbers(List<Integer> computerNumberList, List<String> playerNumberList) {
+    public static void initializeCounts() {
+        countStrike = 0;
+        countBall = 0;
+    }
+
+    public boolean playGame(List<Integer> computerNumberList, List<String> playerNumberList) {
+
+        initializeCounts();
+
         int count = 3;
         for (int index = 0; index < count; index++) {
             Integer computerNumber = computerNumberList.get(index);

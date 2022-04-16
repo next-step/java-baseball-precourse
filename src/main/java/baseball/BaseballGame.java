@@ -17,12 +17,13 @@ public class BaseballGame {
     }
 
     public static boolean init(Computer computer) {
-        boolean ThreeStrike = false;
-        while (!ThreeStrike) {
-            Player player = new Player();
+        boolean isThreeStrike = false;
+        Player player = new Player();
+        GameProcessor gameProcessor = new GameProcessor();
+
+        while (!isThreeStrike) {
             player.drawNumbers();
-            GameProcessor calculate = new GameProcessor();
-            ThreeStrike = calculate.compareComputerPlayerNumbers(computer.computerNumberList, player.inputs);
+            isThreeStrike = gameProcessor.playGame(computer.computerNumberList, player.inputs);
         }
         return retry();
     }

@@ -6,9 +6,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ApplicationTest extends NsTest {
 
@@ -56,7 +61,33 @@ class ApplicationTest extends NsTest {
     @DisplayName("사용자가 입력한 값이 유효성 체크를 통과하지 못하면 예외를 던진다")
     void When_Player_Invalidate_Throw_Exception(String input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new RandomNumberByPlayer().validationCheck(input));
+                .isThrownBy(() -> new Player().validationCheck(input));
+    }
+
+    @Test
+    @DisplayName("3스트라이크를 정상적으로 테스트한다.")
+    void Test_Three_Strike() {
+        GameProcessor gameProcessor = new GameProcessor();
+        List<Integer> computer = new ArrayList<>();
+        computer.add(1);
+        computer.add(2);
+        computer.add(3);
+
+        List<String> player1 = new ArrayList<>();
+        player1.add("3");
+        player1.add("2");
+        player1.add("1");
+
+        List<String> player2 = new ArrayList<>();
+        player2.add("1");
+        player2.add("2");
+        player2.add("3");
+
+        boolean result1 = gameProcessor.playGame(computer, player1);
+        boolean result2 = gameProcessor.playGame(computer, player2);
+
+        assertFalse(result1);
+        assertTrue(result2);
     }
 
     @Override
