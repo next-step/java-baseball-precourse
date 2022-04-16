@@ -1,11 +1,6 @@
 package baseball.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import org.assertj.core.util.Strings;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class GameService {
     GameService() {
@@ -17,11 +12,14 @@ public class GameService {
      *
      * @return 중복되지 않는 3자리 랜덤 수 생성
      */
-    public static String newNumber() {
-        int firstNumber = Randoms.pickNumberInRange(1, 9);
-        int secondNumber = pickRandomNumber(Collections.singletonList(firstNumber));
-        int thirdNumber = pickRandomNumber(Arrays.asList(firstNumber, secondNumber));
-        return Strings.concat(firstNumber, secondNumber, thirdNumber);
+    public static String newNumber(int size) {
+        StringBuilder pickedNumbers = new StringBuilder();
+
+        for(int i = 0; i < size; i++) {
+            pickedNumbers.append(pickRandomNumber(pickedNumbers.toString()));
+        }
+
+        return pickedNumbers.toString();
     }
 
     /**
@@ -30,8 +28,8 @@ public class GameService {
      * @param pickedNumbers 이미 선택된 숫자
      * @return 이미 선택된 숫자를 제외하고 랜덤 숫자 반환
      */
-    public static int pickRandomNumber(List<Integer> pickedNumbers) {
-        int number = Randoms.pickNumberInRange(1, 9);
+    public static String pickRandomNumber(String pickedNumbers) {
+        String number = String.valueOf(Randoms.pickNumberInRange(1, 9));
 
         if (pickedNumbers.contains(number)) {
             return pickRandomNumber(pickedNumbers);
