@@ -33,7 +33,7 @@ public class GameTest {
     @DisplayName("judge() 다른 자리의 숫자 3개일 때, 3볼 0스트라이크")
     void judge_WithComputersDigitsDescending_Pass3DigitsNotInSamePosition_3Balls() {
         GameState state = new GameState(Arrays.asList(3, 2, 1));
-        NumberToIndex answer = new NumberToIndex("213");
+        NumberToIndex answer = GameUtil.parseDigitsFrom("213");
 
         RoundScore result = Game.judge(state, answer);
 
@@ -45,7 +45,7 @@ public class GameTest {
     @DisplayName("judge() 다른 자리의 숫자 2개와 같은 자리의 숫자 1개일 때, 2볼 1스트라이크")
     void judge_WithComputersDigitsDescending_Pass2DigitsNotInSamePosition1DigitInSamePosition_2Balls1Strike() {
         GameState state = new GameState(Arrays.asList(3, 2, 1));
-        NumberToIndex answer = new NumberToIndex("231");
+        NumberToIndex answer = GameUtil.parseDigitsFrom("231");
 
         RoundScore result = Game.judge(state, answer);
 
@@ -57,7 +57,7 @@ public class GameTest {
     @DisplayName("judge() 같은 자리의 숫자 3개일 때, 0볼 3스트라이크")
     void judge_WithComputersDigitsDescending_Pass3DigitsInSamePosition_3Strikes() {
         GameState state = new GameState(Arrays.asList(3, 2, 1));
-        NumberToIndex answer = new NumberToIndex("321");
+        NumberToIndex answer = GameUtil.parseDigitsFrom("321");
 
         RoundScore result = Game.judge(state, answer);
 
@@ -69,7 +69,7 @@ public class GameTest {
     @DisplayName("judge() 같은 자리의 숫자 3개일 때, 0볼 0스트라이크")
     void judge_Pass3DigitsNotContained_0Ball0Strike() {
         GameState state = new GameState(Arrays.asList(3, 2, 1));
-        NumberToIndex answer = new NumberToIndex("456");
+        NumberToIndex answer = GameUtil.parseDigitsFrom("456");
 
         RoundScore result = Game.judge(state, answer);
 

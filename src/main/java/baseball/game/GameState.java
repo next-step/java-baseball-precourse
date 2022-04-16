@@ -5,17 +5,17 @@ import java.util.List;
 import static baseball.game.GameConfig.*;
 
 public class GameState {
-    private final NumberToIndex computerDigits = new NumberToIndex();
+    private final NumberToIndex computersDigits = new NumberToIndex();
 
     public GameState() {
-        computerDigits.putAll(GameUtil.randomNumbers(NUM_DIGITS, DIGIT_START, DIGIT_END));
+        computersDigits.putAll(GameUtil.randomNumbers(NUM_DIGITS, DIGIT_START, DIGIT_END));
     }
 
     public GameState(List<Integer> digits) {
-        computerDigits.putAll(digits);
+        computersDigits.putAll(digits);
     }
 
-    public NumberToIndex getComputerDigits() {
-        return computerDigits;
+    public NumberToIndex getComputersDigits() {
+        return computersDigits;
     }
 }

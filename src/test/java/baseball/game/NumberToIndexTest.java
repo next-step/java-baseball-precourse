@@ -24,7 +24,7 @@ public class NumberToIndexTest {
     @Test
     @DisplayName("put() 1,2,3을 String으로 넣으면, 3개가 추가됨")
     void constructor_With123AsString_3ItemsAdded() {
-        NumberToIndex target = new NumberToIndex("123");
+        NumberToIndex target = GameUtil.parseDigitsFrom("123");
 
         assertThat(target.size()).isEqualTo(3);
         assertThat(target.getIndexOf(1)).isEqualTo(0);
@@ -35,12 +35,12 @@ public class NumberToIndexTest {
     @Test
     @DisplayName("생성자 호출 시 1234를 String으로 넘기면, IllegalArgumentException 예외")
     void constructor_With1234AsString_ThrowsIllegalArgumentException() {
-        assertThatIllegalArgumentException().isThrownBy(() -> new NumberToIndex("1234"));
+        assertThatIllegalArgumentException().isThrownBy(() -> GameUtil.parseDigitsFrom("1234"));
     }
 
     @Test
     @DisplayName("생성자 호출 시 120를 String으로 넘기면, IllegalArgumentException 예외")
     void constructor_With120AsString_ThrowsIllegalArgumentException() {
-        assertThatIllegalArgumentException().isThrownBy(() -> new NumberToIndex("120"));
+        assertThatIllegalArgumentException().isThrownBy(() -> GameUtil.parseDigitsFrom("120"));
     }
 }

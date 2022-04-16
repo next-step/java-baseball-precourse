@@ -9,10 +9,10 @@ public class Game {
     private Game() { }
 
     static Judgment checkAnswer(GameState state, int digit, int indexOfDigit) {
-        if (!state.getComputerDigits().contains(digit)) {
+        if (!state.getComputersDigits().contains(digit)) {
             return Judgment.NONE;
         }
-        int index = state.getComputerDigits().getIndexOf(digit);
+        int index = state.getComputersDigits().getIndexOf(digit);
         return index == indexOfDigit ? Judgment.STRIKE : Judgment.BALL;
     }
 
@@ -30,7 +30,7 @@ public class Game {
     }
 
     private static RoundScore process(GameState state, String input) {
-        NumberToIndex answer = new NumberToIndex(input);
+        NumberToIndex answer = GameUtil.parseDigitsFrom(input);
         return judge(state, answer);
     }
 
