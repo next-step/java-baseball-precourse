@@ -2,6 +2,7 @@ package baseball.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
@@ -49,5 +50,73 @@ class BaseBallTest {
             numbers.add(Integer.parseInt(s));
         }
         return numbers;
+    }
+
+    @DisplayName("비교_낫싱")
+    @ParameterizedTest
+    @CsvSource(value = {"123,456", "456,789", "789,123"})
+    void compare_nothing(String n1, String n2) {
+        BaseBall cpu = new BaseBall(stringToIntegerList(n1));
+        BaseBall user = new BaseBall(stringToIntegerList(n2));
+
+        CompareResult compareResult = cpu.compare(user);
+
+        assertThat(compareResult.isNothing()).isTrue();
+    }
+
+    @DisplayName("비교_3볼")
+    @ParameterizedTest
+    @CsvSource(value = {"123,231", "456,645", "789,978"})
+    void compare_3ball(String n1, String n2) {
+        BaseBall cpu = new BaseBall(stringToIntegerList(n1));
+        BaseBall user = new BaseBall(stringToIntegerList(n2));
+
+        CompareResult compareResult = cpu.compare(user);
+
+        assertThat(compareResult.getBall()).isEqualTo(3);
+        assertThat(compareResult.getStrike()).isEqualTo(0);
+        assertThat(compareResult.isNothing()).isFalse();
+    }
+
+    @DisplayName("비교_3스트라이크")
+    @ParameterizedTest
+    @CsvSource(value = {"123,123", "456,456", "789,789"})
+    void compare_3strike(String n1, String n2) {
+        BaseBall cpu = new BaseBall(stringToIntegerList(n1));
+        BaseBall user = new BaseBall(stringToIntegerList(n2));
+
+        CompareResult compareResult = cpu.compare(user);
+
+        assertThat(compareResult.getStrike()).isEqualTo(3);
+        assertThat(compareResult.getBall()).isEqualTo(0);
+        assertThat(compareResult.isNothing()).isFalse();
+    }
+
+    @DisplayName("비교_1스트라이크, 1볼")
+    @ParameterizedTest
+    @CsvSource(value = {"123,134", "456,467", "789,791"})
+    void compare_1strike_1ball(String n1, String n2) {
+        BaseBall cpu = new BaseBall(stringToIntegerList(n1));
+        BaseBall user = new BaseBall(stringToIntegerList(n2));
+
+        CompareResult compareResult = cpu.compare(user);
+
+        assertThat(compareResult.getStrike()).isEqualTo(1);
+        assertThat(compareResult.getBall()).isEqualTo(1);
+        assertThat(compareResult.isNothing()).isFalse();
+    }
+
+    @DisplayName("비교_1스트라이크, 2볼")
+    @ParameterizedTest
+    @CsvSource(value = {"123,132", "456,465", "789,798"})
+    void compare_1strike_2ball(String n1, String n2) {
+        BaseBall cpu = new BaseBall(stringToIntegerList(n1));
+        BaseBall user = new BaseBall(stringToIntegerList(n2));
+
+        CompareResult compareResult = cpu.compare(user);
+
+        assertThat(compareResult.getStrike()).isEqualTo(1);
+        assertThat(compareResult.getBall()).isEqualTo(2);
+        assertThat(compareResult.isNothing()).isFalse();
     }
 }

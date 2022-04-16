@@ -45,6 +45,31 @@ public class BaseBall {
         return new BaseBall(Randoms.pickUniqueNumbersInRange(MIN_BALL_NUMBER, MAX_BALL_NUMBER, BALL_SIZE));
     }
 
+    public CompareResult compare(BaseBall otherBaseball) {
+        return new CompareResult(calculateBallCount(otherBaseball.balls), calculateStrikeCount(otherBaseball.balls));
+    }
+
+    private int calculateBallCount(List<Ball> otherBalls) {
+        int count = 0;
+        for (int i = 0; i < balls.size(); i++) {
+            count += isBall(otherBalls, i) ? 1 : 0;
+        }
+        return count;
+    }
+
+    private boolean isBall(List<Ball> otherBalls, int ballIndex) {
+        Ball ball = balls.get(ballIndex);
+        return otherBalls.contains(ball) && !otherBalls.get(ballIndex).equals(ball);
+    }
+
+    private int calculateStrikeCount(List<Ball> otherBalls) {
+        int strikeCount = 0;
+        for (int i = 0; i < balls.size(); i++) {
+            strikeCount += balls.get(i).equals(otherBalls.get(i)) ? 1 : 0;
+        }
+        return strikeCount;
+    }
+
     @Override
     public String toString() {
         StringBuilder numberString = new StringBuilder();
