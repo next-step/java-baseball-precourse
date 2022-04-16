@@ -89,4 +89,17 @@ class GameViewTest {
 
         assertThat(capture.toString()).contains("3스트라이크", "게임 종료");
     }
+
+    @DisplayName("게임 재시작 확인 문구")
+    @Test
+    void retryMessage() {
+        InputReader inputReader = mock(InputReader.class);
+        GameView view = new GameView(inputReader);
+
+        when(inputReader.readReGameFlag()).thenReturn(true);
+        view.askReGame();
+
+        assertThat(capture.toString())
+                .contains("새로 시작하려면 1", "종료하려면 2", "입력");
+    }
 }
