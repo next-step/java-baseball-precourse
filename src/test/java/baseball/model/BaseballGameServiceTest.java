@@ -75,7 +75,10 @@ class BaseballGameServiceTest {
                         "3자리수가 아니면 IllegalArgumentException이 발생한다."),
                 () -> assertThrows(IllegalArgumentException.class,
                         () -> baseballGameService.compareInputToAnswer("103", answerNumberList),
-                        "입력에 0이 포함되면 IllegalArgumentException이 발생한다.")
+                        "입력에 0이 포함되면 IllegalArgumentException이 발생한다."),
+                () -> assertThrows(IllegalArgumentException.class,
+                        () -> baseballGameService.compareInputToAnswer("779", answerNumberList),
+                        "입력에 중복된 숫자가 포함되면 IllegalArgumentException이 발생한다.")
         );
     }
 }

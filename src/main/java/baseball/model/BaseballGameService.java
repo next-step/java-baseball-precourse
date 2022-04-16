@@ -4,7 +4,9 @@ import baseball.vo.CompareResultVO;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class BaseballGameService {
 
@@ -49,12 +51,20 @@ public class BaseballGameService {
             inputNumberList.add(number);
         }
         Collections.reverse(inputNumberList);
+        validateDuplication(inputNumberList);
         return inputNumberList;
     }
 
     private void validateNonZero(int number) {
         if (number == 0) {
             throw new IllegalArgumentException("0은 사용할 수 없습니다.");
+        }
+    }
+
+    private void validateDuplication(List<Integer> inputNumberList) {
+        Set<Integer> set = new HashSet<>(inputNumberList);
+        if (set.size() < NUMBER_OF_DIGIT) {
+            throw new IllegalArgumentException("중복된 숫자는 사용할 수 없습니다.");
         }
     }
 
