@@ -20,4 +20,8 @@ public class CompareResult {
     public boolean isNothing() {
         return ball == 0 && strike == 0;
     }
+
+    public boolean isSuccess() {
+        return strike == BaseBall.BALL_SIZE;
+    }
 }

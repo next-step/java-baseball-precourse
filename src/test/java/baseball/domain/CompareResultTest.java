@@ -34,4 +34,16 @@ class CompareResultTest {
     void getStrike(int strike) {
         assertThat(new CompareResult(0, strike).getStrike()).isEqualTo(strike);
     }
+
+    @DisplayName("스트라이크와 공 개수가 동일하면 성공")
+    @Test
+    void success() {
+        assertThat(new CompareResult(0, BaseBall.BALL_SIZE).isSuccess()).isTrue();
+    }
+
+    @DisplayName("스트라이크와 공 개수가 다르면 실패")
+    @Test
+    void fail() {
+        assertThat(new CompareResult(0, BaseBall.BALL_SIZE - 1).isSuccess()).isFalse();
+    }
 }
