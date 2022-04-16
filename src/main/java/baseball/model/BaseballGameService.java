@@ -1,5 +1,6 @@
 package baseball.model;
 
+import baseball.vo.CompareResultVO;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,10 @@ public class BaseballGameService {
             int randomNumber = Randoms.pickNumberInRange(1, 9);
             answerNumberList.add(randomNumber);
         }
+    }
+
+    public CompareResultVO compareInputToAnswer(String inputNumber, List<Integer> answerNumberList) {
+        return new CompareResultVO(0, 0);
     }
 
     public List<Integer> getAnswerNumberList() {
