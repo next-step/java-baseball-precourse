@@ -2,7 +2,6 @@ package baseball.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,7 +13,7 @@ class BaseballGameServiceTest {
     @DisplayName("숫자 야구게임에 대한 정답을 생성(임의의 수)")
     @Test
     void initAnswer() {
-        baseballGameService.initAnswer();
+        baseballGameService.createAnswer();
         List<Integer> answerNumberList = baseballGameService.getAnswerNumberList();
 
         assertAll(
