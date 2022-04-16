@@ -38,23 +38,23 @@ class BaseballGameServiceTest {
                 () -> assertEquals(1, compareResultVO.getStrikeCount())
         );
 
-        inputNumber = "231";
+        inputNumber = "931";
 
-        baseballGameService.compareInputToAnswer(inputNumber, answerNumberList);
+        CompareResultVO compareResultVO1 = baseballGameService.compareInputToAnswer(inputNumber, answerNumberList);
 
         assertAll(
                 "결과는 0스트라이크 0볼이다.",
-                () -> assertEquals(0, compareResultVO.getBallCount()),
-                () -> assertEquals(0, compareResultVO.getStrikeCount())
+                () -> assertEquals(0, compareResultVO1.getBallCount()),
+                () -> assertEquals(0, compareResultVO1.getStrikeCount())
         );
 
-        inputNumber = "751";
+        inputNumber = "725";
 
-        baseballGameService.compareInputToAnswer(inputNumber, answerNumberList);
+        CompareResultVO compareResultVO2 = baseballGameService.compareInputToAnswer(inputNumber, answerNumberList);
 
         assertAll("결과는 3스트라이크 0볼이다.",
-                () -> assertEquals(0, compareResultVO.getBallCount()),
-                () -> assertEquals(3, compareResultVO.getStrikeCount())
+                () -> assertEquals(0, compareResultVO2.getBallCount()),
+                () -> assertEquals(3, compareResultVO2.getStrikeCount())
         );
     }
 
