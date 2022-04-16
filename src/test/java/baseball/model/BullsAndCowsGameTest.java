@@ -1,5 +1,6 @@
 package baseball.model;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -39,5 +40,23 @@ class BullsAndCowsGameTest {
                 Arguments.of("123", "123", 3, 0),
                 Arguments.of("637", "637", 3, 0)
         );
+    }
+
+    @Test
+    void end() {
+        // given
+        BullsAndCowsGame game = new BullsAndCowsGame(new Answer("123"));
+
+        // when
+        game.challenge(new Trial("456"));
+
+        // then
+        assertFalse(game.isEnd());
+
+        // when
+        game.challenge(new Trial("123"));
+
+        // then
+        assertTrue(game.isEnd());
     }
 }

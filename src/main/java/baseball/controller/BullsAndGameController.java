@@ -14,28 +14,27 @@ public class BullsAndGameController {
         do {
             Answer answer = getAnswer();
             BullsAndCowsGame game = new BullsAndCowsGame(answer);
-
-            while (!game.isEnd()) {
-                String line = Console.readLine();
-                Trial trial = new Trial(line);
-                Result result = game.challenge(trial);
-                View.result(result);
-            }
+            play(game);
             View.answer();
         } while (restart());
     }
 
+    private void play(BullsAndCowsGame game) {
+        while (!game.isEnd()) {
+            String line = Console.readLine();
+            Trial trial = new Trial(line);
+            Result result = game.challenge(trial);
+            View.result(result);
+        }
+    }
+
     private Answer getAnswer() {
-        Answer result = null;
-        while (result == null) {
-            try {
-                result = new Answer(
-                        String.valueOf(Randoms.pickNumberInRange(1, 9)) +
-                                Randoms.pickNumberInRange(1, 9) +
-                                Randoms.pickNumberInRange(1, 9)
-                );
-            } catch (IllegalArgumentException e) {
-            }
+        Answer result;
+        try {
+            result = new Answer(String.valueOf(Randoms.pickNumberInRange(1, 9)) +
+                    Randoms.pickNumberInRange(1, 9) + Randoms.pickNumberInRange(1, 9));
+        } catch (IllegalArgumentException e) {
+            result = getAnswer();
         }
         return result;
     }

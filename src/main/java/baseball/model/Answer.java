@@ -21,9 +21,7 @@ public class Answer {
 
 
     Result challenge(Trial trial) {
-        int strikeCnt = 0;
-        int ballCnt = 0;
-
+        int strikeCnt = 0, ballCnt = 0;
         for (int i = 0; i < answer.length(); i++) {
             char trialNumber = trial.get(i);
             if (answer.charAt(i) == trialNumber)
@@ -31,7 +29,6 @@ public class Answer {
             else if (answer.contains(Character.toString(trialNumber)))
                 ballCnt++;
         }
-
         return new Result(strikeCnt, ballCnt);
     }
 }
