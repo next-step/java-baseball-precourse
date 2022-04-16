@@ -10,7 +10,7 @@ class ValidatorTest {
     private Validator validator = new Validator();
 
     @ParameterizedTest
-    @ValueSource(strings = {"12", "1234", "abc", "A", "1A2","000", "120", "111", "112", "121"})
+    @ValueSource(strings = {"12", "1234", "abc", "A", "1A2","000", "120", "191", "112", "121", "111"})
     void validInputNumberTest(String input) {
         assertThatThrownBy(() -> validator.validInputNumber(input)).isInstanceOf(IllegalArgumentException.class);
     }
