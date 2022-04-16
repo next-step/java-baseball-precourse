@@ -9,7 +9,6 @@ import java.util.LinkedList;
 public class Game {
     public void play() {
         start();
-        end();
     }
 
     private void start() {
@@ -74,6 +73,13 @@ public class Game {
             }
         }
 
+        if(strikeCount == 3) {
+            System.out.println(strikeCount + "스트라이크");
+            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
+            end();
+            return;
+        }
+
         String hint_strike = (strikeCount == 0) ? "" : (strikeCount + "스트라이크 ");
         String hint_ball = (ballCount == 0) ? "" : (ballCount + "볼 ");
         if(strikeCount == 0 && ballCount == 0) {
@@ -87,5 +93,16 @@ public class Game {
 
     private void end() {
         System.out.println("게임 종료");
+
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        String input = Console.readLine().trim();
+
+        if(!input.equals("1") && !input.equals("2")) {
+            throw new IllegalArgumentException("입력이 올바르지 않습니다.");
+        }
+
+        if(input.equals("1")) {
+            start();
+        }
     }
 }
