@@ -1,5 +1,6 @@
 package baseball;
 
+import baseball.dto.enumtype.Inclusive;
 import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.ArrayList;
@@ -42,19 +43,28 @@ class ApplicationTest extends NsTest {
     @Test
     void Randoms_pickNumberInRange_사용_테스트() {
         // give
-        final int startInclusive = 1;
-        final int endInclusive = 9;
         final int gameNumbersLen = 3;
-        final Set<Integer> gameNumberSet = new HashSet<>();
 
         // when
-        do {
-            gameNumberSet.add(Randoms.pickNumberInRange(startInclusive, endInclusive));
-        } while (gameNumberSet.size() < gameNumbersLen);
+        Set<Integer> gameNumberSet = getGameNumberSet();
 
         // then
         assertEquals(gameNumbersLen, gameNumberSet.size());
         System.out.println(gameNumberSet);
+    }
+
+    /**
+     * 야구게임에서 컴퓨터가 가진 숫자 생성
+     * @return gameNumberSet : Set<Integer>
+     */
+    public Set<Integer> getGameNumberSet() {
+        final int gameNumbersLen = 3;
+        final Set<Integer> gameNumberSet = new HashSet<>();
+
+        do {
+            gameNumberSet.add(Randoms.pickNumberInRange(Inclusive.START.getValue(), Inclusive.END.getValue()));
+        } while (gameNumberSet.size() < gameNumbersLen);
+        return gameNumberSet;
     }
 
     @Override
