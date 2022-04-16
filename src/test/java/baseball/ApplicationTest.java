@@ -3,13 +3,15 @@ package baseball;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class ApplicationTest extends NsTest {
+
     @Test
     void 게임종료_후_재시작() {
         assertRandomNumberInRangeTest(
@@ -30,7 +32,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    @DisplayName("사용자 입력값중 중복되는 값이 있으면 예외를 던진다.")
+    @DisplayName("사용자 입력값 중 중복되는 값이 있으면 예외를 던진다.")
     void When_Input_Duplicated_Throw_Exception() {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("333"))
@@ -47,6 +49,14 @@ class ApplicationTest extends NsTest {
                 assertThatThrownBy(() -> runException("141"))
                         .isInstanceOf(IllegalArgumentException.class)
         );
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"999", "120", "가나다", "31", "012", "910", "12!"})
+    @DisplayName("사용자가 입력한 값이 유효성 체크를 통과하지 못하면 예외를 던진다")
+    void When_Player_Invalidate_Throw_Exception(String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new RandomNumberByPlayer().validationCheck(input));
     }
 
     @Override

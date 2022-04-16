@@ -27,14 +27,29 @@ public class RandomNumberByPlayer {
         return read.split("");
     }
 
-    private boolean validationCheck(String inputs) {
+    public boolean validationCheck(String inputs) {
 
         String[] array = getSplit(inputs);
 
         //TODO: validation check 더 추가 필요
         checkLength(array);
         checkDuplicateNumber(array);
+        checkInputsRange(array);
         return true;
+    }
+
+    private void checkInputsRange(String[] array) {
+        for (String text : array) {
+            try {
+                int number = Integer.parseInt(text);
+                if (number <= 0 || number >= 10) {
+                    throw new IllegalArgumentException();
+                }
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException(e);
+            }
+
+        }
     }
 
     private void checkLength(String[] array) {
@@ -43,9 +58,6 @@ public class RandomNumberByPlayer {
         }
     }
 
-    // TODO 숫자만 입력할 수 있도록 (1~9) 체크해야함
-    // TODO 중복 체크 로직 넣어줘야 (사용자가 실수로 똑같은 숫자 넣을 수 있으니)
-    // TODO 문자열 특수문자 등 걸러야 함
     // TODO interface 나 부모 클래스로 빼야한다.
     private void checkDuplicateNumber(String[] array) {
         set = new HashSet<>(getAsList(array));
