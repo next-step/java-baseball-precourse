@@ -5,7 +5,9 @@ import java.util.*;
 import static baseball.game.GameConfig.*;
 import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
 
-public class GameUtil {
+public final class GameUtil {
+
+    private GameUtil() { }
 
     public static List<Integer> randomNumbers(int numNumbers, int start, int end) {
         Set<Integer> result = new LinkedHashSet<>();

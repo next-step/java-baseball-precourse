@@ -4,7 +4,7 @@ import java.util.*;
 
 import static baseball.game.GameConfig.NUM_DIGITS;
 
-public class Game {
+public final class Game {
 
     private Game() { }
 
