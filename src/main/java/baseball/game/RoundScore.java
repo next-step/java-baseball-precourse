@@ -6,13 +6,12 @@ import java.util.Map;
 public class RoundScore {
     private final Map<Judgment, Integer> m = new HashMap<>();
 
-    public RoundScore() {
-        m.put(Judgment.STRIKE, 0);
-        m.put(Judgment.BALL, 0);
-        m.put(Judgment.NONE, 0);
-    }
+    public RoundScore() { }
 
     private int getNumberOf(Judgment judgment) {
+        if (!m.containsKey(judgment)) {
+            return 0;
+        }
         return m.get(judgment);
     }
 
@@ -25,6 +24,10 @@ public class RoundScore {
     }
 
     public void addJudgment(Judgment judgment) {
+        if (!m.containsKey(judgment)) {
+            m.put(judgment, 1);
+            return;
+        }
         m.put(judgment, m.get(judgment) + 1);
     }
 }
