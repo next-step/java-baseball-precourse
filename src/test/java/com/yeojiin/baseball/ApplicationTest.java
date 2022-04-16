@@ -1,4 +1,4 @@
-package baseball;
+package com.yeojiin.baseball;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
@@ -30,6 +30,6 @@ class ApplicationTest extends NsTest {
 
     @Override
     public void runMain() {
-        Application.main(new String[]{});
+        Main.main(new String[]{});
     }
 }
