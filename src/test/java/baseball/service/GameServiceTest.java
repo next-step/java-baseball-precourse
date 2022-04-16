@@ -15,4 +15,22 @@ class GameServiceTest {
                 GameService.pickRandomNumber("12345678")
         );
     }
+
+    @Test
+    @DisplayName("스트라이크 계산")
+    void countStrike() {
+        assertEquals(
+                1,
+                GameService.checkStrikeAndBall("312", "132").getStrike()
+        );
+    }
+
+    @Test
+    @DisplayName("볼 계산")
+    void countBall() {
+        assertEquals(
+                2,
+                GameService.checkStrikeAndBall("312", "132").getBall()
+        );
+    }
 }

@@ -1,5 +1,6 @@
 package baseball.service;
 
+import baseball.dto.BaseballDto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class GameService {
@@ -36,5 +37,33 @@ public class GameService {
         }
 
         return number;
+    }
+
+    /**
+     * 스트라이크, 볼 카운트 계산
+     * @param gameNumber 맞춰야 하는 숫자
+     * @param inputNumber 입력된 숫자
+     * @return baseball 객체 반환
+     */
+    public static BaseballDto checkStrikeAndBall(String gameNumber, String inputNumber) {
+        BaseballDto baseball = new BaseballDto();
+        char[] eachNumber = inputNumber.toCharArray();
+
+        for(int i = 0; i < inputNumber.length(); i++) {
+            addCountStrikeAndBall(gameNumber, baseball, eachNumber, i);
+        }
+
+        return baseball;
+    }
+
+    private static void addCountStrikeAndBall(
+            String gameNumber, BaseballDto baseball,
+            char[] eachNumber, int i
+    ) {
+        if(gameNumber.indexOf(eachNumber[i]) == i) {
+            baseball.setStrike(baseball.getStrike() + 1);
+        } else if(gameNumber.indexOf(eachNumber[i]) > -1) {
+            baseball.setBall(baseball.getBall() + 1);
+        }
     }
 }
