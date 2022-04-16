@@ -2,10 +2,11 @@ package baseball.game;
 
 import static baseball.game.GameConfig.NUM_DIGITS;
 
-public class GameMessage {
-    public static String prompt() {
-        return "숫자를 입력해주세요 : ";
-    }
+public final class GameMessage {
+    private GameMessage() { }
+
+    public static final String PROMPT = "숫자를 입력해주세요 : ";
+    public static final String RESTART_OR_EXIT = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
 
     private static String concatIfGreaterThanZero(int n, String s) {
         if (n < 1) {
@@ -35,4 +36,5 @@ public class GameMessage {
         String sb = strikeOrBallMessage(strikes, balls) + endMessage(strikes);
         return sb.trim();
     }
+
 }

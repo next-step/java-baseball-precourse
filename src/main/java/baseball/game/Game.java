@@ -43,7 +43,7 @@ public final class Game {
         boolean isOver = false;
 
         while (!isOver) {
-            GameUtil.print(GameMessage.prompt());
+            GameUtil.print(GameMessage.PROMPT);
             String input = GameUtil.readLine();
 
             RoundScore score = process(state, input);
@@ -58,7 +58,7 @@ public final class Game {
         String input = "1";
         while (Objects.equals(input, "1") && !Objects.equals(input, "2")) {
             play(new GameState());
-            GameUtil.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+            GameUtil.println(GameMessage.RESTART_OR_EXIT);
             input = GameUtil.readLine();
         }
         if (!Objects.equals(input, "2")) {
