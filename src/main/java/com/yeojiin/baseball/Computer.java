@@ -37,18 +37,18 @@ public class Computer {
         int ball = result.get("BALL");
 
         if ( strike != 0 && ball != 0 ) {
-            return "볼:  " + ball + "스트라이크: " + strike;
+            return ball + "볼 " + strike + "스트라이크 ";
         }
 
         if (strike != 0) {
-            return "스트라이크: " + strike;
+            return strike + "스트라이크";
         }
 
         if (ball != 0) {
-            return "볼: " + ball;
+            return ball + "볼";
         }
 
-        return "Fail";
+        return "낫싱";
     }
 
     public boolean isCorrect() {
