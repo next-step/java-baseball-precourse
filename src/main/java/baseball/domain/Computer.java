@@ -1,6 +1,5 @@
 package baseball.domain;
 
-import java.util.List;
 import java.util.ArrayList;
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -20,7 +19,7 @@ public class Computer {
         return COMPUTER;
     }
 
-    public List<String> generateRandomNumber(){
+    public ArrayList<String> generateRandomNumberList(){
         ArrayList<String>numberList = new ArrayList<>();
         while(numberList.size()!=NUMBER_LENGTH) {
             int numberInt = Randoms.pickNumberInRange(START_NUMBER, END_NUMBER);
