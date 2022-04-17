@@ -1,11 +1,9 @@
 package baseball.game;
 
-import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
-import org.assertj.core.util.Strings;
-import org.junit.platform.commons.util.StringUtils;
-
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
+
+import baseball.game.util.BaseBallGameUtil;
 
 public class BaseBallGame {
 
@@ -25,51 +23,116 @@ public class BaseBallGame {
   int[] number = new int[NUMBER_COUNT];
 
 
-  public void startGatme() {
-    //숫자야구 값 세팅
-    number = new int[NUMBER_COUNT];
+  public BaseBallGame() {
     int nowRandomNum;
     int nowNumberIndex = 0;
-
     while (nowNumberIndex < NUMBER_COUNT) {
-      nowRandomNum = Randoms.pickNumberInRange(START_RANGE, END_RANGE);
-      if (!checkArrayValue(number, nowRandomNum)) {//값이 중복 되지 않도록
+      nowRandomNum = pickNumberInRange(START_RANGE, END_RANGE);//this.getRandomNumber();
+      if (!BaseBallGameUtil.isDuplications(number, nowRandomNum)) {
         number[nowNumberIndex++] = nowRandomNum;
       }
     }
-    getInputValue();
   }
 
-  private void getInputValue() {
+  BaseBallGame(String str) {
+    for (int i = 0; i < BaseBallGame.NUMBER_COUNT; i++) {
+      number[i] = Integer.parseInt(str.charAt(i) + "");
+    }
+  }
+
+  public static void init(BaseBallGame baseBallGame) {
+    BaseBallGame ballGame = BaseBallGame.getInput();
+
+    BaseBallHint hint = new BaseBallHint();
+    hint.compareAnswer(ballGame, baseBallGame);
+    hint.showResult();
+
+    if (hint.strike != BaseBallGame.NUMBER_COUNT) {
+      BaseBallGame.init(baseBallGame);
+      return;
+    }
+
+    int newGameAnswer = BaseBallGame.checkNewGameStart();
+    if (newGameAnswer == BaseBallGame.NEW_GAME) {
+      baseBallGame = new BaseBallGame();
+      BaseBallGame.init(baseBallGame);
+    }
+  }
+
+  private static BaseBallGame getInput() {
     System.out.print(GET_NUMBER_MESSAGE);
-    String input = readLine();
-    checkValue(input);
+    String userInput = readLine();
+    BaseBallGame.checkInputValue(userInput);
+
+    return new BaseBallGame(userInput);
   }
 
-  //숫자야구 랜덤 수 중복 체크
-  private boolean checkArrayValue(int[] arr, int checkVal) {
-    boolean isDuplicate = false;
-    for (int val : arr) {
-        if (val == checkVal) {
-            isDuplicate = true;
-        }
-    }
-    return isDuplicate;
+  private static int checkNewGameStart() {
+    System.out.println(SUCCESS_MESSAGE);
+    System.out.println(NEW_GAME_CHECK_MESSAGE);
+
+    String newGameAnswer = readLine();
+    return BaseBallGame.getNewGameAnswerNumber(newGameAnswer);
   }
 
-  private void checkValue(String input) {
-    int intValue = 0;
-    if (input == null) {
-      throw new NullPointerException();
-    }
+  private static int getNewGameAnswerNumber(String str) {
+    int intValue;
     try {
-      intValue = Integer.parseInt(input);
-    } catch (NumberFormatException e) {//숫자 아닌지 체크
-      throw new IllegalArgumentException("숫자를 입력하세요");
+      intValue = Integer.parseInt(str);
+    } catch (NumberFormatException e) {
+      throw new IllegalArgumentException();
     }
-    if (!(intValue > 0 && intValue < 10)) {
-      throw new IllegalArgumentException("1~9사이의 수를 입력하세요");
+
+    if (intValue != 1 && intValue != 2) {
+      throw new IllegalArgumentException();
+    }
+
+    return intValue;
+  }
+
+  public String toString() {
+    return "number: " + this.number[0] + this.number[1] + this.number[2];
+  }
+
+  static void checkInputValue(final String str) {
+    if (!BaseBallGame.checkInputLength(str)) {
+      throw new IllegalArgumentException();
+    }
+    if (!BaseBallGame.checkInputNumber(str)) {
+      throw new IllegalArgumentException();
+    }
+    if (!BaseBallGame.checkEqualNumber(str)) {
+      throw new IllegalArgumentException();
     }
   }
 
+
+  static boolean checkInputLength(final String str) {
+    return str.length() == BaseBallGame.NUMBER_COUNT;
+  }
+
+  static boolean checkInputNumber(String str) {
+    try {
+      int numberValue = Integer.parseInt(str);
+    } catch (NumberFormatException e) {
+      return false;
+    }
+    char[] numberArray = BaseBallGameUtil.stringToCharArr(str);
+    return !BaseBallGameUtil.isDuplications(numberArray, '0');
+  }
+
+
+  static boolean checkEqualNumber(String str) {
+    char[] checkEqual = new char[str.length()];
+    char[] word = BaseBallGameUtil.stringToCharArr(str);
+
+    for (int i = 0; i < str.length(); i++) {
+      if (BaseBallGameUtil.isDuplications(checkEqual, word[i])) {
+        return false;
+      }
+      checkEqual[i] = word[i];
+    }
+
+    return true;
+  }
 }
