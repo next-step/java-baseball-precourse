@@ -12,18 +12,22 @@ public class InputValidatorTest {
     @Test
     @DisplayName("중복체크 테스트")
     void hasDuplicateNumberTest() {
-        String badInput = "221";
+        String duplicateInput = "221";
         assertThatThrownBy(()-> {
-            inputValidator.hasDuplicateNumber(badInput);
+            inputValidator.validateInput(duplicateInput);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("숫자체크 테스트")
     void isInputNumberTest() {
-        String badInput = "ㅋ1ㅋ";
+        String stringInput = "ㅋ1ㅋ";
+        String negativeInput = "-13";
         assertThatThrownBy(()-> {
-            inputValidator.isInputNumber(badInput);
+            inputValidator.validateInput(stringInput);
+        }).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(()-> {
+            inputValidator.validateInput(negativeInput);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -32,16 +36,8 @@ public class InputValidatorTest {
     void isInputThreeDigitsTest() {
         String badInput = "2212";
         assertThatThrownBy(()-> {
-            inputValidator.isInputThreeDigits(badInput);
+            inputValidator.validateInput(badInput);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    @DisplayName("양수체크 테스트")
-    void isNumberPositiveTest() {
-        int badInput = -1;
-        assertThatThrownBy(()-> {
-            inputValidator.isInputPositive(badInput);
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
 }
