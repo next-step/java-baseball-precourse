@@ -1,27 +1,20 @@
 package baseball;
 
-import baseball.vo.RuleVo;
-import baseball.vo.enumtype.Inclusive;
-import camp.nextstep.edu.missionutils.Randoms;
-import camp.nextstep.edu.missionutils.test.NsTest;
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
-import java.io.PrintStream;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import static camp.nextstep.edu.missionutils.Console.readLine;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import baseball.vo.RuleVo;
+import baseball.vo.enumtype.Inclusive;
+import camp.nextstep.edu.missionutils.Randoms;
+import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
 //    private OutputStream captor;
