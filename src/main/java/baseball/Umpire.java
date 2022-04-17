@@ -20,7 +20,7 @@ public class Umpire {
         checkLength(input.length(), MESSAGE_ERROR_INPUT_3DIGIT);
 
         LinkedHashSet<Integer> temp = new LinkedHashSet<>();
-        for(int i = 0; i < input.length(); i++) {
+        for (int i = 0; i < input.length(); i++) {
             int tempValue = input.charAt(i) - '0';
             checkInvalid(tempValue < 1 || tempValue > 9, MESSAGE_ERROR_INPUT_INVALID);
 
@@ -62,15 +62,15 @@ public class Umpire {
         return getDecision(strikeCount, ballCount);
     }
 
-    private int getStrikeCount(int strikeCount, LinkedList<Integer> targetNumber, LinkedList<Integer> inputNumber, int index) {
-        if(targetNumber.contains(inputNumber.get(index)) && targetNumber.get(index).equals(inputNumber.get(index))) {
+    private int getStrikeCount(int strikeCount, LinkedList<Integer> target, LinkedList<Integer> input, int index) {
+        if (target.contains(input.get(index)) && target.get(index).equals(input.get(index))) {
             strikeCount++;
         }
         return strikeCount;
     }
 
-    private int getBallCount(int ballCount, LinkedList<Integer> targetNumber, LinkedList<Integer> inputNumber, int index) {
-        if(targetNumber.contains(inputNumber.get(index)) && !targetNumber.get(index).equals(inputNumber.get(index))){
+    private int getBallCount(int ballCount, LinkedList<Integer> target, LinkedList<Integer> input, int index) {
+        if (target.contains(input.get(index)) && !target.get(index).equals(input.get(index))) {
             ballCount++;
         }
         return ballCount;
@@ -83,17 +83,17 @@ public class Umpire {
 
         String hint_strike = (strikeCount == 0) ? "" : (strikeCount + HINT_STRIKE);
         String hint_ball = (ballCount == 0) ? "" : (ballCount + HINT_BALL);
-        if(strikeCount == 0 && ballCount == 0) {
+        if (strikeCount == 0 && ballCount == 0) {
             System.out.println(HINT_NOTHING);
         }
-        if(strikeCount > 0 || ballCount > 0) {
+        if (strikeCount > 0 || ballCount > 0) {
             System.out.println(hint_ball + hint_strike);
         }
         return false;
     }
 
     private boolean isWin(int strikeCount) {
-        if(strikeCount == 3) {
+        if (strikeCount == 3) {
             System.out.println(strikeCount + HINT_STRIKE);
             System.out.println(MESSAGE_INFO_SUCCESS);
             return true;

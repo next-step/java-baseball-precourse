@@ -26,7 +26,7 @@ public class Game {
     private void start() {
         LinkedHashSet<Integer> answer = new LinkedHashSet<>();
 
-        while(answer.size() < ANSWER_SIZE) {
+        while (answer.size() < ANSWER_SIZE) {
             answer.add(Randoms.pickNumberInRange(RANGE_MIN, RANGE_MAX));
 
         }
@@ -54,14 +54,14 @@ public class Game {
 
         String input = Console.readLine().trim();
 
-        if(!input.equals(GAME_RESTART) && !input.equals(GAME_OVER)) {
+        if (!input.equals(GAME_RESTART) && !input.equals(GAME_OVER)) {
             throw new IllegalArgumentException(MESSAGE_ERROR_INPUT);
         }
 
-        if(input.equals(GAME_RESTART)) {
+        if (input.equals(GAME_RESTART)) {
             start();
         }
-        if(input.equals(GAME_OVER)) {
+        if (input.equals(GAME_OVER)) {
             System.out.println(MESSAGE_INFO_GAME_OVER);
         }
     }

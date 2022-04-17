@@ -7,6 +7,7 @@ import java.util.LinkedHashSet;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class GameTest {
+
     @Test
     public void 정답_검증() {
         LinkedHashSet<Integer> validAnswer = new LinkedHashSet<>();
