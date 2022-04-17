@@ -5,3 +5,8 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 주요 기능 목록
+* 3 자리 랜덤 숫자 생성 기능
+* 사용자 입력에 대해 스트라이크, 볼 카운트 기능
+* 게임 계속 진행 시 게임 초기화 기능
