@@ -47,8 +47,8 @@ public class AnswerTest {
         Arrays.fill(tooSmallNumber, AnswerConfig.ANSWER_NUMBER_MAX);
         tooSmallNumber[0] = AnswerConfig.ANSWER_NUMBER_MIN - 1;
 
-        assertThatThrownBy(() -> Answer.validateNumberRange(tooBigNumber)).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> Answer.validateNumberRange(tooSmallNumber)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Answer.validateNumberRangeMax(tooBigNumber)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Answer.validateNumberRangeMin(tooSmallNumber)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
