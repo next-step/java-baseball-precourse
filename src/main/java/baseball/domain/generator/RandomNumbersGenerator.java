@@ -1,6 +1,6 @@
 package baseball.domain.generator;
 
-import baseball.domain.GameRule;
+import baseball.domain.game.GameRule;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.HashSet;

@@ -3,7 +3,7 @@ package baseball;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-import baseball.domain.GameRule;
+import baseball.domain.game.GameRule;
 import baseball.domain.validator.NumbersValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

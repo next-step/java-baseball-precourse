@@ -2,7 +2,7 @@ package baseball;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import baseball.domain.GameRule;
+import baseball.domain.game.GameRule;
 import baseball.domain.generator.Generator;
 import baseball.domain.generator.RandomNumbersGenerator;
 import java.util.HashSet;

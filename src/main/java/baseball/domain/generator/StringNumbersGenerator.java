@@ -1,6 +1,6 @@
 package baseball.domain.generator;
 
-import baseball.domain.GameRule;
+import baseball.domain.game.GameRule;
 import baseball.domain.validator.NumbersValidator;
 import java.util.ArrayList;
 import java.util.List;

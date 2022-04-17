@@ -1,9 +1,9 @@
 package baseball.controller;
 
-import baseball.domain.Game;
-import baseball.domain.GameResult;
-import baseball.domain.GameRule;
-import baseball.domain.GameStatus;
+import baseball.domain.game.Game;
+import baseball.domain.game.GameResult;
+import baseball.domain.game.GameRule;
+import baseball.domain.game.GameStatus;
 import baseball.domain.generator.RandomNumbersGenerator;
 import baseball.domain.generator.StringNumbersGenerator;
 import baseball.domain.player.Player;

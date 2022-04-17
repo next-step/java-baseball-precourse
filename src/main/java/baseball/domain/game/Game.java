@@ -1,4 +1,4 @@
-package baseball.domain;
+package baseball.domain.game;
 
 import baseball.domain.player.Player;
 import baseball.domain.validator.InputFinishValidator;

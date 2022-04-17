@@ -1,6 +1,6 @@
 package baseball.domain.validator;
 
-import baseball.domain.GameRule;
+import baseball.domain.game.GameRule;
 import baseball.domain.message.ErrorMessage;
 import java.util.Arrays;
 import java.util.HashSet;

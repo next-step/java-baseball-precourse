@@ -1,4 +1,4 @@
-package baseball.domain;
+package baseball.domain.game;
 
 public class GameRule {
     public int MIN_NUM = 1;
