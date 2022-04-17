@@ -87,4 +87,16 @@ public class Game {
         if (this.ball == 0 && this.strike > 0) System.out.println(String.format("%d스트라이크", this.strike));
         if (this.ball != 0 && this.strike != 0) System.out.println(String.format("%d볼 %d스트라이크", this.ball, this.strike));
     }
+
+
+    private void endGame(){
+        System.out.println();
+        final String inputValue = player.enterNumber();
+        if (inputValue.equals("1")){
+            //createGame();
+        }
+        if (inputValue.equals("2")){
+            //exitGame();
+        }
+    }
 }
