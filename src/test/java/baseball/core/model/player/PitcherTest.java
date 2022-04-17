@@ -1,5 +1,4 @@
-package baseball.core.player;
-
+package baseball.core.model.player;
 
 import java.util.Map;
 import org.junit.jupiter.api.Test;

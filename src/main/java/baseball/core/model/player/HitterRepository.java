@@ -1,4 +1,4 @@
-package baseball.core.player;
+package baseball.core.model.player;
 
 public interface HitterRepository {
 

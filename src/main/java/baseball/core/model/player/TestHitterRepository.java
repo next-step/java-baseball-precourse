@@ -1,4 +1,4 @@
-package baseball.core.player;
+package baseball.core.model.player;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -16,6 +16,7 @@ public class TestHitterRepository implements HitterRepository {
     @Override
     public void validation(String hit) {
         if (hit.length() != 3) {
+            System.err.println("invalid input length");
             throw new IllegalArgumentException();
         }
 
