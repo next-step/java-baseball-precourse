@@ -15,4 +15,9 @@ public class OutPutService {
     public void printRestartMessage() {
         System.out.println(outPut.getRestartMessage());
     }
+
+    public void printHintMessage(int strike, int ball) {
+        System.out.println(outPut.getHintMessage(strike, ball));
+    }
+
 }

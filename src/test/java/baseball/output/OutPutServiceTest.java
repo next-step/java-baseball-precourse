@@ -15,4 +15,10 @@ class OutPutServiceTest {
         outPutService.printGameMessage();
         outPutService.printRestartMessage();
     }
+
+    @Test
+    @DisplayName("힌트 메시지 출력")
+    void printHintMessageTest() {
+        outPutService.printHintMessage(1,2);
+    }
 }
