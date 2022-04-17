@@ -13,7 +13,7 @@ class OutPutTest {
     @DisplayName("게임 메시지 테스트")
     void gameMessageTest() {
         assertThat(outPut.getGameMessage()).isEqualTo("숫자를 입력해주세요 : ");
-        assertThat(outPut.getRestartMessage()).isEqualTo("재시작 하시겠습니까? (y/n)");
+        assertThat(outPut.getRestartMessage()).isEqualTo("재시작 하시겠습니까? 1)재시작 2)종료");
     }
 
     @Test

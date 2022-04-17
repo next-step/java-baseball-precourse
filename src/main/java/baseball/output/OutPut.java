@@ -7,7 +7,7 @@ public class OutPut {
 
     public OutPut() {
         this.gameMessage = "숫자를 입력해주세요 : ";
-        this.restartMessage = "재시작 하시겠습니까? (y/n)";
+        this.restartMessage = "재시작 하시겠습니까? 1)재시작 2)종료";
         this.endMessage = "게임 종료";
     }
 
