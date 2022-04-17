@@ -24,7 +24,7 @@ public class Computer {
         while(numberList.size()!=NUMBER_LENGTH) {
             int numberInt = Randoms.pickNumberInRange(START_NUMBER, END_NUMBER);
             String numberToStr = String.valueOf(numberInt);
-            if(!numberList.contains(numberToStr)){
+            if (!numberList.contains(numberToStr)){
                 numberList.add(numberToStr);
             }
         }
