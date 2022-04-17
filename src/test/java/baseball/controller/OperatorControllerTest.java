@@ -1,12 +1,16 @@
 package baseball.controller;
 
+import static camp.nextstep.edu.missionutils.Console.readLine;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import baseball.service.ComputerService;
+import baseball.service.ValidatorServiceTest;
+import baseball.vo.enumtype.InterfaceMsg;
+import baseball.vo.enumtype.ValidationMsg;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 public class OperatorControllerTest  extends NsTest {
@@ -37,6 +41,20 @@ public class OperatorControllerTest  extends NsTest {
         //then
         assertNotEquals(computerService.getGameNumberDto().getGameNumberList(), integerList);
     }
+
+    @Test
+    void 야구게임_입력_숫자_검증() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            System.out.print(InterfaceMsg.REQUEST_INPUT.getValue()); run("1234");
+            String userGameNumber = readLine(); System.out.println(userGameNumber);
+            ValidationMsg validationMsg = ValidatorServiceTest.getInstance().validationUserInput(userGameNumber);
+            if (validationMsg != ValidationMsg.PROPER_TYPE) {
+                System.out.println(validationMsg.getValue()); throw new IllegalArgumentException();
+            }
+        });
+    }
+
+
 
     @Override
     protected void runMain() {
