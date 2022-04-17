@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-import baseball.model.Computer;
 import baseball.model.Result;
 import baseball.model.User;
 import java.util.ArrayList;
@@ -15,33 +14,16 @@ import org.junit.jupiter.api.Test;
 public class ModelTest {
 
     @Test
-    void computerModelTest(){
-        Computer computer = new Computer();
-        assertSimpleTest(
-                () -> assertThat(computer.getNumbers().size() == 3)
-        );
+    void strikeResultTest() {
+        User user = new User("123");
 
-        for(int i=0; i<computer.getNumbers().size()-1; i++){
-            for(int j=i+1; j<computer.getNumbers().size(); j++){
-                assertThat(computer.getNumbers().get(i).intValue() != computer.getNumbers().get(j).intValue());
-            }
-        }
-    }
-
-
-    @Test
-    void strikeResultTest(){
-        List<Integer> userNumbers = new ArrayList<>(3);
-        userNumbers.add(1);
-        userNumbers.add(2);
-        userNumbers.add(3);
         List<Integer> computerNumbers = new ArrayList<>(3);
         computerNumbers.add(1);
         computerNumbers.add(2);
         computerNumbers.add(3);
 
         Result result = new Result();
-        result.createResult(userNumbers, computerNumbers);
+        result.createResult(user, computerNumbers);
 
         assertAll(
                 () -> assertThat(result.getStrike().getCount() == 3),
@@ -50,18 +32,16 @@ public class ModelTest {
     }
 
     @Test
-    void ballResultTest(){
-        List<Integer> userNumbers = new ArrayList<>(3);
-        userNumbers.add(1);
-        userNumbers.add(2);
-        userNumbers.add(3);
+    void ballResultTest() {
+        User user = new User("123");
+
         List<Integer> computerNumbers = new ArrayList<>(3);
         computerNumbers.add(3);
         computerNumbers.add(1);
         computerNumbers.add(2);
 
         Result result = new Result();
-        result.createResult(userNumbers, computerNumbers);
+        result.createResult(user, computerNumbers);
 
         assertAll(
                 () -> assertThat(result.getStrike().getCount() == 0),
@@ -70,18 +50,16 @@ public class ModelTest {
     }
 
     @Test
-    void nothingResultTest(){
-        List<Integer> userNumbers = new ArrayList<>(3);
-        userNumbers.add(1);
-        userNumbers.add(2);
-        userNumbers.add(3);
+    void nothingResultTest() {
+        User user = new User("123");
+
         List<Integer> computerNumbers = new ArrayList<>(3);
         computerNumbers.add(4);
         computerNumbers.add(5);
         computerNumbers.add(6);
 
         Result result = new Result();
-        result.createResult(userNumbers, computerNumbers);
+        result.createResult(user, computerNumbers);
 
         assertAll(
                 () -> assertThat(result.getStrike().getCount() == 0),
@@ -90,18 +68,16 @@ public class ModelTest {
     }
 
     @Test
-    void combinedResultTest_2Strikes_1Nothing(){
-        List<Integer> userNumbers = new ArrayList<>(3);
-        userNumbers.add(1);
-        userNumbers.add(2);
-        userNumbers.add(3);
+    void combinedResultTest_2Strikes_1Nothing() {
+        User user = new User("123");
+
         List<Integer> computerNumbers = new ArrayList<>(3);
         computerNumbers.add(1);
         computerNumbers.add(2);
         computerNumbers.add(4);
 
         Result result = new Result();
-        result.createResult(userNumbers, computerNumbers);
+        result.createResult(user, computerNumbers);
 
         assertAll(
                 () -> assertThat(result.getStrike().getCount() == 2),
@@ -110,18 +86,16 @@ public class ModelTest {
     }
 
     @Test
-    void combinedResultTest_1Strikes_2Balls(){
-        List<Integer> userNumbers = new ArrayList<>(3);
-        userNumbers.add(1);
-        userNumbers.add(2);
-        userNumbers.add(3);
+    void combinedResultTest_1Strikes_2Balls() {
+        User user = new User("123");
+
         List<Integer> computerNumbers = new ArrayList<>(3);
         computerNumbers.add(1);
         computerNumbers.add(3);
         computerNumbers.add(2);
 
         Result result = new Result();
-        result.createResult(userNumbers, computerNumbers);
+        result.createResult(user, computerNumbers);
 
         assertAll(
                 () -> assertThat(result.getStrike().getCount() == 1),
@@ -130,18 +104,15 @@ public class ModelTest {
     }
 
     @Test
-    void combinedResultTest_1Strike_1Ball(){
-        List<Integer> userNumbers = new ArrayList<>(3);
-        userNumbers.add(1);
-        userNumbers.add(2);
-        userNumbers.add(3);
+    void combinedResultTest_1Strike_1Ball() {
+        User user = new User("123");
         List<Integer> computerNumbers = new ArrayList<>(3);
         computerNumbers.add(1);
         computerNumbers.add(5);
         computerNumbers.add(2);
 
         Result result = new Result();
-        result.createResult(userNumbers, computerNumbers);
+        result.createResult(user, computerNumbers);
 
         assertAll(
                 () -> assertThat(result.getStrike().getCount() == 1),
@@ -150,7 +121,7 @@ public class ModelTest {
     }
 
     @Test
-    void userTest(){
+    void userTest() {
         final String input = "123";
         List<Integer> expectedNumbers = new ArrayList<>();
         expectedNumbers.add(1);
@@ -165,7 +136,7 @@ public class ModelTest {
     }
 
     @Test
-    void userExceptionTest_LongerThanMaxLength(){
+    void userExceptionTest_LongerThanMaxLength() {
         final String input = "1234";
 
         assertSimpleTest(() ->
@@ -175,7 +146,7 @@ public class ModelTest {
     }
 
     @Test
-    void userExceptionTest_NullInput(){
+    void userExceptionTest_NullInput() {
         final String input = null;
 
         assertSimpleTest(() ->
@@ -185,7 +156,7 @@ public class ModelTest {
     }
 
     @Test
-    void userExceptionTest_BlankInput(){
+    void userExceptionTest_BlankInput() {
         final String input = "";
 
         assertSimpleTest(() ->

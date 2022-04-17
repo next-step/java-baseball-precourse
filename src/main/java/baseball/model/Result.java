@@ -11,16 +11,26 @@ public class Result {
         this.ball = new Ball();
     }
 
-    public void createResult(List<Integer> userNumbers, List<Integer> computerNumbers){
-        for(int i=0; i<userNumbers.size(); i++){
-            this.strike.computeCount(userNumbers.get(i), computerNumbers.get(i));
-        }
+    public void createResult(User user, List<Integer> computer) {
+        countStrike(user, computer);
 
-        if(strike.getCount() == 3){
+        if (this.strike.getCount() == 3) {
             return;
         }
 
-        ball.computeCount(userNumbers, computerNumbers);
+        countBall(user, computer);
+    }
+
+    private void countBall(User user, List<Integer> computer) {
+        ball.computeCount(user, computer);
+    }
+
+    private void countStrike(User user, List<Integer> computer) {
+        for (int i = 0; i < user.getNumbers().size(); i++) {
+            if (this.strike.computeCount(user.getNumbers().get(i), computer.get(i))) {
+                user.checkNumber(user.getNumbers().get(i));
+            }
+        }
     }
 
     public Strike getStrike() {
@@ -31,12 +41,19 @@ public class Result {
         return this.ball;
     }
 
-    public Boolean isNothing(){
-        if(!this.strike.isStrikeExisted() && !this.ball.isBallExisted()){
+    public Boolean isNothing() {
+        if (!this.strike.isStrikeExisted() && !this.ball.isBallExisted()) {
             return Boolean.TRUE;
         }
 
         return Boolean.FALSE;
     }
 
+    public Boolean is3Strikes() {
+        if (this.strike.getCount() == 3 && this.ball.getCount() == 0) {
+            return Boolean.TRUE;
+        }
+
+        return Boolean.FALSE;
+    }
 }

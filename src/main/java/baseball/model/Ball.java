@@ -17,20 +17,30 @@ public class Ball {
         this.count = count;
     }
 
-    public void computeCount(List<Integer> userNumbers, List<Integer> computerNumbers){
-        for(int i=0; i<userNumbers.size(); i++){
-            isBall(userNumbers.get(i), i, computerNumbers);
+    public void computeCount(User user, List<Integer> computer) {
+        List<Integer> numbers = user.getNumbers();
+        for (int i = 0; i < numbers.size(); i++) {
+            computeCount(user, computer, numbers, i);
         }
     }
 
-    private void isBall(int userNumber, int userIndex, List<Integer> computerNumbers){
-        if(computerNumbers.indexOf(userNumber) != userIndex){
+    private void computeCount(User user, List<Integer> computer, List<Integer> numbers, int i) {
+        if (isBall(numbers.get(i), i, computer)) {
+            user.checkNumber(numbers.get(i));
+        }
+    }
+
+    private Boolean isBall(int userNumber, int userIndex, List<Integer> computerNumbers) {
+        int index = computerNumbers.indexOf(userNumber);
+        if ((userNumber != -1) && (index != -1) && (index != userIndex)) {
             this.count++;
+            return Boolean.TRUE;
         }
+        return Boolean.FALSE;
     }
 
-    public Boolean isBallExisted(){
-        if(this.count == 0){
+    public Boolean isBallExisted() {
+        if (this.count == 0) {
             return Boolean.FALSE;
         }
 

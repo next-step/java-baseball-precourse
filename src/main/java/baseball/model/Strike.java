@@ -15,14 +15,16 @@ public class Strike {
         this.count = count;
     }
 
-    public void computeCount(int user, int computer){
-        if(user == computer){
+    public Boolean computeCount(int user, int computer) {
+        if (user == computer && user != -1) {
             this.count++;
+            return Boolean.TRUE;
         }
+        return Boolean.FALSE;
     }
 
-    public Boolean isStrikeExisted(){
-        if(this.count == 0){
+    public Boolean isStrikeExisted() {
+        if (this.count == 0) {
             return Boolean.FALSE;
         }
 
