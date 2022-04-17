@@ -1,7 +1,13 @@
 package baseball;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
@@ -26,6 +32,32 @@ class ApplicationTest extends NsTest {
                 assertThatThrownBy(() -> runException("1234"))
                         .isInstanceOf(IllegalArgumentException.class)
         );
+    }
+
+    List<Integer> numbers = null;
+
+    @BeforeEach
+    void beforeEach() {
+        numbers = Arrays.asList(1, 2, 3, 4, 5);
+    }
+
+    @Test
+    void 랜덤_숫자_생성_테스트_리스트() {
+        int randomNumberInList = Randoms.pickNumberInList(numbers);
+        assertThat(randomNumberInList).isIn(numbers);
+    }
+
+    @Test
+    void 랜덤_숫자_생성_테스트_범위() {
+        int randomNumberInRange = Randoms.pickNumberInRange(1, 5);
+        assertThat(randomNumberInRange).isIn(numbers);
+    }
+
+    @Test
+    void 랜덤_숫자_생성_테스트_유니크() {
+        int size = 3;
+        List<Integer> randomUniqueNumberInRange = Randoms.pickUniqueNumbersInRange(1,5, size);
+        assertThat(randomUniqueNumberInRange.size()).isEqualTo(size);
     }
 
     @Override
