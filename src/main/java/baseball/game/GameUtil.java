@@ -1,10 +1,26 @@
 package baseball.game;
 
+import baseball.game.util.Random;
+
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+
 import static baseball.game.GameConfig.*;
 
 class GameUtil {
-
     private GameUtil() { }
+
+    static List<Integer> randomNumbers(int numNumbers, int start, int end) {
+        Set<Integer> result = new LinkedHashSet<>();
+
+        while (result.size() < numNumbers) {
+            int picked = Random.randomIntInRange(start, end);
+            result.add(picked);
+        }
+        return new ArrayList<>(result);
+    }
 
     private static int parseInt(String s) {
         int num;
