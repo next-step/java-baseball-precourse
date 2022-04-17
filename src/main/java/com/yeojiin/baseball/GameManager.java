@@ -1,7 +1,6 @@
 package com.yeojiin.baseball;
 
 import camp.nextstep.edu.missionutils.Console;
-import com.yeojiin.dto.Result;
 
 public class GameManager {
     private final Player player;
@@ -23,7 +22,6 @@ public class GameManager {
     }
 
     private void startGame() {
-        Result result;
         computer.generate();
         do {
             System.out.print(REQUEST_INPUT_NUMBER);
