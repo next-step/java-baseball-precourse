@@ -32,6 +32,7 @@ public class BaseBallGame implements Game{
             outPutService.printHintMessage(answer.getStrike(), answer.getBall());
         } while (answer.isNotStrikeOut());
         askRestart();
+        outPutService.printEndMessage();
     }
 
     private void askRestart() {
@@ -45,8 +46,6 @@ public class BaseBallGame implements Game{
             answerService.resetGameAnswer(RandomUtil.create());
             start();
         }
-
-        outPutService.printEndMessage();
     }
 
     private boolean restartAnswer(String input) {
