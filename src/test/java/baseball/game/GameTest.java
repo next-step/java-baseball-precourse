@@ -8,7 +8,7 @@ public class GameTest {
     @DisplayName("게임 시작 테스트")
     void gameStartTest() {
         Game game = new BaseBallGame();
-        game.start();
+        // game.start();
         // 콘솔 테스트는 어떻게 하는걸까..?
     }
 }

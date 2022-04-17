@@ -17,6 +17,8 @@ public class BaseBallGame implements Game{
     private static final int NUMBER_START = 1;
     private static final int NUMBER_END = 9;
     private static final int ANSWER_LENGTH = 3;
+    private static final String KEEP_GOING = "y";
+    private static final String END_GAME = "n";
 
     public BaseBallGame() {
         List<Integer> gameAnswer = Randoms.pickUniqueNumbersInRange(NUMBER_START,NUMBER_END, ANSWER_LENGTH);
@@ -32,7 +34,7 @@ public class BaseBallGame implements Game{
             List<Integer> input = inputService.getInput();
             answer = answerService.result(input);
             outPutService.printHintMessage(answer.getStrike(), answer.getBall());
-        } while (answer.isStrikeOut());
+        } while (answer.isNotStrikeOut());
         askRestart();
     }
 
@@ -43,7 +45,7 @@ public class BaseBallGame implements Game{
             input = Console.readLine();
         } while (restartAnswer(input));
 
-        if(input.equalsIgnoreCase("y")){
+        if(input.equalsIgnoreCase(KEEP_GOING)){
             List<Integer> gameAnswer = Randoms.pickUniqueNumbersInRange(NUMBER_START,NUMBER_END, ANSWER_LENGTH);
             answerService.resetGameAnswer(gameAnswer);
             start();
@@ -51,6 +53,6 @@ public class BaseBallGame implements Game{
     }
 
     private boolean restartAnswer(String input) {
-        return input.equals("y") || input.equals("n");
+        return input.equals(KEEP_GOING) || input.equals(END_GAME);
     }
 }

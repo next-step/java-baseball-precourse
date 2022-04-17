@@ -9,7 +9,7 @@ public class OutPutService {
     }
 
     public void printGameMessage() {
-        System.out.println(outPut.getGameMessage());
+        System.out.print(outPut.getGameMessage());
     }
 
     public void printRestartMessage() {

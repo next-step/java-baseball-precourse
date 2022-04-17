@@ -29,7 +29,7 @@ public class Answer {
             throw new IllegalArgumentException(SUM_OVER_THREE.text());
     }
 
-    public boolean isStrikeOut() {
-        return this.strike != 3;
+    public boolean isNotStrikeOut() {
+        return this.strike != MAX_COUNT;
     }
 }
