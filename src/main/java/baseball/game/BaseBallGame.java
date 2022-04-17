@@ -4,8 +4,8 @@ import baseball.answer.Answer;
 import baseball.answer.AnswerService;
 import baseball.input.InputService;
 import baseball.output.OutPutService;
+import baseball.util.RandomUtil;
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
 
@@ -14,17 +14,13 @@ public class BaseBallGame implements Game{
     private final InputService inputService;
     private final OutPutService outPutService;
     private final AnswerService answerService;
-    private static final int NUMBER_START = 1;
-    private static final int NUMBER_END = 9;
-    private static final int ANSWER_LENGTH = 3;
-    private static final String KEEP_GOING = "y";
-    private static final String END_GAME = "n";
+    private static final String KEEP_GOING = "1";
+    private static final String END_GAME = "2";
 
     public BaseBallGame() {
-        List<Integer> gameAnswer = Randoms.pickUniqueNumbersInRange(NUMBER_START,NUMBER_END, ANSWER_LENGTH);
         inputService = new InputService();
         outPutService = new OutPutService();
-        answerService = new AnswerService(gameAnswer);
+        answerService = new AnswerService(RandomUtil.create());
     }
 
     public void start() {
@@ -46,13 +42,14 @@ public class BaseBallGame implements Game{
         } while (restartAnswer(input));
 
         if(input.equalsIgnoreCase(KEEP_GOING)){
-            List<Integer> gameAnswer = Randoms.pickUniqueNumbersInRange(NUMBER_START,NUMBER_END, ANSWER_LENGTH);
-            answerService.resetGameAnswer(gameAnswer);
+            answerService.resetGameAnswer(RandomUtil.create());
             start();
         }
+
+        outPutService.printEndMessage();
     }
 
     private boolean restartAnswer(String input) {
-        return input.equals(KEEP_GOING) || input.equals(END_GAME);
+        return !(input.equals(KEEP_GOING) || input.equals(END_GAME));
     }
 }
