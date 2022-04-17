@@ -1,32 +1,24 @@
 package baseball.output;
+import static baseball.output.OutPutEnum.*;
+
 
 public class OutPut {
-    private final String gameMessage;
-    private final String restartMessage;
-    private final String endMessage;
-
-    public OutPut() {
-        this.gameMessage = "숫자를 입력해주세요 : ";
-        this.restartMessage = "재시작 하시겠습니까? 1)재시작 2)종료";
-        this.endMessage = "게임 종료";
-    }
-
     public String getGameMessage() {
-        return this.gameMessage;
+        return GAME_MESSAGE.text();
     }
 
     public String getRestartMessage() {
-        return this.restartMessage;
+        return RESTART_MESSAGE.text();
     }
 
     public String getEndMessage() {
-        return this.endMessage;
+        return END_MESSAGE.text();
     }
 
     public String getHintMessage(int strike, int ball) {
         String result = "";
         if(strike == 0 && ball == 0) {
-            return "낫싱";
+            return NOTHING.text();
         }
         if(ball > 0) {
             result = String.format("%d볼", ball);
