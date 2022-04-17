@@ -1,6 +1,7 @@
-package baseball;
+package com.yeojiin.baseball;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import com.yeojiin.Application;
 import org.junit.jupiter.api.Test;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
