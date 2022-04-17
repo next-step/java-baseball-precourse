@@ -1,6 +1,5 @@
 package baseball.answer;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -52,5 +51,37 @@ class AnswerServiceTest {
         userAnswer = Arrays.asList(4,5,6);
         Answer result = answerService.result(userAnswer);
         assertThat(result.getStrike()).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("3볼 테스트")
+    void fullBallTest() {
+        userAnswer = Arrays.asList(3,1,2);
+        Answer result = answerService.result(userAnswer);
+        assertThat(result.getBall()).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("2볼 테스트")
+    void twoBallTest() {
+        userAnswer = Arrays.asList(3,1,4);
+        Answer result = answerService.result(userAnswer);
+        assertThat(result.getBall()).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("1볼 테스트")
+    void oneBallTest() {
+        userAnswer = Arrays.asList(3,4,5);
+        Answer result = answerService.result(userAnswer);
+        assertThat(result.getBall()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("0볼 테스트")
+    void zeroBallTest() {
+        userAnswer = Arrays.asList(4,5,6);
+        Answer result = answerService.result(userAnswer);
+        assertThat(result.getBall()).isEqualTo(0);
     }
 }
