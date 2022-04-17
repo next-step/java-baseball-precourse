@@ -9,7 +9,7 @@ public class RefreeTest {
     private String testHits = "456";
 
     @Test
-    void refreeTest(){
+    void makeDecisionTest(){
         TestPitcherRepository pitcher = new TestPitcherRepository();
         TestHitterRepository hitter = new TestHitterRepository();
         TestRefreeReository refree = new TestRefreeReository();

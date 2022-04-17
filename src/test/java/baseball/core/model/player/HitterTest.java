@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 public class HitterTest {
 
     @Test
-    void hitterTest(){
+    void hittingTest(){
         TestHitterRepository h = new TestHitterRepository();
         h.hitting();
     }

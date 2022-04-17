@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class PitcherTest {
 
     @Test
-    void pitcherCreateTest(){
+    void pitchingTest(){
         TestPitcherRepository pitcher = new TestPitcherRepository();
 
         pitcher.pitching();
