@@ -1,0 +1,56 @@
+package baseball.answer;
+
+import camp.nextstep.edu.missionutils.Randoms;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.*;
+
+class AnswerServiceTest {
+
+    private AnswerService answerService;
+    private List<Integer> gameAnswer;
+    private List<Integer> userAnswer;
+
+    @BeforeEach
+    public void initGame() {
+        gameAnswer = Arrays.asList(1,2,3);
+        answerService = new AnswerService(gameAnswer);
+    }
+
+    @Test
+    @DisplayName("3스트라이크 테스트")
+    void fullStrikeTest() {
+        userAnswer = gameAnswer;
+        Answer result = answerService.result(userAnswer);
+        assertThat(result.getStrike()).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("2스트라이크 테스트")
+    void twoStrikeTest() {
+        userAnswer = Arrays.asList(1,2,4);
+        Answer result = answerService.result(userAnswer);
+        assertThat(result.getStrike()).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("1스트라이크 테스트")
+    void oneStrikeTest() {
+        userAnswer = Arrays.asList(1,4,5);
+        Answer result = answerService.result(userAnswer);
+        assertThat(result.getStrike()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("0스트라이크 테스트")
+    void zeroStrikeTest() {
+        userAnswer = Arrays.asList(4,5,6);
+        Answer result = answerService.result(userAnswer);
+        assertThat(result.getStrike()).isEqualTo(0);
+    }
+}
