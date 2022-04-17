@@ -19,12 +19,26 @@ public class User {
         isNumeric(numbers);
         List<Integer> result = new ArrayList<>(maxLength);
         String[] split = numbers.split("");
-        isLongerThanMaxLength(split);
+        checkNumbersValidation(split);
         for (int i = 0; i < split.length; i++) {
-            isNumberInRange(Integer.parseInt(split[i]));
             result.add(Integer.parseInt(split[i]));
         }
         return result;
+    }
+
+    private void checkNumbersValidation(String[] split) {
+        isLongerThanMaxLength(split);
+        checkAllNumbersSame(split);
+        for (int i = 0; i < split.length; i++) {
+            isNumberInRange(Integer.parseInt(split[i]));
+        }
+    }
+
+    private void checkAllNumbersSame(String[] split) {
+        if ((Integer.parseInt(split[0]) == Integer.parseInt(split[1])) &&
+                (Integer.parseInt(split[0]) == Integer.parseInt(split[2]))) {
+            throw new IllegalArgumentException("게임 종료");
+        }
     }
 
     private void isNumberInRange(int parseInt) {
