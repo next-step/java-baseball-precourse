@@ -1,5 +1,6 @@
 package baseball.view;
 
+import baseball.view.InputReader.ReGameAnswer;
 import camp.nextstep.edu.missionutils.Console;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -54,7 +55,7 @@ class UserInputReaderTest {
     void restart() {
         try (MockedStatic<Console> mock = mockStatic(Console.class)) {
             mock.when(Console::readLine).thenReturn("1");
-            assertThat(reader.readReGameFlag()).isTrue();
+            assertThat(reader.readReGameFlag()).isEqualTo(ReGameAnswer.ReGame);
         }
     }
 
@@ -63,7 +64,7 @@ class UserInputReaderTest {
     void stop() {
         try (MockedStatic<Console> mock = mockStatic(Console.class)) {
             mock.when(Console::readLine).thenReturn("2");
-            assertThat(reader.readReGameFlag()).isFalse();
+            assertThat(reader.readReGameFlag()).isEqualTo(ReGameAnswer.End);
         }
     }
 

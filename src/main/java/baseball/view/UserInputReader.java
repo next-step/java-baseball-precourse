@@ -29,13 +29,13 @@ public class UserInputReader implements InputReader {
     }
 
     @Override
-    public boolean readReGameFlag() {
+    public ReGameAnswer readReGameFlag() {
         String input = Console.readLine();
         if ("1".equals(input)) {
-            return true;
+            return ReGameAnswer.ReGame;
         }
         if ("2".equals(input)) {
-            return false;
+            return ReGameAnswer.End;
         }
         throw new IllegalArgumentException("유효하지 않은 값을 입력하였습니다.");
     }

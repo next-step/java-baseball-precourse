@@ -3,6 +3,7 @@ package baseball.controller;
 import baseball.domain.BaseBall;
 import baseball.domain.CompareResult;
 import baseball.view.GameView;
+import baseball.view.InputReader.ReGameAnswer;
 
 public class Game {
     private final GameView gameView;
@@ -20,7 +21,7 @@ public class Game {
             gameView.showCompareResult(compareResult);
         } while (!compareResult.isSuccess());
 
-        if (gameView.askReGame()) {
+        if (gameView.askReGame() == ReGameAnswer.ReGame) {
             play();
         }
     }

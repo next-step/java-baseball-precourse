@@ -2,6 +2,7 @@ package baseball.view;
 
 import baseball.domain.BaseBall;
 import baseball.domain.CompareResult;
+import baseball.view.InputReader.ReGameAnswer;
 
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class GameView {
         return string;
     }
 
-    public boolean askReGame() {
+    public ReGameAnswer askReGame() {
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
         return inputReader.readReGameFlag();
     }

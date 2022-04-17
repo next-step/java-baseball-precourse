@@ -96,7 +96,7 @@ class GameViewTest {
         InputReader inputReader = mock(InputReader.class);
         GameView view = new GameView(inputReader);
 
-        when(inputReader.readReGameFlag()).thenReturn(true);
+        when(inputReader.readReGameFlag()).thenReturn(null);
         view.askReGame();
 
         assertThat(capture.toString())
