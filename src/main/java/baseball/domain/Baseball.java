@@ -16,6 +16,10 @@ public class Baseball {
         }
     }
 
+    public static Baseball of(int number) {
+        return new Baseball(number);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
