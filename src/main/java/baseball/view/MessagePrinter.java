@@ -1,8 +1,7 @@
-package baseball;
+package baseball.view;
 
 public class MessagePrinter {
 
-    //TODO : 고민 : static 으로 해도 될까.
     private static final String NOTHING = "낫싱";
     private static final String STRIKE = "%d스트라이크";
     private static final String BALL = "%d볼";
@@ -14,6 +13,7 @@ public class MessagePrinter {
     public static void printInputMessage() {
         System.out.print(INPUT_MESSAGE);
     }
+
     public static void printInputNumbers(String read) {
         System.out.println(read);
     }
@@ -35,14 +35,20 @@ public class MessagePrinter {
             System.out.println(NOTHING);
             return;
         }
+        if (ballCount == 0 || strikeCount == 0) {
+            printBallOrStrike(strikeCount, ballCount);
+            return;
+        }
+        System.out.printf(BALL + " " + STRIKE + "\n", ballCount, strikeCount);
+    }
+
+    public static void printBallOrStrike(int strikeCount, int ballCount) {
         if (ballCount == 0) {
             System.out.printf(STRIKE + "\n", strikeCount);
             return;
         }
         if (strikeCount == 0) {
             System.out.printf(BALL + "\n", ballCount);
-            return;
         }
-        System.out.printf(BALL + " " + STRIKE+ "\n", ballCount, strikeCount);
     }
 }
