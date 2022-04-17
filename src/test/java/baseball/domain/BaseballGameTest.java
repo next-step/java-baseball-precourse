@@ -137,7 +137,6 @@ class BaseballGameTest {
     }
 
     static class TestBaseballInput implements BaseballInput {
-        private static int count = 0;
         private final String input;
 
         public TestBaseballInput(String input) {
@@ -146,11 +145,7 @@ class BaseballGameTest {
 
         @Override
         public String read() {
-            if (count == 0) {
-                count++;
-                return input;
-            }
-            return BaseballRestartStatus.N.getValue();
+            return input;
         }
     }
 }

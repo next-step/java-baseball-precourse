@@ -110,7 +110,9 @@ public class BaseballGame {
             return;
         }
         if (BaseballRestartStatus.isWrong(text)) {
-            askRestart(); // 1, 2가 아니면 다시 물어본다.
+            String restartY = BaseballRestartStatus.Y.getValue();
+            String restartN = BaseballRestartStatus.N.getValue();
+            throw new IllegalArgumentException(String.format(BaseballMessages.ERROR_WRONG_RESTART_NUMBER, restartY, restartN));
         }
     }
 
