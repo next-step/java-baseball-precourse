@@ -14,6 +14,12 @@ public class BaseBallGameHint {
         this.ballCount++;
     }
 
+    public boolean isAllStrike() {
+        final int ALL_STRIKE_COUNT = 3;
+
+        return this.strikeCount == ALL_STRIKE_COUNT;
+    }
+
     public String toMessage() {
         if (this.ballCount + this.strikeCount == 0) {
             return "낫싱";

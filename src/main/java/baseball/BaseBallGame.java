@@ -15,12 +15,19 @@ public class BaseBallGame {
         this.initializeAnswer();
     }
 
-    public void start() {
+    public void play() {
         System.out.print("숫자를 입력 해 주세요 : ");
         String input = this.validateInput(Console.readLine());
         BaseBallGameHint hint = BaseBallGameAnswerComparator.compare(this.answer, input);
 
         System.out.println(hint.toMessage());
+
+        if (hint.isAllStrike()) {
+            this.executePostProcess();
+            return;
+        }
+
+        this.play();
     }
 
     private void initializeAnswer() {
@@ -39,6 +46,17 @@ public class BaseBallGame {
         }
 
         return input;
+    }
+
+    private void executePostProcess() {
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+
+        boolean isReplay = Console.readLine().equals("1");
+        if (isReplay) {
+            this.initializeAnswer();
+            this.play();
+        }
     }
 
 }
