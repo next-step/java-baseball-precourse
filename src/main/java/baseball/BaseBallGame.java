@@ -18,6 +18,9 @@ public class BaseBallGame {
     public void start() {
         System.out.print("숫자를 입력 해 주세요 : ");
         String input = this.validateInput(Console.readLine());
+        BaseBallGameHint hint = BaseBallGameAnswerComparator.compare(this.answer, input);
+
+        System.out.println(hint.toMessage());
     }
 
     private void initializeAnswer() {
