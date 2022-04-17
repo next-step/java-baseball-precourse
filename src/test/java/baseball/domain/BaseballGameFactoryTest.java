@@ -10,11 +10,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 class BaseballGameFactoryTest {
 
     RandomNumberStrategy strategy;
+    BaseballGameRule gameRule;
     Computer computer;
 
     @BeforeEach
     void init() {
         strategy = RandomUniqueNumberStrategy.getInstance();
+        gameRule = new BaseballGameRule();
         computer = Computer.builder().strategy(strategy).build();
     }
 
@@ -23,6 +25,7 @@ class BaseballGameFactoryTest {
         // given
         BaseballGameFactory factory = BaseballGameFactory.builder()
                 .computer(computer)
+                .baseballGameRule(gameRule)
                 .build();
         // when
         BaseballGame game = factory.createGame();

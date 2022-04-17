@@ -8,6 +8,6 @@ public class Application {
         // TODO: 프로그램 구현
         AppConfig appConfig = new AppConfig();
         BaseballGameController controller = appConfig.baseballGameController();
-        controller.process();
+        controller.execute();
     }
 }
