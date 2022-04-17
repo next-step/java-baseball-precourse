@@ -1,5 +1,5 @@
 package baseball.domain;
 
 public enum GameStatus {
-    PLAY, END
+    INIT, START, FINISH, PLAY, END
 }

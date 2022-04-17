@@ -1,6 +1,7 @@
 package baseball.domain;
 
 import baseball.domain.player.Player;
+import baseball.domain.validator.InputFinishValidator;
 import java.util.List;
 
 public class Game {
@@ -11,7 +12,7 @@ public class Game {
     GameResult gameResult;
 
     public Game(Player computer, Player user, GameRule gameRule) {
-        this.gameStatus = GameStatus.PLAY;
+        this.gameStatus = GameStatus.INIT;
         this.gameRule = gameRule;
         this.computer = computer;
         this.user = user;
@@ -27,6 +28,14 @@ public class Game {
 
     public boolean isEndGame() {
         return this.gameStatus == GameStatus.END;
+    }
+
+    public boolean isFinishGame() {
+        return this.gameStatus == GameStatus.FINISH;
+    }
+
+    public boolean isPlayGame() {
+        return this.gameStatus == GameStatus.PLAY;
     }
 
     public GameRule getGameRule() {
@@ -45,6 +54,10 @@ public class Game {
         this.computer = computer;
     }
 
+    public void setComputerNumbers(List<Integer> numbers) {
+        computer.setNumbers(numbers);
+    }
+
     public Player getUser() {
         return user;
     }
@@ -54,6 +67,9 @@ public class Game {
     }
 
     public void playGame(List<Integer> inputNumbers) {
+        if (gameStatus != GameStatus.PLAY) {
+            gameStatus = GameStatus.PLAY;
+        }
         user.setNumbers(inputNumbers);
         gameResult = new GameResult(computer.getNumbers(), user.getNumbers());
         if (gameResult.isWinning()) {
@@ -63,5 +79,14 @@ public class Game {
 
     public GameResult getGameResult() {
         return gameResult;
+    }
+
+    public void checkFinish(String inputFinishInfo) {
+        InputFinishValidator inputFinishValidator = new InputFinishValidator(1, 2, 1);
+        if (inputFinishValidator.isInputValidate(inputFinishInfo)
+                && Integer.parseInt(inputFinishInfo) == GameStatus.FINISH.ordinal()) {
+            gameStatus = GameStatus.FINISH;
+        }
+
     }
 }
