@@ -84,4 +84,14 @@ class AnswerServiceTest {
         Answer result = answerService.result(userAnswer);
         assertThat(result.getBall()).isEqualTo(0);
     }
+
+    @Test
+    @DisplayName("1스트라이크 2볼 테스트")
+    void oneStrikeTwoBallTest() {
+        userAnswer = Arrays.asList(1,3,2);
+        Answer result = answerService.result(userAnswer);
+        assertThat(result.getStrike()).isEqualTo(1);
+        assertThat(result.getBall()).isEqualTo(2);
+    }
+
 }
