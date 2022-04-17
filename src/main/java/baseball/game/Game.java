@@ -1,5 +1,7 @@
 package baseball.game;
 
+import baseball.game.util.Console;
+
 import java.util.*;
 
 import static baseball.game.GameConfig.NUM_DIGITS;
@@ -43,14 +45,14 @@ public final class Game {
         boolean isOver = false;
 
         while (!isOver) {
-            GameUtil.print(GameMessage.PROMPT);
-            String input = GameUtil.readLine();
+            Console.print(GameMessage.PROMPT);
+            String input = Console.readLine();
 
             RoundScore score = process(state, input);
             isOver = isGameOver(score);
 
             String message = GameMessage.resultMessage(score.getNumStrikes(), score.getNumBalls());
-            GameUtil.println(message);
+            Console.println(message);
         }
     }
 
@@ -58,8 +60,8 @@ public final class Game {
         String input = "1";
         while (Objects.equals(input, "1") && !Objects.equals(input, "2")) {
             play(new GameState());
-            GameUtil.println(GameMessage.RESTART_OR_EXIT);
-            input = GameUtil.readLine();
+            Console.println(GameMessage.RESTART_OR_EXIT);
+            input = Console.readLine();
         }
         if (!Objects.equals(input, "2")) {
             throw new IllegalArgumentException("wrong input");
