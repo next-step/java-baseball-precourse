@@ -30,10 +30,21 @@ public class JudgeTest {
     @ParameterizedTest
     @CsvSource(value = {"431,3", "123,2", "987,0"})
     void countBallTest(String stringPlayer, String expected) {
+        setPlayer(stringPlayer);
+        assertThat(judge.countBall(computer, player)).isEqualTo(Integer.valueOf(expected));
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"314,3", "341,1", "987,0", "413,1"})
+    void countStrikeTest(String stringPlayer, String expected) {
+        setPlayer(stringPlayer);
+        assertThat(judge.countStrike(computer, player)).isEqualTo(Integer.valueOf(expected));
+    }
+
+    void setPlayer(String stringPlayer) {
         String[] temp = stringPlayer.split("");
         for(String sNumber : temp) {
             player.add(Integer.valueOf(sNumber));
         }
-        assertThat(judge.countBall(computer, player)).isEqualTo(Integer.valueOf(expected));
     }
 }
