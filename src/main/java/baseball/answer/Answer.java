@@ -9,7 +9,8 @@ public class Answer {
     int[] numbers;
 
     static final String INVALID_ANSWER_LENGTH = "정답의 길이가 일치하지 않습니다. (expected : %d, actual : %d)";
-    static final String INVALID_ANSWER_RANGE = "값이 정답의 범위를 벗어났습니다. (%d <= expected <= %d, actual : %d)";
+    static final String INVALID_ANSWER_RANGE_OVER = "값이 정답의 범위를 초과났습니다. (expected <= %d, actual : %d)";
+    static final String INVALID_ANSWER_RANGE_UNDER = "값이 정답의 범위를 미달했습니다. (%d <= expected, actual : %d)";
     static final String DUPLICATE_ANSWER = "정답에 중복 값이 있습니다.";
 
     // 수동 초기화
@@ -26,21 +27,31 @@ public class Answer {
     }
 
     public static void validateNumbers(int[] numbers){
-        validateNumberRange(numbers);
+        validateNumberRangeMax(numbers);
+        validateNumberRangeMin(numbers);
         validateNumberLength(numbers);
         validateNumberDuplicate(numbers);
     }
-    public static void validateNumberRange(int[] numbers){
-        if (Utils.maxOf(numbers) > AnswerConfig.ANSWER_NUMBER_MAX
-        || Utils.minOf(numbers) < AnswerConfig.ANSWER_NUMBER_MIN){
+    public static void validateNumberRangeMax(int[] numbers){
+        if (Utils.maxOf(numbers) > AnswerConfig.ANSWER_NUMBER_MAX){
             throw new IllegalArgumentException(
                 String.format(
-                    INVALID_ANSWER_RANGE,
-                    AnswerConfig.ANSWER_NUMBER_MIN,
+                    INVALID_ANSWER_RANGE_OVER,
                     AnswerConfig.ANSWER_NUMBER_MAX,
-                    numbers.length
+                    Utils.maxOf(numbers)
                     ));
         }
+    }
+
+    public static void validateNumberRangeMin(int[] numbers){
+        if (Utils.minOf(numbers) < AnswerConfig.ANSWER_NUMBER_MIN){
+            throw new IllegalArgumentException(
+                String.format(
+                    INVALID_ANSWER_RANGE_UNDER,
+                    AnswerConfig.ANSWER_NUMBER_MIN,
+                    Utils.minOf(numbers)
+                    ));
+        }   
     }
     public static void validateNumberLength(int[] numbers){
         if (numbers.length != AnswerConfig.ANSWER_LENGTH){
