@@ -41,13 +41,10 @@ public class Umpire {
         int ballCount = 0;
 
         LinkedList<Integer> targetNumber = new LinkedList<>(answer);
-        System.out.println(targetNumber);
-
         LinkedList<Integer> inputNumber = new LinkedList<>();
         for(int i = 0; i < input.length(); i++) {
             inputNumber.add(Integer.parseInt(input.substring(i, i + 1)));
         }
-        System.out.println(inputNumber);
 
         for(int i = 0; i < input.length(); i++) {
             if(targetNumber.contains(inputNumber.get(i))) {

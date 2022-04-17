@@ -24,24 +24,16 @@ public class Game {
     }
 
     private void start() {
-        System.out.println("게임 시작");
-
-        // 정답 생성(서로 다른 임의의 수 3개 선택)
         LinkedHashSet<Integer> answer = new LinkedHashSet<>();
 
         while(answer.size() < ANSWER_SIZE) {
             answer.add(Randoms.pickNumberInRange(RANGE_MIN, RANGE_MAX));
 
         }
-        System.out.println(answer);
-
         progress(answer);
     }
 
     private void progress(LinkedHashSet<Integer> answer) {
-        System.out.println("게임 진행");
-
-        // 게임 진행
         System.out.print(MESSAGE_INFO_INPUT);
         String input = Console.readLine();
         System.out.println(input);
@@ -58,8 +50,6 @@ public class Game {
     }
 
     private void end() {
-        System.out.println("게임 종료");
-
         System.out.println(MESSAGE_INFO_SELECT);
 
         String input = Console.readLine().trim();
