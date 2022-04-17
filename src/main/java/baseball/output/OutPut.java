@@ -24,9 +24,19 @@ public class OutPut {
     }
 
     public String getHintMessage(int strike, int ball) {
+        String result = "";
         if(strike == 0 && ball == 0) {
             return "낫싱";
         }
-        return String.format("%d볼 %d스트라이크", strike, ball);
+        if(ball > 0) {
+            result = String.format("%d볼", ball);
+        }
+        if(ball>0 && strike>0) {
+            result += " ";
+        }
+        if(strike > 0) {
+            result += String.format("%d스트라이크", strike);
+        }
+        return result;
     }
 }

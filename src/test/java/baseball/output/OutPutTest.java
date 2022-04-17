@@ -21,7 +21,7 @@ class OutPutTest {
     void hintMessageTest() {
         int strike = 1;
         int ball = 2;
-        assertThat(outPut.getHintMessage(strike,ball)).isEqualTo(String.format("%d볼 %d스트라이크", strike, ball));
+        assertThat(outPut.getHintMessage(strike,ball)).isEqualTo(String.format("%d볼 %d스트라이크", ball, strike));
     }
 
     @Test
