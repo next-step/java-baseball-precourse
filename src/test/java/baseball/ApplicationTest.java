@@ -3,10 +3,10 @@ package baseball;
 import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
@@ -16,7 +16,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
     @Test
-    void 게임종료_후_재시작() {
+    @DisplayName("게임종료_후_재시작")
+    void restartGameTest() {
         assertRandomNumberInRangeTest(
                 () -> {
                     run("246", "135", "1", "597", "589", "2");
@@ -27,7 +28,8 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    @DisplayName("예외_테스트")
+    void exceptionTest() {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("1234"))
                         .isInstanceOf(IllegalArgumentException.class)
@@ -42,19 +44,22 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 랜덤_숫자_생성_테스트_리스트() {
+    @DisplayName("랜덤 숫자 생성 테스트(리스트)")
+    void pickNumberInListTest() {
         int randomNumberInList = Randoms.pickNumberInList(numbers);
         assertThat(randomNumberInList).isIn(numbers);
     }
 
     @Test
-    void 랜덤_숫자_생성_테스트_범위() {
+    @DisplayName("랜덤 숫자 생성 테스트(범위)")
+    void pickNumberInRangeTest() {
         int randomNumberInRange = Randoms.pickNumberInRange(1, 5);
         assertThat(randomNumberInRange).isIn(numbers);
     }
 
     @Test
-    void 랜덤_숫자_생성_테스트_유니크() {
+    @DisplayName("랜덤 숫자 생성 테스트(유니크)")
+    void pickUniqueNumbersInRangeTest() {
         int size = 3;
         List<Integer> randomUniqueNumberInRange = Randoms.pickUniqueNumbersInRange(1,5, size);
         assertThat(randomUniqueNumberInRange.size()).isEqualTo(size);
