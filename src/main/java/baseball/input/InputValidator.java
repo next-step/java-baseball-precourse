@@ -1,16 +1,21 @@
 package baseball.input;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import static baseball.input.InputErrorEnum.*;
 
 public class InputValidator {
     private final String NUMBER_REGEX = "[0-9]+";
+    private final List<String> inputHistory = new ArrayList<>();
 
     public void validateInput(String input) {
         checkDuplicateNumber(input);
         checkThreeDigits(input);
         checkNumber(input);
+        alreadyChecked(input);
+        inputHistory.add(input);
     }
 
     private void checkDuplicateNumber(String input) {
@@ -41,5 +46,10 @@ public class InputValidator {
     private void checkPositive(int inputNumber) {
         if(inputNumber < 0)
             throw new IllegalArgumentException(NOT_POSITIVE.text());
+    }
+
+    private void alreadyChecked(String input) {
+        if(inputHistory.contains(input))
+            throw new IllegalArgumentException(ALREADY_CHECKED.text());
     }
 }

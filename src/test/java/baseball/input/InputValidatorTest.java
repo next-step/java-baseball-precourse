@@ -40,4 +40,13 @@ public class InputValidatorTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("중복체크 테스트")
+    void alreadyCheckedTest() {
+        String input = "123";
+        assertThatThrownBy(()-> {
+            inputValidator.validateInput(input);
+            inputValidator.validateInput(input);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }

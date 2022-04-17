@@ -4,7 +4,8 @@ public enum InputErrorEnum {
     DUPLICATE("서로 다른 숫자를 입력해주세요."),
     NOT_THREE_DIGITS("세자리를 입력해주세요."),
     NOT_NUMERIC("숫자가 입력되지 않았습니다."),
-    NOT_POSITIVE("음수가 입력되었습니다.");
+    NOT_POSITIVE("음수가 입력되었습니다."),
+    ALREADY_CHECKED("이미 확인한 값 입니다.");
 
     private final String value;
 
