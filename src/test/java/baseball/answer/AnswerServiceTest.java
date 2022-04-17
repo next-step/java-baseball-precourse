@@ -94,4 +94,13 @@ class AnswerServiceTest {
         assertThat(result.getBall()).isEqualTo(2);
     }
 
+    @Test
+    @DisplayName("게임 정답 리셋 테스트")
+    void resetGameAnswerTest() {
+        userAnswer = Arrays.asList(4,5,6);
+        answerService.resetGameAnswer(userAnswer);
+        Answer result = answerService.result(userAnswer);
+        assertThat(result.getStrike()).isEqualTo(3);
+    }
+
 }

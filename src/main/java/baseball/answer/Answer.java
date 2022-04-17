@@ -28,4 +28,8 @@ public class Answer {
         if(this.strike + this.ball >= MAX_COUNT)
             throw new IllegalArgumentException(SUM_OVER_THREE.text());
     }
+
+    public boolean isStrikeOut() {
+        return this.strike != 3;
+    }
 }

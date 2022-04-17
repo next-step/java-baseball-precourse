@@ -10,6 +10,10 @@ public class AnswerService {
         this.gameAnswer = gameAnswer;
     }
 
+    public void resetGameAnswer(List<Integer> gameAnswer) {
+        this.gameAnswer = gameAnswer;
+    }
+
     public Answer result(List<Integer> input) {
         return makeCall(input);
     }
