@@ -1,6 +1,7 @@
 package baseball.common;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Utils {
@@ -29,5 +30,15 @@ public class Utils {
             set.add(array[idx]);
         }
         return set;
+    }
+
+    public static int[] convertArrayFrom(List<Integer> intList){
+        int[] array = new int[intList.size()];
+        int idx = 0;
+        for (Integer number : intList){
+            array[idx] = number.intValue();
+            idx++;
+        }
+        return array;
     }
 }

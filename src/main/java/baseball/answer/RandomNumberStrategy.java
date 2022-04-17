@@ -1,8 +1,12 @@
 package baseball.answer;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import baseball.common.Utils;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class RandomNumberStrategy implements NumberStrategy{
@@ -13,15 +17,10 @@ public class RandomNumberStrategy implements NumberStrategy{
         while (numbers.size() < AnswerConfig.ANSWER_LENGTH){
             numbers.add(Randoms.pickNumberInRange(AnswerConfig.ANSWER_NUMBER_MIN, AnswerConfig.ANSWER_NUMBER_MAX));
         }
+        List<Integer> numberList = new ArrayList<>(numbers);
+        // Collections.shuffle(numberList);
 
-        int[] numbersArray = new int[AnswerConfig.ANSWER_LENGTH];
-        int idx = 0;
-        for (Integer number : numbers.toArray(new Integer[0])){
-            numbersArray[idx] = number.intValue();
-            idx++;
-        }
-        
-        return numbersArray;
+        return Utils.convertArrayFrom(numberList);
     }
     
 }
