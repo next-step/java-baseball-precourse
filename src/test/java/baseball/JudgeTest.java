@@ -1,6 +1,7 @@
 package baseball;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -29,6 +30,7 @@ public class JudgeTest {
 
     @ParameterizedTest
     @CsvSource(value = {"431,3", "123,2", "987,0"})
+    @DisplayName("Judge class의 countBall method 테스트")
     void countBallTest(String stringPlayer, String expected) {
         setPlayer(stringPlayer);
         assertThat(judge.countBall(computer, player)).isEqualTo(Integer.valueOf(expected));
@@ -36,6 +38,7 @@ public class JudgeTest {
 
     @ParameterizedTest
     @CsvSource(value = {"314,3", "341,1", "987,0", "413,1"})
+    @DisplayName("Judge class의 countStrike method 테스트")
     void countStrikeTest(String stringPlayer, String expected) {
         setPlayer(stringPlayer);
         assertThat(judge.countStrike(computer, player)).isEqualTo(Integer.valueOf(expected));
