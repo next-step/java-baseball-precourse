@@ -20,7 +20,6 @@ public class BaseballService {
             GameMessage.gameCountReturn(computer.getStrikeCount(), computer.getBallCount());
             strike = computer.getStrikeCount();
         }
-        GameMessage.gameOverMessage();
     }
 
     public void settingGame() {
@@ -45,7 +44,6 @@ public class BaseballService {
         while(randomNumbers.size() < 3){
             randomNumbers.add(Randoms.pickNumberInRange(1, 9));
         }
-        System.out.println("randomNumbers = " + randomNumbers);
         return randomNumbers.toArray(new Integer[0]);
     }
 

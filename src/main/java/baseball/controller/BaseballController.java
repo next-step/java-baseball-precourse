@@ -11,6 +11,7 @@ public class BaseballController {
     public void play() throws IllegalArgumentException {
         settingGame();
         startGame();
+        endGame();
         reGameJudgment();
     }
 
@@ -20,6 +21,10 @@ public class BaseballController {
 
     public void startGame() {
         service.startGame();
+    }
+
+    public void endGame() {
+        GameMessage.gameOverMessage();
     }
 
     public void reGameJudgment() throws IllegalArgumentException {
