@@ -1,23 +1,27 @@
 package baseball.domain.generator;
 
+import baseball.domain.GameRule;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 public class RandomNumbersGenerator implements Generator {
-    static int MIN_NUM = 1;
-    static int MAX_NUM = 9;
+    GameRule gameRule;
 
-    @Override
-    public List<Integer> generateNumbers(int size) {
-        return getUniqueNumberList(size);
+    public RandomNumbersGenerator(GameRule gameRule) {
+        this.gameRule = gameRule;
     }
 
-    private List<Integer> getUniqueNumberList(int size) {
+    @Override
+    public List<Integer> generateNumbers() {
+        return getUniqueNumberList();
+    }
+
+    private List<Integer> getUniqueNumberList() {
         HashSet<Integer> checkNumbers = new HashSet<>();
-        while (checkNumbers.size() < size) {
-            checkNumbers.add(Randoms.pickNumberInRange(MIN_NUM, MAX_NUM));
+        while (checkNumbers.size() < gameRule.SIZE) {
+            checkNumbers.add(Randoms.pickNumberInRange(gameRule.MIN_NUM, gameRule.MAX_NUM));
         }
         return new ArrayList<>(checkNumbers);
     }

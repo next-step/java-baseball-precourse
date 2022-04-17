@@ -1,41 +1,46 @@
 package baseball.domain.validator;
 
+import baseball.domain.GameRule;
 import java.util.Arrays;
 import java.util.HashSet;
 
 public class NumbersValidator {
-    static final int MIN_NUM = 1;
-    static final int MAX_NUM = 9;
-    private static final String regx = "[" + MIN_NUM + "-" + MAX_NUM + "]+";
+    GameRule gameRule;
+    private final String regx;
 
-    public static boolean isNumbersValidate(String numberString, int size) {
+    public NumbersValidator(GameRule gameRule) {
+        this.gameRule = gameRule;
+        this.regx = "[" + gameRule.MIN_NUM + "-" + gameRule.MAX_NUM + "]+";
+    }
+
+    public boolean isNumbersValidate(String numberString) {
 
         if (isNotNumber(numberString)) {
             throw new IllegalArgumentException();
         }
 
-        if (isOutOfSize(numberString, size)) {
+        if (isOutOfSize(numberString)) {
             throw new IllegalArgumentException();
         }
 
-        if (isDuplicateInNumbers(numberString, size)) {
+        if (isDuplicateInNumbers(numberString)) {
             throw new IllegalArgumentException();
         }
 
         return true;
     }
 
-    private static boolean isNotNumber(String numberString) {
+    private boolean isNotNumber(String numberString) {
         return !numberString.matches(regx);
     }
 
-    private static boolean isOutOfSize(String numberString, int size) {
-        return numberString.length() != size;
+    private boolean isOutOfSize(String numberString) {
+        return numberString.length() != gameRule.SIZE;
     }
 
-    private static boolean isDuplicateInNumbers(String numberString, int size) {
+    private boolean isDuplicateInNumbers(String numberString) {
         HashSet<String> checkNumberSet = new HashSet<>(Arrays.asList(numberString.split("")));
-        return checkNumberSet.size() != size;
+        return checkNumberSet.size() != gameRule.SIZE;
     }
 
 }
