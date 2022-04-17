@@ -60,7 +60,8 @@ public class Game {
 
         if(input.equals(GAME_RESTART)) {
             start();
-        } else {
+        }
+        if(input.equals(GAME_OVER)) {
             System.out.println(MESSAGE_INFO_GAME_OVER);
         }
     }

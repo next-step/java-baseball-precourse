@@ -17,22 +17,30 @@ public class Umpire {
     public static final int INPUT_LENGTH = 3;
 
     public void validate(String input) {
-        if(input.length() != INPUT_LENGTH) {
-            throw new IllegalArgumentException(MESSAGE_ERROR_INPUT_3DIGIT);
-        }
+        checkLength(input.length(), MESSAGE_ERROR_INPUT_3DIGIT);
 
         LinkedHashSet<Integer> temp = new LinkedHashSet<>();
         for(int i = 0; i < input.length(); i++) {
             int tempValue = input.charAt(i) - '0';
-            if(tempValue < 1 || tempValue > 9) {
-                throw new IllegalArgumentException(MESSAGE_ERROR_INPUT_INVALID);
-            }
+            checkInvalid(tempValue < 1 || tempValue > 9, MESSAGE_ERROR_INPUT_INVALID);
 
             temp.add(tempValue);
         }
 
-        if(temp.size() != INPUT_LENGTH) {
-            throw new IllegalArgumentException(MESSAGE_ERROR_INPUT_DUPLICATE);
+        checkDuplicate(temp.size() != INPUT_LENGTH, MESSAGE_ERROR_INPUT_DUPLICATE);
+    }
+
+    private void checkLength(int length, String messageErrorInput3digit) {
+        checkInvalid(length != INPUT_LENGTH, messageErrorInput3digit);
+    }
+
+    private void checkInvalid(boolean b, String messageErrorInputInvalid) {
+        checkDuplicate(b, messageErrorInputInvalid);
+    }
+
+    private void checkDuplicate(boolean b, String messageErrorInputDuplicate) {
+        if (b) {
+            throw new IllegalArgumentException(messageErrorInputDuplicate);
         }
     }
 
@@ -42,23 +50,34 @@ public class Umpire {
 
         LinkedList<Integer> targetNumber = new LinkedList<>(answer);
         LinkedList<Integer> inputNumber = new LinkedList<>();
-        for(int i = 0; i < input.length(); i++) {
+        for (int i = 0; i < input.length(); i++) {
             inputNumber.add(Integer.parseInt(input.substring(i, i + 1)));
         }
 
-        for(int i = 0; i < input.length(); i++) {
-            if(targetNumber.contains(inputNumber.get(i))) {
-                if(targetNumber.get(i) == inputNumber.get(i)) {
-                    strikeCount++;
-                } else {
-                    ballCount++;
-                }
-            }
+        for (int i = 0; i < input.length(); i++) {
+            strikeCount = getStrikeCount(strikeCount, targetNumber, inputNumber, i);
+            ballCount = getBallCount(ballCount, targetNumber, inputNumber, i);
         }
 
-        if(strikeCount == 3) {
-            System.out.println(strikeCount + HINT_STRIKE);
-            System.out.println(MESSAGE_INFO_SUCCESS);
+        return getDecision(strikeCount, ballCount);
+    }
+
+    private int getStrikeCount(int strikeCount, LinkedList<Integer> targetNumber, LinkedList<Integer> inputNumber, int index) {
+        if(targetNumber.contains(inputNumber.get(index)) && targetNumber.get(index).equals(inputNumber.get(index))) {
+            strikeCount++;
+        }
+        return strikeCount;
+    }
+
+    private int getBallCount(int ballCount, LinkedList<Integer> targetNumber, LinkedList<Integer> inputNumber, int index) {
+        if(targetNumber.contains(inputNumber.get(index)) && !targetNumber.get(index).equals(inputNumber.get(index))){
+            ballCount++;
+        }
+        return ballCount;
+    }
+
+    private boolean getDecision(int strikeCount, int ballCount) {
+        if (isWin(strikeCount)) {
             return true;
         }
 
@@ -66,8 +85,18 @@ public class Umpire {
         String hint_ball = (ballCount == 0) ? "" : (ballCount + HINT_BALL);
         if(strikeCount == 0 && ballCount == 0) {
             System.out.println(HINT_NOTHING);
-        } else {
+        }
+        if(strikeCount > 0 || ballCount > 0) {
             System.out.println(hint_ball + hint_strike);
+        }
+        return false;
+    }
+
+    private boolean isWin(int strikeCount) {
+        if(strikeCount == 3) {
+            System.out.println(strikeCount + HINT_STRIKE);
+            System.out.println(MESSAGE_INFO_SUCCESS);
+            return true;
         }
         return false;
     }
