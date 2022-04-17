@@ -7,9 +7,6 @@ import java.util.regex.Pattern;
 public class ValidationUtils {
 
     public static final int FIXED_LENGTH = 3;
-    public static final int MIN_NUMBER = 1;
-    public static final int MAX_NUMBER = 9;
-    public static final String INVALID_INPUT_RANGE_MESSAGE = "%d~%d 범위의 숫자만 입력 가능합니다.";
     private static final Pattern ONLY_NUMBER = Pattern.compile("^[0-9]+$");
 
     public static boolean validateLength(final int number, final int length) {

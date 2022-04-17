@@ -1,5 +1,6 @@
 package baseball.views;
 
+import baseball.balls.BallNumber;
 import baseball.utils.ValidationUtils;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
@@ -20,9 +21,9 @@ public class InputView {
         int computerNumber;
         do {
             computerNumber = 0;
-            computerNumber += Randoms.pickNumberInRange(ValidationUtils.MIN_NUMBER, ValidationUtils.MAX_NUMBER) * 100;
-            computerNumber += Randoms.pickNumberInRange(ValidationUtils.MIN_NUMBER, ValidationUtils.MAX_NUMBER) * 10;
-            computerNumber += Randoms.pickNumberInRange(ValidationUtils.MIN_NUMBER, ValidationUtils.MAX_NUMBER);
+            computerNumber += Randoms.pickNumberInRange(BallNumber.MIN_NUMBER, BallNumber.MAX_NUMBER) * 100;
+            computerNumber += Randoms.pickNumberInRange(BallNumber.MIN_NUMBER, BallNumber.MAX_NUMBER) * 10;
+            computerNumber += Randoms.pickNumberInRange(BallNumber.MIN_NUMBER, BallNumber.MAX_NUMBER);
         } while (!ValidationUtils.validateDuplication(computerNumber));
         return numberToList(String.valueOf(computerNumber));
     }
@@ -69,7 +70,7 @@ public class InputView {
             throw new IllegalArgumentException(String.format(INVALID_LENGTH_MESSAGE, GAME_OVER_FLAG_LENGTH));
         }
         if (!ValidationUtils.validateNumberRange(gameOverFlagNumber, GAME_CONTINUE_FLAG, GAME_OVER_FLAG)) {
-            throw new IllegalArgumentException(String.format(ValidationUtils.INVALID_INPUT_RANGE_MESSAGE, GAME_CONTINUE_FLAG, GAME_OVER_FLAG));
+            throw new IllegalArgumentException(String.format(BallNumber.INVALID_INPUT_RANGE_MESSAGE, GAME_CONTINUE_FLAG, GAME_OVER_FLAG));
         }
     }
 }

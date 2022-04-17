@@ -1,5 +1,6 @@
 package baseball;
 
+import baseball.balls.BallNumber;
 import baseball.utils.ValidationUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,10 +22,10 @@ public class ValidationTest {
     @Test
     @DisplayName("입력 값이 1 ~ 9 범위의 숫자 검증")
     void test02() {
-        assertThat(ValidationUtils.validateNumberRange(0, ValidationUtils.MIN_NUMBER, ValidationUtils.MAX_NUMBER)).isFalse();
-        assertThat(ValidationUtils.validateNumberRange(1, ValidationUtils.MIN_NUMBER, ValidationUtils.MAX_NUMBER)).isTrue();
-        assertThat(ValidationUtils.validateNumberRange(9, ValidationUtils.MIN_NUMBER, ValidationUtils.MAX_NUMBER)).isTrue();
-        assertThat(ValidationUtils.validateNumberRange(10, ValidationUtils.MIN_NUMBER, ValidationUtils.MAX_NUMBER)).isFalse();
+        assertThat(ValidationUtils.validateNumberRange(0, BallNumber.MIN_NUMBER, BallNumber.MAX_NUMBER)).isFalse();
+        assertThat(ValidationUtils.validateNumberRange(1, BallNumber.MIN_NUMBER, BallNumber.MAX_NUMBER)).isTrue();
+        assertThat(ValidationUtils.validateNumberRange(9, BallNumber.MIN_NUMBER, BallNumber.MAX_NUMBER)).isTrue();
+        assertThat(ValidationUtils.validateNumberRange(10, BallNumber.MIN_NUMBER, BallNumber.MAX_NUMBER)).isFalse();
     }
 
     @Test

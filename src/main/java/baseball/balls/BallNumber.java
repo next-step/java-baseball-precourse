@@ -6,11 +6,14 @@ import java.util.Objects;
 
 public class BallNumber {
 
+    public static final int MIN_NUMBER = 1;
+    public static final int MAX_NUMBER = 9;
+    public static final String INVALID_INPUT_RANGE_MESSAGE = "%d~%d 범위의 숫자만 입력 가능합니다.";
     private final int number;
 
     public BallNumber(int number) {
-        if (!ValidationUtils.validateNumberRange(number, ValidationUtils.MIN_NUMBER, ValidationUtils.MAX_NUMBER)) {
-            throw new IllegalArgumentException(String.format(ValidationUtils.INVALID_INPUT_RANGE_MESSAGE, ValidationUtils.MIN_NUMBER, ValidationUtils.MAX_NUMBER));
+        if (!ValidationUtils.validateNumberRange(number, MIN_NUMBER, MAX_NUMBER)) {
+            throw new IllegalArgumentException(String.format(INVALID_INPUT_RANGE_MESSAGE, MIN_NUMBER, MAX_NUMBER));
         }
         this.number = number;
     }
