@@ -85,7 +85,7 @@ public class BaseballGameService {
     }
 
     private void validateNonDigit(String inputNumber) {
-        if (inputNumber.matches("\\p{Digit}}")) {
+        if (!inputNumber.matches("\\p{Digit}+")) {
             throw new IllegalArgumentException("숫자만 입력할 수 있습니다.");
         }
     }
