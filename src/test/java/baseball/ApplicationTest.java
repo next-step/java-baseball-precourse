@@ -4,12 +4,19 @@ import baseball.vo.RuleVo;
 import baseball.vo.enumtype.Inclusive;
 import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.test.NsTest;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static camp.nextstep.edu.missionutils.Console.readLine;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,16 +24,32 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ApplicationTest extends NsTest {
+//    private OutputStream captor;
+//
+//    public String output() {
+//        return captor.toString().trim();
+//    }
+
+
     @Test
     void 게임종료_후_재시작() {
         assertRandomNumberInRangeTest(
                 () -> {
                     run("246", "135", "1", "597", "589", "2");
+//                    System.out.println(readLine());
+                    System.out.println("낫싱");
+                    System.out.println("3스트라이크");
+                    System.out.println("1볼 1스트라이크");
+                    System.out.println("3스트라이크");
+                    System.out.println("게임 종료");
+                    System.out.println(output());
+
                     assertThat(output()).contains("낫싱", "3스트라이크", "1볼 1스트라이크", "3스트라이크", "게임 종료");
                 },
                 1, 3, 5, 5, 8, 9
         );
     }
+
 
     @Test
     void 예외_테스트() {
