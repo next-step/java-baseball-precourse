@@ -1,10 +1,15 @@
 package com.yeojiin.baseball;
 
 import camp.nextstep.edu.missionutils.Console;
+import com.yeojiin.dto.Result;
 
 public class GameManager {
     private final Player player;
     private final Computer computer;
+
+    private static final String REQUEST_INPUT_NUMBER = "숫자를 입력해주세요 : ";
+    private static final String CORRECT_AND_END = "3개의 숫자를 모두 맞히셨습니다! 게임 종료";
+    private static final String NEW_OR_END = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
 
     public GameManager() {
         player = new Player();
@@ -18,9 +23,10 @@ public class GameManager {
     }
 
     private void startGame() {
+        Result result;
         computer.generate();
         do {
-            System.out.print("숫자를 입력해주세요 : ");
+            System.out.print(REQUEST_INPUT_NUMBER);
             player.inputNumbers();
             computer.calculateResultCount(player.getNumbers());
             System.out.println(computer.printResult());
@@ -28,8 +34,8 @@ public class GameManager {
     }
 
     private boolean finishGame() {
-        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        System.out.println(CORRECT_AND_END);
+        System.out.println(NEW_OR_END);
         return player.inputCommand() == 2;
     }
 
