@@ -16,6 +16,7 @@
   * 이 때, Validator를 통해 값을 검증한다
     > 검증 내용 : 입력값이 3자리 미만 또는 초과, 0이 입력되면 입력한 값을 Computer에게 전달하지 않고,
     IllegalArgumentException을 발생시킨 후 애플리케이션은 종료되어야 한다.
+  * 정상적으로 값이 입력이 되었다면, Player를 통해 입력받은 값을 보관하고 있도록 메시지를 보낸다.
 * Computer가 Controller(Operator)로부터 전달받은 야구게임의 입력값에 대해 게임의 결과를 판단하고,
   Controller(Operator)에게 결과를 반환
   * 결과값은 enum으로 정리해서, else 키워드 사용 방지 및 함수(또는 메소드)의 길이가 10라인을 넘어가지 않도록 구현
