@@ -80,9 +80,9 @@ public class Game {
 
 
     private void printCompareResult(){
-        if(this.nothing == 3) System.out.println("낫싱");
-        if(this.strike == 0) System.out.println(String.format("%d볼", this.ball));
-        if(this.ball == 0) System.out.println(String.format("%d스트라이크", this.strike);
-        if(this.ball!=0 && this.strike!=0) System.out.println(String.format("%d볼 %d스트라이크", this.ball, this.strike);
+        if(this.nothing > 0 && this.strike == 0 && this.ball == 0) System.out.println("낫싱");
+        if(this.strike == 0 && this.ball > 0) System.out.println(String.format("%d볼", this.ball));
+        if(this.ball == 0 && this.strike > 0) System.out.println(String.format("%d스트라이크", this.strike));
+        if(this.ball != 0 && this.strike != 0) System.out.println(String.format("%d볼 %d스트라이크", this.ball, this.strike));
     }
 }
