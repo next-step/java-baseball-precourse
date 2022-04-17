@@ -16,4 +16,11 @@ class OutPutTest {
         assertThat(outPut.getRestartMessage()).isEqualTo("재시작 하시겠습니까? (y/n)");
     }
 
+    @Test
+    @DisplayName("힌트 메시지 테스트")
+    void hintMessageTest() {
+        int strike = 1;
+        int ball = 2;
+        assertThat(outPut.getHintMessage(strike,ball)).isEqualTo(String.format("%d 스트라이크 %d 볼", strike, ball));
+    }
 }

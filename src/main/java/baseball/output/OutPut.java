@@ -12,4 +12,11 @@ public class OutPut {
     public String getRestartMessage() {
         return restartMessage;
     }
+
+    public String getHintMessage(int strike, int ball) {
+        if(strike == 0 && ball == 0) {
+            return "낫싱";
+        }
+        return String.format("%d 스트라이크 %d 볼", strike, ball);
+    }
 }
