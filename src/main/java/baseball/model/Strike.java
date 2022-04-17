@@ -4,6 +4,7 @@ public class Strike {
     private int count;
 
     public Strike() {
+        this.count = 0;
     }
 
     public int getCount() {

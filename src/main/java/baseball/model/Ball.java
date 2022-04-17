@@ -6,6 +6,7 @@ public class Ball {
     private int count;
 
     public Ball() {
+        this.count = 0;
     }
 
     public int getCount() {

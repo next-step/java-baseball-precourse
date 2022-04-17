@@ -7,6 +7,8 @@ public class Result {
     private Ball ball;
 
     public Result() {
+        this.strike = new Strike();
+        this.ball = new Ball();
     }
 
     public void createResult(List<Integer> userNumbers, List<Integer> computerNumbers){
