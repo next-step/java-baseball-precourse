@@ -8,6 +8,7 @@ public class Game {
     GameRule gameRule;
     Player computer;
     Player user;
+    GameResult gameResult;
 
     public Game(Player computer, Player user, GameRule gameRule) {
         this.gameStatus = GameStatus.PLAY;
@@ -52,7 +53,15 @@ public class Game {
         this.user = user;
     }
 
-    public void playGame(List<Integer> inputNumbers){
+    public void playGame(List<Integer> inputNumbers) {
         user.setNumbers(inputNumbers);
+        gameResult = new GameResult(computer.getNumbers(), user.getNumbers());
+        if (gameResult.isWinning()) {
+            this.setGameStatus(GameStatus.END);
+        }
+    }
+
+    public GameResult getGameResult() {
+        return gameResult;
     }
 }
