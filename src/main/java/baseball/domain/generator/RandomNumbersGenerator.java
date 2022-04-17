@@ -11,13 +11,13 @@ public class RandomNumbersGenerator implements Generator {
 
     @Override
     public List<Integer> generateNumbers(int size) {
-        return uniqueNumberList(size);
+        return getUniqueNumberList(size);
     }
 
-    private List<Integer> uniqueNumberList (int size){
+    private List<Integer> getUniqueNumberList(int size) {
         HashSet<Integer> checkNumbers = new HashSet<>();
-        while(checkNumbers.size() < size){
-            checkNumbers.add(Randoms.pickNumberInRange(MIN_NUM,MAX_NUM));
+        while (checkNumbers.size() < size) {
+            checkNumbers.add(Randoms.pickNumberInRange(MIN_NUM, MAX_NUM));
         }
         return new ArrayList<>(checkNumbers);
     }
