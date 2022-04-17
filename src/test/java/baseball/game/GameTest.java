@@ -9,5 +9,6 @@ public class GameTest {
     void gameStartTest() {
         Game game = new BaseBallGame();
         game.start();
+        // 콘솔 테스트는 어떻게 하는걸까..?
     }
 }
