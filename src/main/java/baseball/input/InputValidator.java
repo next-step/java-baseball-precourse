@@ -26,4 +26,8 @@ public class InputValidator {
             throw new IllegalArgumentException(NOT_THREE_DIGITS.text());
     }
 
+    public void isInputPositive(int inputNumber) {
+        if(inputNumber < 0)
+            throw new IllegalArgumentException(NOT_POSITIVE.text());
+    }
 }

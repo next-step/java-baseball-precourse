@@ -36,4 +36,12 @@ public class InputValidatorTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("양수체크 테스트")
+    void isNumberPositiveTest() {
+        int badInput = -1;
+        assertThatThrownBy(()-> {
+            inputValidator.isInputPositive(badInput);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }
