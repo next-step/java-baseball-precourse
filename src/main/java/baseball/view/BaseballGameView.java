@@ -20,12 +20,12 @@ public class BaseballGameView {
     }
 
     public String allCorrectAnswer() {
-        return ENTER_PHRASES+ALL_CORRECT_PHRASES;
+        return ENTER_PHRASES + ALL_CORRECT_PHRASES;
     }
 
     public String ballCount(int ballCount) {
         String message = "";
-        if(ballCount > 0){
+        if (ballCount > 0) {
             message = ballCount + BALL_PHRASES + GAP_PHRASES;
         }
         return message;
@@ -33,7 +33,7 @@ public class BaseballGameView {
 
     public String strikeCount(int strikeCount) {
         String message = "";
-        if(strikeCount > 0){
+        if (strikeCount > 0) {
             message = strikeCount + STRIKE_PHRASES;
         }
         return message;

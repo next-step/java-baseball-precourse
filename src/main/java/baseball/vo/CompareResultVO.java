@@ -7,7 +7,7 @@ public class CompareResultVO {
     private boolean isAllCorrectAnswer;
     private String gameResultMessage;
 
-    public CompareResultVO(){
+    public CompareResultVO() {
         this.ballCount = 0;
         this.strikeCount = 0;
         this.isAllCorrectAnswer = false;
@@ -29,11 +29,11 @@ public class CompareResultVO {
         return isAllCorrectAnswer;
     }
 
-    public void increaseBallCount(){
+    public void increaseBallCount() {
         this.ballCount++;
     }
 
-    public void increaseStrikeCount(){
+    public void increaseStrikeCount() {
         this.strikeCount++;
     }
 

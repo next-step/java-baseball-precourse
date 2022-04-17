@@ -37,7 +37,7 @@ public class BaseballGameService {
         for (int index = 0; index < answerNumberList.size(); index++) {
             increaseCount(answerNumberList, inputNumberList, compareResultVO, index);
         }
-        if(compareResultVO.getStrikeCount() == NUMBER_OF_DIGIT){
+        if (compareResultVO.getStrikeCount() == NUMBER_OF_DIGIT) {
             compareResultVO.allCorrectAnswer();
         }
         return compareResultVO;
