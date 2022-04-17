@@ -1,6 +1,6 @@
 package baseball.game.util;
 
-public final class Console {
+public class Console {
     public static String readLine() {
         return camp.nextstep.edu.missionutils.Console.readLine();
     }

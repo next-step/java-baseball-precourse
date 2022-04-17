@@ -1,9 +1,9 @@
 package baseball;
 
-import baseball.game.Game;
+import baseball.game.GameApp;
 
 public class Application {
     public static void main(String[] args) {
-        Game.run();
+        GameApp.run();
     }
 }

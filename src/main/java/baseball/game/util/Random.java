@@ -7,7 +7,7 @@ import java.util.Set;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
 
-public final class Random {
+public class Random {
 
     public static List<Integer> randomNumbers(int numNumbers, int start, int end) {
         Set<Integer> result = new LinkedHashSet<>();

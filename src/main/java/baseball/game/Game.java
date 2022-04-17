@@ -6,9 +6,12 @@ import java.util.*;
 
 import static baseball.game.GameConfig.NUM_DIGITS;
 
-public final class Game {
+class Game {
+    private final GameState state;
 
-    private Game() { }
+    Game() {
+        state = new GameState();
+    }
 
     static Judgment checkAnswer(NumberToIndex opponent, int digit, int indexOfDigit) {
         if (!opponent.contains(digit)) {
@@ -40,8 +43,8 @@ public final class Game {
         return score.getNumStrikes() == NUM_DIGITS;
     }
 
-    private static void play(GameState state) {
-//        GameUtil.println(computerNumbers);
+    void play() {
+//        GameUtil.println(state.getComputersDigits());
         boolean isOver = false;
 
         while (!isOver) {
@@ -53,18 +56,6 @@ public final class Game {
 
             String message = GameMessage.resultMessage(score.getNumStrikes(), score.getNumBalls());
             Console.println(message);
-        }
-    }
-
-    public static void run() {
-        String input = "1";
-        while (Objects.equals(input, "1") && !Objects.equals(input, "2")) {
-            play(new GameState());
-            Console.println(GameMessage.RESTART_OR_EXIT);
-            input = Console.readLine();
-        }
-        if (!Objects.equals(input, "2")) {
-            throw new IllegalArgumentException("wrong input");
         }
     }
 }

@@ -1,6 +1,6 @@
 package baseball.game;
 
-public enum Judgment {
+enum Judgment {
     STRIKE,
     BALL,
     NONE

@@ -2,7 +2,7 @@ package baseball.game;
 
 import static baseball.game.GameConfig.*;
 
-public final class GameUtil {
+class GameUtil {
 
     private GameUtil() { }
 
@@ -19,7 +19,7 @@ public final class GameUtil {
         return num;
     }
 
-    public static NumberToIndex parseDigitsFrom(String s) {
+    static NumberToIndex parseDigitsFrom(String s) {
         NumberToIndex result = new NumberToIndex();
 
         for (String stringNumber: s.split("")) {
