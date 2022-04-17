@@ -2,10 +2,12 @@ package baseball;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import baseball.model.Computer;
 import baseball.model.Result;
+import baseball.model.User;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -28,7 +30,7 @@ public class ModelTest {
 
 
     @Test
-    void StrikeResultTest(){
+    void strikeResultTest(){
         List<Integer> userNumbers = new ArrayList<>(3);
         userNumbers.add(1);
         userNumbers.add(2);
@@ -48,7 +50,7 @@ public class ModelTest {
     }
 
     @Test
-    void BallResultTest(){
+    void ballResultTest(){
         List<Integer> userNumbers = new ArrayList<>(3);
         userNumbers.add(1);
         userNumbers.add(2);
@@ -68,7 +70,7 @@ public class ModelTest {
     }
 
     @Test
-    void NothingResultTest(){
+    void nothingResultTest(){
         List<Integer> userNumbers = new ArrayList<>(3);
         userNumbers.add(1);
         userNumbers.add(2);
@@ -88,7 +90,7 @@ public class ModelTest {
     }
 
     @Test
-    void CombinedResultTest_2Strikes_1Nothing(){
+    void combinedResultTest_2Strikes_1Nothing(){
         List<Integer> userNumbers = new ArrayList<>(3);
         userNumbers.add(1);
         userNumbers.add(2);
@@ -108,7 +110,7 @@ public class ModelTest {
     }
 
     @Test
-    void CombinedResultTest_1Strikes_2Balls(){
+    void combinedResultTest_1Strikes_2Balls(){
         List<Integer> userNumbers = new ArrayList<>(3);
         userNumbers.add(1);
         userNumbers.add(2);
@@ -128,7 +130,7 @@ public class ModelTest {
     }
 
     @Test
-    void CombinedResultTest_1Strike_1Ball(){
+    void combinedResultTest_1Strike_1Ball(){
         List<Integer> userNumbers = new ArrayList<>(3);
         userNumbers.add(1);
         userNumbers.add(2);
@@ -144,6 +146,51 @@ public class ModelTest {
         assertAll(
                 () -> assertThat(result.getStrike().getCount() == 1),
                 () -> assertThat(result.getBall().getCount() == 1)
+        );
+    }
+
+    @Test
+    void userTest(){
+        final String input = "123";
+        List<Integer> expectedNumbers = new ArrayList<>();
+        expectedNumbers.add(1);
+        expectedNumbers.add(2);
+        expectedNumbers.add(3);
+
+        User user = new User(input);
+
+        assertAll(
+                () -> assertThat(user.getNumbers().containsAll(expectedNumbers))
+        );
+    }
+
+    @Test
+    void userExceptionTest_LongerThanMaxLength(){
+        final String input = "1234";
+
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> new User(input))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
+    void userExceptionTest_NullInput(){
+        final String input = null;
+
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> new User(input))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
+    void userExceptionTest_BlankInput(){
+        final String input = "";
+
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> new User(input))
+                        .isInstanceOf(IllegalArgumentException.class)
         );
     }
 }

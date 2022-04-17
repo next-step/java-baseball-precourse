@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Computer {
-    public final static int maxLength = 3;
+    private final static int maxLength = 3;
     private List<Integer> numbers = new ArrayList<>();
 
     public Computer() {
