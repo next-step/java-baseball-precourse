@@ -33,6 +33,14 @@ public class Game {
         String input = Console.readLine();
         System.out.println(input);
 
+        validate(input);
+
+        if (getHint(answer, input)) return;
+
+        progress(answer);
+    }
+
+    private void validate(String input) {
         if(input.length() != 3) {
             throw new IllegalArgumentException("3자리의 숫자만 입력가능합니다.");
         }
@@ -50,7 +58,9 @@ public class Game {
         if(temp.size() != 3) {
             throw new IllegalArgumentException("중복된 숫자가 입력되었습니다.");
         }
+    }
 
+    private boolean getHint(LinkedHashSet<Integer> answer, String input) {
         int strikeCount = 0;
         int ballCount = 0;
 
@@ -77,7 +87,7 @@ public class Game {
             System.out.println(strikeCount + "스트라이크");
             System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
             end();
-            return;
+            return true;
         }
 
         String hint_strike = (strikeCount == 0) ? "" : (strikeCount + "스트라이크 ");
@@ -87,8 +97,7 @@ public class Game {
         } else {
             System.out.println(hint_ball + hint_strike);
         }
-
-        progress(answer);
+        return false;
     }
 
     private void end() {
