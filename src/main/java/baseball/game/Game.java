@@ -48,7 +48,7 @@ class Game {
         boolean isOver = false;
 
         while (!isOver) {
-            Console.print(GameMessage.PROMPT);
+            Console.print(GameMessage.PROMPT.get());
             String input = Console.readLine();
 
             RoundScore score = process(state, input);

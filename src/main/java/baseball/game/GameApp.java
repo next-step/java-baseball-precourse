@@ -10,7 +10,7 @@ public class GameApp {
 
         while (Objects.equals(input, "1") && !Objects.equals(input, "2")) {
             new Game().play();
-            Console.println(GameMessage.RESTART_OR_EXIT);
+            Console.println(GameMessage.RESTART_OR_EXIT.get());
             input = Console.readLine();
         }
 
