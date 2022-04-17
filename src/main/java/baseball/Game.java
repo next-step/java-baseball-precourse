@@ -12,6 +12,7 @@ public class Game {
 
     public static final String MESSAGE_INFO_INPUT = "숫자를 입력해주세요: ";
     public static final String MESSAGE_INFO_SELECT = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
+    public static final String MESSAGE_INFO_GAME_OVER = "게임 종료";
     public static final String MESSAGE_ERROR_INPUT = "입력이 올바르지 않습니다.";
 
     public static final int ANSWER_SIZE = 3;
@@ -69,6 +70,8 @@ public class Game {
 
         if(input.equals(GAME_RESTART)) {
             start();
+        } else {
+            System.out.println(MESSAGE_INFO_GAME_OVER);
         }
     }
 }
