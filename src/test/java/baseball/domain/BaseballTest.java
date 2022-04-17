@@ -10,14 +10,14 @@ public class BaseballTest {
 
     @Test
     public void Baseball객체_확인() {
-        Baseball baseball = new Baseball(1);
+        Baseball baseball = Baseball.of(1);
         assertThat(baseball).isInstanceOf(Baseball.class);
     }
 
     @Test
     public void Baseball숫자_예외_처리() {
         assertThatThrownBy(() -> {
-            Baseball baseball = new Baseball(10);
+            Baseball baseball = Baseball.of(10);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -10,7 +10,7 @@ public class Baseballs {
     private final List<Baseball> baseballs;
 
 
-    public Baseballs(List<Baseball> baseballs) {
+    private Baseballs(List<Baseball> baseballs) {
         isValidSize(baseballs);
         isDuplicate(baseballs);
         this.baseballs = baseballs;
