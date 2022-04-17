@@ -6,7 +6,6 @@ public class GameManager {
     private final Player player;
     private final Computer computer;
 
-
     private static final String REQUEST_INPUT_NUMBER = "숫자를 입력해주세요 : ";
     private static final String CORRECT_AND_END = "3개의 숫자를 모두 맞히셨습니다! 게임 종료";
     private static final String NEW_OR_END = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
