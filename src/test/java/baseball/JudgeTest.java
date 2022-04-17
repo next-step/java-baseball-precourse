@@ -47,4 +47,5 @@ public class JudgeTest {
             player.add(Integer.valueOf(sNumber));
         }
     }
+
 }
