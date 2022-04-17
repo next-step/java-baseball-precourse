@@ -1,6 +1,12 @@
 package baseball;
 
+import baseball.domain.Computer;
+import baseball.domain.User;
+import baseball.service.BaseballService;
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.assertj.core.api.Assertions;
+import org.assertj.core.api.ThrowableAssert;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
@@ -31,5 +37,51 @@ class ApplicationTest extends NsTest {
     @Override
     public void runMain() {
         Application.main(new String[]{});
+    }
+
+    @Test
+    @DisplayName("existence userNumber ")
+    void existence_userNumber() {
+
+        // given
+        User user = new User();
+        user.setUserNumbers(new int [] { 1, 3, 9 });
+
+        // when then
+        assertThat(user.getUserNumbers()).isNotNull();
+    }
+
+    @Test
+    @DisplayName("randomBotResetTest")
+    void randomBotResetTest() {
+
+        // given
+        Computer computer = new Computer();
+        computer.ballCountInc();
+        computer.strikeCountInc();
+
+        // when
+        computer.resetGame();
+
+        // then
+        assertThat(computer.getBallCount()).isEqualTo(0);
+        assertThat(computer.getStrikeCount()).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("userInputValidCheck")
+    void userInputValidCheck() throws IllegalArgumentException{
+        // given
+        User user = new User();
+        user.setUserNumbers(new int[]{1, 2});
+        // when
+        int length = user.getUserNumbers().length;
+        // then
+        assertThatThrownBy(() -> validatePostcode(length)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    static void validatePostcode(int inputLength) throws IllegalArgumentException{
+        if(inputLength != 3)
+            throw  new IllegalArgumentException();
     }
 }
