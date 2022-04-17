@@ -20,4 +20,7 @@ public class OutPutService {
         System.out.println(outPut.getHintMessage(strike, ball));
     }
 
+    public void printEndMessage() {
+        System.out.println(outPut.getEndMessage());
+    }
 }

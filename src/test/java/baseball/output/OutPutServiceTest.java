@@ -21,4 +21,10 @@ class OutPutServiceTest {
     void printHintMessageTest() {
         outPutService.printHintMessage(1,2);
     }
+
+    @Test
+    @DisplayName("종료 메시지 출력")
+    void endMessageTest() {
+        outPutService.printEndMessage();
+    }
 }
