@@ -1,55 +1,43 @@
 package baseball.controller;
 
-import baseball.Computer;
-import baseball.GameProcessor;
-import baseball.MessagePrinter;
-import baseball.Player;
-
+import baseball.model.Computer;
+import baseball.model.GameProcessor;
+import baseball.view.MessagePrinter;
+import baseball.model.Player;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-public class BaseballGame {
+public class BaseballGameController {
 
-    public static void start() {
+    final String RETRY = "1";
+    final String TERMINATE = "2";
 
+    public void start() {
         boolean isStart = true;
         while (isStart) {
-            Computer computer = new Computer();
-            computer.generateThreeNumbers(); // TODO : 고민 : Computer 클래스의 main() 메서드로 만들 수 있을까?
-
-            isStart = init(computer);
+            isStart = init();
         }
         terminate();
     }
 
-    public static boolean init(Computer computer) {
+    public boolean init() {
         boolean isThreeStrike = false;
-        Player player = new Player();
-        GameProcessor gameProcessor = new GameProcessor();
-
+        GameProcessor gameProcessor = new GameProcessor(new Player(), new Computer());
         while (!isThreeStrike) {
-            player.drawNumbers();
-            isThreeStrike = gameProcessor.playGame(computer.computerNumberList, player.inputs);
+            isThreeStrike = gameProcessor.playGame();
         }
-        return retry();
-    }
-
-    private static boolean retry() {
-
-        final String RETRY = "1";
-        final String TERMINATE = "2";
-
         MessagePrinter.printAskRetry();
         String continueFlag = readLine();
+        return retry(continueFlag);
+    }
 
+    private boolean retry(String continueFlag) {
         if (continueFlag.equals(RETRY)) {
             MessagePrinter.printRetry();
             return true;
         }
-
         if (continueFlag.equals(TERMINATE)) {
             return false;
         }
-
         throw new IllegalArgumentException();
     }
 
