@@ -27,4 +27,13 @@ public class InputValidatorTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("세자리체크 테스트")
+    void isInputThreeDigitsTest() {
+        String badInput = "2212";
+        assertThatThrownBy(()-> {
+            inputValidator.isInputThreeDigits(badInput);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

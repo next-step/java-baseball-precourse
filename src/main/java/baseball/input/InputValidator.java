@@ -21,4 +21,9 @@ public class InputValidator {
         throw new IllegalArgumentException(NOT_NUMERIC.text());
     }
 
+    public void isInputThreeDigits(String input) {
+        if(input.length() != 3)
+            throw new IllegalArgumentException(NOT_THREE_DIGITS.text());
+    }
+
 }
