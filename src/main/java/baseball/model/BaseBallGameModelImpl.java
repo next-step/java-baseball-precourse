@@ -18,7 +18,6 @@ public class BaseBallGameModelImpl implements BaseBallGameModel{
                 this.target =  input;
             }
         }
-        System.out.println(target);
     }
 
     @Override
