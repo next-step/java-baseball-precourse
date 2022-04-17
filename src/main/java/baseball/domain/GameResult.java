@@ -17,24 +17,24 @@ public class GameResult {
     }
 
     private void calGameResult() {
-        for (int i = 0; i < computerNumbers.size(); i++) {
-            if (isStrike(i)) {
-                strike++;
-                continue;
-            }
-
-            if (isBall(i)) {
-                ball++;
-            }
+        for (int index = 0; index < computerNumbers.size(); index++) {
+            strike += getStrikeCnt(index);
+            ball += getBallCnt(index);
         }
     }
 
-    private boolean isStrike(int index) {
-        return computerNumbers.get(index).equals(userNumbers.get(index));
+    private int getStrikeCnt(int index) {
+        if (computerNumbers.get(index).equals(userNumbers.get(index))) {
+            return 1;
+        }
+        return 0;
     }
 
-    private boolean isBall(int index) {
-        return computerNumbers.contains(userNumbers.get(index));
+    private int getBallCnt(int index) {
+        if (computerNumbers.contains(userNumbers.get(index)) && getStrikeCnt(index) == 0) {
+            return 1;
+        }
+        return 0;
     }
 
     public boolean isNothing() {

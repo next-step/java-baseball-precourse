@@ -10,7 +10,7 @@ public class OutputView {
         }
 
         if (gameResult.isWinning()) {
-            printWinningMessage();
+            printWinningMessage(gameResult);
         }
         if (gameResult.isNothing()) {
             printNothingMessage();
@@ -19,13 +19,11 @@ public class OutputView {
 
     private static void printBallAndStrikeMessage(GameResult gameResult) {
         StringBuilder result = new StringBuilder();
-        int strike = gameResult.getStrike();
-        int ball = gameResult.getBall();
-        if (ball > 0) {
-            addBallString(result, ball);
+        if (gameResult.getBall() > 0) {
+            addBallString(result, gameResult.getBall());
         }
-        if (strike > 0) {
-            addStrikeString(result, strike);
+        if (gameResult.getStrike() > 0) {
+            addStrikeString(result, gameResult.getStrike());
         }
         System.out.println(result);
     }
@@ -43,8 +41,8 @@ public class OutputView {
         result.append(OutputMessage.STRIKE);
     }
 
-    private static void printWinningMessage() {
-        System.out.println("3" + OutputMessage.STRIKE);
+    private static void printWinningMessage(GameResult gameResult) {
+        System.out.println(gameResult.getStrike() + OutputMessage.STRIKE);
         System.out.println(OutputMessage.WINNING);
     }
 
