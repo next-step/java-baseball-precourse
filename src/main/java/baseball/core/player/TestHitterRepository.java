@@ -1,0 +1,43 @@
+package baseball.core.player;
+
+import camp.nextstep.edu.missionutils.Console;
+
+public class TestHitterRepository implements HitterRepository {
+
+    public static String hits;
+
+    @Override
+    public void hitting() {
+        System.out.print("Enter 3 digits : ");
+        hits = Console.readLine();
+        validation(hits);
+    }
+
+    @Override
+    public void validation(String hit) {
+        if (hit.length() != 3) {
+            throw new IllegalArgumentException();
+        }
+
+        if(hit.contains("0")){
+            System.err.println("0 is not included");
+            throw new IllegalArgumentException();
+        }
+
+        if (hit.charAt(0) == hit.charAt(1) || hit.charAt(1) == hit.charAt(2) || hit.charAt(0) == hit.charAt(2)) {
+            System.err.println("Duplicate numbers are not allowed");
+            throw new IllegalArgumentException();
+        }
+
+        int hitNum = Integer.parseInt(hit);
+        if (hitNum < 100 || hitNum > 999) {
+            throw new IllegalArgumentException();
+        }
+
+
+    }
+
+    public String getHits() {
+        return hits;
+    }
+}
