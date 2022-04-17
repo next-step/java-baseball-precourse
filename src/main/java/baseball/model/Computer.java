@@ -36,7 +36,6 @@ public class Computer {
 
     public int countStrike(List<Integer> input) {
         int strike = 0;
-
         for(int i=0; i<NUMBER_SIZE; i++) {
             Integer computerNumber = number.get(i);
             Integer playerNumber = input.get(i);
@@ -44,19 +43,16 @@ public class Computer {
                 strike++;
             }
         }
-
         return strike;
     }
 
     public int countBall(int strikeCount, List<Integer> input) {
         int ball = 0;
-
         for (Integer playerNumber : input) {
             if(number.contains(playerNumber)) {
                 ball++;
             }
         }
-
         return ball-strikeCount;
     }
 }

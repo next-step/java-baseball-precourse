@@ -16,18 +16,21 @@ public class BaseBallController {
     private static final String STRIKE_MESSAGE = "스트라이크";
     private static final String BALL_MESSAGE = "볼";
     private static final String NOTHING_MESSAGE = "낫싱";
+    private final Computer computer;
+    private final Player player;
+
+    public BaseBallController(Computer computer, Player player) {
+        this.computer = computer;
+        this.player = player;
+    }
 
     public void play() {
-        Computer computer = new Computer();
-        Player player = new Player();
         while (exit) {
-            String input = InputView.inputNumber();
-            player.setNumber(convertToList(input));
+            player.setNumber(convertToList(InputView.inputNumber()));
             int strike = computer.countStrike(player.getNumber());
             int ball = computer.countBall(strike, player.getNumber());
             System.out.println(getResultMessage(strike, ball));
-            boolean isThreeStrike = is3Strike(strike);
-            if (isThreeStrike && isDone(computer)) {
+            if (is3Strike(strike) && isDone(computer)) {
                 break;
             }
         }
