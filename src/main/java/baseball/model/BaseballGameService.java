@@ -32,11 +32,13 @@ public class BaseballGameService {
     public CompareResultVO compareInputToAnswer(String inputNumber, List<Integer> answerNumberList) {
         validateNonDigit(inputNumber);
         validateNumberOfDigit(Integer.parseInt(inputNumber));
-
         List<Integer> inputNumberList = parseStringToIntegerList(inputNumber);
         CompareResultVO compareResultVO = new CompareResultVO();
         for (int index = 0; index < answerNumberList.size(); index++) {
             increaseCount(answerNumberList, inputNumberList, compareResultVO, index);
+        }
+        if(compareResultVO.getStrikeCount() == NUMBER_OF_DIGIT){
+            compareResultVO.allCorrectAnswer();
         }
         return compareResultVO;
     }
