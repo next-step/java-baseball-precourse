@@ -103,4 +103,12 @@ class AnswerServiceTest {
         assertThat(result.getStrike()).isEqualTo(3);
     }
 
+    @Test
+    @DisplayName("1볼 1스트라이크 테스트")
+    void oneBallOneStrikeTest() {
+        userAnswer = Arrays.asList(3,2,5);
+        Answer result = answerService.result(userAnswer);
+        assertThat(result.getStrike()).isEqualTo(1);
+        assertThat(result.getBall()).isEqualTo(1);
+    }
 }
