@@ -1,0 +1,21 @@
+package baseball.input;
+
+import static org.assertj.core.api.Assertions.*;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+
+public class InputValidatorTest {
+    private final InputValidator inputValidator = new InputValidator();
+
+    @Test
+    @DisplayName("중복체크 테스트")
+    void hasDuplicateNumberTest() {
+        String badInput = "221";
+        assertThatThrownBy(()-> {
+            inputValidator.hasDuplicateNumber(badInput);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+}
