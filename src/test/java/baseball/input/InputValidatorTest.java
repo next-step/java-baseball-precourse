@@ -1,6 +1,7 @@
 package baseball.input;
 
 import static org.assertj.core.api.Assertions.*;
+import static baseball.input.InputErrorEnum.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,8 @@ public class InputValidatorTest {
         String duplicateInput = "221";
         assertThatThrownBy(()-> {
             inputValidator.validateInput(duplicateInput);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(DUPLICATE.text());
     }
 
     @Test
@@ -25,10 +27,12 @@ public class InputValidatorTest {
         String negativeInput = "-13";
         assertThatThrownBy(()-> {
             inputValidator.validateInput(stringInput);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(NOT_NUMERIC.text());
         assertThatThrownBy(()-> {
             inputValidator.validateInput(negativeInput);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(NOT_NUMERIC.text());
     }
 
     @Test
@@ -37,7 +41,8 @@ public class InputValidatorTest {
         String badInput = "2212";
         assertThatThrownBy(()-> {
             inputValidator.validateInput(badInput);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(NOT_THREE_DIGITS.text());
     }
 
     @Test
@@ -47,6 +52,7 @@ public class InputValidatorTest {
         assertThatThrownBy(()-> {
             inputValidator.validateInput(input);
             inputValidator.validateInput(input);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ALREADY_CHECKED.text());
     }
 }

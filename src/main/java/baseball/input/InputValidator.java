@@ -11,11 +11,10 @@ public class InputValidator {
     private final List<String> inputHistory = new ArrayList<>();
 
     public void validateInput(String input) {
-        checkDuplicateNumber(input);
         checkThreeDigits(input);
-        checkNumber(input);
+        checkNumeric(input);
+        checkDuplicateNumber(input);
         alreadyChecked(input);
-        inputHistory.add(input);
     }
 
     private void checkDuplicateNumber(String input) {
@@ -32,24 +31,14 @@ public class InputValidator {
             throw new IllegalArgumentException(NOT_THREE_DIGITS.text());
     }
 
-    private void checkNumber(String input) {
-        checkNumeric(input);
-        int inputNumber = Integer.parseInt(input);
-        checkPositive(inputNumber);
-    }
-
     private void checkNumeric(String input) {
         if(input.matches(NUMBER_REGEX)) return;
         throw new IllegalArgumentException(NOT_NUMERIC.text());
     }
 
-    private void checkPositive(int inputNumber) {
-        if(inputNumber < 0)
-            throw new IllegalArgumentException(NOT_POSITIVE.text());
-    }
-
     private void alreadyChecked(String input) {
         if(inputHistory.contains(input))
             throw new IllegalArgumentException(ALREADY_CHECKED.text());
+        inputHistory.add(input);
     }
 }
