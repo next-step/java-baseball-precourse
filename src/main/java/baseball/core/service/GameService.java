@@ -13,34 +13,30 @@ public class GameService {
 
     public void startGame() {
 
-        try {
-            gameInit();
+        gameInit();
 
-            while (true) {
+        while (true) {
 
-                refree.makeDecision(pitcher.getPitchs(), hitter.getHits());
-                boolean result = refree.getDecision();
+            refree.makeDecision(pitcher.getPitchs(), hitter.getHits());
+            boolean result = refree.getDecision();
 
-                if (!result) {
-                    hitter.hitting();
-                    continue;
-                }
-
-                System.out.println("3 strike out!");
-                break;
+            if (!result) {
+                hitter.hitting();
+                continue;
             }
 
-            System.out.print("ENTER THE CODE (RETRY : 0 || GAME-END : 1) : ");
-            String userCode = Console.readLine();
-            checkRetry(userCode);
-
-            gameEnd(userCode);
-
-        } catch (Exception e) {
-            System.err.println(e);
-            System.exit(0);
+            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
+            break;
         }
 
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
+        String userCode = Console.readLine();
+        if ("1".equals(userCode)) {
+            startGame();
+            return;
+        }
+
+        gameEnd(userCode);
 
     }
 
@@ -54,19 +50,10 @@ public class GameService {
     }
 
     private void gameEnd(String userCode){
-        if ("1".equals(userCode)) {
-            System.out.println("GAME - END");
-            System.exit(0);
-        }
-    }
-
-    private void checkRetry(String userCode){
-        if ("0".equals(userCode)) {
-            System.out.print("ENTER CODE(0) GAME RESTART ");
-            startGame();
+        if ("2".equals(userCode)) {
+            System.out.println("게임 종료");
             return;
         }
     }
-
 
 }

@@ -8,7 +8,7 @@ public class TestHitterRepository implements HitterRepository {
 
     @Override
     public void hitting() {
-        System.out.print("Enter 3 digits : ");
+        System.out.print("숫자를 입력해주세요 : ");
         hits = Console.readLine();
         validation(hits);
     }

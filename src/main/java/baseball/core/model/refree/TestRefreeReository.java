@@ -25,8 +25,6 @@ public class TestRefreeReository implements RefreeRepository {
                     strike++;
                 }
             }
-
-            System.out.println(Integer.toString(entry.getValue()).charAt(0) + " : " + hits.charAt(entry.getKey()));
         }
 
         ball = ball - strike;
@@ -37,11 +35,19 @@ public class TestRefreeReository implements RefreeRepository {
     @Override
     public boolean getDecision() {
         if (strike != 0 || ball != 0) {
-            System.out.println("[" + strike + " STRIKE," + ball + " ball" + "]");
+            StringBuilder sb = new StringBuilder();
+            if(ball != 0){
+                sb.append(ball).append("볼").append(" ");
+            }
+            if(strike != 0){
+                sb.append(strike).append("스트라이크");
+            }
+
+            System.out.println(sb.toString());
             return decision;
         }
 
-        System.out.println("[NOTHING]");
+        System.out.println("낫싱");
         return decision;
     }
 }
