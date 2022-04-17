@@ -1,19 +1,15 @@
 package baseball;
 
+import baseball.model.Player;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ApplicationTest extends NsTest {
 
@@ -37,57 +33,14 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    @DisplayName("사용자 입력값 중 중복되는 값이 있으면 예외를 던진다.")
-    void When_Input_Duplicated_Throw_Exception() {
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("333"))
-                        .isInstanceOf(IllegalArgumentException.class)
+    void 게임_로직_추가_검증() {
+        assertRandomNumberInRangeTest(
+                () -> {
+                    run("246", "432", "1", "892", "981", "891", "1", "965", "2");
+                    assertThat(output()).contains("2볼", "3스트라이크", "2스트라이크", "2볼 1스트라이크", "3스트라이크", "게임 종료");
+                },
+                4, 3, 2, 8, 9, 1, 9, 6, 5
         );
-
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("323"))
-                        .isInstanceOf(IllegalArgumentException.class)
-        );
-
-
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("141"))
-                        .isInstanceOf(IllegalArgumentException.class)
-        );
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"999", "120", "가나다", "31", "012", "910", "12!"})
-    @DisplayName("사용자가 입력한 값이 유효성 체크를 통과하지 못하면 예외를 던진다")
-    void When_Player_Invalidate_Throw_Exception(String input) {
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Player().validationCheck(input));
-    }
-
-    @Test
-    @DisplayName("3스트라이크를 정상적으로 테스트한다.")
-    void Test_Three_Strike() {
-        GameProcessor gameProcessor = new GameProcessor();
-        List<Integer> computer = new ArrayList<>();
-        computer.add(1);
-        computer.add(2);
-        computer.add(3);
-
-        List<String> player1 = new ArrayList<>();
-        player1.add("3");
-        player1.add("2");
-        player1.add("1");
-
-        List<String> player2 = new ArrayList<>();
-        player2.add("1");
-        player2.add("2");
-        player2.add("3");
-
-        boolean result1 = gameProcessor.playGame(computer, player1);
-        boolean result2 = gameProcessor.playGame(computer, player2);
-
-        assertFalse(result1);
-        assertTrue(result2);
     }
 
     @Override
