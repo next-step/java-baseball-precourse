@@ -7,28 +7,42 @@ import static org.assertj.core.api.Assertions.*;
 public class BaseballsTest {
 
     @Test
-    public void MyBaseball객체_생성() {
-        Baseballs myBaseballs = Baseballs.createMyBaseballs("123");
+    public void Baseball_객체_생성() {
+        Baseballs myBaseballs = Baseballs.createBaseballs("123");
         assertThat(myBaseballs).isInstanceOf(Baseballs.class);
     }
 
     @Test
-    public void ComBaseball객체_생성() {
-        Baseballs comBaseballs = Baseballs.createComBaseballs();
+    public void randomBaseball_객체_생성() {
+        Baseballs comBaseballs = Baseballs.createRandomBaseballs();
         assertThat(comBaseballs).isInstanceOf(Baseballs.class);
     }
 
     @Test
     public void 숫자_길이_체크() {
         assertThatThrownBy(() -> {
-            Baseballs baseballs = Baseballs.createMyBaseballs("1234");
+            Baseballs.createBaseballs("1234");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     public void 숫자_중복_체크() {
         assertThatThrownBy(() -> {
-            Baseballs baseballs = Baseballs.createMyBaseballs("122");
+            Baseballs.createBaseballs("122");
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    public void 스트라이크_카운트() {
+        Baseballs myBaseballs = Baseballs.createBaseballs("123");
+        Baseballs comBaseballs = Baseballs.createBaseballs("124");
+        assertThat(myBaseballs.countStrike(comBaseballs)).isEqualTo(2);
+    }
+
+    @Test
+    public void 볼_카운트() {
+        Baseballs myBaseballs = Baseballs.createBaseballs("123");
+        Baseballs comBaseballs = Baseballs.createBaseballs("321");
+        assertThat(myBaseballs.countBall(comBaseballs)).isEqualTo(2);
     }
 }
