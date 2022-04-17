@@ -14,7 +14,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -37,14 +39,11 @@ class BaseballGameTest {
         ResultDecision resultDecision = new TestResultDecision();
 
         BaseballInput input = new BaseballInput() {
-            int count = 0;
+            private final Queue<String> inputQueue = new LinkedList<>(
+                    Arrays.asList("123", BaseballRestartStatus.N.getValue()));
             @Override
             public String read() {
-                if (count < 1) {
-                    count++;
-                    return "123";
-                }
-                return BaseballRestartStatus.N.getValue();
+                return inputQueue.poll();
             }
         };
         BaseballOutput output = new ConsoleBaseballOutput(System.out);
@@ -71,17 +70,14 @@ class BaseballGameTest {
         ResultDecision resultDecision = new TestResultDecision();
 
         BaseballInput input = new BaseballInput() {
-            int count = 0;
+            private final Queue<String> inputQueue = new LinkedList<>(
+                    Arrays.asList(
+                            "123", BaseballRestartStatus.Y.getValue(),
+                            "123", BaseballRestartStatus.Y.getValue(),
+                            "123", BaseballRestartStatus.N.getValue()));
             @Override
             public String read() {
-                count++;
-                if (count % 2 == 1) {
-                    return "123";
-                }
-                if (count < 5) {
-                    return BaseballRestartStatus.Y.getValue();
-                }
-                return BaseballRestartStatus.N.getValue();
+                return inputQueue.poll();
             }
         };
         BaseballOutput output = new ConsoleBaseballOutput(System.out);
@@ -107,7 +103,7 @@ class BaseballGameTest {
         NumberValidator numberValidator = new DefaultNumberValidator(config);
         ResultDecision resultDecision = new TestResultDecision();
 
-        BaseballInput input = new TestBaseballInput("1234");
+        BaseballInput input = () -> "1234";
         BaseballOutput output = new ConsoleBaseballOutput(System.out);
 
         BaseballGame baseballGame = new BaseballGame(config, numberGenerator, numberValidator, resultDecision,
@@ -133,19 +129,6 @@ class BaseballGameTest {
         @Override
         public BaseballResult decide(BaseballNumber computerNumber, BaseballNumber userNumber) {
             return new BaseballResult(NUMBER_COUNT, 0);
-        }
-    }
-
-    static class TestBaseballInput implements BaseballInput {
-        private final String input;
-
-        public TestBaseballInput(String input) {
-            this.input = input;
-        }
-
-        @Override
-        public String read() {
-            return input;
         }
     }
 }
