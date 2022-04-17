@@ -34,15 +34,15 @@ public class BaseballsTest {
 
     @Test
     public void 스트라이크_카운트() {
-        Baseballs myBaseballs = Baseballs.createBaseballs("123");
-        Baseballs comBaseballs = Baseballs.createBaseballs("124");
-        assertThat(myBaseballs.countStrike(comBaseballs)).isEqualTo(2);
+        Baseballs myBaseballs = Baseballs.createBaseballs("597");
+        Baseballs comBaseballs = Baseballs.createBaseballs("589");
+        assertThat(myBaseballs.countStrike(comBaseballs)).isEqualTo(1);
     }
 
     @Test
     public void 볼_카운트() {
-        Baseballs myBaseballs = Baseballs.createBaseballs("123");
-        Baseballs comBaseballs = Baseballs.createBaseballs("321");
-        assertThat(myBaseballs.countBall(comBaseballs)).isEqualTo(2);
+        Baseballs myBaseballs = Baseballs.createBaseballs("597");
+        Baseballs comBaseballs = Baseballs.createBaseballs("589");
+        assertThat(myBaseballs.countBall(comBaseballs)).isEqualTo(1);
     }
 }

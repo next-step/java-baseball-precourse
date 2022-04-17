@@ -3,7 +3,6 @@ package baseball.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.IntStream;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
 
@@ -65,7 +64,7 @@ public class Baseballs {
         int count = 0;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if (baseballs.get(i).equals(cmpBaseballs.baseballs.get(i)) && (i != j)) {
+                if (baseballs.get(i).equals(cmpBaseballs.baseballs.get(j)) && (i != j)) {
                     count++;
                 }
             }
