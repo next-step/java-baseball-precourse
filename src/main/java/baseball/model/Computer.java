@@ -1,4 +1,4 @@
-package baseball;
+package baseball.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,27 +7,24 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class Computer {
 
-    List<Integer> computerNumberList = new ArrayList<>();
+    public List<Integer> computerNumberList = new ArrayList<>();
 
-    public void generateThreeNumbers() {
-
+    public List<Integer> generateThreeNumbers() {
         int NUMBER_SIZE = 3;
-
         while (computerNumberList.size() < NUMBER_SIZE) {
             int number = getRandomNumbers();
-            generateNumber(number);
+            addNumber(number);
         }
+        return computerNumberList;
     }
 
     public int getRandomNumbers() {
-
         int MIN_NUMBER = 1;
         int MAX_NUMBER = 9;
-
         return Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
     }
 
-    private void generateNumber(int number) {
+    public void addNumber(int number) {
         if (!checkDuplicateNumber(number)) {
             computerNumberList.add(number);
         }

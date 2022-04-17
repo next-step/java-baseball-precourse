@@ -1,33 +1,45 @@
-package baseball;
+package baseball.model;
+
+import baseball.view.MessagePrinter;
 
 import java.util.List;
 import java.util.Objects;
 
 public class GameProcessor {
 
-    public static int countStrike = 0;
-    public static int countBall = 0;
+    public int countStrike = 0;
+    public int countBall = 0;
     public int STRIKE = 3;
 
-    public static void initializeCounts() {
+    public void initializeCounts() {
         countStrike = 0;
         countBall = 0;
     }
 
-    public boolean playGame(List<Integer> computerNumberList, List<String> playerNumberList) {
+    private final Player player;
+    private final Computer computer;
 
+    public GameProcessor(Player player, Computer computer) {
+        this.player = player;
+        this.computer = computer;
+    }
+
+    public boolean playGame() {
+        List<Integer> computerNumberList = this.computer.generateThreeNumbers();
+        List<String> playerNumberList = this.player.getNumbers();
+        calculateResult(computerNumberList, playerNumberList);
+        MessagePrinter.printResult(countStrike, countBall);
+        return STRIKE == countStrike;
+    }
+
+    public void calculateResult(List<Integer> computerNumberList, List<String> playerNumberList) {
         initializeCounts();
-
-        int count = 3;
-        for (int index = 0; index < count; index++) {
+        for (int index = 0; index < 3; index++) {
             Integer computerNumber = computerNumberList.get(index);
             Integer playerNumber = Integer.parseInt(playerNumberList.get(index));
-
             calculateStrikes(computerNumber, playerNumber);
             calculateBall(index, computerNumberList, playerNumber);
         }
-        MessagePrinter.printResult(countStrike, countBall);
-        return countStrike == STRIKE;
     }
 
     public void calculateStrikes(Integer computerNumber, Integer playerNumber) {

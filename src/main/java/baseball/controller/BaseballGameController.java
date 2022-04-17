@@ -1,4 +1,9 @@
-package baseball;
+package baseball.controller;
+
+import baseball.Computer;
+import baseball.GameProcessor;
+import baseball.MessagePrinter;
+import baseball.Player;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
