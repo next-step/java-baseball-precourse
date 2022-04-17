@@ -18,4 +18,13 @@ public class InputValidatorTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("숫자체크 테스트")
+    void isInputNumberTest() {
+        String badInput = "ㅋ1ㅋ";
+        assertThatThrownBy(()-> {
+            inputValidator.isInputNumber(badInput);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
