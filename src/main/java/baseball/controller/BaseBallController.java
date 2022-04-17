@@ -26,13 +26,19 @@ public class BaseBallController {
             int strike = computer.countStrike(player.getNumber());
             int ball = computer.countBall(strike, player.getNumber());
             System.out.println(getResultMessage(strike, ball));
-            if(isDone(strike)) {
-                if(isExit(InputView.inputExit())) {
-                    break;
-                }
-                computer.generateRandomNumber();
+            boolean isThreeStrike = is3Strike(strike);
+            if (isThreeStrike && isDone(computer)) {
+                break;
             }
         }
+    }
+
+    private boolean isDone(Computer computer) {
+        if(isExit(InputView.inputExit())) {
+            return true;
+        }
+        computer.generateRandomNumber();
+        return false;
     }
 
     public List<Integer> convertToList(String input) {
@@ -43,7 +49,7 @@ public class BaseBallController {
         return input.equals(EXIT);
     }
 
-    public boolean isDone(int strike) {
+    public boolean is3Strike(int strike) {
         if(strike == 3) {
             System.out.println(WINNER_MESSAGE);
             return true;
