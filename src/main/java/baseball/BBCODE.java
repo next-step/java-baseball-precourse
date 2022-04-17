@@ -7,8 +7,10 @@ public enum BBCODE {
     THB("3볼",3,0),
     OS("1스트라이크",0,1),
     TWS("2스트라이크",0,2),
-    THS("3스트라이크",0,3);
-
+    THS("3스트라이크",0,3),
+    OBOS("1볼 1스트라이크",1,1),
+    OBTWS("1볼 2스트라이크",1,2),
+    TWBOS("2볼 1스트라이크",2,1);
     public final String text;
     public final int ball;
     public final int strike;
@@ -25,6 +27,6 @@ public enum BBCODE {
                 return code;
             }
         }
-        return null;
+        return BBCODE.NT;
     }
 }
