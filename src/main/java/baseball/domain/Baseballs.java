@@ -1,8 +1,6 @@
 package baseball.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
 
@@ -42,11 +40,14 @@ public class Baseballs {
     }
 
     public static Baseballs createRandomBaseballs() {
-        List<Baseball> baseballs = new ArrayList<>();
-
-        for (int i = 0; i < 3; i++) {
-            baseballs.add(Baseball.of(pickNumberInRange(1, 9)));
-        }
+        Set<Baseball> baseballsSet = new HashSet<>();
+        do{
+            baseballsSet.add(Baseball.of(pickNumberInRange(1, 9)));
+            if (baseballsSet.size() == 3) {
+                break;
+            }
+        }while (true);
+        List<Baseball> baseballs =new ArrayList<>(baseballsSet);
         return new Baseballs(baseballs);
     }
 
