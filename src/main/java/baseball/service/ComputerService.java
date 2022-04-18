@@ -68,4 +68,19 @@ public class ComputerService {
     public void setPlayerInputGameNumberList(List<Integer> playerInputGameNumberList) {
         this.playerInputGameNumberList = playerInputGameNumberList;
     }
+
+    /**
+     * gameNumberDto.getGameNumberList()와 playerInputGameNumberList를 비교하여 야구게임의 결괏값 반환
+     * @return gameResult : Integer[]
+     */
+    public Integer[] getGameResult() {
+        Integer[] gameResult = {0, 0}; // 결괏값
+        for (int i = 0; i < playerInputGameNumberList.size(); i++) {
+            Integer findIdx = gameNumberDto.getGameNumberList().indexOf(playerInputGameNumberList.get(i));
+            if (findIdx == -1) continue;
+            if (findIdx != i) ++gameResult[0]; // 볼
+            if (findIdx == i) ++gameResult[1]; // 스트라이크
+        }
+        return gameResult;
+    }
 }
