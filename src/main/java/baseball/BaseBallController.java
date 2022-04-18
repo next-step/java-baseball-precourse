@@ -48,7 +48,7 @@ public class BaseBallController {
     /**
      *  UI - 현재 맞힌 상태 출력
      */
-    public void printCountStatus(BaseBallRepository baseball) {
+    private void printCountStatus(BaseBallRepository baseball) {
         // 현재 맞힌 상태 출력
         int strikeCount = baseball.getStrikeCount();
         int ballCount = baseball.getBallCount();
