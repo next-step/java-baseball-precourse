@@ -12,9 +12,9 @@ public class Game {
     private int strike = 0;
     private int ball = 0;
     private int nothing =0;
-    private final String INPUT_MESSAGE = "숫자를 입력해주세요 :\n";
-    private final String END_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 종료\n" + "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n";
-    private final String INPUT_ERROR_MESSAGE = "잘못 입력하셨습니다. 숫자 세개를 입력해주세요.\n";
+    private final String INPUT_MESSAGE = "숫자를 입력해주세요 :";
+    private final String END_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 종료\n" + "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
+    private final String INPUT_ERROR_MESSAGE = "잘못 입력하셨습니다. 숫자 세개를 입력해주세요.";
     private String gameStatus = "playing";
 
     public Game(Player player){
