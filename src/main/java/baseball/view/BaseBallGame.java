@@ -1,12 +1,13 @@
 package baseball.view;
 
 import baseball.comm.Constant;
+import baseball.service.Judgment;
 import baseball.service.OpponentPlayer;
 import camp.nextstep.edu.missionutils.Console;
 
 public class BaseBallGame {
-    private static int strike;
-    private static int ball;
+    public static int strike;
+    public static int ball;
     private static final BaseBallGame BASEBALL_GAME = new BaseBallGame();
     private BaseBallGame(){
 
@@ -16,11 +17,15 @@ public class BaseBallGame {
     }
 
     public void playBall(){
+        // 판정을 하기 위한 객체
+        Judgment judgment = Judgment.getInstance();
+
         OpponentPlayer opponentPlayer = OpponentPlayer.getInstance();
         String oppnentNumbers = opponentPlayer.makeNumber();
         do{
             resetScore();
             String playerNumbers = getPlayInputNumbers();
+            judgment.judgment(oppnentNumbers,playerNumbers);
         } while (strike < Constant.GAME_END_STRIKE);
     }
 
