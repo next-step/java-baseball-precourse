@@ -7,12 +7,11 @@ import java.util.Map;
 
 public class NumberToIndex {
     private Map<Integer, Integer> m = new HashMap<>();
-    private int index = 0;
 
     public NumberToIndex() { }
 
     public Integer put(int num) {
-        return m.put(num, index++);
+        return m.put(num, m.size());
     }
 
     public void putAll(List<Integer> numbers) {
