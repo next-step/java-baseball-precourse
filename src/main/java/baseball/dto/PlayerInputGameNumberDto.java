@@ -11,7 +11,7 @@ import java.util.Objects;
 public class PlayerInputGameNumberDto {
 
     private String gameNumber;
-    List<Integer> gameNumberList;
+    private List<Integer> gameNumberList;
 
     public PlayerInputGameNumberDto() {
     }
