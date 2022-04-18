@@ -11,16 +11,13 @@ public class Game {
     public void start(Player player, Computer computer) {
         this.player = player;
         computer.randomNum();
-        System.out.println(computer.randomNum);
         checkNum(computer.randomNums);
     }
 
     public void checkNum(List<Integer> randomNums) {
         while (true) {
             strike = ball = 0;
-            System.out.println("세자리 숫자 입력 : ");
             player.playerNums(Console.readLine());
-            System.out.println("세자리 숫자 입력 : " + player.playerNum);
             for (int i = 0; i < player.playerNums.size(); i++) {
                 for (int j = 0; j < randomNums.size(); j++) {
                     if (player.playerNums.get(i).equals(randomNums.get(j))) {
