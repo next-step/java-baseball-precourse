@@ -4,7 +4,7 @@ import config.Policy;
 
 public class Match {
     private int round;
-    private String[] gameNumber;
+    private String gameNumber;
     private boolean victory;
 
     public int getRound() {
@@ -15,11 +15,11 @@ public class Match {
         this.round = round;
     }
 
-    public String[] getGameNumber() {
+    public String getGameNumber() {
         return gameNumber;
     }
 
-    private void setGameNumber(String[] gameNumber) {
+    public void setGameNumber(String gameNumber) {
         this.gameNumber = gameNumber;
     }
 
@@ -31,7 +31,7 @@ public class Match {
         this.victory = victory;
     }
 
-    public static Match init(String[] generatedGameNumber){
+    public static Match init(String generatedGameNumber){
         Match match = new Match();
         match.setRound(Policy.MATCH_ROUND_START);
         match.setGameNumber(generatedGameNumber);

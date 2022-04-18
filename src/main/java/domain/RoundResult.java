@@ -20,10 +20,10 @@ public class RoundResult {
         this.strikeCount = strikeCount;
     }
 
-    public static RoundResult init(int ballCount, int strikeCount){
+    public static RoundResult init(){
         RoundResult roundResult = new RoundResult();
-        roundResult.setBallCount(ballCount);
-        roundResult.setStrikeCount(strikeCount);
+        roundResult.setBallCount(0);
+        roundResult.setStrikeCount(0);
 
         return roundResult;
     }
