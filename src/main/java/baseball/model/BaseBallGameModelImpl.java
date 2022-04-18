@@ -34,6 +34,7 @@ public class BaseBallGameModelImpl implements BaseBallGameModel{
     public boolean isValidNumber(String input) {
         String regexOnlyNumber = "[1-9]+";
         if(!input.matches(regexOnlyNumber)) return false;
+        if(input.length() > 3) return false;
         if(input.charAt(0) == input.charAt(1) || input.charAt(1) == input.charAt(2) || input.charAt(0) == input.charAt(2)) return false;
         return true;
     }
