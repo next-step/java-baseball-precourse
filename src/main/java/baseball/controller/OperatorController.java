@@ -18,7 +18,6 @@ public class OperatorController {
 
     // start: Singleton Holder
     private OperatorController() {
-//        initOperator();
     }
 
     private static class InnerComputerService {
@@ -37,11 +36,10 @@ public class OperatorController {
     }
 
     private void printMenu() {
-        System.out.println(InterfaceMsg.GAME_INFO.getValue());
+        System.out.println(InterfaceMsg.GAME_INFO.getValue()); // 야구게임 안내
         while (true) {
-            String inputGameNumber = readLine();
-            System.out.println(inputGameNumber);
-            if (inputGameNumber.equals("2")) break;
+            String inputGameNumber = readLine(); System.out.println(inputGameNumber); // Player로부터 야구게임 값을 입력받음
+            if (inputGameNumber.equals("2")) break; // 야구게임 종료
             System.out.print(InterfaceMsg.REQUEST_INPUT.getValue());
             operateGame(inputGameNumber);
         }
@@ -62,8 +60,8 @@ public class OperatorController {
     private void validateInputNumber(String userGameNumber) {
         ValidationMsg validationMsg = validatorService.validationUserInput(userGameNumber);
         if (validationMsg != ValidationMsg.PROPER_TYPE) {
-            System.out.println(validationMsg.getValue());
-            throw new IllegalArgumentException();
+            System.out.println(validationMsg.getValue()); // 검증 도중 발견한 문제의 내용을 출력
+            throw new IllegalArgumentException(); // 야구게임의 조건 사항
         }
     }
 }
