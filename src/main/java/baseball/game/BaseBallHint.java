@@ -1,8 +1,9 @@
 package baseball.game;
 
-import baseball.game.util.BaseBallGameUtil;
+import baseball.util.BaseBallGameUtil;
 
 public class BaseBallHint {
+
   int ball, strike;
 
   private static final String BALL_WORD = "볼";
@@ -21,9 +22,9 @@ public class BaseBallHint {
     this.strike++;
   }
 
-  void compareAnswer(BaseBallGame answer, BaseBallGame rightAnswer) {
+  public boolean compareAnswer(BaseBallGame answer, BaseBallGame rightAnswer) {//compare answer finish 여부 확인
     int nowNumber;
-
+    boolean isFinish = false;
     for (int i = 0; i < BaseBallGame.NUMBER_COUNT; i++) {
       nowNumber = answer.number[i];
 
@@ -37,16 +38,19 @@ public class BaseBallHint {
 
       addBallCount();
     }
+    hintPrint();
+    if (strike == BaseBallGame.NUMBER_COUNT) isFinish = true;
+    return isFinish;
   }
 
-  void showResult() {
+  private void hintPrint() {
     String result = "";
-    if (this.ball < 1) {
+    if (this.ball != 0) {
       result += this.ball + BALL_WORD;
     }
 
-    if (this.strike < 1) {
-      if (this.ball < 1) {
+    if (this.strike != 0) {
+      if (this.ball != 0) {
         result += " ";
       }
       result += this.strike + STRIKE_WORD;

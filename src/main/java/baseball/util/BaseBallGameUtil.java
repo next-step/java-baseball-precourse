@@ -1,10 +1,11 @@
-package baseball.game.util;
+package baseball.util;
 
 public class BaseBallGameUtil {
 
 
   /**
    * int arr 중복체크
+   *
    * @param arr
    * @param val
    * @return
@@ -20,6 +21,7 @@ public class BaseBallGameUtil {
 
   /**
    * char Arr 중복체크
+   *
    * @param arr
    * @param number
    * @return
@@ -33,7 +35,12 @@ public class BaseBallGameUtil {
     return false;
   }
 
-
+  /**
+   * Stgring  -> Char Arr 변환
+   *
+   * @param str
+   * @return
+   */
   public static char[] stringToCharArr(String str) {
     char[] charArray = new char[str.length()];
 
@@ -44,6 +51,13 @@ public class BaseBallGameUtil {
     return charArray;
   }
 
+  /**
+   * 비교 값 인덱스
+   *
+   * @param arr
+   * @param value
+   * @return
+   */
   public static int getCompareValueAndGetIndex(final int[] arr, final int value) {
     for (int i = 0; i < arr.length; i++) {
       if (arr[i] == value) {
