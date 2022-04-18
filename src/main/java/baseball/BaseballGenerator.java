@@ -1,2 +1,7 @@
-package baseball;public class BaseballGenerator {
+package baseball;
+
+import java.util.List;
+
+public interface BaseballGenerator {
+    List<Integer> Generate();
 }
