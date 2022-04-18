@@ -39,14 +39,12 @@ public class Game {
         this.ball = 0;
         this.strike = 0;
         this.nothing = 0;
-        String[] splitedPlayerInputNumber = playerInputNumber.split("");
         compareNumbers(playerInputNumber, computerNumbers);
     }
     
 
     private void compareNumbers(String playerNumber, List<String> computerNumbers){
         String[] splitedPlayerNumbers = playerNumber.split("");
-        int computerNumberLength = computerNumbers.size();
         for (int idx=0; idx<splitedPlayerNumbers.length; idx++){
             int status = getStatusBySearchComputerNumbers(splitedPlayerNumbers[idx], computerNumbers, idx);
             uploadCountByCompareStatus(status);
@@ -63,23 +61,23 @@ public class Game {
 
 
     private boolean isNothing(String number, List<String>computerNumbers){
-        if (computerNumbers.contains(number)){
-            return false;
-        }
-        return true;
-    }
-
-
-    private boolean isStrike(String number, String computerNumbers){
-        if (computerNumbers == number){
+        if (!computerNumbers.contains(number)){
             return true;
         }
         return false;
     }
 
 
-    private boolean isBall(String number, String computerNumbers){
-        if (computerNumbers == number){
+    private boolean isStrike(String number, String computerNumber){
+        if (computerNumber.equals(number)){
+            return true;
+        }
+        return false;
+    }
+
+
+    private boolean isBall(String number, String computerNumber){
+        if (!computerNumber.equals(number)){
             return true;
         }
         return false;
@@ -157,7 +155,7 @@ public class Game {
 
 
     private void checkEndGame(){
-        if(this.strike==3) {
+        if(this.strike == 3) {
             System.out.println(END_MESSAGE);
             askEndGame();
         }
