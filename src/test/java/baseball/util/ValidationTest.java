@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class ValidationTest {
     @Test
     void 길이_테스트() {
-        String str = "12";
+        String str = "1";
         Validation validation = new Validation(3);
 
         assertThatThrownBy(() -> validation.validateInputData(str))
