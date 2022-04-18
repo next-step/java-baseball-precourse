@@ -12,7 +12,7 @@ public class PitcherTest extends NsTest {
     @DisplayName("투구_숫자_검증_테스트")
     void 투구_숫자_검증_테스트(){
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("123"))
+                assertThatThrownBy(() -> runException("1234"))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
