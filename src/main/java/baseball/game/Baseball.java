@@ -27,17 +27,16 @@ public class Baseball {
 
     private static final int NUMBER_COUNT = 3;
 
-    private List<Integer> goalNumbers = new ArrayList<>(3);
+    private List<Integer> goalNumbers = new ArrayList<>(NUMBER_COUNT);
 
     private final Map<String, Integer> result = new HashMap<>();
 
     private boolean gameOver = false;
 
     public void generateGoalNumbers() {
-    	for (int i = 0; i < 3; i++) {
+    	for (int i = 0; i < NUMBER_COUNT; i++) {
     		goalNumbers.add(Randoms.pickNumberInRange(START_NUMBER, END_NUMBER));
     	}
-    	System.out.println("생성: " + goalNumbers);
     }
 
     public void validateInputNumbers(String userInput) {
