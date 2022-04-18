@@ -4,18 +4,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * 사용자가 입력한 데이터를 검증하는 클래스
- * -. 입력받은 문자열 길이 확인(default: 3)
- * -. 입력받은 문자열 숫자형식, 혹은 0이 아닌지 확인
- * -. 서로다른 수가 맞는지 체크
+ *  사용자가 입력한 데이터를 검증하는 클래스
+ *   -. 입력받은 문자열 길이 확인(default: 3)
+ *   -. 입력받은 문자열 숫자형식, 혹은 0이 아닌지 확인
+ *   -. 서로다른 수가 맞는지 체크
  */
 public class Validation {
     private static Set<Integer> inputDataToCheckDupl;
     private static int size;
-
-    public Validation() {
-    }
-
+    public Validation() {}
     public Validation(int size) {
         this.size = size;
     }
