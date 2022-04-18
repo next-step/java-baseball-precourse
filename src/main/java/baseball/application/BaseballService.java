@@ -19,6 +19,7 @@ public class BaseballService {
     }
 
     private void playBaseballOnce() {
+        System.out.print("숫자를 입력해주세요 : ");
         userBaseballs = receiveUserBaseballs();
         BaseballResult baseballResult = BaseballResult.of(computerBaseballs, userBaseballs);
         System.out.println(baseballResult.getResult());
