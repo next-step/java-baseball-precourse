@@ -11,8 +11,7 @@ public class BaseBallGameModelImpl implements BaseBallGameModel{
     public void setTarget() {
         boolean isValid = false;
         while(!isValid) {
-            int candidate = Randoms.pickNumberInRange(100,999);
-            String input = String.valueOf(candidate);
+            String input = buildNumber();
             if(isValidNumber(input)) {
                 isValid = true;
                 this.target =  input;
@@ -20,15 +19,22 @@ public class BaseBallGameModelImpl implements BaseBallGameModel{
         }
     }
 
+    private String buildNumber() {
+        int candidate = Randoms.pickNumberInRange(1,9);
+        String input = String.valueOf(candidate);
+        StringBuilder numberString = new StringBuilder();
+        while(numberString.length() < 3) {
+            numberString.append(input);
+            input = String.valueOf(Randoms.pickNumberInRange(1,9));
+        }
+        return numberString.toString();
+    }
+
     @Override
     public boolean isValidNumber(String input) {
         String regexOnlyNumber = "[1-9]+";
         if(!input.matches(regexOnlyNumber)) return false;
-        Set<Character> dupliCheck = new HashSet<>();
-        for(char c : input.toCharArray()) {
-            dupliCheck.add(c);
-        }
-        if(dupliCheck.size() != 3) return false;
+        if(input.charAt(0) == input.charAt(1) || input.charAt(1) == input.charAt(2) || input.charAt(0) == input.charAt(2)) return false;
         return true;
     }
 
