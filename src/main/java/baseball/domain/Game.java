@@ -26,7 +26,7 @@ public class Game {
             String playerInputNumber = player.enterNumber();
             countUpEachStatus(playerInputNumber, computerNumberList);
             printCompareResult();
-            endGame();
+            checkEndGame();
         }
     }
 
@@ -103,11 +103,11 @@ public class Game {
     }
 
 
-    private void endGame(){
+    private void checkEndGame(){
         System.out.println(END_MESSAGE);
         final String inputValue = player.enterNumber();
         if (inputValue.equals("1")){
-            //createGame();
+//            createGame();
         }
         if (inputValue.equals("2")){
             //exitGame();
