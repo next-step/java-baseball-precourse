@@ -4,19 +4,28 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * 상대방(컴퓨터)에 의해 생성된 값을 Setter/Getter 처리를 담당하는 DTO
+ * Player가 사용하는 값의 Setter/Getter 처리를 담당하는 DTO
  * @author Timothy
  * @version 1.0
  */
-public class GameNumberDto {
+public class PlayerInputGameNumberDto {
+
+    private String gameNumber;
     private List<Integer> gameNumberList;
 
-
-    public GameNumberDto() {
+    public PlayerInputGameNumberDto() {
     }
 
-    public GameNumberDto(List<Integer> gameNumberList) {
-        this.gameNumberList = gameNumberList;
+    public PlayerInputGameNumberDto(String gameNumber) {
+        this.gameNumber = gameNumber;
+    }
+
+    public String getGameNumber() {
+        return gameNumber;
+    }
+
+    public void setGameNumber(String gameNumber) {
+        this.gameNumber = gameNumber;
     }
 
     public List<Integer> getGameNumberList() {
@@ -33,18 +42,24 @@ public class GameNumberDto {
     }
 
     public static class Builder {
-        private GameNumberDto dto = new GameNumberDto();
+        private PlayerInputGameNumberDto dto = new PlayerInputGameNumberDto();
+
+        public Builder inputGameNumber(String inputGameNumber) {
+            dto.gameNumber = inputGameNumber;
+            return this;
+        }
 
         public Builder gameNumberList(List<Integer> gameNumberList) {
             dto.gameNumberList = gameNumberList;
             return this;
         }
 
-        public GameNumberDto build() {
+        public PlayerInputGameNumberDto build() {
             return dto;
         }
     }
     // end: Builder 패턴
+
 
     @Override
     public boolean equals(Object o) {
@@ -54,12 +69,12 @@ public class GameNumberDto {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        GameNumberDto that = (GameNumberDto) o;
-        return Objects.equals(gameNumberList, that.gameNumberList);
+        PlayerInputGameNumberDto that = (PlayerInputGameNumberDto) o;
+        return Objects.equals(gameNumber, that.gameNumber) && Objects.equals(gameNumberList, that.gameNumberList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(gameNumberList);
+        return Objects.hash(gameNumber, gameNumberList);
     }
 }

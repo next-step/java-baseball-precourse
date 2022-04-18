@@ -14,7 +14,7 @@
 * Computer가 야구게임의 랜덤 숫자 3개를 가짐
 * Controller(Operator)가 Player로부터 숫자를 입력받아 임시저장을 한 뒤, 이를 Computer에게 전달
   * 이 때, Validator를 통해 값을 검증한다
-    > 검증 내용 : 입력값이 3자리 미만 또는 초과, 0이 입력되면 입력한 값을 Computer에게 전달하지 않고,
+    > 검증 내용 : 입력값이 null, "", 3자리 미만 또는 초과, 0이 입력되면 입력한 값을 Computer에게 전달하지 않고,
     IllegalArgumentException을 발생시킨 후 애플리케이션은 종료되어야 한다.
   * 정상적으로 값이 입력이 되었다면, Player를 통해 입력받은 값을 보관하고 있도록 메시지를 보낸다.
 * Computer가 Controller(Operator)로부터 전달받은 야구게임의 입력값에 대해 게임의 결과를 판단하고,
