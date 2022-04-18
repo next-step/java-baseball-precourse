@@ -2,8 +2,7 @@ package baseball.domain;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
 
 public class Game {
@@ -23,7 +22,6 @@ public class Game {
 
 
     public void createGame(){
-        System.out.println(INPUT_MESSAGE); //숫자입력권유 메시지 출력
         ArrayList<String> computerNumberList = computer.generateRandomNumberList();
         while(gameStatus == "playing") {
             String playerInputNumber = player.enterNumber();
@@ -106,7 +104,7 @@ public class Game {
 
 
     public boolean isValidateInputValue(String playerInputNumber){
-        if(isNumberLengthThree(playerInputNumber) && isAllNumbersIsDigit(playerInputNumber) && isAllNumbersBetweenOneToNine(playerInputNumber)){
+        if(isNumberLengthThree(playerInputNumber) && isAllNumbersIsDigit(playerInputNumber) && isAllNumbersBetweenOneToNine(playerInputNumber) && isNotDuplicated(playerInputNumber)){
             return true;
         }
         throw new IllegalArgumentException(INPUT_ERROR_MESSAGE);
@@ -134,6 +132,16 @@ public class Game {
     private int isNumberDigit(char number){
         if(Character.isDigit(number))return 1;
         return 0;
+    }
+
+
+    private boolean isNotDuplicated(String playerInputNumber){
+        List<String> numberList = Arrays.asList(playerInputNumber.split(""));
+        Set<String> numberSet = new HashSet<>(numberList);
+        if(numberSet.size()!=numberList.size()){
+            return false;
+        }
+        return true;
     }
 
 
