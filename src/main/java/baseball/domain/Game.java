@@ -24,6 +24,7 @@ public class Game {
         ArrayList<String> computerNumberList = computer.generateRandomNumberList();
         while(gameStatus == "playing") {
             String playerInputNumber = player.enterNumber();
+            isValidateInputValue(playerInputNumber);
             countUpEachStatus(playerInputNumber, computerNumberList);
             printCompareResult();
             checkEndGame();
@@ -49,7 +50,7 @@ public class Game {
         }
     }
 
-
+    
     private int getStatusBySearchComputerNumbers(String number, List<String> computerNumbers, int currentIndex){
         if (isNothing(number, computerNumbers)) return 0;
         if (isStrike(number, computerNumbers.get(currentIndex))) return 1;
@@ -100,6 +101,55 @@ public class Game {
         if (this.strike == 0 && this.ball > 0) System.out.println(String.format("%d볼", this.ball));
         if (this.ball == 0 && this.strike > 0) System.out.println(String.format("%d스트라이크", this.strike));
         if (this.ball != 0 && this.strike != 0) System.out.println(String.format("%d볼 %d스트라이크", this.ball, this.strike));
+    }
+
+
+    private boolean isValidateInputValue(String playerInputNumber){
+        if(isNumberLengthThree(playerInputNumber) && isAllNumbersIsDigit(playerInputNumber) && isAllNumbersBetweenOneToNine(playerInputNumber)){
+            return true;
+        }
+        return false;
+    }
+
+
+    private boolean isNumberLengthThree(String playerInputNumber) {
+        if (playerInputNumber.length() == 3) {
+            return true;
+        }
+        return false;
+    }
+
+
+    private boolean isAllNumbersIsDigit(String playerInputNumber){
+        int digitCount = 0;
+        for(int idx = 0; idx<playerInputNumber.length(); idx++){
+            digitCount += isNumberDigit(playerInputNumber.charAt(idx));
+        }
+        if(digitCount == 3)return true;
+        return false;
+    }
+
+
+    private int isNumberDigit(char number){
+        if(Character.isDigit(number))return 1;
+        return 0;
+    }
+
+
+    private boolean isAllNumbersBetweenOneToNine(String playerInputNumber){
+        int betweenCount = 0;
+        for(int idx = 0; idx<playerInputNumber.length(); idx++){
+            betweenCount += isNumberBetweenOneToNine(playerInputNumber.charAt(idx));
+        }
+        if(betweenCount == 3)return true;
+        return false;
+    }
+
+
+    private int isNumberBetweenOneToNine(char number){
+        int numberToInt = Integer.valueOf(number);
+        if( numberToInt >= 1 && numberToInt <= 9)return 1;
+        return 0;
     }
 
 
