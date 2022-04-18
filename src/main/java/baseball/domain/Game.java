@@ -15,7 +15,7 @@ public class Game {
     private final String INPUT_ERROR_MESSAGE = "잘못 입력하셨습니다. 숫자 세개를 입력해주세요.\n";
     private String gameStatus = "playing";
 
-    private Game(Player player){
+    public Game(Player player){
         this.player = player;
     }
 
