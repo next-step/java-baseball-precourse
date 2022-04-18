@@ -1,12 +1,16 @@
 package baseball;
 
+import baseball.model.BaseBallGameModelImpl;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
+
+import java.time.Duration;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
 class ApplicationTest extends NsTest {
     @Test
@@ -26,6 +30,14 @@ class ApplicationTest extends NsTest {
                 assertThatThrownBy(() -> runException("1234"))
                         .isInstanceOf(IllegalArgumentException.class)
         );
+    }
+
+    @Test
+    void 숫자_만들기() {
+        BaseBallGameModelImpl model = new BaseBallGameModelImpl();
+        assertTimeoutPreemptively(Duration.ofSeconds(5), model::setTarget);
+        String target = model.target;
+        assertThat(target.length() == 3);
     }
 
     @Override
