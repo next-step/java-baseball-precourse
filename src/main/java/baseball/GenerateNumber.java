@@ -6,16 +6,13 @@ import java.util.List;
 
 public class GenerateNumber {
 
-    private List<Integer> randoms;
     private static int startInclusive = 1;
     private static int endInclusive = 9;
     private static int digit = 3;
-
-    public GenerateNumber() {
-        randoms = new ArrayList<>();
-    }
+    private List<Integer> randoms;
 
     public List<Integer> generate() {
+        this.randoms = new ArrayList<>();
         for(int i = 0 ; i < this.digit; i++) {
             this.randoms.add(pickUniqueNumber());
         }
