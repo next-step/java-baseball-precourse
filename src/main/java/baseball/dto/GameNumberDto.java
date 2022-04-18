@@ -9,7 +9,7 @@ import java.util.Objects;
  * @version 1.0
  */
 public class GameNumberDto {
-    List<Integer> gameNumberList;
+    private List<Integer> gameNumberList;
 
 
     public GameNumberDto() {
