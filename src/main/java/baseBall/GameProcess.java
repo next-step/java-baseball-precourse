@@ -1,51 +1,55 @@
 package baseBall;
 
 import Utils.RandomNumber;
-import camp.nextstep.edu.missionutils.Console;
+import Utils.UserInput;
 import domain.Match;
 import domain.RoundResult;
-import policy.Policy;
+import config.Policy;
+
+import java.util.Arrays;
 
 public class GameProcess {
     public void run(){
         Match match = Match.init(RandomNumber.get());
 
-        System.out.println("경기 시작");
+        System.out.println("게임 시작");
 
-        while (match.getRound() <= Policy.MATCH_ROUND_END){
-            System.out.print("숫자를 입력해주세요 : ");
-            String userInput = Console.readLine();
-            String[] userInputSplit = userInput.split("");
+        while (!isEndMatch(match)){
+            String[] userInputSplit = UserInput.inGame();
 
-            RoundResult roundResult = calc(match, userInputSplit);
-            if(roundResult.getStrikeCount()==3){
-                System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
-                return;
-            }
-
+            RoundResult roundResult = roundProcessing(match.getGameNumber(), userInputSplit);
             System.out.println(roundResult.getBallCount() + "볼 " + roundResult.getStrikeCount() + "스트라이크");
 
-            match.endOfRound();
+            match.endOfRound(roundResult);
         }
 
-        System.out.println("경기 종료");
+        if(match.isVictory()){
+            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+            return;
+        }
+
+        System.out.println(Arrays.toString(match.getGameNumber()) + " : 게임 종료");
     }
 
-    public RoundResult calc(Match match, String[] userInput){
-        int strikeCount = 0;
-        int ballCount = 0;
-        for(int a=0; 3>a; a++){
-            for(int b=0; 3>b; b++){
-                if(userInput[a].equals(match.getGameNumber()[b])){
+    private boolean isEndMatch(Match match){
+        return (match.getRound() > Policy.MATCH_ROUND_END) || match.isVictory();
+    }
+
+    private RoundResult roundProcessing(String[] gameNumber, String[] userInput){
+        RoundResult roundResult = RoundResult.init(0, 0);
+
+        for(int a=0; Policy.IN_GAME_NUMBER_LENGTH>a; a++){
+            for(int b=0; Policy.IN_GAME_NUMBER_LENGTH>b; b++){
+                if(userInput[a].equals(gameNumber[b])){
                     if(a==b){
-                        strikeCount++;
+                        roundResult.addStrike();
                     }else{
-                        ballCount++;
+                        roundResult.addBall();
                     }
                 }
             }
         }
 
-        return RoundResult.init(ballCount, strikeCount);
+        return roundResult;
     }
 }
