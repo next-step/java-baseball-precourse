@@ -1,6 +1,7 @@
 package baseball.domain;
 
 import java.util.List;
+import java.util.ArrayList;
 
 
 public class Game {
@@ -9,11 +10,24 @@ public class Game {
     private int strike = 0;
     private int ball = 0;
     private int nothing =0;
+    private final String INPUT_MESSAGE = "숫자를 입력해주세요 :";
     private final String END_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 종료\n" + "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
 
 
     private Game(Player player){
         this.player = player;
+    }
+
+
+    public void createGame(){
+        System.out.println(INPUT_MESSAGE); //숫자입력권유 메시지 출력
+        ArrayList<String> computerNumberList = computer.generateRandomNumberList();
+        while(true) {
+            String playerInputNumber = player.enterNumber();
+            countUpEachStatus(playerInputNumber, computerNumberList);
+            printCompareResult();
+            endGame();
+        }
     }
 
 
@@ -24,7 +38,7 @@ public class Game {
         String[] splitedPlayerInputNumber = playerInputNumber.split("");
         compareNumbers(playerInputNumber, computerNumbers);
     }
-
+    
 
     private void compareNumbers(String playerNumber, List<String> computerNumbers){
         String[] splitedPlayerNumbers = playerNumber.split("");
@@ -90,7 +104,7 @@ public class Game {
 
 
     private void endGame(){
-        System.out.println();
+        System.out.println(END_MESSAGE);
         final String inputValue = player.enterNumber();
         if (inputValue.equals("1")){
             //createGame();
