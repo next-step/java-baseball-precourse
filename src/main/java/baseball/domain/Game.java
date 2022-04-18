@@ -35,7 +35,7 @@ public class Game {
     }
 
 
-    private void countUpEachStatus(String playerInputNumber, List<String> computerNumbers){
+    public void countUpEachStatus(String playerInputNumber, List<String> computerNumbers){
         this.ball = 0;
         this.strike = 0;
         this.nothing = 0;
@@ -105,7 +105,7 @@ public class Game {
     }
 
 
-    private boolean isValidateInputValue(String playerInputNumber){
+    public boolean isValidateInputValue(String playerInputNumber){
         if(isNumberLengthThree(playerInputNumber) && isAllNumbersIsDigit(playerInputNumber) && isAllNumbersBetweenOneToNine(playerInputNumber)){
             return true;
         }
@@ -170,6 +170,21 @@ public class Game {
         if (inputValue.equals("2")){
             exitGame();
         }
+    }
+
+
+    public int getStrike(){
+        return this.strike;
+    }
+
+
+    public int getBall(){
+        return this.ball;
+    }
+
+
+    public int getNothing(){
+        return this.nothing;
     }
 
 
