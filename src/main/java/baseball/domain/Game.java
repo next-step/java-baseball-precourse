@@ -12,7 +12,7 @@ public class Game {
     private int nothing =0;
     private final String INPUT_MESSAGE = "숫자를 입력해주세요 :";
     private final String END_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 종료\n" + "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
-
+    private String gameStatus = "playing";
 
     private Game(Player player){
         this.player = player;
@@ -22,7 +22,7 @@ public class Game {
     public void createGame(){
         System.out.println(INPUT_MESSAGE); //숫자입력권유 메시지 출력
         ArrayList<String> computerNumberList = computer.generateRandomNumberList();
-        while(true) {
+        while(gameStatus == "playing") {
             String playerInputNumber = player.enterNumber();
             countUpEachStatus(playerInputNumber, computerNumberList);
             printCompareResult();
@@ -107,10 +107,14 @@ public class Game {
         System.out.println(END_MESSAGE);
         final String inputValue = player.enterNumber();
         if (inputValue.equals("1")){
-//            createGame();
+            createGame();
         }
         if (inputValue.equals("2")){
-            //exitGame();
+            exitGame();
         }
+    }
+
+    private void exitGame(){
+        this.gameStatus = "exit";
     }
 }
