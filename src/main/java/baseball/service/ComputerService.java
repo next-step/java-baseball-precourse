@@ -14,6 +14,7 @@ import java.util.Set;
  */
 public class ComputerService {
     private GameNumberDto gameNumberDto;
+    private List<Integer> playerInputGameNumberList; // player가 입력한 게임 입력값
 
     // start: Singleton Holder
     private ComputerService() {
@@ -58,5 +59,13 @@ public class ComputerService {
         } while (gameNumberSet.size() < RuleVo.getGameNumbersLen());
 
         return new ArrayList<>(gameNumberSet);
+    }
+
+    /**
+     * Player가 입력한 값을 전달받음
+     * @param playerInputGameNumberList : List<Integer>
+     */
+    public void setPlayerInputGameNumberList(List<Integer> playerInputGameNumberList) {
+        this.playerInputGameNumberList = playerInputGameNumberList;
     }
 }

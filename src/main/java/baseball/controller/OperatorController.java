@@ -11,7 +11,6 @@ import baseball.vo.enumtype.ValidationMsg;
 public class OperatorController {
     private ComputerService computerService = ComputerService.getInstance();
     private ValidatorService validatorService = ValidatorService.getInstance();
-
     private PlayerService playerService = PlayerService.getInstance();
 
     private String inputGameNumber;
@@ -50,7 +49,9 @@ public class OperatorController {
         this.inputGameNumber = inputGameNumber;
         // 사용자에게 야구게임 입력값을 저장하도록 메시지를 보냄 - Player는 String 타입의 야구게임 입력값을 List<Integer>로 보관
         playerService.setPlayerInputGameNumber(inputGameNumber);
-        // 컴퓨터에게 사용자가 갖고 있는 야구게임 입력값을 전달하여 그 결과에 따라 게임을 진행
+        // 상대방(컴퓨터)에게 사용자가 갖고 있는 야구게임 입력값을 전달
+        computerService.setPlayerInputGameNumberList(playerService.getPlayerInputGameNumberDto().getGameNumberList());
+        // 상대방(컴퓨터)으로부터 게임의 결괏값을 전달받음
     }
 
     /**
