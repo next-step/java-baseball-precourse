@@ -1,5 +1,6 @@
 package baseball.application;
 
+import baseball.domain.BaseballResult;
 import baseball.domain.Baseballs;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
@@ -19,7 +20,7 @@ public class BaseballService {
 
     private void playBaseballOnce() {
         userBaseballs = receiveUserBaseballs();
-        BaseballResult baseballResult = new BaseballResult(computerBaseballs, userBaseballs);
+        BaseballResult baseballResult = BaseballResult.of(computerBaseballs, userBaseballs);
         System.out.println(baseballResult.getResult());
     }
 

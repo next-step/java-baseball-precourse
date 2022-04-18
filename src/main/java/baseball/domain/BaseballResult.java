@@ -1,16 +1,17 @@
-package baseball.application;
-
-import baseball.domain.Baseballs;
+package baseball.domain;
 
 public class BaseballResult {
     private final int strikeNumber;
     private final int ballNumber;
 
-    public BaseballResult(Baseballs computerBaseballs, Baseballs userBaseballs) {
+    private BaseballResult(Baseballs computerBaseballs, Baseballs userBaseballs) {
         strikeNumber = computerBaseballs.countStrike(userBaseballs);
         ballNumber = computerBaseballs.countBall(userBaseballs);
     }
 
+    public static BaseballResult of(Baseballs computerBaseballs, Baseballs userBaseballs){
+        return new BaseballResult(computerBaseballs, userBaseballs);
+    }
     public String getResult() {
         StringBuilder sb = new StringBuilder();
 
