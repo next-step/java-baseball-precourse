@@ -1,5 +1,7 @@
 package baseball.domain;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -25,6 +27,7 @@ public class Game {
         ArrayList<String> computerNumberList = computer.generateRandomNumberList();
         while(gameStatus == "playing") {
             String playerInputNumber = player.enterNumber();
+            System.out.println(playerInputNumber);
             isValidateInputValue(playerInputNumber);
             countUpEachStatus(playerInputNumber, computerNumberList);
             printCompareResult();

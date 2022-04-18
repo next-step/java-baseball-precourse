@@ -15,7 +15,8 @@ public class Player {
 
     public String enterNumber(){
         try {
-            return Console.readLine();
+            String playerInputNumber= Console.readLine();
+            return playerInputNumber;
         }
         catch(Exception e){
             return null;
