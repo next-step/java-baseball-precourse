@@ -46,4 +46,15 @@ public class BaseBallConuterTest {
         int actual = baseBallCounter.getBallCount(Utils.stringToTntArray(guess));
         assertThat(actual).isEqualTo(ball);
     }
+
+    @ParameterizedTest
+    @CsvSource({"123, 145, 1", "123, 124, 2", "123, 123, 3"})
+    void strike_count_test(String answer, String guess, int strike) {
+        BaseballGeneratorStub baseballGeneratorStub = new BaseballGeneratorStub(Utils.stringToTntArray(answer));
+        BaseballCounter baseBallCounter = new BaseballCounter(baseballGeneratorStub);
+        baseBallCounter.isValid(Utils.stringToTntArray(guess));
+
+        int actual = baseBallCounter.getStrikeCount(Utils.stringToTntArray(guess));
+        assertThat(actual).isEqualTo(strike);
+    }
 }

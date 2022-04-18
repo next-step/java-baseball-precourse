@@ -2,6 +2,8 @@ package baseball;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class BaseballCounter implements Counter {
 
     private final List<Integer> computers;
@@ -32,6 +34,14 @@ public class BaseballCounter implements Counter {
 
     @Override
     public int getStrikeCount(List<Integer> numbers) {
-        return 0;
+        isValid(numbers);
+
+        int strike = 0;
+
+        for (int i = 0; i < numbers.size(); i++) {
+            strike = numbers.get(i) == computers.get(i) ? strike + 1 : strike;
+        }
+
+        return strike;
     }
 }
