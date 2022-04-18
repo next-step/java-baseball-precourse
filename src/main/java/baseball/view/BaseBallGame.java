@@ -26,6 +26,7 @@ public class BaseBallGame {
             resetScore();
             String playerNumbers = getPlayInputNumbers();
             judgment.judgment(oppnentNumbers,playerNumbers);
+            getPlayResult();
         } while (strike < Constant.GAME_END_STRIKE);
     }
 
@@ -33,6 +34,21 @@ public class BaseBallGame {
     private void resetScore() {
         strike = 0;
         ball = 0;
+    }
+
+    // 결과 값 출력
+    private void getPlayResult() {
+        if (strike == 0 && ball == 0) {
+            System.out.println("낫싱");
+            return;
+        }
+
+        if (strike > 0) System.out.printf("%d 스트라이크 ", strike);
+
+        if (ball > 0) System.out.printf("%d 볼", ball);
+
+        System.out.println();
+
     }
 
     // 사용자 값 입력 받기
