@@ -157,8 +157,15 @@ public class Game {
 
 
     private void checkEndGame(){
-        System.out.println(END_MESSAGE);
-        final String inputValue = player.enterNumber();
+        if(this.strike==3) {
+            System.out.println(END_MESSAGE);
+            askEndGame();
+        }
+    }
+
+
+    private void askEndGame(){
+        String inputValue = Console.readLine();
         if (inputValue.equals("1")){
             createGame();
         }
@@ -166,6 +173,7 @@ public class Game {
             exitGame();
         }
     }
+
 
     private void exitGame(){
         this.gameStatus = "exit";
