@@ -1,7 +1,15 @@
 package baseball;
 
+import baseball.view.BaseBallGame;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        BaseBallGame baseballGame = BaseBallGame.getInstance();
+
+        do {
+            baseballGame.playBall();
+        } while (baseballGame.contiuePlay());
+
+
     }
 }
