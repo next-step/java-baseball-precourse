@@ -27,10 +27,5 @@ public class BaseballTest {
     	Assertions.assertThrows(exception, () -> baseball.validateInputNumbers(input));
     }
 
-//    @Test
-    void judgeResultTest(String userInput) {
-    	baseball.judgeResult(userInput);
-    }
-
 }
 
