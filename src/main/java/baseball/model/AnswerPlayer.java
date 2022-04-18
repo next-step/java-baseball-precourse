@@ -52,7 +52,7 @@ public class AnswerPlayer extends GameNumbers {
         return strikeCount;
     }
 
-    private int addIfStrike(String answerGameNumbers, String inquireGameNumbers, char inquireGameNumber) {
+    public int addIfStrike(String answerGameNumbers, String inquireGameNumbers, char inquireGameNumber) {
         if (answerGameNumbers.indexOf(inquireGameNumber) == inquireGameNumbers.indexOf(inquireGameNumber)) {
             return 1;
         }

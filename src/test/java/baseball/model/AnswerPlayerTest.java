@@ -61,4 +61,34 @@ class AnswerPlayerTest {
                 .isEqualTo(3)
         ;
     }
+
+    @Test
+    @DisplayName("ball인지 여부 체크하는 테스트")
+    public void addIfBallTest() {
+        // Given
+        int ballNumber;
+
+        // When
+        ballNumber = answerPlayer.addIfBall("123", '3');
+
+        // Then
+        assertThat(ballNumber)
+                .isEqualTo(1)
+        ;
+    }
+
+    @Test
+    @DisplayName("stike인지 여부 체크하는 테스트")
+    public void addIfStrikeTest() {
+        // Given
+        int ballNumber;
+
+        // When
+        ballNumber = answerPlayer.addIfStrike("123", "123", '1');
+
+        // Then
+        assertThat(ballNumber)
+                .isEqualTo(1)
+        ;
+    }
 }
