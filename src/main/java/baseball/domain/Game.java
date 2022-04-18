@@ -27,7 +27,6 @@ public class Game {
         ArrayList<String> computerNumberList = computer.generateRandomNumberList();
         while(gameStatus == "playing") {
             String playerInputNumber = player.enterNumber();
-            System.out.println(playerInputNumber);
             isValidateInputValue(playerInputNumber);
             countUpEachStatus(playerInputNumber, computerNumberList);
             printCompareResult();
@@ -151,7 +150,7 @@ public class Game {
 
 
     private int isNumberBetweenOneToNine(char number){
-        int numberToInt = Integer.valueOf(number);
+        int numberToInt = Character.getNumericValue(number);
         if( numberToInt >= 1 && numberToInt <= 9)return 1;
         return 0;
     }
