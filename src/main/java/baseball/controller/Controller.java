@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Controller {
-
     public static Map<String, Integer> getCompareResultByInput(Player computer, String userInput) {
         Player user = new User(userInput, computer.getSize());
         Map<String, Integer> result = new HashMap<>();
