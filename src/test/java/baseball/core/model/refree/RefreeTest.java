@@ -1,18 +1,18 @@
 package baseball.core.model.refree;
 
-import baseball.core.model.player.TestHitterRepository;
-import baseball.core.model.player.TestPitcherRepository;
+import baseball.core.model.player.TestHitter;
+import baseball.core.model.player.TestPitcher;
 import org.junit.jupiter.api.Test;
 
 public class RefreeTest {
 
-    private String testHits = "456";
+    private final String testHits = "456";
 
     @Test
     void makeDecisionTest(){
-        TestPitcherRepository pitcher = new TestPitcherRepository();
-        TestHitterRepository hitter = new TestHitterRepository();
-        TestRefreeReository refree = new TestRefreeReository();
+        TestPitcher pitcher = new TestPitcher();
+        TestHitter hitter = new TestHitter();
+        TestRefree refree = new TestRefree();
         pitcher.pitching();
         refree.makeDecision(pitcher.getPitchs(), testHits);
         boolean result = refree.getDecision();

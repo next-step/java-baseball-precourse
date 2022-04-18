@@ -1,6 +1,8 @@
 package baseball.core.model.refree;
 
-public interface RefreeRepository {
+public interface Refree {
 
     boolean getDecision();
+
+    void makeDecision();
 }

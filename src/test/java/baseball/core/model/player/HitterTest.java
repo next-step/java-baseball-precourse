@@ -10,7 +10,7 @@ public class HitterTest {
     void hittingTest(){
         ByteArrayInputStream in = new ByteArrayInputStream(testStr.getBytes());
         System.setIn(in);
-        TestHitterRepository hiter = new TestHitterRepository();
+        TestHitter hiter = new TestHitter();
         hiter.hitting();
     }
 

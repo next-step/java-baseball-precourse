@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-public class TestPitcherRepository implements PitcherRepository {
+public class TestPitcher implements Pitcher {
 
     public static HashMap<Integer, Integer> pitch;
 

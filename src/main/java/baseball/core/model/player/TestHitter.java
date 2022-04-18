@@ -2,7 +2,7 @@ package baseball.core.model.player;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class TestHitterRepository implements HitterRepository {
+public class TestHitter implements Hitter {
 
     public static String hits;
 
@@ -20,7 +20,7 @@ public class TestHitterRepository implements HitterRepository {
             throw new IllegalArgumentException();
         }
 
-        if(hit.contains("0")){
+        if (hit.contains("0")) {
             System.err.println("0 is not included");
             throw new IllegalArgumentException();
         }
@@ -38,6 +38,7 @@ public class TestHitterRepository implements HitterRepository {
 
     }
 
+    @Override
     public String getHits() {
         return hits;
     }

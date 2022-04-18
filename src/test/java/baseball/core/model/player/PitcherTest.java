@@ -7,7 +7,7 @@ public class PitcherTest {
 
     @Test
     void pitchingTest(){
-        TestPitcherRepository pitcher = new TestPitcherRepository();
+        TestPitcher pitcher = new TestPitcher();
 
         pitcher.pitching();
         for(Map.Entry<Integer, Integer> entry: pitcher.pitch.entrySet()){

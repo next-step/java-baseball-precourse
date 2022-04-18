@@ -2,7 +2,7 @@ package baseball.core.model.player;
 
 import java.util.HashMap;
 
-public interface PitcherRepository {
+public interface Pitcher {
 
     void pitching();
 

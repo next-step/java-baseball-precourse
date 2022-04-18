@@ -3,7 +3,7 @@ package baseball.core.model.refree;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TestRefreeReository implements RefreeRepository {
+public class TestRefree implements Refree {
 
     public boolean decision;
     public int strike;
@@ -28,8 +28,13 @@ public class TestRefreeReository implements RefreeRepository {
         }
 
         ball = ball - strike;
-        decision = (strike == 3) ? true : false;
+        decision = (strike == 3);
 
+    }
+
+    @Override
+    public void makeDecision() {
+        //noting
     }
 
     @Override
@@ -50,4 +55,5 @@ public class TestRefreeReository implements RefreeRepository {
         System.out.println("낫싱");
         return decision;
     }
+
 }

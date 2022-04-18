@@ -1,17 +1,18 @@
 package baseball.core.service;
 
-import baseball.core.model.player.TestHitterRepository;
-import baseball.core.model.player.TestPitcherRepository;
-import baseball.core.model.refree.TestRefreeReository;
+import baseball.core.model.player.TestHitter;
+import baseball.core.model.player.TestPitcher;
+import baseball.core.model.refree.TestRefree;
 import camp.nextstep.edu.missionutils.Console;
 
-public class GameService {
+public class GameService implements Service{
 
-    private TestPitcherRepository pitcher;
-    private TestHitterRepository hitter;
-    private TestRefreeReository refree;
+    private TestPitcher pitcher;
+    private TestHitter hitter;
+    private TestRefree refree;
 
-    public void startGame() {
+    @Override
+    public void start() {
 
         gameInit();
 
@@ -32,7 +33,7 @@ public class GameService {
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
         String userCode = Console.readLine();
         if ("1".equals(userCode)) {
-            startGame();
+            start();
             return;
         }
 
@@ -42,9 +43,9 @@ public class GameService {
 
     private void gameInit() {
         //init
-        pitcher = new TestPitcherRepository();
-        hitter = new TestHitterRepository();
-        refree = new TestRefreeReository();
+        pitcher = new TestPitcher();
+        hitter = new TestHitter();
+        refree = new TestRefree();
         pitcher.pitching();
         hitter.hitting();
     }
@@ -52,7 +53,6 @@ public class GameService {
     private void gameEnd(String userCode){
         if ("2".equals(userCode)) {
             System.out.println("게임 종료");
-            return;
         }
     }
 
