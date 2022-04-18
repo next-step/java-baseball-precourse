@@ -1,13 +1,27 @@
 package baseball.core.model.refree;
 
+import baseball.core.model.player.TestPitcher;
 import java.util.HashMap;
 import java.util.Map;
 
 public class TestRefree implements Refree {
 
+    private static TestRefree testRefree = null;
     public boolean decision;
     public int strike;
     public int ball;
+
+
+    private TestRefree() {
+    }
+
+    public synchronized static TestRefree getInstance() {
+        if (testRefree == null) {
+            testRefree = new TestRefree();
+        }
+        return testRefree;
+    }
+
 
     private void init() {
         decision = false;
@@ -41,10 +55,10 @@ public class TestRefree implements Refree {
     public boolean getDecision() {
         if (strike != 0 || ball != 0) {
             StringBuilder sb = new StringBuilder();
-            if(ball != 0){
+            if (ball != 0) {
                 sb.append(ball).append("볼").append(" ");
             }
-            if(strike != 0){
+            if (strike != 0) {
                 sb.append(strike).append("스트라이크");
             }
 

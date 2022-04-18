@@ -1,15 +1,18 @@
 package baseball.core.service;
 
+import baseball.core.model.player.Hitter;
+import baseball.core.model.player.Pitcher;
 import baseball.core.model.player.TestHitter;
 import baseball.core.model.player.TestPitcher;
+import baseball.core.model.refree.Refree;
 import baseball.core.model.refree.TestRefree;
 import camp.nextstep.edu.missionutils.Console;
 
 public class GameService implements Service{
 
-    private TestPitcher pitcher;
-    private TestHitter hitter;
-    private TestRefree refree;
+    private Pitcher pitcher;
+    private Hitter hitter;
+    private Refree refree;
 
     @Override
     public void start() {
@@ -43,9 +46,9 @@ public class GameService implements Service{
 
     private void gameInit() {
         //init
-        pitcher = new TestPitcher();
-        hitter = new TestHitter();
-        refree = new TestRefree();
+        pitcher = TestPitcher.getInstance();
+        hitter = TestHitter.getInstance();
+        refree = TestRefree.getInstance();
         pitcher.pitching();
         hitter.hitting();
     }

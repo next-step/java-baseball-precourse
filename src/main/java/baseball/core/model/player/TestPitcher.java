@@ -6,7 +6,17 @@ import java.util.LinkedHashMap;
 
 public class TestPitcher implements Pitcher {
 
+    private static TestPitcher testPitcher = null;
     public static HashMap<Integer, Integer> pitch;
+
+    private TestPitcher() {}
+
+    public synchronized static TestPitcher getInstance() {
+        if (testPitcher == null)
+            testPitcher = new TestPitcher();
+        return testPitcher;
+    }
+
 
     @Override
     public void pitching() {

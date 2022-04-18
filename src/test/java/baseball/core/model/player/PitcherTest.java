@@ -7,7 +7,7 @@ public class PitcherTest {
 
     @Test
     void pitchingTest(){
-        TestPitcher pitcher = new TestPitcher();
+        TestPitcher pitcher = TestPitcher.getInstance();
 
         pitcher.pitching();
         for(Map.Entry<Integer, Integer> entry: pitcher.pitch.entrySet()){

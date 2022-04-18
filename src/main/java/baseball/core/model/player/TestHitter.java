@@ -4,7 +4,18 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class TestHitter implements Hitter {
 
+    private static TestHitter testHitter = null;
     public static String hits;
+
+    private TestHitter() {
+    }
+
+    public synchronized static TestHitter getInstance() {
+        if (testHitter == null) {
+            testHitter = new TestHitter();
+        }
+        return testHitter;
+    }
 
     @Override
     public void hitting() {

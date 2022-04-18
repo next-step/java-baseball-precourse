@@ -10,9 +10,9 @@ public class RefreeTest {
 
     @Test
     void makeDecisionTest(){
-        TestPitcher pitcher = new TestPitcher();
-        TestHitter hitter = new TestHitter();
-        TestRefree refree = new TestRefree();
+        TestPitcher pitcher = TestPitcher.getInstance();
+        TestHitter hitter = TestHitter.getInstance();
+        TestRefree refree = TestRefree.getInstance();
         pitcher.pitching();
         refree.makeDecision(pitcher.getPitchs(), testHits);
         boolean result = refree.getDecision();
