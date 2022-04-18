@@ -6,14 +6,14 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
 
 public class BaseBallRepository {
-    private static int strikeCount;
-    private static int ballCount;
-    private static List<String> list;
+    private int strikeCount;
+    private int ballCount;
+    private List<String> list;
 
     public BaseBallRepository() {
         strikeCount = 0;
         ballCount = 0;
-        list = get3DigitByRandomize(); // 랜덤 숫자 생성
+        list = generateRandom3Digit(); // 랜덤 숫자 생성
     }
 
     /**
@@ -27,7 +27,7 @@ public class BaseBallRepository {
         ballCount = 0;
 
         for (int i = 0; i < 3; i++){
-            // 현재 각 자리의 랜덤 숫자가 사용자가 입력한 값에 존재하는지 판단
+            // 현재 사용자가 입력한 값에 각 자리의 랜덤 숫자가 존재하는지 위치는 일치하는지 판단
             int matchedIdx = input.indexOf(list.get(i));
             if(matchedIdx != -1 && matchedIdx == i) { strikeCount += 1; }
             if(matchedIdx != -1 && matchedIdx != i) { ballCount += 1; }
@@ -39,7 +39,7 @@ public class BaseBallRepository {
      *
      * @return 숫자 3개 포함한 리스트
      */
-    private List<String> get3DigitByRandomize() {
+    private List<String> generateRandom3Digit() {
         List<String> list = new ArrayList<>();
 
         while(list.size() != 3){
@@ -52,27 +52,22 @@ public class BaseBallRepository {
     }
 
     /**
-     * 야구 게임 후처리
+     * 게임 계속 진행 시 초기화 처리
      */
     public void postProcessOfBaseball(String input) {
         if(strikeCount == 3 && "1".equals(input)) {
-            list = get3DigitByRandomize(); // 랜덤 숫자 재생성
+            list = generateRandom3Digit(); // 랜덤 숫자 재생성
             strikeCount = 0;
         }
-    }
-
-    /**
-     *  현재 맞힌 상태 출력
-     */
-    public void printCountStatus() {
-        // 현재 맞힌 상태 출력
-        if(ballCount != 0) System.out.printf("%d볼 ", ballCount);
-        if(strikeCount != 0) System.out.printf("%d스트라이크", strikeCount);
-        if(strikeCount == 0 && ballCount == 0) System.out.print("낫싱");
-        System.out.println();
     }
 
     public int getStrikeCount(){
         return strikeCount;
     }
+
+    public int getBallCount(){
+        return ballCount;
+    }
+
+    public List<String> getRandom3Digit() { return list; }
 }

@@ -10,7 +10,7 @@ public class BaseBallController {
         BaseBallRepository baseball = new BaseBallRepository();
         do {
             baseball.countBaseball(getInput());
-            baseball.printCountStatus();
+            printCountStatus(baseball);
 
             if(baseball.getStrikeCount() == 3){
                 baseball.postProcessOfBaseball(getContinueInput());
@@ -43,6 +43,20 @@ public class BaseBallController {
             throw new IllegalArgumentException();
 
         return input;
+    }
+
+    /**
+     *  UI - 현재 맞힌 상태 출력
+     */
+    public void printCountStatus(BaseBallRepository baseball) {
+        // 현재 맞힌 상태 출력
+        int strikeCount = baseball.getStrikeCount();
+        int ballCount = baseball.getBallCount();
+
+        if(ballCount != 0) System.out.printf("%d볼 ", ballCount);
+        if(strikeCount != 0) System.out.printf("%d스트라이크", strikeCount);
+        if(strikeCount == 0 && ballCount == 0) System.out.print("낫싱");
+        System.out.println();
     }
 
     /**
