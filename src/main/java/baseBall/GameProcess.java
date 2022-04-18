@@ -41,9 +41,10 @@ public class GameProcess {
                 if(userInput.charAt(a) == gameNumber.charAt(b)){
                     if(a==b){
                         roundResult.addStrike();
-                    }else{
-                        roundResult.addBall();
+                        continue;
                     }
+
+                    roundResult.addBall();
                 }
             }
         }
