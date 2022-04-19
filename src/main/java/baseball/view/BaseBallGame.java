@@ -43,9 +43,8 @@ public class BaseBallGame {
             return;
         }
 
-        if (strike > 0) System.out.printf("%d 스트라이크 ", strike);
-
-        if (ball > 0) System.out.printf("%d 볼", ball);
+        if (ball > 0) System.out.printf("%d볼 ", ball);
+        if (strike > 0) System.out.printf("%d스트라이크", strike);
 
         System.out.println();
 

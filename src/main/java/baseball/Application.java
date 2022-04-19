@@ -9,7 +9,7 @@ public class Application {
         do {
             baseballGame.playBall();
         } while (baseballGame.contiuePlay());
-
+        System.out.println("게임 종료");
 
     }
 }
