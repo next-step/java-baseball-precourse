@@ -11,7 +11,7 @@ public class NumberService {
 		int value2 = Randoms.pickNumberInRange(1, 9);
 		int value3 = Randoms.pickNumberInRange(1, 9);
 
-		String goal = String.valueOf(value1) + String.valueOf(value2) + String.valueOf(value3);
+		String goal = String.valueOf(value1) + value2 + value3;
 		game.setGoal(goal);
 	}
 
