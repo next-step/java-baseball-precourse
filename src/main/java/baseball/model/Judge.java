@@ -39,7 +39,7 @@ public class Judge {
         return ballCountResult.toString();
     }
 
-    public static void countBalls(List<String> computerNumbers, String userInputNumbers) {
+    public static void countBalls(List<String> computerNumbers, List<String> userInputNumbers) {
         Judge judge = new Judge();
 
         for (int i=0; i<computerNumbers.size(); i++) {
@@ -48,7 +48,7 @@ public class Judge {
         }
     }
 
-    private static void countBall(String userInputNumbers, String element, int i) {
+    private static void countBall(List<String> userInputNumbers, String element, int i) {
         if (userInputNumbers.contains(element) && userInputNumbers.indexOf(element) == i) {
             increaseStrikeCount();
         }

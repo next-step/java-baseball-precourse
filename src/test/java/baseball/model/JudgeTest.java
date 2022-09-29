@@ -30,7 +30,7 @@ class JudgeTest {
         // given & when
         Judge judge = new Judge();
         List<String> computerNumbers = Arrays.asList("1", "3", "5");
-        String userInputNumbers = "189";
+        List<String> userInputNumbers = Arrays.asList("1", "8", "9");
         judge.countBalls(computerNumbers, userInputNumbers);
 
         // then
@@ -44,7 +44,7 @@ class JudgeTest {
         // given & when
         Judge judge = new Judge();
         List<String> computerNumbers = Arrays.asList("1", "3", "5");
-        String userInputNumbers = "185";
+        List<String> userInputNumbers = Arrays.asList("1", "8", "5");
         judge.countBalls(computerNumbers, userInputNumbers);
 
         // then
@@ -57,7 +57,7 @@ class JudgeTest {
         // given & when
         Judge judge = new Judge();
         List<String> computerNumbers = Arrays.asList("2", "3", "5");
-        String userInputNumbers = "582";
+        List<String> userInputNumbers = Arrays.asList("5", "8", "2");
         judge.countBalls(computerNumbers, userInputNumbers);
 
         // then
@@ -71,7 +71,7 @@ class JudgeTest {
         // given & when
         Judge judge = new Judge();
         List<String> computerNumbers = Arrays.asList("7", "1", "3");
-        String userInputNumbers = "123";
+        List<String> userInputNumbers = Arrays.asList("1", "2", "3");
         judge.countBalls(computerNumbers, userInputNumbers);
 
         // then
@@ -84,7 +84,7 @@ class JudgeTest {
         // given & when
         Judge judge = new Judge();
         List<String> computerNumbers = Arrays.asList("1", "2", "3");
-        String userInputNumbers = "456";
+        List<String> userInputNumbers = Arrays.asList("4", "5", "6");
         judge.countBalls(computerNumbers, userInputNumbers);
 
         // then
@@ -97,7 +97,7 @@ class JudgeTest {
         // given & when
         Judge judge = new Judge();
         List<String> computerNumbers = Arrays.asList("2", "3", "5");
-        String userInputNumbers = "582";
+        List<String> userInputNumbers = Arrays.asList("5", "8", "2");
         judge.countBalls(computerNumbers, userInputNumbers);
         judge.resetBallCount();
         // then
@@ -111,7 +111,7 @@ class JudgeTest {
         // given & when
         Judge judge = new Judge();
         List<String> computerNumbers = Arrays.asList("5", "8", "7");
-        String userInputNumbers = "587";
+        List<String> userInputNumbers = Arrays.asList("5", "8", "7");
         judge.countBalls(computerNumbers, userInputNumbers);
 
         // then

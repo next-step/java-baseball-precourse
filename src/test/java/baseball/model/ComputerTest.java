@@ -17,7 +17,7 @@ class ComputerTest {
 
         // when
         computer.throwBalls();
-        HashSet<Integer> ballCounts = computer.getBallCount();
+        HashSet<String> ballCounts = computer.getBallCount();
 
         // then
         assertTrue(!ballCounts.isEmpty());
@@ -32,7 +32,7 @@ class ComputerTest {
 
         // when
         computer.throwBalls();
-        HashSet<Integer> ballCounts = computer.getBallCount();
+        HashSet<String> ballCounts = computer.getBallCount();
 
         // then
         assertTrue(ballCounts.size() == computer.getBallCountLength());

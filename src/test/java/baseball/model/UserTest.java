@@ -19,7 +19,7 @@ class UserTest {
 
         // when
         user.throwBalls(input);
-        List<Integer> ballCount = user.getBallCount();
+        List<String> ballCount = user.getBallCount();
 
         // then
         assertTrue(ballCount.size() == 3);

@@ -6,7 +6,7 @@ import java.util.HashSet;
 
 public class Computer {
 
-    private static HashSet<Integer> ballCount = new HashSet<>();
+    private static HashSet<String> ballCount = new HashSet<>();
 
     private static final int BALLCOUNT_LENGTH = 3;
     private static final int MIN_NUMBER = 1;
@@ -16,7 +16,7 @@ public class Computer {
         return BALLCOUNT_LENGTH;
     }
 
-    public static HashSet<Integer> getBallCount() {
+    public static HashSet<String> getBallCount() {
         return ballCount;
     }
 
@@ -28,7 +28,7 @@ public class Computer {
     }
 
     private static void storeBallCount() {
-        int num = Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
+        String num = String.valueOf(Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER));
         ballCount.add(num);
     }
 

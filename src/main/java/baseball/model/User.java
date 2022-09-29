@@ -5,14 +5,13 @@ import java.util.regex.Pattern;
 
 public class User {
 
-    private static List<Integer> ballCount = new ArrayList<>();
+    private static List<String> ballCount = new ArrayList<>();
 
     private static final Pattern REGULAR_EXPRESSION = Pattern.compile("^[1-9]*$");
 
     private static void storeInputArrayToBallCount(String[] input) {
         for(String element: input) {
-            int num = Integer.parseInt(element);
-            ballCount.add(num);
+            ballCount.add(element);
         }
     }
 
@@ -51,7 +50,7 @@ public class User {
         checkInputLength(inputArray);
     }
 
-    public static List<Integer> getBallCount() {
+    public static List<String> getBallCount() {
         return ballCount;
     }
 
