@@ -5,14 +5,11 @@ import java.util.Set;
 
 public class BallValidator {
 
-    private static final Integer defaultLength = 3;
-    private static final String numbersRegExp = "[1-9]{3}";
-
     public static boolean isInputHasRightLength(String input) {
-        return defaultLength.equals(input.length());
+        return GameConstants.numberOfBalls.equals(input.length());
     }
     public static boolean isInputContainsOnlyOneToNine(String input) {
-        return input.matches(numbersRegExp);
+        return input.matches(GameConstants.regExpressionIsContainOneToNine);
     }
 
     public static boolean isInputContainsUniqueNumbers(String input) {
