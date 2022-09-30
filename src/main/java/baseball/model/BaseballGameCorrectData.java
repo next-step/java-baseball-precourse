@@ -6,6 +6,7 @@ public class BaseballGameCorrectData {
     private final List<Integer> numberList;
 
     public BaseballGameCorrectData(List<Integer> numberList) {
+        GameDataValidator.validateNumberList(numberList);
         this.numberList = numberList;
     }
 
