@@ -11,9 +11,9 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class BaseBallGameController {
 
-    private static boolean executable = true;
+    private boolean executable = true;
 
-    public static void start() throws IllegalArgumentException {
+    public void start() throws IllegalArgumentException {
         Judge judge = new Judge();
         User user = new User();
         Computer computer = new Computer();
@@ -41,7 +41,7 @@ public class BaseBallGameController {
         }
     }
 
-    private static boolean isExecutable(String input) {
+    private boolean isExecutable(String input) {
         if (input.equals("2")) {
             executable = false;
         }
