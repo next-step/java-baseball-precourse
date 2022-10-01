@@ -1,0 +1,21 @@
+### 구현할 기능 목록
+- 도메인 별 기능 구현 목록
+  - Score
+    - ScoreType(스트라이크, 볼, 낫싱) 정의
+    - 출력 정의
+  - Game
+    - Score 참조
+    - Player 참조 
+    - 게임 점수 생성
+    - 게임 결과 생성
+  - Ball
+    - 숫자 검증 (IllegalArgumentException)
+  - Player
+    - Ball 참조
+    - 상대방(컴퓨터) : 임의의 수 생성 
+    - 사용자 : 임의의 수 입력
+  - View 구현
+    - 진행 구현
+    - 힌트 출력
+    - 결과 출력
+    - 재시작 구현 
