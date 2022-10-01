@@ -11,4 +11,11 @@ public class Judgement {
         return strikeCount;
     }
 
+    public int getBallCount(int ballCount, LinkedList<Integer> answer, LinkedList<Integer> input, int index) {
+        if (answer.contains(input.get(index)) && !answer.get(index).equals(input.get(index))) {
+            ballCount++;
+        }
+        return ballCount;
+    }
+
 }
