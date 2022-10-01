@@ -48,7 +48,7 @@ class JudgeTest {
         judge.countBalls(computerNumbers, userInputNumbers);
 
         // then
-        assertTrue(judge.toString().startsWith("2스트라이크"));
+        assertTrue(judge.makeScore().startsWith("2스트라이크"));
     }
 
     @DisplayName("컴퓨터가 생성한 숫자와 클라이언트가 입력한 숫자가 두개 일치하고 인덱스 모두 다를 경우 2볼")
@@ -75,7 +75,7 @@ class JudgeTest {
         judge.countBalls(computerNumbers, userInputNumbers);
 
         // then
-        assertTrue(judge.toString().startsWith("1볼 1스트라이크"));
+        assertTrue(judge.makeScore().startsWith("1볼 1스트라이크"));
     }
 
     @DisplayName("볼카운트가 증가하지 않을 경우, Judge는 낫싱임을 알린다.")
@@ -88,7 +88,7 @@ class JudgeTest {
         judge.countBalls(computerNumbers, userInputNumbers);
 
         // then
-        assertTrue(judge.toString().contains("낫싱"));
+        assertTrue(judge.makeScore().contains("낫싱"));
     }
 
     @DisplayName("볼카운트 증가 후 resetBallCount로 초기화할 수 있다.")

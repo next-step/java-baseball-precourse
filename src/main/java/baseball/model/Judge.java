@@ -1,16 +1,20 @@
 package baseball.model;
 
-import java.util.HashSet;
 import java.util.List;
 
 public class Judge {
+
+    public Judge() {
+        ballCount = 0;
+        strikeCount = 0;
+    }
 
     private static int ballCount;
     private static int strikeCount;
 
     private static final int STRIKE_OUT = 3;
 
-    private final StringBuilder ballCountResult = new StringBuilder();
+    private StringBuilder ballCountResult = new StringBuilder();
 
     public static int getBallCount() {
         return ballCount;
@@ -18,11 +22,6 @@ public class Judge {
 
     public static int getStrikeCount() {
         return strikeCount;
-    }
-
-    public Judge() {
-        ballCount = 0;
-        strikeCount = 0;
     }
 
     public static Judge resetBallCount() {
@@ -33,15 +32,12 @@ public class Judge {
         return strikeCount == STRIKE_OUT;
     }
 
-    @Override
-    public String toString() {
+    public String makeScore() {
         noteBallCount();
         return ballCountResult.toString();
     }
 
     public static void countBalls(List<String> computerNumbers, List<String> userInputNumbers) {
-        Judge judge = new Judge();
-
         for (int i=0; i<computerNumbers.size(); i++) {
             String element = computerNumbers.get(i);
             countBall(userInputNumbers, element, i);
@@ -55,6 +51,12 @@ public class Judge {
         if (userInputNumbers.contains(element) && userInputNumbers.indexOf(element) != i) {
             increaseBallCount();
         }
+    }
+
+    public void clearBallCount() {
+        ballCount = 0;
+        strikeCount = 0;
+        ballCountResult.setLength(0);
     }
 
     private void noteBallCount() {
