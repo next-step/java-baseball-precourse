@@ -3,10 +3,11 @@ package baseball.model;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 
 public class Computer {
 
-    private static HashSet<String> ballCount = new HashSet<>();
+    private static LinkedHashSet<String> ballCount = new LinkedHashSet<>();
 
     private static final int BALLCOUNT_LENGTH = 3;
     private static final int MIN_NUMBER = 1;
