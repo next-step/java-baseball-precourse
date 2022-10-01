@@ -1,7 +1,10 @@
 package baseball;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
@@ -25,6 +28,28 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("1234"))
                         .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @DisplayName("입력값의 길이가 맞지 않을 경우, 예외가 발생한다")
+    @ParameterizedTest
+    @ValueSource(strings = {" ", "1", "12", "1234", "12345"})
+    void 다양한_입력값_길이예외_테스트(String input) {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException(input))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessageContaining("입력값 길이가 맞지 않습니다.")
+        );
+    }
+
+    @DisplayName("입력값이 숫자가 아닐 경우, 예외가 발생한다")
+    @ParameterizedTest
+    @ValueSource(strings = {"12a", "a13", "b20", "fff"})
+    void 다양한_숫자가아닌_입력값_예외_테스트(String input) {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException(input))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessageContaining("숫자가 아닙니다.")
         );
     }
 
