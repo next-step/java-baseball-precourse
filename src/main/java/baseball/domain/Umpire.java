@@ -6,6 +6,7 @@ public class Umpire {
 
     public static final String IS_STRIKE = "스트라이크 ";
     public static final String IS_BALL = "볼 ";
+    public static final String IS_NOTHING = "낫싱";
 
     public void judge() {
         int strikeCount = 0;
@@ -35,6 +36,9 @@ public class Umpire {
 
         if (strikeCount > 0 || ballCount > 0) {
             System.out.println(isBall + isStrike);
+        }
+        if (strikeCount == 0 && ballCount == 0) {
+            System.out.println(IS_NOTHING);
         }
     }
 
