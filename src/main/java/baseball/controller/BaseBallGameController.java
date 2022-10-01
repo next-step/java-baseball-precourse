@@ -12,19 +12,14 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class BaseBallGameController {
 
     private boolean executable = true;
+    private static final String END_GAME = "2";
 
     public void start() throws IllegalArgumentException {
         Judge judge = new Judge();
         User user = new User();
         Computer computer = new Computer();
         do {
-            if (!executable) {
-                break;
-            }
-            if (executable) {
-                computer.throwBalls();
-            }
-
+            checkContinue(computer);
             execute(user, judge);
 
             BaseBallGameView.printJudgeResult(judge);
@@ -41,11 +36,19 @@ public class BaseBallGameController {
         }
     }
 
+    private void checkContinue(Computer computer) {
+        if (!executable) {
+            return;
+        }
+        if (executable) {
+            computer.throwBalls();
+        }
+    }
+
     private boolean isExecutable(String input) {
-        if (input.equals("2")) {
+        if (END_GAME.equals(input)) {
             executable = false;
         }
-
         return executable;
     }
 }
