@@ -10,7 +10,7 @@ public class Scanner {
 
     private static final String NUMBER_PATTERN = "^[\\d]+$";
     private static final String SAME_NUMBER_PATTERN = "(\\w)\\1";
-    private static final String COMMAND_PATTERN = "^[\\d]{1}$";
+    private static final String COMMAND_PATTERN = "^[1-2]{1}$";
     private static final String SWING_PATTERN = "^[\\d]{3}$";
 
     private Scanner() {
@@ -33,14 +33,19 @@ public class Scanner {
     }
 
     private static void validateCommandInput(String input) {
-        isNumber(input);
-        validateCommandLength(input);
+        validateCommandValue(input);
     }
 
     private static void validateSwingInput(String input) {
         isNumber(input);
         isSameNumber(input);
         validateSwingLength(input);
+    }
+
+    private static void validateCommandValue(String input) {
+        if (!Pattern.compile(COMMAND_PATTERN).matcher(input).find()) {
+            throw new IllegalArgumentException("1,2 값만 입력가능 합니다.");
+        }
     }
 
     private static void isNumber(String input) {
@@ -52,12 +57,6 @@ public class Scanner {
     private static void isSameNumber(String input) {
         if (Pattern.compile(SAME_NUMBER_PATTERN).matcher(input).find()) {
             throw new IllegalArgumentException("서로 다른 숫자를 입력해야합니다.");
-        }
-    }
-
-    private static void validateCommandLength(String input) {
-        if (!Pattern.compile(COMMAND_PATTERN).matcher(input).find()) {
-            throw new IllegalArgumentException("1자리에 숫자가 입력되야 합니다.");
         }
     }
 
