@@ -1,16 +1,12 @@
 package baseball.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
+import baseball.utils.RandomNumbersFixedProvider;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockedStatic;
 
 import java.util.Arrays;
 import java.util.List;
-
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.mockStatic;
 
 class SwingTest {
 
@@ -20,11 +16,7 @@ class SwingTest {
     @BeforeEach
     void randomNumbers() {
         // given
-        try (final MockedStatic<Randoms> mock = mockStatic(Randoms.class)) {
-            mock.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt())).thenReturn(1, 3, 5);
-            randomNumbers = RandomNumberProvider.randomNumberCreate();
-        }
-
+        randomNumbers = RandomNumbersFixedProvider.randomNumberCreate();
         swing = new Swing();
     }
 
