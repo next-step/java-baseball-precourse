@@ -5,6 +5,10 @@ import java.util.Set;
 
 public class BallValidator {
 
+    public static boolean isValidBalls(String input) {
+        return isInputHasRightLength(input) && isInputContainsOnlyOneToNine(input) && isInputContainsUniqueNumbers(input);
+    }
+
     public static boolean isInputHasRightLength(String input) {
         return GameConstants.numberOfBalls.equals(input.length());
     }
