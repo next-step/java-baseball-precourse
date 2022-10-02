@@ -1,7 +1,10 @@
 package baseball;
 
+import baseball.controller.MatchController;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        MatchController matchController = new MatchController();
+        matchController.startMatchWithComputer();
     }
 }
