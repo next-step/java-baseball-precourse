@@ -12,14 +12,19 @@ class BaseballTest {
     @ValueSource(ints = {1234, 1, 12})
     public void Exception_테스트(int value) {
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException(value))
+                assertThatThrownBy(() -> UserException(value))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
 
-    void runException(int value) {
-        Baseball baseball = new Baseball(value);
-        baseball.checkTool();
+    void UserException(Integer value) {
+        UserBaseball baseball = new UserBaseball(value);
+        baseball.checkValidation();
+    }
+
+    void ComputerException() {
+        ComputerBaseball computerBaseball = new ComputerBaseball();
+        computerBaseball.checkValidation();
     }
 
 }
