@@ -1,12 +1,14 @@
 package baseball;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
-import org.junit.jupiter.api.Test;
-
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import baseball.model.Computer;
+import baseball.view.Output;
+import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
     @Test
@@ -32,4 +34,27 @@ class ApplicationTest extends NsTest {
     public void runMain() {
         Application.main(new String[]{});
     }
+
+    @Test
+    void Enum테스트(){
+        assertThat(Output.STRIKE.getOutput()).isEqualTo("스트라이크");
+    }
+
+    @Test
+    void 숫자생성테스트(){
+        int intInput = 2;
+        int[] nums = new int[3];
+        nums[2] = intInput % 10;
+        nums[1] = (intInput/10)%10;
+        nums[0] = (intInput/100)%10;
+        assertThat(nums).isEqualTo(new int[]{0,0,2});
+    }
+
+    @Test
+    void 컴퓨터가_유니크값_생성여부(){
+        Computer computer = new Computer();
+        int[] nums = computer.getBalls().getBallNums();
+        assertThat(nums[0]).isNotEqualTo(nums[1]).isNotEqualTo(nums[2]);
+    }
+
 }
