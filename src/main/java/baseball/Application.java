@@ -23,6 +23,8 @@ public class Application {
     }
 
     static String bassballUmpire(String inputNumString, String computerPickNumString){
+        if(inputNumString.length() == 0 || inputNumString.length() == 2 || inputNumString.length() > 3)throw new IllegalArgumentException();
+
         StringBuffer result = new StringBuffer();
         int[] resultCount = {0,0};//index0 : ball, index1: strike
 
