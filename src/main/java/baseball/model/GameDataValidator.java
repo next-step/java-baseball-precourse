@@ -1,5 +1,6 @@
 package baseball.model;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class GameDataValidator {
@@ -19,6 +20,12 @@ public class GameDataValidator {
         }
     }
 
+    private static void validateDuplicatedNumber(List<Integer> numberList) {
+        if (new HashSet<>(numberList).size() != BaseballGameRule.PITCHING_COUNT) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     public static void validateNumber(int number) {
         if (BaseballGameRule.MINIMUM_NUMBER > number || number > BaseballGameRule.MAXIMUM_NUMBER) {
             throw new IllegalArgumentException();
@@ -30,5 +37,6 @@ public class GameDataValidator {
         for (Integer number : numberList) {
             GameDataValidator.validateNumber(number);
         }
+        validateDuplicatedNumber(numberList);
     }
 }
