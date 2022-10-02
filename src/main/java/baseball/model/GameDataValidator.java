@@ -14,7 +14,7 @@ public class GameDataValidator {
         }
     }
 
-    public static void validatePitchingCount(int count) {
+    private static void validatePitchingCount(int count) {
         if (count != BaseballGameRule.PITCHING_COUNT) {
             throw new IllegalArgumentException();
         }

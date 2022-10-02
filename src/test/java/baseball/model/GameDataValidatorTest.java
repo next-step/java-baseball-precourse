@@ -3,6 +3,7 @@ package baseball.model;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 public class GameDataValidatorTest {
@@ -33,13 +34,29 @@ public class GameDataValidatorTest {
     }
 
     @Test
-    void Pitching_Count_검증_테스트() {
-        assertAll(() -> GameDataValidator.validatePitchingCount(3));
+    void Number_List_검증_테스트() {
+        assertAll(() -> GameDataValidator.validateNumberList(
+                Arrays.asList(1, 2, 3)
+        ));
         assertThatIllegalArgumentException().isThrownBy(
-                () -> GameDataValidator.validatePitchingCount(2)
+                () -> GameDataValidator.validateNumberList(
+                        Arrays.asList(1, 2, 3, 4)
+                )
         );
         assertThatIllegalArgumentException().isThrownBy(
-                () -> GameDataValidator.validatePitchingCount(4)
+                () -> GameDataValidator.validateNumberList(
+                        Arrays.asList(9, 9, 9)
+                )
+        );
+        assertThatIllegalArgumentException().isThrownBy(
+                () -> GameDataValidator.validateNumberList(
+                        Arrays.asList(9, 9, 8)
+                )
+        );
+        assertThatIllegalArgumentException().isThrownBy(
+                () -> GameDataValidator.validateNumberList(
+                        Arrays.asList(0, 9, 8)
+                )
         );
     }
 }
