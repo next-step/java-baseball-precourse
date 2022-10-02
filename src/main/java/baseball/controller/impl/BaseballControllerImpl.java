@@ -1,6 +1,7 @@
 package baseball.controller.impl;
 
 import baseball.controller.BaseballController;
+import baseball.controller.BaseballGameUserInputValidator;
 import baseball.model.BaseballGameModel;
 import baseball.model.BaseballGameRule;
 import baseball.model.InningResultData;
@@ -41,12 +42,16 @@ public class BaseballControllerImpl implements BaseballController {
 
     private List<Integer> readNumberList() {
         String input = camp.nextstep.edu.missionutils.Console.readLine();
+        BaseballGameUserInputValidator.validateUserNumberInput(input, BaseballGameRule.PITCHING_COUNT);
         return convertStringToIntegerList(input);
     }
 
     private int readRestartCommand() {
         String input = camp.nextstep.edu.missionutils.Console.readLine();
-        return convertStringToIntegerList(input).get(0);
+        BaseballGameUserInputValidator.validateUserNumberInput(input, 1);
+        int command = convertStringToIntegerList(input).get(0);
+        BaseballGameUserInputValidator.validateRestartCommand(command);
+        return command;
     }
 
     private boolean isRestartCommand(int command) {
