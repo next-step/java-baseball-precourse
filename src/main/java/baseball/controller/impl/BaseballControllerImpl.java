@@ -5,6 +5,8 @@ import baseball.controller.BaseballGameUserInputValidator;
 import baseball.model.BaseballGameModel;
 import baseball.model.BaseballGameRule;
 import baseball.model.InningResultData;
+import baseball.veiw.BaseballCuiView;
+import baseball.veiw.impl.BaseballCuiViewImpl;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -13,10 +15,13 @@ import java.util.Set;
 public class BaseballControllerImpl implements BaseballController {
     BaseballGameModel baseballGameModel;
 
+    BaseballCuiView baseballCuiView = new BaseballCuiViewImpl();
+
     @Override
     public void start() {
         while(true) {
             startGame();
+            baseballCuiView.printRestartQuestion();
             int command = readRestartCommand();
             if (!isRestartCommand(command)) {
                 break;
@@ -28,16 +33,13 @@ public class BaseballControllerImpl implements BaseballController {
         baseballGameModel = new BaseballGameModel(makeCorrectNumberList());
 
         while (!baseballGameModel.isEndedInning()) {
+            baseballCuiView.printInputNumber();
             InningResultData result = baseballGameModel.playOneInning(
                     readNumberList()
             );
-            /*
-                Todo: view 완료되면 제거(테스트 용)
-             */
-            System.out.println(
-                    result.getStrike() + " " + result.getBall() + " " + result.isNothing()
-            );
+            baseballCuiView.printInningResult(result);
         }
+        baseballCuiView.printEnding(BaseballGameRule.PITCHING_COUNT);
     }
 
     private List<Integer> readNumberList() {
