@@ -19,9 +19,7 @@ public class Game {
         return answer;
     }
 
-    public void play() {
-        LinkedHashSet<Integer> answer = generateAnswer();
-
+    public String play(LinkedHashSet<Integer> answer) {
         System.out.print(MSG_INPUT);
         String input = Console.readLine();
 
@@ -31,7 +29,7 @@ public class Game {
         }
 
         Umpire umpire = new Umpire();
-        umpire.judge(answer, player);
+        return umpire.judge(answer, player);
     }
 
 }

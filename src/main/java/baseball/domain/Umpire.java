@@ -9,7 +9,7 @@ public class Umpire {
     public static final String IS_BALL = "볼 ";
     public static final String IS_NOTHING = "낫싱";
 
-    public void judge(LinkedHashSet<Integer> target, LinkedHashSet<Integer> player) {
+    public String judge(LinkedHashSet<Integer> target, LinkedHashSet<Integer> player) {
         int strikeCount = 0;
         int ballCount = 0;
 
@@ -21,10 +21,10 @@ public class Umpire {
             ballCount = Judgement.getBallCount(ballCount, answer, input, index);
         }
 
-        call(strikeCount, ballCount);
+        return call(strikeCount, ballCount);
     }
 
-    private void call(int strikeCount, int ballCount) {
+    private String call(int strikeCount, int ballCount) {
         String isStrike = "";
         String isBall = "";
 
@@ -35,12 +35,14 @@ public class Umpire {
             isBall = ballCount + IS_BALL;
         }
 
+        String result = "";
         if (strikeCount > 0 || ballCount > 0) {
-            System.out.println(isBall + isStrike);
+            result = isBall + isStrike;
         }
         if (strikeCount == 0 && ballCount == 0) {
-            System.out.println(IS_NOTHING);
+            result = IS_NOTHING;
         }
+        return result;
     }
 
 }
