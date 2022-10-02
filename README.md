@@ -5,3 +5,18 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## TODO
+
+### AssertJ
+
+*[x] String 테스트코드 추가
+*[x] Set 테스트코드 추가
+
+### 숫자 야구 게임 
+
+*[x] 입력값 유효성 체크하는 클래스 추가
+*[x] 정답을 만드는 클래스 추가
+*[x] 기대값과 실제값 비교하는 클래스 추가
+*[x] 야구게임 클래스 추가 
+*[x] 테스트코드 추가
