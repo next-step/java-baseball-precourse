@@ -2,8 +2,6 @@ package baseball.domain;
 
 import static baseball.domain.Status.*;
 
-import java.util.Objects;
-
 public class BaseBallNumber {
 
 	private final Integer position;
@@ -40,7 +38,17 @@ public class BaseBallNumber {
 		return status==null&&!value.equals(baseBallNumber.value);
 	}
 
-
+	public void updateBallCount(BaseBallNumber baseBallNumber) {
+		if(this.isNothing(baseBallNumber)){
+			status = NOTHING;
+		}
+		if(this.isBall(baseBallNumber)){
+			status = BALL;
+		}
+		if(this.isStrike(baseBallNumber)){
+			status = STRIKE;
+		}
+	}
 
 	@Override
 	public String toString() {
@@ -51,19 +59,5 @@ public class BaseBallNumber {
 			'}';
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-		BaseBallNumber that = (BaseBallNumber)o;
-		return Objects.equals(position, that.position) && Objects.equals(value, that.value)
-			&& status == that.status;
-	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(position, value, status);
-	}
 }
