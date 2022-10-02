@@ -14,7 +14,13 @@ public class BaseballControllerImpl implements BaseballController {
 
     @Override
     public void start() {
-        startGame();
+        while(true) {
+            startGame();
+            int command = readRestartCommand();
+            if (!isRestartCommand(command)) {
+                break;
+            }
+        }
     }
 
     private void startGame() {
@@ -36,6 +42,15 @@ public class BaseballControllerImpl implements BaseballController {
     private List<Integer> readNumberList() {
         String input = camp.nextstep.edu.missionutils.Console.readLine();
         return convertStringToIntegerList(input);
+    }
+
+    private int readRestartCommand() {
+        String input = camp.nextstep.edu.missionutils.Console.readLine();
+        return convertStringToIntegerList(input).get(0);
+    }
+
+    private boolean isRestartCommand(int command) {
+        return (command == 1);
     }
 
     private List<Integer> convertStringToIntegerList(String str) {
