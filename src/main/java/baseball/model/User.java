@@ -5,23 +5,23 @@ import java.util.List;
 
 public class User {
 
-    private static List<String> ballCount = new ArrayList<>();
+    private List<String> ballCount = new ArrayList<>();
 
-    private static void storeInputArrayToBallCount(String[] input) {
+    private void storeInputArrayToBallCount(String[] input) {
         for(String element: input) {
             ballCount.add(element);
         }
     }
 
-    private static void clearBallCount() {
+    private void clearBallCount() {
         ballCount.clear();
     }
 
-    public static List<String> getBallCount() {
+    public List<String> getBallCount() {
         return ballCount;
     }
 
-    public static void throwBalls(String input) {
+    public void throwBalls(String input) {
         clearBallCount();
 
         String[] inputArray = input.split("");

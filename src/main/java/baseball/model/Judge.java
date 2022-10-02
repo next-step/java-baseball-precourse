@@ -5,30 +5,30 @@ import java.util.List;
 public class Judge {
 
     public Judge() {
+        resetBallCount();
+    }
+
+    private int ballCount;
+    private int strikeCount;
+
+    private final int STRIKE_OUT = 3;
+
+    private StringBuilder ballCountResult = new StringBuilder();
+
+    public int getBallCount() {
+        return ballCount;
+    }
+
+    public int getStrikeCount() {
+        return strikeCount;
+    }
+
+    public void resetBallCount() {
         ballCount = 0;
         strikeCount = 0;
     }
 
-    private static int ballCount;
-    private static int strikeCount;
-
-    private static final int STRIKE_OUT = 3;
-
-    private StringBuilder ballCountResult = new StringBuilder();
-
-    public static int getBallCount() {
-        return ballCount;
-    }
-
-    public static int getStrikeCount() {
-        return strikeCount;
-    }
-
-    public static Judge resetBallCount() {
-        return new Judge();
-    }
-
-    public static boolean isStrikeOut() {
+    public boolean isStrikeOut() {
         return strikeCount == STRIKE_OUT;
     }
 
@@ -37,14 +37,14 @@ public class Judge {
         return ballCountResult.toString();
     }
 
-    public static void countBalls(List<String> computerNumbers, List<String> userInputNumbers) {
+    public void countBalls(List<String> computerNumbers, List<String> userInputNumbers) {
         for (int i=0; i<computerNumbers.size(); i++) {
             String element = computerNumbers.get(i);
             countBall(userInputNumbers, element, i);
         }
     }
 
-    private static void countBall(List<String> userInputNumbers, String element, int i) {
+    private void countBall(List<String> userInputNumbers, String element, int i) {
         if (userInputNumbers.contains(element) && userInputNumbers.indexOf(element) == i) {
             increaseStrikeCount();
         }
@@ -91,11 +91,11 @@ public class Judge {
         }
     }
 
-    private static void increaseStrikeCount() {
+    private void increaseStrikeCount() {
         strikeCount += 1;
     }
 
-    private static void increaseBallCount() {
+    private void increaseBallCount() {
         ballCount += 1;
     }
 }

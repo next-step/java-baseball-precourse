@@ -26,19 +26,19 @@ public class BaseBallGameController {
         Computer computer = new Computer();
         do {
             checkContinue(computer);
-            execute(user, judge);
+            execute(user, judge, computer);
 
             BaseBallGameView.printJudgeResult(judge);
         } while (isExecutable(readLine()));
     }
 
-    private static void execute(User user, Judge judge) throws IllegalArgumentException {
+    private void execute(User user, Judge judge, Computer computer) throws IllegalArgumentException {
         while (!judge.isStrikeOut()) {
             BaseBallGameView.printRequestInput();
             String input = readLine();
             checkInputArray(input);
             user.throwBalls(input);
-            judge.countBalls(new ArrayList<>(Computer.getBallCount()), User.getBallCount());
+            judge.countBalls(new ArrayList<>(computer.getBallCount()), user.getBallCount());
             BaseBallGameView.notStrikeOut(judge);
         }
     }
