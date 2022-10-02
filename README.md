@@ -5,3 +5,10 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 구현 기능 목록
+* 컴퓨터 랜덤 숫자 생성
+* 아래부터 비교 결과 3S가 아닐 시 반복
+* 사용자로부터 숫자 입력 받기
+* 컴퓨터 숫자와 사용자 랜덤 숫자 비교
+* 비교 결과 출력
