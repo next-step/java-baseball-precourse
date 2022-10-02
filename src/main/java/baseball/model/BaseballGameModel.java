@@ -27,4 +27,8 @@ public class BaseballGameModel {
 
         return result;
     }
+
+    public boolean isEndedInning() {
+        return result.isEndedInning();
+    }
 }
