@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 
 public class Umpire {
@@ -8,12 +9,12 @@ public class Umpire {
     public static final String IS_BALL = "볼 ";
     public static final String IS_NOTHING = "낫싱";
 
-    public void judge() {
+    public void judge(LinkedHashSet<Integer> target, LinkedHashSet<Integer> player) {
         int strikeCount = 0;
         int ballCount = 0;
 
-        LinkedList<Integer> answer = new LinkedList<>();
-        LinkedList<Integer> input = new LinkedList<>();
+        LinkedList<Integer> answer = new LinkedList<>(target);
+        LinkedList<Integer> input = new LinkedList<>(player);
 
         for (int index = 0; index < answer.size(); index++) {
             strikeCount = Judgement.getStrikeCount(strikeCount, answer, input, index);
