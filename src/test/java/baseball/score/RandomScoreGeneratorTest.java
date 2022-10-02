@@ -3,20 +3,21 @@ package baseball.score;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.regex.Pattern;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class RandomScoreGeneratorTest {
     
     @Test
     @DisplayName("랜덤 생성된 숫자 검증")
     void generateTest() {
-        Pattern scorePattern = Pattern.compile("[1-9]{3}");
-        
         ScoreGenerator scoreGenerator = new RandomScoreGenerator();
-        String expectedScore = scoreGenerator.generate();
-        
-        assertTrue(scorePattern.matcher(expectedScore).matches());
+        ScoreBoard expectedScore = scoreGenerator.generate();
+    
+        assertAll(
+                () -> assertEquals(3, expectedScore.size()),
+                () -> assertFalse(expectedScore.contains(0))
+        );
     }
 }

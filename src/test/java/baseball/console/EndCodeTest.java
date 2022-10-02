@@ -12,8 +12,8 @@ class EndCodeTest {
     @Test
     @DisplayName("입력문자열에 따른 결과 응답 테스트")
     void isExitTest() {
-        assertFalse(EndCode.isExit("1"));
-        assertTrue(EndCode.isExit("2"));
+        assertTrue(EndCode.isExit("1"));
+        assertFalse(EndCode.isExit("2"));
     }
     
     @Test

@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 enum EndCode {
-    CONTINUE("1", false),
-    EXIT("2", true);
+    CONTINUE("1", true),
+    EXIT("2", false);
     
     private static final Map<String, EndCode> CACHE_MAP;
     private final String code;

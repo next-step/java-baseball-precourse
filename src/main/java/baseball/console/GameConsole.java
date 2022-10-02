@@ -1,13 +1,16 @@
 package baseball.console;
 
+import baseball.score.ScoreBoard;
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class GameConsole implements ConsoleInterface {
     
     @Override
-    public String input() {
+    public ScoreBoard input() {
         System.out.print("숫자를 입력해주세요 : ");
         String inputText = Console.readLine();
         
@@ -15,7 +18,13 @@ public class GameConsole implements ConsoleInterface {
             throw new IllegalArgumentException("입력값이 잘못되었습니다.");
         }
         
-        return inputText;
+        List<Integer> initScoreList = Arrays.asList(
+                Integer.parseInt(String.valueOf(inputText.charAt(0))),
+                Integer.parseInt(String.valueOf(inputText.charAt(1))),
+                Integer.parseInt(String.valueOf(inputText.charAt(2)))
+        );
+        
+        return new ScoreBoard(initScoreList);
     }
     
     @Override
@@ -24,6 +33,22 @@ public class GameConsole implements ConsoleInterface {
         String inputText = Console.readLine();
         
         return EndCode.isExit(inputText);
+    }
+    
+    @Override
+    public void printCount(int strikeCount, int ballCount) {
+        StringBuilder message = new StringBuilder();
+        if (ballCount != 0) {
+            message.append(ballCount)
+                    .append("볼 ");
+        }
+        
+        if (strikeCount != 0) {
+            message.append(strikeCount)
+                    .append("스트라이크");
+        }
+        
+        System.out.println(message);
     }
     
     public boolean validInput(String inputText) {
