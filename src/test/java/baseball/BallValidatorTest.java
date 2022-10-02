@@ -9,6 +9,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 class BallValidatorTest {
 
     @ParameterizedTest
+    @CsvSource(value = {"1:false", "a13:false","012:false", "111:false", "1234:false", "123:true"}, delimiter = ':')
+    @DisplayName("input 값이 적절한지 검증하는 기능에 대한 테스트")
+    void isValidInput(String input, boolean expected) {
+        assertThat(BallValidator.isValidBalls(input)).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
     @CsvSource(value = {"1:false", "123:true","1234:false"}, delimiter = ':')
     @DisplayName("값의 자리수가 세자리인지 검증하는 기능에 대한 테스트")
     void isInputHasRightLength(String input, boolean expected) {
