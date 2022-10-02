@@ -19,13 +19,12 @@ public class BaseballControllerImpl implements BaseballController {
 
     @Override
     public void start() {
-        while(true) {
+        boolean restartCommand = true;
+        while(restartCommand) {
             startGame();
             baseballCuiView.printRestartQuestion();
             int command = readRestartCommand();
-            if (!isRestartCommand(command)) {
-                break;
-            }
+            restartCommand = isRestartCommand(command);
         }
     }
 
