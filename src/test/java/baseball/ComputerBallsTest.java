@@ -13,6 +13,7 @@ class ComputerBallsTest {
     @BeforeEach
     void setUp() {
         computerBalls = new ComputerBalls();
+        computerBalls.setBalls();
     }
 
     @Test

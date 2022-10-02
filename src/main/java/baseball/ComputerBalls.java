@@ -7,15 +7,15 @@ public class ComputerBalls {
     private String balls;
 
     public ComputerBalls() {
-        setBalls(makeBalls());
+
     }
 
     public String getBalls() {
         return balls;
     }
 
-    private void setBalls(String balls) {
-        this.balls = balls;
+    public void setBalls() {
+        balls = makeBalls();
     }
 
     private String makeBalls() {
