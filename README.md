@@ -5,3 +5,7 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 요구사항
+* 1부터 9까지 서로다른 수로 이루어진 3자리의 수를 맞추는 게임
+* 컴퓨터는 1~9까지 서로다른 임의의 수 3개를 선택 사용자는 3자리 수 맞ㅊ
