@@ -22,13 +22,13 @@ public class RandomNumberProvider {
         return randomNumbers;
     }
 
-    private static void randomNumberAdd(List<Integer> randomNumbers, int randomNumber) {
+    private static void randomNumberAdd(final List<Integer> randomNumbers, final int randomNumber) {
         if (validateAdd(randomNumbers, randomNumber)) {
             randomNumbers.add(randomNumber);
         }
     }
 
-    private static boolean validateAdd(List<Integer> randomNumbers, int randomNumber) {
+    private static boolean validateAdd(final List<Integer> randomNumbers, final int randomNumber) {
         return !randomNumbers.contains(randomNumber);
     }
 
