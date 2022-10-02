@@ -42,12 +42,16 @@ public class GameConsole implements ConsoleInterface {
             message.append(ballCount)
                     .append("볼 ");
         }
-        
+    
         if (strikeCount != 0) {
             message.append(strikeCount)
                     .append("스트라이크");
         }
-        
+    
+        if (strikeCount == 0 && ballCount == 0) {
+            message.append("낫싱");
+        }
+    
         System.out.println(message);
     }
     
