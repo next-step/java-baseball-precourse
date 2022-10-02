@@ -1,0 +1,57 @@
+package baseball.domain;
+
+import static baseball.common.COMMON_CONSTANT.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Consumer;
+
+public class BaseBallNumbers {
+
+	final List<BaseBallNumber> baseBallNumbers;
+
+	public BaseBallNumbers(List<BaseBallNumber> baseBallNumbers) {
+
+		Optional.ofNullable(baseBallNumbers).orElseThrow(()->new IllegalArgumentException("must input value"));
+		if(baseBallNumbers.size()>NUMBER_RANGE){
+			throw new IllegalArgumentException("must length 3");
+		}
+		this.baseBallNumbers = baseBallNumbers;
+	}
+
+	public List<BaseBallNumber> getList(){
+		return baseBallNumbers;
+	}
+
+	public static BaseBallNumbers createComputeNumber(){
+		return createNumber(new RandomMachine().getNumber());
+	}
+
+	public static BaseBallNumbers createBaseBallNumbers(String input) {
+		String[] inputs = input.split("");
+		List<Integer> baseballNumbers = new ArrayList<>();
+		for(String str : inputs){
+			baseballNumbers.add(Integer.valueOf(str));
+		}
+		return createNumber(baseballNumbers);
+	}
+
+	public static BaseBallNumbers createNumber(List<Integer> baseBallRandomNumbers){
+		List<BaseBallNumber> baseBallMeNumbers = new ArrayList<>();
+		for(int i = 0;i<baseBallRandomNumbers.size();i++){
+			baseBallMeNumbers.add(BaseBallNumber.of(i+1,baseBallRandomNumbers.get(i)));
+		}
+		return new BaseBallNumbers(baseBallMeNumbers);
+	}
+
+
+	@Override
+	public String toString() {
+		return "BaseBallNumbers{" +
+			"baseBallMeNumbers=" + baseBallNumbers +
+			'}';
+	}
+
+
+}
