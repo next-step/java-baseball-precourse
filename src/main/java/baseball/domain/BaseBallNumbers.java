@@ -45,6 +45,37 @@ public class BaseBallNumbers {
 		return new BaseBallNumbers(baseBallMeNumbers);
 	}
 
+	public boolean isSuccessCatching(BaseBallNumbers computerNumber){
+		Consumer<BaseBallNumber> baseBallNumberConsumer = b -> this.analysis(a -> a.updateBallCount(b));
+		computerNumber.analysis(baseBallNumberConsumer);
+		return this.threeStrike();
+	}
+
+	private boolean threeStrike(){
+		int ballCount = 0;
+		for(BaseBallNumber baseBallNumber: baseBallNumbers){
+			ballCount += getBallCount(baseBallNumber);
+		}
+		if(isComplete(ballCount)){
+			return COMPLETE;
+		}
+		return FAIL;
+	}
+
+	private int getBallCount(BaseBallNumber baseBallNumber) {
+		if(baseBallNumber.isCurrentStrike()){
+			return 1;
+		}
+		return 0;
+	}
+
+	private boolean isComplete(int ballCount) {
+		return NUMBER_RANGE == ballCount;
+	}
+
+	private void analysis(Consumer<BaseBallNumber> consumer){
+		this.baseBallNumbers.forEach(consumer);
+	}
 
 	@Override
 	public String toString() {
