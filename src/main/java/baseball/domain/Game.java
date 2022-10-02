@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import baseball.utils.ValidationUtils;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.LinkedHashSet;
@@ -22,6 +23,8 @@ public class Game {
     public String play(LinkedHashSet<Integer> answer) {
         System.out.print(MSG_INPUT);
         String input = Console.readLine();
+
+        ValidationUtils.validate(input);
 
         LinkedHashSet<Integer> player = new LinkedHashSet<>();
         for (int i = 0; i < input.length(); i++) {
