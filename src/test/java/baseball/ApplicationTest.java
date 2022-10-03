@@ -19,7 +19,6 @@ class ApplicationTest extends NsTest {
                 1, 3, 5, 5, 8, 9
         );
     }
-
     @Test
     void 예외_테스트() {
         assertSimpleTest(() ->
@@ -27,7 +26,43 @@ class ApplicationTest extends NsTest {
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
+    @Test
+    void 예외_테스트2() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("가나다라"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
 
+    @Test
+    void 예외_테스트3() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException(" "))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
+    void 예외_테스트4() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("1"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+    @Test
+    void 예외_테스트5() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("246", "135", "3"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+    @Test
+    void 예외_테스트6() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("12ㄱ"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
     @Override
     public void runMain() {
         Application.main(new String[]{});
