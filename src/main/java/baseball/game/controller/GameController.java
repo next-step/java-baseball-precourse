@@ -9,9 +9,8 @@ public class GameController {
         Player player = new Player();
 
         while(player.keepPlaying()) {
-            GameNumber numbers = new GameNumber();
-            numbers.generateAnswer();
-            System.out.println("playing...");
+            GameNumber gameNumbers = new GameNumber();
+
             player.enterNumber();
         }
     }
