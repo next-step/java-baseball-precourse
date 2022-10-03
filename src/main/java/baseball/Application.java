@@ -1,7 +1,14 @@
 package baseball;
 
+import baseball.model.PlayBase;
+import baseball.service.BaseballService;
+import baseball.ui.BaseView;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        PlayBase playBase = new PlayBase();
+        BaseballService service = new BaseballService(playBase);
+        BaseView baseView = new BaseView(service);
+        baseView.playBall();
     }
 }
