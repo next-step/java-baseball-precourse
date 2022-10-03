@@ -39,6 +39,7 @@ public class BaseballGameController {
 	private List<Integer> getUserInput() {
 		List<Integer> userInput = new ArrayList<>();
 		String input = Console.readLine();
+		validateUserInput(input);
 		for (int i = 0; i < input.length(); i++) {
 			userInput.add(Integer.parseInt(String.valueOf(input.charAt(i))));
 		}
@@ -52,5 +53,13 @@ public class BaseballGameController {
 	private boolean isRestartedGame() {
 		printRestartOrFinish();
 		return RESTART.getValue() == Integer.parseInt(Console.readLine());
+	}
+
+	private void validateUserInput(String input) {
+		InputValidator inputValidator = new InputValidator();
+		inputValidator.validateBlank(input);
+		inputValidator.validateLength(input);
+		inputValidator.validateNumber(input);
+		inputValidator.validateDuplicate(input);
 	}
 }

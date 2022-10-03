@@ -61,17 +61,17 @@ public class HintService {
 
 	@Override
 	public String toString() {
-		StringBuilder result = new StringBuilder();
-		result.append(getString(isExistBall(), result, this.ball + BALL.getMessage()));
-		result.append(getString(isExistBall() && isExistStrike(), result, " "));
-		result.append(getString(isExistStrike(), result, this.strike + STRIKE.getMessage()));
-		result.append(getString(!isExistBall() && !isExistStrike(), result, NOTHING.getMessage()));
-		return result.toString();
+		String result = "";
+		result = getString(isExistBall(), result, this.ball + BALL.getMessage());
+		result = getString(isExistBall() && isExistStrike(), result, " ");
+		result = getString(isExistStrike(), result, this.strike + STRIKE.getMessage());
+		result = getString(!isExistBall() && !isExistStrike(), result, NOTHING.getMessage());
+		return result;
 	}
 
-	private StringBuilder getString(boolean isExist, StringBuilder result, String hintToString) {
+	private String getString(boolean isExist, String result, String hintToString) {
 		if (isExist) {
-			result.append(hintToString);
+			result += hintToString;
 		}
 		return result;
 	}
