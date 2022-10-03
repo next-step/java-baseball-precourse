@@ -27,7 +27,7 @@ public class BaseballGameController {
 	private void play() {
 		while (true) {
 			printRequest();
-			Hint hint = new Hint(computerOutput, getUserInput());
+			HintService hint = new HintService(computerOutput, getUserInput());
 			printHint(hint);
 			if (isFinishedGame(hint)) {
 				printFinish();
@@ -45,7 +45,7 @@ public class BaseballGameController {
 		return userInput;
 	}
 
-	private boolean isFinishedGame(Hint hint) {
+	private boolean isFinishedGame(HintService hint) {
 		return hint.isThreeStrike();
 	}
 

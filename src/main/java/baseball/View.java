@@ -19,7 +19,7 @@ public class View {
 		System.out.println(RESTART_OR_FINISH.getMessage());
 	}
 
-	public static void printHint(Hint hint) {
+	public static void printHint(HintService hint) {
 		System.out.println(hint.toString());
 	}
 }
