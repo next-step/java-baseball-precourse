@@ -12,7 +12,7 @@ public class Number extends GameNumber {
     private Pattern formatPattern = Pattern.compile("^[1-9]{3}$");
 
     public Set<Integer> parsingNumber(String number) {
-        validateNumber(number);
+//        validateNumber(number);
         Set<Integer> numbers = new HashSet<>();
 
         for (int i = 0; i < number.length(); i++) {
@@ -21,7 +21,7 @@ public class Number extends GameNumber {
         return numbers;
     }
 
-    private void validateNumber(String number) {
+    public void validateNumber(String number) {
         validateFormat(number);
         validateDuplicatedNumber(number);
     }

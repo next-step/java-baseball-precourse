@@ -4,24 +4,47 @@ import baseball.game.model.GameNumber;
 import baseball.player.model.Number;
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.List;
 import java.util.Set;
+import java.util.HashSet;
+import java.util.Arrays;
 
 public class Player {
-
     public Set<Integer> number;
+    public boolean isAnswer;
+    public boolean keepPlaying;
 
-    public boolean keepPlaying() {
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-        String keepPlaying = Console.readLine();
-        return Integer.parseInt(keepPlaying) == 1;
+    public Player() {
+        this.keepPlaying = true;
+    }
+
+
+
+    public void playGame() {
+        GameNumber gameNumbers = new GameNumber();
+        System.out.println(gameNumbers.answer);
+
+        while(!isAnswer) {
+            enterNumber();
+            if (compare(gameNumbers.answer)) {
+                break;
+            }
+        }
     }
 
     public void enterNumber() {
         System.out.print("숫자를 입력해주세요: ");
         String text = Console.readLine();
-        System.out.println(text + "을 입력했습니다.");
         Number number = new Number();
+        number.validateNumber(text);
         this.number = number.parsingNumber(text);
     }
 
+    public boolean compare(List<Integer> answer) {
+        if (Arrays.equals(answer.toArray(), this.number.toArray())) {
+            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+            return true;
+        }
+        return false;
+    }
 }
