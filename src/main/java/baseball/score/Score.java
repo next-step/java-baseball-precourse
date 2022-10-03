@@ -1,4 +1,8 @@
 package baseball.score;
 
-public class Score {
+import java.util.List;
+
+public interface Score {
+    void create(String str1, String str2);
+    List<String> getScores();
 }
