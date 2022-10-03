@@ -1,7 +1,21 @@
 package baseball;
 
+import baseball.model.Counts;
+import baseball.model.Game;
+import baseball.model.User;
+import baseball.utils.RandomUtils;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        boolean notEnd = true;
+        String randomNumber = RandomUtils.generateRandomNumber();
+
+        while (notEnd) {
+            Game game = new Game(new Counts(), new User());
+            game.calculateCounts(randomNumber);
+            String endOrRestart = game.calculateResult();
+            randomNumber = game.checkRestart(randomNumber, endOrRestart);
+            notEnd = game.checkEnd(endOrRestart);
+        }
     }
 }
