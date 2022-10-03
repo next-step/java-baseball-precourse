@@ -16,6 +16,14 @@ public class GameNumber {
         this.answer = generateAnswer();
     }
 
+    public int countStrike() {
+        return 0;
+    }
+
+    public int countBall() {
+        return 0;
+    }
+
     private List<Integer> generateAnswer() {
         Set<Integer> answer = new HashSet<>();
         while (answer.size() < ANSWER_LENGTH) {

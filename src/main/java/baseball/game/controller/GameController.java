@@ -1,7 +1,6 @@
 package baseball.game.controller;
 
-import baseball.game.model.GameNumber;
-import baseball.player.model.Player;
+import baseball.game.model.Player;
 import camp.nextstep.edu.missionutils.Console;
 
 

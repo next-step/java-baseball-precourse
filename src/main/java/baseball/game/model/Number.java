@@ -1,4 +1,4 @@
-package baseball.player.model;
+package baseball.game.model;
 
 import baseball.game.model.GameNumber;
 
