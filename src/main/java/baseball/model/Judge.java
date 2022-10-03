@@ -69,19 +69,19 @@ public class Judge {
 
     private void noteStrikeToBallCount() {
         if (strikeCount > 0) {
-            ballCountResult.append(String.format("%d스트라이크", strikeCount));
+            ballCountResult.append(BallCountType.STRIKE.count(strikeCount));
         }
     }
 
     private void noteBallToBallCount() {
         if (ballCount > 0) {
-            ballCountResult.append(String.format("%d볼", ballCount));
+            ballCountResult.append(BallCountType.BALL.count(ballCount));
         }
     }
 
     private void noteNothingToBallCount() {
         if (strikeCount == 0 && ballCount == 0) {
-            ballCountResult.append("낫싱");
+            ballCountResult.append(BallCountType.NOTHING.toString());
         }
     }
 
