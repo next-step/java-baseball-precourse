@@ -1,4 +1,4 @@
-package baseball.score;
+package baseball.common;
 
 import static baseball.common.Constant.EMPTY;
 import static baseball.common.Constant.ZERO_VALUE;

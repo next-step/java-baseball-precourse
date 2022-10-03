@@ -1,11 +1,13 @@
 package baseball.score;
 
+import baseball.common.ScoreType;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import static baseball.common.Constant.*;
 
-public class BaseBallScore implements Score {
+public class BaseBallScore extends Score {
     int strike;
     int ball;
 
@@ -34,18 +36,6 @@ public class BaseBallScore implements Score {
         return ball;
     }
 
-    @Override
-    public String toString() {
-        List<String> scores = getScores();
-        String description = EMPTY;
-        for (String score : scores) {
-            description += score;
-            if (scores.indexOf(score) < scores.size() - 1)
-                description += BLANK;
-        }
-        return description;
-    }
-
     private List<String> getScores() {
         List<String> scores = new ArrayList<>();
         if (isNothing()) {
@@ -58,5 +48,17 @@ public class BaseBallScore implements Score {
             scores.add(ScoreType.BALL.getDescription(this.ball));
         }
         return scores;
+    }
+
+    @Override
+    public String toString() {
+        List<String> scores = getScores();
+        String description = EMPTY;
+        for (String score : scores) {
+            description += score;
+            if (scores.indexOf(score) < scores.size() - 1)
+                description += BLANK;
+        }
+        return description;
     }
 }

@@ -1,5 +1,7 @@
 package baseball.tool;
 
+import baseball.ball.ComputerBaseball;
+import baseball.ball.UserBaseball;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -9,15 +11,15 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class BaseballTest {
 
     @ParameterizedTest
-    @ValueSource(ints = {1234, 1, 12})
-    public void Exception_테스트(int value) {
+    @ValueSource(strings = {"1234", "1", "12"})
+    public void Exception_테스트(String value) {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> UserException(value))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
 
-    void UserException(Integer value) {
+    void UserException(String value) {
         UserBaseball baseball = new UserBaseball(value);
         baseball.checkValidation();
     }
