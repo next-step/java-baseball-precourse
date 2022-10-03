@@ -1,6 +1,6 @@
-package baseball;
+package baseball.hint;
 
-import static baseball.GameMessage.*;
+import static baseball.common.GameMessage.*;
 
 import java.util.List;
 

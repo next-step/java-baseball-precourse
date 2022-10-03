@@ -1,6 +1,6 @@
-package baseball;
+package baseball.common;
 
-import static baseball.ErrorMessage.*;
+import static baseball.common.ErrorMessage.*;
 import static java.lang.Integer.*;
 
 /**

@@ -1,6 +1,8 @@
-package baseball;
+package baseball.response;
 
-import static baseball.GameMessage.*;
+import static baseball.common.GameMessage.*;
+
+import baseball.hint.HintService;
 
 /**
  * @author garden.iee

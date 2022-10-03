@@ -1,12 +1,14 @@
 package baseball;
 
-import static baseball.GameStatus.*;
-import static baseball.View.*;
+import static baseball.common.GameStatus.*;
+import static baseball.response.View.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import baseball.common.InputValidator;
 import baseball.computer.ComputerService;
+import baseball.hint.HintService;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

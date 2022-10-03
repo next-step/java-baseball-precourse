@@ -1,6 +1,6 @@
-package baseball;
+package baseball.common;
 
-import static baseball.ErrorMessage.*;
+import static baseball.common.ErrorMessage.*;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -10,19 +10,19 @@ import java.util.Set;
  */
 public class InputValidator {
 
-	void validateBlank(String input) {
+	public void validateBlank(String input) {
 		if (isNullOrEmpty(input) || isWhitespace(input)) {
 			throw new IllegalArgumentException(INPUT_NOT_ALLOW_BLANK.getMessage());
 		}
 	}
 
-	void validateLength(String input) {
+	public void validateLength(String input) {
 		if (input.length() != 3) {
 			throw new IllegalArgumentException(INPUT_ONLY_ALLOW_THREE_DIGITS.getMessage());
 		}
 	}
 
-	int validateNumber(String input) {
+	public int validateNumber(String input) {
 		try {
 			return Integer.parseInt(input);
 		} catch (NumberFormatException e) {
@@ -30,7 +30,7 @@ public class InputValidator {
 		}
 	}
 
-	void validateDuplicate(String input) {
+	public void validateDuplicate(String input) {
 		Set<Character> characters = toCharacters(input);
 		if (characters.size() != 3) {
 			throw new IllegalArgumentException(INPUT_NOT_ALLOW_DUPLICATE.getMessage());
