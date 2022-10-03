@@ -1,0 +1,145 @@
+package baseball.domain.game;
+
+import static baseball.domain.digits.DigitsUtil.digitsOf;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
+import static org.assertj.core.api.Assertions.assertThatNoException;
+import static org.junit.jupiter.api.Assertions.assertAll;
+
+import baseball.domain.SecretNumberGenerator;
+import baseball.domain.digits.Digits;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
+
+class BaseballGameTest {
+    private static final SecretNumberGenerator ALWAYS_123_GENERATOR = new Always123DigitsGenerator();
+    private static final int SECRET_SIZE_3 = 3;
+
+    private final BaseballGame game = new BaseballGame(ALWAYS_123_GENERATOR, SECRET_SIZE_3);
+
+    @ParameterizedTest(name = "비밀번호는 1 ~ 8 사이의 길이만 가능하다. size: {0}")
+    @ValueSource(ints = {-1, 0, 9})
+    void illegalSecretNumberSize(int illegalSecretNumberSize) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new BaseballGame(ALWAYS_123_GENERATOR, illegalSecretNumberSize))
+                .withMessage("Secret number must be between 1 and 8!");
+    }
+
+    @DisplayName("생성 당시 주어진 비밀번호 길이만큼 비밀번호가 생성되어야 한다.")
+    @Test
+    void illegalSecretNumberState() {
+        final int requestedSize = 4;
+        assertThatIllegalStateException()
+                .isThrownBy(() -> new BaseballGame(ALWAYS_123_GENERATOR, requestedSize))
+                .withMessage("Requested size: 4, Generated size: 3");
+    }
+
+    @DisplayName("비밀번호생성기와 비밀번호 크기로 생성된다.")
+    @Test
+    void construct() {
+        assertThatNoException()
+                .isThrownBy(() -> new BaseballGame(ALWAYS_123_GENERATOR, SECRET_SIZE_3));
+    }
+
+
+    @DisplayName("주어진 숫자가 숫자들에 없으면 낫싱, 포함되어 있지만 위치가 다르면 볼, 포함되어 있고 위치도 같으면 스트라이크다.")
+    @ParameterizedTest(name = "비밀번호 123 일때, {0}{1}{2}를 입력하면 스트라이크: {3}, 볼: {4}, 낫싱: {5}, 맞춤: {6}이다.")
+    @CsvSource({
+            "1,2,3, 3,0,false, true",
+            "4,5,6, 0,0,true, false",
+            "1,3,5, 1,1,false, false"
+    })
+    void guess(
+            int guess1st,
+            int guess2nd,
+            int guess3rd,
+            int expectedStrikes,
+            int expectedBalls,
+            boolean expectedNothing,
+            boolean expectedCorrect
+    ) {
+        final Digits guessDigits = digitsOf(guess1st, guess2nd, guess3rd);
+        final TrialResult expected = new TrialResult(
+                expectedCorrect,
+                expectedStrikes,
+                expectedBalls,
+                expectedNothing
+        );
+
+        final TrialResult actual = game.tryGuess(guessDigits);
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @DisplayName("맞추면 맞춘 사실을 알 수 있다.")
+    @ParameterizedTest(name = "비밀번호 123일 때, {0}{1}{2}이면 맞춤 여부: {3}")
+    @CsvSource({
+            "1,2,3, true",
+            "1,3,5, false"
+    })
+    void isCorrect(int guess1st, int guess2nd, int guess3rd, boolean expectedCorrect) {
+        final Digits guessDigits = digitsOf(guess1st, guess2nd, guess3rd);
+
+        game.tryGuess(guessDigits);
+        final boolean actualCorrect = game.isCorrect();
+
+        assertThat(actualCorrect).isEqualTo(expectedCorrect);
+    }
+
+    @DisplayName("맞추기 전에는 게임을 종료할 수 없다.")
+    @Test
+    void finishInProgress() {
+        assertThatIllegalStateException()
+                .isThrownBy(() -> game.finish())
+                .withMessage("The game is in progress!");
+    }
+
+    @DisplayName("맞춘 후 게임 종료를 원하면 종료된다.")
+    @Test
+    void finish() {
+        final Digits guessDigits = digitsOf(1, 2, 3);
+        game.tryGuess(guessDigits);
+        final boolean isFinishedBeforeAction = game.isFinished();
+
+        game.finish();
+        final boolean isFinishedAfterAction = game.isFinished();
+
+        assertAll(
+                () -> assertThat(isFinishedBeforeAction).isFalse(),
+                () -> assertThat(isFinishedAfterAction).isTrue()
+        );
+    }
+
+    @DisplayName("맞추기 전에는 다시 시작을 할 수 없다.")
+    @Test
+    void restartInProgress() {
+        final Digits incorrectDigits = digitsOf(1, 3, 5);
+        game.tryGuess(incorrectDigits);
+
+        assertThatIllegalStateException()
+                .isThrownBy(() -> game.restart())
+                .withMessage("The game is in progress!");
+    }
+
+    @DisplayName("맞춘 후 다시 시작을 원하면 새로 시작된다.")
+    @Test
+    void restart() {
+        final Digits correctDigits = digitsOf(1, 2, 3);
+        final TrialResult correctResult = game.tryGuess(correctDigits);
+        final boolean isCorrectBeforeAction = correctResult.isCorrect();
+
+        final Digits wrongDigits = digitsOf(4, 5, 6);
+        game.restart();
+        final TrialResult incorrectResult = game.tryGuess(wrongDigits);
+        final boolean isIncorrectAfterAction = incorrectResult.isCorrect();
+
+        assertAll(
+                () -> assertThat(isCorrectBeforeAction).isTrue(),
+                () -> assertThat(isIncorrectAfterAction).isFalse()
+        );
+    }
+}
