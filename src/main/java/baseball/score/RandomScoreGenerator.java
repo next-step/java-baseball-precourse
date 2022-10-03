@@ -2,9 +2,6 @@ package baseball.score;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class RandomScoreGenerator implements ScoreGenerator {
     
     private static final int RANGE_START = 1;
@@ -12,11 +9,10 @@ public class RandomScoreGenerator implements ScoreGenerator {
     
     @Override
     public ScoreBoard generate() {
-        List<Integer> initList = Arrays.asList(
+        return new ScoreBoard(
                 Randoms.pickNumberInRange(RANGE_START, RANGE_END),
                 Randoms.pickNumberInRange(RANGE_START, RANGE_END),
                 Randoms.pickNumberInRange(RANGE_START, RANGE_END)
         );
-        return new ScoreBoard(initList);
     }
 }

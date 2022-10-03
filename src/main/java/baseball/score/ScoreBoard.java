@@ -2,18 +2,16 @@ package baseball.score;
 
 import baseball.game.RoundResult;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class ScoreBoard {
     private final List<Integer> score;
     
-    public ScoreBoard(List<Integer> score) {
-        if (score.size() != 3) {
-            throw new IllegalArgumentException("잘못 입력된 배열입니다.");
-        }
-        this.score = score;
+    public ScoreBoard(int a, int b, int c) {
+        this.score = Arrays.asList(a, b, c);
     }
-    
     
     public int size() {
         return this.score.size();
@@ -38,5 +36,18 @@ public class ScoreBoard {
         }
         
         return roundResult;
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ScoreBoard that = (ScoreBoard) o;
+        return score.equals(that.score);
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(score);
     }
 }

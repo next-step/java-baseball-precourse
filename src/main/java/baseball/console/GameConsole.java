@@ -3,8 +3,6 @@ package baseball.console;
 import baseball.score.ScoreBoard;
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.regex.Pattern;
 
 public class GameConsole implements ConsoleInterface {
@@ -18,13 +16,11 @@ public class GameConsole implements ConsoleInterface {
             throw new IllegalArgumentException("입력값이 잘못되었습니다.");
         }
         
-        List<Integer> initScoreList = Arrays.asList(
+        return new ScoreBoard(
                 Integer.parseInt(String.valueOf(inputText.charAt(0))),
                 Integer.parseInt(String.valueOf(inputText.charAt(1))),
                 Integer.parseInt(String.valueOf(inputText.charAt(2)))
         );
-        
-        return new ScoreBoard(initScoreList);
     }
     
     @Override

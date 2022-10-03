@@ -1,8 +1,6 @@
 package baseball.game;
 
 import baseball.console.ConsoleInterface;
-import baseball.console.GameConsole;
-import baseball.score.RandomScoreGenerator;
 import baseball.score.ScoreBoard;
 import baseball.score.ScoreGenerator;
 
@@ -11,9 +9,9 @@ public class BaseballGameLauncher implements GameLauncher {
     private final ConsoleInterface console;
     private final ScoreGenerator scoreGenerator;
     
-    public BaseballGameLauncher() {
-        this.console = new GameConsole();
-        this.scoreGenerator = new RandomScoreGenerator();
+    public BaseballGameLauncher(ConsoleInterface console, ScoreGenerator scoreGenerator) {
+        this.console = console;
+        this.scoreGenerator = scoreGenerator;
     }
     
     @Override
