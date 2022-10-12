@@ -1,7 +1,13 @@
 package baseball;
 
+
+import baseball.client.BaseballGamePlay;
+
 public class Application {
+
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        BaseballGamePlay gamePlay = new BaseballGamePlay();
+        gamePlay.startGame();
     }
+
 }
