@@ -1,14 +1,12 @@
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+package model;
+
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import model.GameModel;
-import model.GameResult;
-import model.RandomGenerator;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 
 @DisplayName("GameModel 단위 테스트")
 class GameModelTest {
