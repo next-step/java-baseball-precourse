@@ -13,7 +13,7 @@ public class BaseballGame {
 
         while (true) {
             OutputView.printInfo();
-            final String number = InputView.getNumber();
+            final String number = InputView.getInput();
 
             if (gameModel.isGameEnd(number)){
                OutputView.printEnding();
