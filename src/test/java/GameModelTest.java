@@ -6,6 +6,10 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import model.GameModel;
+import model.GameResult;
+import model.RandomGenerator;
+
 @DisplayName("GameModel 단위 테스트")
 class GameModelTest {
 
@@ -42,17 +46,17 @@ class GameModelTest {
         @Test
         @DisplayName("자릿수가 일치하는 숫자만큼 스트라이크를 반환한다.")
         void test1() {
-            final int[] result = gameModel.calculateGameResult("120");
-            assertThat(result[0]).isEqualTo(2);
-            assertThat(result[1]).isEqualTo(0);
+            final GameResult result = gameModel.calculateGameResult("120");
+            assertThat(result.getNumOfStrike()).isEqualTo(2);
+            assertThat(result.getNumOfBall()).isEqualTo(0);
         }
 
         @Test
         @DisplayName("자릿수는 다르지만 일치하는 숫자만큼 볼을 반환한다.")
         void test2() {
-            final int[] result = gameModel.calculateGameResult("012");
-            assertThat(result[0]).isEqualTo(0);
-            assertThat(result[1]).isEqualTo(2);
+            final GameResult result = gameModel.calculateGameResult("012");
+            assertThat(result.getNumOfStrike()).isEqualTo(0);
+            assertThat(result.getNumOfBall()).isEqualTo(2);
         }
     }
 }

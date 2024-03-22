@@ -1,3 +1,6 @@
+import model.GameModel;
+import model.GameResult;
+import model.RandomGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -17,8 +20,8 @@ public class Game {
                break;
             }
 
-            final int[] gameResult = gameModel.calculateGameResult(number);
-            OutputView.printHint(gameResult[0], gameResult[1]);
+            final GameResult gameResult = gameModel.calculateGameResult(number);
+            OutputView.printHint(gameResult.getNumOfStrike(), gameResult.getNumOfBall());
         }
     }
 }
