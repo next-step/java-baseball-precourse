@@ -15,10 +15,9 @@ public class Baseball {
         this.state = GameState.Init;
     }
 
-    public void startGame() {
+    public void startGame() throws BaseballStateException {
         if (!(state == GameState.Init || state == GameState.End)) {
-            // TODO
-            throw new RuntimeException("");
+            throw new BaseballStateException("startGame은 Init, End 상태에서만 가능합니다 (현재 상태: " + state +  ")");
         }
         numbers = generateRandomNumbers();
         state = GameState.Running;
@@ -33,14 +32,21 @@ public class Baseball {
 
     public Result guessNumbers(Numbers input) {
         if (state != GameState.Running) {
-            // TODO
-            throw new RuntimeException("");
+            throw new BaseballStateException("guessNumbers는 Running 상태에서만 가능합니다 (현재 상태: " + state +  ")");
         }
         Result result = numbers.matchWith(input);
         if (result.isSuccess()) {
             state = GameState.End;
         }
         return result;
+    }
+
+    GameState getState() {
+        return state;
+    }
+
+    Numbers getNumbers() {
+        return numbers;
     }
 
 }
