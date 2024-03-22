@@ -10,14 +10,14 @@ public class Game {
 
         while (true) {
             OutputView.printInfo();
-            String number = InputView.getNumber();
+            final String number = InputView.getNumber();
 
             if (gameModel.isGameEnd(number)){
                OutputView.printEnding();
-                break;
+               break;
             }
 
-            int[] gameResult = gameModel.calculateGameResult(number);
+            final int[] gameResult = gameModel.calculateGameResult(number);
             OutputView.printHint(gameResult[0], gameResult[1]);
         }
     }
