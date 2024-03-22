@@ -10,24 +10,30 @@ public class Baseball {
 
     private GameState state;
     private Numbers numbers;
+    private final int size;
 
     public Baseball() {
+        this(3);
+    }
+
+    public Baseball(int size) {
         this.state = GameState.Init;
+        this.size = size;
     }
 
     public void startGame() throws BaseballStateException {
         if (!(state == GameState.Init || state == GameState.End)) {
             throw new BaseballStateException("startGame은 Init, End 상태에서만 가능합니다 (현재 상태: " + state +  ")");
         }
-        numbers = generateRandomNumbers();
+        numbers = generateRandomNumbers(size);
         state = GameState.Running;
         System.out.println(numbers);
     }
 
-    private static Numbers generateRandomNumbers() {
+    private static Numbers generateRandomNumbers(int size) {
         List<Integer> digits = new ArrayList<>(SINGLE_DIGITS);
         Collections.shuffle(digits);
-        return new Numbers(digits.get(0), digits.get(1), digits.get(2));
+        return new Numbers(digits.subList(0, size));
     }
 
     public Result guessNumbers(Numbers input) {

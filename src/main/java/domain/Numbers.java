@@ -1,18 +1,26 @@
 package domain;
 
+import java.util.List;
+import java.util.function.IntFunction;
+
 public class Numbers {
 
-    private final int First;
-    private final int Second;
-    private final int Third;
+    private final List<Integer> nums;
 
+    @Deprecated
     public Numbers(int first, int second, int third) {
-        First = first;
-        Second = second;
-        Third = third;
+        nums = List.of(first, second, third);
+    }
+
+    public Numbers(List<Integer> nums) {
+        this.nums = nums;
     }
 
     public Result matchWith(Numbers numbers) {
+        if (getSize() != numbers.getSize()) {
+            throw new RuntimeException("같은 개수의 숫자만 평가할 수 있습니다 (좌변: " + getSize() + ", 우변: " + numbers.getSize() + ")");
+        }
+
         int strikes = calculateStrikes(this, numbers);
         int balls = calculateBalls(this, numbers);
 
@@ -22,9 +30,9 @@ public class Numbers {
     private static int calculateStrikes(Numbers left, Numbers right) {
         int strikes = 0;
 
-        if (left.First == right.First) strikes++;
-        if (left.Second == right.Second) strikes++;
-        if (left.Third == right.Third) strikes++;
+        for (int i = 0; i < left.getSize(); i++) {
+            if (left.getNum(i) == right.getNum(i)) strikes++;
+        }
 
         return strikes;
     }
@@ -32,31 +40,48 @@ public class Numbers {
     private static int calculateBalls(Numbers left, Numbers right) {
         int balls = 0;
 
-        if (left.First == right.Second || left.First == right.Third) balls++;
-        if (left.Second == right.First || left.Second == right.Third) balls++;
-        if (left.Third == right.First || left.Third == right.Second) balls++;
+        for (int i = 0; i < left.getSize(); i++) {
+            if (isBallCount(i, left, right)) balls++;
+        }
 
         return balls;
     }
 
+    private static boolean isBallCount(int leftIdx, Numbers left, Numbers right) {
+        for (int rightIdx = 0; rightIdx < left.getSize(); rightIdx++) {
+            if (leftIdx == rightIdx) continue;
+            if (left.getNum(leftIdx) == right.getNum(rightIdx)) return true;
+        }
+        return false;
+    }
+
+    public int getSize() {
+        return nums.size();
+    }
+
+    public int getNum(int idx) {
+        return nums.get(idx);
+    }
+
+    @Deprecated
     public int getFirst() {
-        return First;
+        return getNum(0);
     }
 
+    @Deprecated
     public int getSecond() {
-        return Second;
+        return getNum(1);
     }
 
+    @Deprecated
     public int getThird() {
-        return Third;
+        return getNum(2);
     }
 
     @Override
     public String toString() {
         return "Numbers{" +
-                "First=" + First +
-                ", Second=" + Second +
-                ", Third=" + Third +
+                "nums=" + nums +
                 '}';
     }
 }
