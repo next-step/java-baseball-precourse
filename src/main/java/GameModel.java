@@ -4,13 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class GameController {
+public class GameModel {
     private static final int NUM_OF_DIGIT = 3;
 
     final List<Integer> answer;
     final Map<Integer, Integer> numPosition = new HashMap<>();
 
-    public GameController() {
+    public GameModel() {
         answer = RandomGenerator.generateRandomNumber(NUM_OF_DIGIT);
 
         for (int i=0; i<answer.size(); i++) {
