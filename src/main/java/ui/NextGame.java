@@ -1,8 +1,8 @@
 package ui;
 
 public enum NextGame {
-    CONTINUE(1),
-    END(2);
+    Continue(1),
+    End(2);
 
     private final int value;
 
@@ -12,8 +12,8 @@ public enum NextGame {
 
     public static NextGame of(int value) {
         switch (value) {
-            case 1: return CONTINUE;
-            case 2: return END;
+            case 1: return Continue;
+            case 2: return End;
             default:
                 // TODO
                 throw new RuntimeException("");

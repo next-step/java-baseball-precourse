@@ -18,7 +18,7 @@ public class BaseballGame {
             baseball.startGame();
             guessNumbers(baseball, scanner);
             NextGame token = getNextGameInput(scanner);
-            if (token == NextGame.END) {
+            if (token == NextGame.End) {
                 break;
             }
         }
