@@ -1,19 +1,19 @@
+import util.RandomGenerator;
 import view.InputView;
 import view.OutputView;
 
 import java.util.*;
 
 public class BaseballGame {
+    private static final int NUM_OF_DIGIT = 3;
+
     public static void main(String[] args) {
         // 1. 랜덤 세자리 수 생성
-        Integer[] numbers = {1,2,3,4,5,6,7,8,9};
-        List<Integer> numberLists = Arrays.asList(numbers);
-        Collections.shuffle(numberLists);
-        int[] answer = {numberLists.get(0), + numberLists.get(1), numberLists.get(2)};
+        final List<Integer> answer = RandomGenerator.generateRandomNumber(NUM_OF_DIGIT);
 
         Map<Integer, Integer> numberMap = new HashMap<>();
-        for (int i=0; i<answer.length; i++) {
-            numberMap.put(answer[i], i);
+        for (int i=0; i<answer.size(); i++) {
+            numberMap.put(answer.get(i), i);
         }
 
         while (true) {
@@ -22,7 +22,7 @@ public class BaseballGame {
             String number = InputView.getNumber();
 
             // 3. 게임 종료 여부 판단
-            if (Integer.parseInt(number) == answer[0] * 100 + answer[1] * 10 + answer[2]) {
+            if (Integer.parseInt(number) == answer.get(0) * 100 + answer.get(1) * 10 + answer.get(2)) {
                OutputView.printEnding();
                 break;
             }
