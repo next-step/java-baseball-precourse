@@ -8,12 +8,12 @@ import java.util.*;
 
 public class BaseballGame {
 
-    public static void startGame() {
-        Baseball baseball = new Baseball();
+    public static void startGame(int size) {
+        Baseball baseball = new Baseball(size);
         Scanner scanner = new Scanner(System.in);
         while (true) {
             baseball.startGame();
-            guessNumbers(baseball, scanner);
+            guessNumbers(baseball, scanner, size);
             NextGame token = getNextGameInput(scanner);
             if (token == NextGame.End) {
                 break;
@@ -21,9 +21,9 @@ public class BaseballGame {
         }
     }
 
-    private static void guessNumbers(Baseball baseball, Scanner scanner) {
+    private static void guessNumbers(Baseball baseball, Scanner scanner, int size) {
         while (true) {
-            Numbers input = getGuessNumsInput(scanner);
+            Numbers input = getGuessNumsInput(scanner, size);
             Result result = baseball.guessNumbers(input);
             printResult(result);
 
@@ -34,9 +34,9 @@ public class BaseballGame {
         }
     }
 
-    private static Numbers getGuessNumsInput(Scanner scanner) {
-        List<Integer> nums = getIntArray(scanner, 3, "숫자를 입력해주세요 : ");
-        return new Numbers(nums.get(0), nums.get(1), nums.get(2));
+    private static Numbers getGuessNumsInput(Scanner scanner, int size) {
+        List<Integer> nums = getIntArray(scanner, size, "숫자를 입력해주세요 : ");
+        return new Numbers(nums);
     }
 
     private static NextGame getNextGameInput(Scanner scanner) {
