@@ -16,6 +16,7 @@ public class GameModel {
     }
 
     public GameResult calculateGameResult(final String number) {
-		return new GameResult(number, answer);
+        final GameInput gameInput = new GameInput(number);
+		return new GameResult(gameInput.getValues(), answer);
     }
 }

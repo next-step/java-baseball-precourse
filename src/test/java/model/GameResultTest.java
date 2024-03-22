@@ -14,7 +14,7 @@ public class GameResultTest {
 	@DisplayName("게임 결과를 생성한다.")
 	void test01() {
 		// given
-		final String input = "123";
+		final List<Integer> input = List.of(1, 2, 3);
 		final List<Integer> answer = List.of(2, 1, 3);
 
 		// when

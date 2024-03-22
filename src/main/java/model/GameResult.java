@@ -7,11 +7,9 @@ public class GameResult {
 	private int numOfStrike = 0;
 	private int numOfBall = 0;
 
-	public GameResult(final String input, final List<Integer> answer) {
-		final char[] inputNums = input.toCharArray();
-
-		for (int i = 0; i < inputNums.length; i++) {
-			final int num = Character.getNumericValue(inputNums[i]);
+	public GameResult(final List<Integer> inputNums, final List<Integer> answer) {
+		for (int i = 0; i < inputNums.size(); i++) {
+			final int num = Character.getNumericValue(inputNums.get(i));
 			final int position = answer.indexOf(num);
 
 			if (position == -1) continue;
