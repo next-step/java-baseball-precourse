@@ -7,11 +7,12 @@ import java.util.Map;
 public class GameController {
     private static final int NUM_OF_DIGIT = 3;
 
-    final List<Integer> answer = RandomGenerator.generateRandomNumber(NUM_OF_DIGIT);
+    final List<Integer> answer;
     final Map<Integer, Integer> numPosition = new HashMap<>();
 
+    public GameController() {
+        answer = RandomGenerator.generateRandomNumber(NUM_OF_DIGIT);
 
-    public void setupGame() {
         for (int i=0; i<answer.size(); i++) {
             numPosition.put(answer.get(i), i);
         }

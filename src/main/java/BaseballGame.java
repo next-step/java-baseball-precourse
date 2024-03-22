@@ -5,7 +5,6 @@ public class BaseballGame {
 
     public static void main(String[] args) {
         final GameController gameController = new GameController();
-        gameController.setupGame();
 
         while (true) {
             OutputView.printInfo();
