@@ -2,7 +2,7 @@ package view;
 
 public class OutputView {
     public static void printInfo() {
-        System.out.println("숫자를 입력해주세요 : ");
+        System.out.print("숫자를 입력해주세요 : ");
     }
 
     public static void printEnding() {
@@ -21,5 +21,9 @@ public class OutputView {
         if (numOfBall > 0) sb.append(numOfBall).append(" 볼");
 
         System.out.println(sb);
+    }
+
+    public static void printError() {
+        System.out.println("ERROR");
     }
 }
