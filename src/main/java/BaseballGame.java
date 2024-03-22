@@ -4,7 +4,7 @@ import model.RandomGenerator;
 import view.InputView;
 import view.OutputView;
 
-public class Game {
+public class BaseballGame {
 
     private static final RandomGenerator randomGenerator = new RandomGenerator();
 
