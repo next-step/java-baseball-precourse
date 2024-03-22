@@ -25,14 +25,14 @@ class GameModelTest {
         @Test
         @DisplayName("게임이 종료 조건을 달성하면 true 를 반환한다.")
         void test1() {
-            final boolean result = gameModel.isGameEnd("123");
+            final boolean result = gameModel.isGameEnd(new GameInput("123"));
             assertThat(result).isTrue();
         }
 
         @Test
         @DisplayName("게임이 종료 조건을 달성하지 못하면 false 를 반환한다.")
         void test2() {
-            final boolean result = gameModel.isGameEnd("234");
+            final boolean result = gameModel.isGameEnd(new GameInput("234"));
             assertThat(result).isFalse();
         }
     }
@@ -44,7 +44,7 @@ class GameModelTest {
         @Test
         @DisplayName("자릿수가 일치하는 숫자만큼 스트라이크를 반환한다.")
         void test1() {
-            final GameResult result = gameModel.calculateGameResult("120");
+            final GameResult result = gameModel.calculateGameResult(new GameInput("120"));
             assertThat(result.getNumOfStrike()).isEqualTo(2);
             assertThat(result.getNumOfBall()).isEqualTo(0);
         }
@@ -52,7 +52,7 @@ class GameModelTest {
         @Test
         @DisplayName("자릿수는 다르지만 일치하는 숫자만큼 볼을 반환한다.")
         void test2() {
-            final GameResult result = gameModel.calculateGameResult("012");
+            final GameResult result = gameModel.calculateGameResult(new GameInput("012"));
             assertThat(result.getNumOfStrike()).isEqualTo(0);
             assertThat(result.getNumOfBall()).isEqualTo(2);
         }

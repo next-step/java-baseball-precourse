@@ -25,6 +25,14 @@ public class GameInput {
 		return new LinkedList<>(inputNums);
 	}
 
+	public boolean hasSameValue(final List<Integer> other) {
+		if (inputNums.size() != other.size()) return false;
+		for (int i = 0; i < inputNums.size(); i++) {
+			if (!inputNums.get(i).equals(other.get(i))) return false;
+		}
+		return true;
+	}
+
 	private void checkNumberSize(final String input) {
 		if (input.length() != INPUT_SIZE) throw new IllegalArgumentException();
 	}
