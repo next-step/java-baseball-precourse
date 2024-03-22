@@ -45,6 +45,19 @@ class BaseballTest {
     }
 
     @Test
+    @DisplayName("size=4 일 때 guessNumbers 정답 실행")
+    void guessNumbersAnswerSize4() {
+        Baseball baseball = new Baseball(4);
+        baseball.startGame();
+
+        Numbers answer = baseball.getNumbers();
+        baseball.guessNumbers(answer);
+
+        assertThat(baseball.getState()).isEqualTo(GameState.End);
+        assertThat(baseball.getNumbers()).isNotNull();
+    }
+
+    @Test
     @DisplayName("오류 - Running 상태에서 startGame 실행")
     void startGameWhenRunningState() {
         Baseball baseball = new Baseball();

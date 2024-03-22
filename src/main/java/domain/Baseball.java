@@ -41,7 +41,7 @@ public class Baseball {
             throw new BaseballStateException("guessNumbers는 Running 상태에서만 가능합니다 (현재 상태: " + state +  ")");
         }
         Result result = numbers.matchWith(input);
-        if (result.isSuccess()) {
+        if (result.isSuccess(size)) {
             state = GameState.End;
         }
         return result;

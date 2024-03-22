@@ -2,8 +2,6 @@ package domain;
 
 public class Result {
 
-    private final static int STRIKE_OUT_COUNT = 3;
-
     private final int strikes;
     private final int balls;
 
@@ -18,8 +16,8 @@ public class Result {
     }
 
 
-    public boolean isSuccess() {
-        return strikes == STRIKE_OUT_COUNT;
+    public boolean isSuccess(int size) {
+        return strikes == size;
     }
 
     public int getStrikes() {

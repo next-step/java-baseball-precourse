@@ -27,7 +27,7 @@ public class BaseballGame {
             Result result = baseball.guessNumbers(input);
             printResult(result);
 
-            if (result.isSuccess()) {
+            if (result.isSuccess(size)) {
                 System.out.println("3개의 숫자를 모듀 맞히셨습니다! 게임 끝");
                 break;
             }
