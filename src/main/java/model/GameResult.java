@@ -9,8 +9,8 @@ public class GameResult {
 
 	public GameResult(final List<Integer> inputNums, final List<Integer> answer) {
 		for (int i = 0; i < inputNums.size(); i++) {
-			final int num = Character.getNumericValue(inputNums.get(i));
-			final int position = answer.indexOf(num);
+			final int targetNum = inputNums.get(i);
+			final int position = answer.indexOf(targetNum);
 
 			if (position == -1) continue;
 			if (position == i) {
