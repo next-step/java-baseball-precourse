@@ -1,5 +1,3 @@
-import util.RandomGenerator;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,8 +8,8 @@ public class GameModel {
     final List<Integer> answer;
     final Map<Integer, Integer> numPosition = new HashMap<>();
 
-    public GameModel() {
-        answer = RandomGenerator.generateRandomNumber(NUM_OF_DIGIT);
+    public GameModel(final RandomGenerator randomGenerator) {
+        answer = randomGenerator.generateRandomNumber(NUM_OF_DIGIT);
 
         for (int i=0; i<answer.size(); i++) {
             numPosition.put(answer.get(i), i);

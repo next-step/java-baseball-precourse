@@ -3,8 +3,10 @@ import view.OutputView;
 
 public class Game {
 
+    private static final RandomGenerator randomGenerator = new RandomGenerator();
+
     public static void main(String[] args) {
-        final GameModel gameModel = new GameModel();
+        final GameModel gameModel = new GameModel(randomGenerator);
 
         while (true) {
             OutputView.printInfo();
