@@ -15,8 +15,7 @@ public enum NextGame {
             case 1: return Continue;
             case 2: return End;
             default:
-                // TODO
-                throw new RuntimeException("");
+                throw new IllegalArgumentException("NextGame 값은 1 or 2 만 가능합니다 (입력값: " + value + ")");
         }
     }
 
