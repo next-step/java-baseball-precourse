@@ -5,3 +5,10 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능 목록
+
+1. CLI 기반 게임 UI
+2. 전체 게임 운영 컨트롤러
+3. 3자리 숫자 생성 기능
+4. 유저의 입력 숫자에 대한 결과 판독 기능
