@@ -8,4 +8,8 @@ public class InputView {
     public static String getInput() {
         return sc.next();
     }
+
+    public static int getIntInput() {
+        return sc.nextInt();
+    }
 }

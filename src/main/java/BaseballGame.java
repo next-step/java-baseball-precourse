@@ -12,12 +12,9 @@ public class BaseballGame {
     private static final RandomGenerator randomGenerator = new RandomGenerator();
 
     public static void main(String[] args) {
-        while (true) {
+        do {
             playGame();
-
-            final int input = Integer.parseInt(InputView.getInput());
-            if (input == END_STATUS) break;
-        }
+        } while (InputView.getIntInput() != END_STATUS);
     }
 
     private static void playGame() {
