@@ -1,6 +1,6 @@
 import java.util.Optional;
 import model.GameInput;
-import model.GameModel;
+import model.GameAnswer;
 import model.GameResult;
 import model.RandomGenerator;
 import view.InputView;
@@ -21,13 +21,13 @@ public class BaseballGame {
     }
 
     private static void playGame() {
-        final GameModel gameModel = new GameModel(randomGenerator);
+        final GameAnswer gameAnswer = new GameAnswer(randomGenerator);
 
         while (true) {
             OutputView.printInfo();
 
             final String number = InputView.getInput();
-            final boolean isGameEnd = evaluateInput(gameModel, number)
+            final boolean isGameEnd = evaluateInput(gameAnswer, number)
                 .map(GameResult::isGameEnd)
                 .orElse(false);
 
@@ -38,10 +38,10 @@ public class BaseballGame {
         }
     }
 
-    private static Optional<GameResult> evaluateInput(final GameModel gameModel, final String number) {
+    private static Optional<GameResult> evaluateInput(final GameAnswer gameAnswer, final String number) {
         try {
             final GameInput gameInput = new GameInput(number);
-            final GameResult gameResult = gameModel.calculateGameResult(gameInput);
+            final GameResult gameResult = gameAnswer.calculateGameResult(gameInput);
             OutputView.printHint(gameResult.getNumOfStrike(), gameResult.getNumOfBall());
             return Optional.of(gameResult);
         } catch (IllegalArgumentException exception) {
