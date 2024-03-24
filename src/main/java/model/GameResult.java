@@ -4,6 +4,8 @@ import java.util.List;
 
 public class GameResult {
 
+	public static final int END_SCORE = 3;
+
 	private int numOfStrike = 0;
 	private int numOfBall = 0;
 
@@ -28,5 +30,9 @@ public class GameResult {
 
 	public int getNumOfBall() {
 		return numOfBall;
+	}
+
+	public boolean isGameEnd() {
+		return numOfStrike == END_SCORE;
 	}
 }

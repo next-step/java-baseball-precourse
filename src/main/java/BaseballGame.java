@@ -1,3 +1,4 @@
+import java.util.Optional;
 import model.GameInput;
 import model.GameModel;
 import model.GameResult;
@@ -11,33 +12,41 @@ public class BaseballGame {
     private static final RandomGenerator randomGenerator = new RandomGenerator();
 
     public static void main(String[] args) {
+        while (true) {
+            playGame();
+
+            final int input = Integer.parseInt(InputView.getInput());
+            if (input == END_STATUS) break;
+        }
+    }
+
+    private static void playGame() {
         final GameModel gameModel = new GameModel(randomGenerator);
 
         while (true) {
             OutputView.printInfo();
-            final String number = InputView.getInput();
 
-            try {
-                final GameInput gameInput = new GameInput(number);
-                endGameIfPossible(gameInput, gameModel);
-                playGame(gameInput, gameModel);
-            } catch(IllegalArgumentException exception) {
-                OutputView.printError();
+            final String number = InputView.getInput();
+            final boolean isGameEnd = evaluateInput(gameModel, number)
+                .map(GameResult::isGameEnd)
+                .orElse(false);
+
+            if (isGameEnd) {
+                OutputView.printEnding();
+                break;
             }
         }
     }
 
-    private static void endGameIfPossible(final GameInput gameInpt, final GameModel gameModel) {
-        if (!gameModel.isGameEnd(gameInpt)) return;
-
-        OutputView.printEnding();
-        final int input = Integer.parseInt(InputView.getInput());
-
-        if (input == END_STATUS) System.exit(0);
-    }
-
-    private static void playGame(final GameInput gameInput, final GameModel gameModel) {
-        final GameResult gameResult = gameModel.calculateGameResult(gameInput);
-        OutputView.printHint(gameResult.getNumOfStrike(), gameResult.getNumOfBall());
+    private static Optional<GameResult> evaluateInput(final GameModel gameModel, final String number) {
+        try {
+            final GameInput gameInput = new GameInput(number);
+            final GameResult gameResult = gameModel.calculateGameResult(gameInput);
+            OutputView.printHint(gameResult.getNumOfStrike(), gameResult.getNumOfBall());
+            return Optional.of(gameResult);
+        } catch (IllegalArgumentException exception) {
+            OutputView.printError();
+            return Optional.empty();
+        }
     }
 }
